@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Desktops list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Manufacturer</th>
+                <th>Cpu</th>
+                <th>Ram</th>
+                <th>Hdd</th>
+                <th>Ssd</th>
+                <th>Drive</th>
+                <th>Powersupply</th>
+                <th>Casetype</th>
+                <th>Os</th>
+                <th>Ipaddress</th>
+                <th>Macaddress</th>
+                <th>Picture</th>
+                <th>Price</th>
+                <th>Purchasedate</th>
+                <th>Adddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for desktop in desktops %}
+            <tr>
+                <td><a href="{{ path('desktop_show', { 'id': desktop.id }) }}">{{ desktop.id }}</a></td>
+                <td>{{ desktop.name }}</td>
+                <td>{{ desktop.model }}</td>
+                <td>{{ desktop.type }}</td>
+                <td>{{ desktop.manufacturer }}</td>
+                <td>{{ desktop.cpu }}</td>
+                <td>{{ desktop.ram }}</td>
+                <td>{{ desktop.hdd }}</td>
+                <td>{{ desktop.ssd }}</td>
+                <td>{{ desktop.drive }}</td>
+                <td>{{ desktop.powerSupply }}</td>
+                <td>{{ desktop.caseType }}</td>
+                <td>{{ desktop.os }}</td>
+                <td>{{ desktop.ipAddress }}</td>
+                <td>{{ desktop.macAddress }}</td>
+                <td>{{ desktop.picture }}</td>
+                <td>{{ desktop.price }}</td>
+                <td>{% if desktop.purchaseDate %}{{ desktop.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if desktop.addDate %}{{ desktop.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('desktop_show', { 'id': desktop.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('desktop_edit', { 'id': desktop.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('desktop_new') }}">Create a new desktop</a>
+        </li>
+    </ul>
+{% endblock %}

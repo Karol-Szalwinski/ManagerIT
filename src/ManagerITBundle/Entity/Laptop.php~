@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Desktop
+ * Laptop
  *
- * @ORM\Table(name="desktop")
- * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\DesktopRepository")
+ * @ORM\Table(name="laptop")
+ * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\LaptopRepository")
  */
-class Desktop
+class Laptop
 {
     /**
      * @var int
@@ -74,9 +74,9 @@ class Desktop
     /**
      * @var string
      *
-     * @ORM\Column(name="ssd", type="string", length=255)
+     * @ORM\Column(name="sdd", type="string", length=255)
      */
-    private $ssd;
+    private $sdd;
 
     /**
      * @var string
@@ -95,9 +95,16 @@ class Desktop
     /**
      * @var string
      *
-     * @ORM\Column(name="caseType", type="string", length=255)
+     * @ORM\Column(name="battery", type="string", length=255)
      */
-    private $caseType;
+    private $battery;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="screen", type="string", length=255)
+     */
+    private $screen;
 
     /**
      * @var string
@@ -142,23 +149,23 @@ class Desktop
     private $purchaseDate;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="addDate", type="datetime")
+     * @ORM\Column(name="addDate", type="string", length=255)
      */
     private $addDate;
-    
+
     /**
-     * @ORM\ManyToMany(targetEntity="License", inversedBy="desktops")
-     * @ORM\JoinTable(name="desktops_licenses")
+     * @ORM\ManyToMany(targetEntity="License", inversedBy="laptops")
+     * @ORM\JoinTable(name="laptops_licenses")
      */
     private $licenses;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="desktops")
+     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="laptops")
      */
     private $employees;
-
+    
     /**
      * Get id
      *
@@ -173,7 +180,7 @@ class Desktop
      * Set name
      *
      * @param string $name
-     * @return Desktop
+     * @return Laptop
      */
     public function setName($name)
     {
@@ -196,7 +203,7 @@ class Desktop
      * Set model
      *
      * @param string $model
-     * @return Desktop
+     * @return Laptop
      */
     public function setModel($model)
     {
@@ -219,7 +226,7 @@ class Desktop
      * Set type
      *
      * @param string $type
-     * @return Desktop
+     * @return Laptop
      */
     public function setType($type)
     {
@@ -242,7 +249,7 @@ class Desktop
      * Set manufacturer
      *
      * @param string $manufacturer
-     * @return Desktop
+     * @return Laptop
      */
     public function setManufacturer($manufacturer)
     {
@@ -265,7 +272,7 @@ class Desktop
      * Set cpu
      *
      * @param string $cpu
-     * @return Desktop
+     * @return Laptop
      */
     public function setCpu($cpu)
     {
@@ -288,7 +295,7 @@ class Desktop
      * Set ram
      *
      * @param string $ram
-     * @return Desktop
+     * @return Laptop
      */
     public function setRam($ram)
     {
@@ -311,7 +318,7 @@ class Desktop
      * Set hdd
      *
      * @param string $hdd
-     * @return Desktop
+     * @return Laptop
      */
     public function setHdd($hdd)
     {
@@ -331,33 +338,33 @@ class Desktop
     }
 
     /**
-     * Set ssd
+     * Set sdd
      *
-     * @param string $ssd
-     * @return Desktop
+     * @param string $sdd
+     * @return Laptop
      */
-    public function setSsd($ssd)
+    public function setSdd($sdd)
     {
-        $this->ssd = $ssd;
+        $this->sdd = $sdd;
 
         return $this;
     }
 
     /**
-     * Get ssd
+     * Get sdd
      *
      * @return string 
      */
-    public function getSsd()
+    public function getSdd()
     {
-        return $this->ssd;
+        return $this->sdd;
     }
 
     /**
      * Set drive
      *
      * @param string $drive
-     * @return Desktop
+     * @return Laptop
      */
     public function setDrive($drive)
     {
@@ -380,7 +387,7 @@ class Desktop
      * Set powerSupply
      *
      * @param string $powerSupply
-     * @return Desktop
+     * @return Laptop
      */
     public function setPowerSupply($powerSupply)
     {
@@ -400,33 +407,56 @@ class Desktop
     }
 
     /**
-     * Set caseType
+     * Set battery
      *
-     * @param string $caseType
-     * @return Desktop
+     * @param string $battery
+     * @return Laptop
      */
-    public function setCaseType($caseType)
+    public function setBattery($battery)
     {
-        $this->caseType = $caseType;
+        $this->battery = $battery;
 
         return $this;
     }
 
     /**
-     * Get caseType
+     * Get battery
      *
      * @return string 
      */
-    public function getCaseType()
+    public function getBattery()
     {
-        return $this->caseType;
+        return $this->battery;
+    }
+
+    /**
+     * Set screen
+     *
+     * @param string $screen
+     * @return Laptop
+     */
+    public function setScreen($screen)
+    {
+        $this->screen = $screen;
+
+        return $this;
+    }
+
+    /**
+     * Get screen
+     *
+     * @return string 
+     */
+    public function getScreen()
+    {
+        return $this->screen;
     }
 
     /**
      * Set os
      *
      * @param string $os
-     * @return Desktop
+     * @return Laptop
      */
     public function setOs($os)
     {
@@ -449,7 +479,7 @@ class Desktop
      * Set ipAddress
      *
      * @param string $ipAddress
-     * @return Desktop
+     * @return Laptop
      */
     public function setIpAddress($ipAddress)
     {
@@ -472,7 +502,7 @@ class Desktop
      * Set macAddress
      *
      * @param string $macAddress
-     * @return Desktop
+     * @return Laptop
      */
     public function setMacAddress($macAddress)
     {
@@ -495,7 +525,7 @@ class Desktop
      * Set picture
      *
      * @param string $picture
-     * @return Desktop
+     * @return Laptop
      */
     public function setPicture($picture)
     {
@@ -518,7 +548,7 @@ class Desktop
      * Set price
      *
      * @param string $price
-     * @return Desktop
+     * @return Laptop
      */
     public function setPrice($price)
     {
@@ -541,7 +571,7 @@ class Desktop
      * Set purchaseDate
      *
      * @param \DateTime $purchaseDate
-     * @return Desktop
+     * @return Laptop
      */
     public function setPurchaseDate($purchaseDate)
     {
@@ -563,8 +593,8 @@ class Desktop
     /**
      * Set addDate
      *
-     * @param \DateTime $addDate
-     * @return Desktop
+     * @param string $addDate
+     * @return Laptop
      */
     public function setAddDate($addDate)
     {
@@ -576,84 +606,10 @@ class Desktop
     /**
      * Get addDate
      *
-     * @return \DateTime 
+     * @return string 
      */
     public function getAddDate()
     {
         return $this->addDate;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add licenses
-     *
-     * @param \ManagerITBundle\Entity\License $licenses
-     * @return Desktop
-     */
-    public function addLicense(\ManagerITBundle\Entity\License $licenses)
-    {
-        $this->licenses[] = $licenses;
-
-        return $this;
-    }
-
-    /**
-     * Remove licenses
-     *
-     * @param \ManagerITBundle\Entity\License $licenses
-     */
-    public function removeLicense(\ManagerITBundle\Entity\License $licenses)
-    {
-        $this->licenses->removeElement($licenses);
-    }
-
-    /**
-     * Get licenses
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getLicenses()
-    {
-        return $this->licenses;
-    }
-
-    /**
-     * Add employees
-     *
-     * @param \ManagerITBundle\Entity\Employee $employees
-     * @return Desktop
-     */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
-    {
-        $this->employees[] = $employees;
-
-        return $this;
-    }
-
-    /**
-     * Remove employees
-     *
-     * @param \ManagerITBundle\Entity\Employee $employees
-     */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
-    {
-        $this->employees->removeElement($employees);
-    }
-
-    /**
-     * Get employees
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmployees()
-    {
-        return $this->employees;
     }
 }

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Departaments list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adddate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for departament in departaments %}
+            <tr>
+                <td><a href="{{ path('departament_show', { 'id': departament.id }) }}">{{ departament.id }}</a></td>
+                <td>{% if departament.addDate %}{{ departament.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('departament_show', { 'id': departament.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('departament_edit', { 'id': departament.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('departament_new') }}">Create a new departament</a>
+        </li>
+    </ul>
+{% endblock %}

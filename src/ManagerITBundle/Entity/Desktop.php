@@ -155,8 +155,7 @@ class Desktop
     private $licenses;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="desktops")
-     * @ORM\JoinTable(name="desktops_employees")
+     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="desktops")
      */
     private $employees;
 

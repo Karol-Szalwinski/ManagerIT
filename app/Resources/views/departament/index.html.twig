@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Desktopy {% endblock %}
+
+{% block content %} Lista komputerów stacjonarnych {% endblock %}
+
+
 {% block body %}
     <h1>Departaments list</h1>
 
@@ -12,22 +17,22 @@
             </tr>
         </thead>
         <tbody>
-        {% for departament in departaments %}
-            <tr>
-                <td><a href="{{ path('departament_show', { 'id': departament.id }) }}">{{ departament.id }}</a></td>
-                <td>{% if departament.addDate %}{{ departament.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('departament_show', { 'id': departament.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('departament_edit', { 'id': departament.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for departament in departaments %}
+                <tr>
+                    <td><a href="{{ path('departament_show', { 'id': departament.id }) }}">{{ departament.id }}</a></td>
+                    <td>{% if departament.addDate %}{{ departament.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('departament_show', { 'id': departament.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('departament_edit', { 'id': departament.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

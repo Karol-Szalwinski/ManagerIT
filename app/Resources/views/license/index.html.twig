@@ -18,7 +18,7 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-desktop"></i></div>
-                                <h5>Lista komputerów</h5>
+                                <h5>Lista licencji</h5>
                                 <div class="btn-group">
                                     <a href="{{ path('license_new') }}" class="btn btn-primary btn-line btn-rect">Dodaj</a>
                                     <a href="#" class="btn btn-warning btn-line btn-rect">Modyfikuj</a>
@@ -33,11 +33,10 @@
                                 <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Program</th>
+                                            <th>Nazwa</th>
                                             <th>Klucz</th>
-                                            <th>Sprzęt</th>
-                                            <th>Użytkownik</th>
-                                            <th>Okres ważności</th>
+                                            <th>Typ licencji</th>
+                                            <th>Data wygaśnięcia</th>
                                             <th>Cena zakupu</th>
                                             <th>Data zakupu</th> 
                                             <th></th>
@@ -45,20 +44,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for desktop in desktops %}
+                                        {% for license in licenses %}
                                             <tr>
-                                                //dokończyć tutaj
-                                                <td>{{ desktop.name }}</td>
-                                                <td>{{ desktop.model }}</td>
-                                                <td>{{ desktop.type }}</td>
-                                                <td>{{ desktop.manufacturer }}</td>
-                                                <td>{{ desktop.cpu }}</td>
-                                                <td>{{ desktop.ram }}</td>
-                                                <td>{{ desktop.os }}</td>
-                                                <td>{{ desktop.ipAddress }}</td>
-                                                <td>{{ desktop.macAddress }}</td>
-                                                <td><a href="{{ path('desktop_show', { 'id': desktop.id }) }}">{{ desktop.id }}</a></td>
-                                                <td><a href="{{ path('desktop_edit', { 'id': desktop.id }) }}">edit</a></td>
+                                                <td>{{ license.name }}</td>
+                                                <td>{{ license.licenseKey }}</td>
+                                                <td>{{ license.type }}</td>
+                                                <td>{{ license.expireDate|date('Y-m-d') }}</td>
+                                                <td>{{ license.price }}</td>
+                                                <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
+                                                <td><a href="{{ path('license_show', { 'id': license.id }) }}">{{ license.id }}</a></td>
+                                                <td><a href="{{ path('license_edit', { 'id': license.id }) }}">edit</a></td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

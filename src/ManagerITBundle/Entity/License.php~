@@ -257,4 +257,112 @@ class License
     {
         return $this->addDate;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add desktops
+     *
+     * @param \ManagerITBundle\Entity\Desktop $desktops
+     * @return License
+     */
+    public function addDesktop(\ManagerITBundle\Entity\Desktop $desktops)
+    {
+        $this->desktops[] = $desktops;
+
+        return $this;
+    }
+
+    /**
+     * Remove desktops
+     *
+     * @param \ManagerITBundle\Entity\Desktop $desktops
+     */
+    public function removeDesktop(\ManagerITBundle\Entity\Desktop $desktops)
+    {
+        $this->desktops->removeElement($desktops);
+    }
+
+    /**
+     * Get desktops
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDesktops()
+    {
+        return $this->desktops;
+    }
+
+    /**
+     * Add laptops
+     *
+     * @param \ManagerITBundle\Entity\Laptop $laptops
+     * @return License
+     */
+    public function addLaptop(\ManagerITBundle\Entity\Laptop $laptops)
+    {
+        $this->laptops[] = $laptops;
+
+        return $this;
+    }
+
+    /**
+     * Remove laptops
+     *
+     * @param \ManagerITBundle\Entity\Laptop $laptops
+     */
+    public function removeLaptop(\ManagerITBundle\Entity\Laptop $laptops)
+    {
+        $this->laptops->removeElement($laptops);
+    }
+
+    /**
+     * Get laptops
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLaptops()
+    {
+        return $this->laptops;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return License
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
 }

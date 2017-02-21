@@ -582,4 +582,78 @@ class Desktop
     {
         return $this->addDate;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add licenses
+     *
+     * @param \ManagerITBundle\Entity\License $licenses
+     * @return Desktop
+     */
+    public function addLicense(\ManagerITBundle\Entity\License $licenses)
+    {
+        $this->licenses[] = $licenses;
+
+        return $this;
+    }
+
+    /**
+     * Remove licenses
+     *
+     * @param \ManagerITBundle\Entity\License $licenses
+     */
+    public function removeLicense(\ManagerITBundle\Entity\License $licenses)
+    {
+        $this->licenses->removeElement($licenses);
+    }
+
+    /**
+     * Get licenses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLicenses()
+    {
+        return $this->licenses;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Desktop
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
 }

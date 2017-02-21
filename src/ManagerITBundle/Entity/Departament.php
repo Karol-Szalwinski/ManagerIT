@@ -22,6 +22,13 @@ class Departament
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+    
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="addDate", type="datetime")
@@ -33,6 +40,15 @@ class Departament
      */
     private $employees;
             
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -41,6 +57,29 @@ class Departament
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Departament
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -64,13 +103,6 @@ class Departament
     public function getAddDate()
     {
         return $this->addDate;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

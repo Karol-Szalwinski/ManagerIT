@@ -1,56 +1,195 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Licencje {% endblock %}
+
+
 {% block body %}
-    <h1>License</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ license.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ license.name }}</td>
-            </tr>
-            <tr>
-                <th>Licensekey</th>
-                <td>{{ license.licenseKey }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ license.type }}</td>
-            </tr>
-            <tr>
-                <th>Expiredate</th>
-                <td>{{ license.expireDate }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ license.price }}</td>
-            </tr>
-            <tr>
-                <th>Purchasedate</th>
-                <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Adddate</th>
-                <td>{% if license.addDate %}{{ license.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+                <div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('license_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('license_edit', { 'id': license.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane podstawowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Nazwa aplikacji</td>
+                                            <td>{{ license.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Klucz produktu</td>
+                                            <td>{{ license.licenseKey }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Typ licencji</td>
+                                            <td>{{ license.type }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Licencjodawca</td>
+                                            <td>Microsoft</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data wygaśnięcia</td>
+                                            <td>{{ license.expireDate|date('Y-m-d H:i:s')  }}</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane finansowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Data zakupu</td>
+                                            <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data wprowadzenia</td>
+                                            <td>{% if license.addDate %}{{ license.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cena zakupu</td>
+                                            <td>{{ license.price }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kwota odnowienia</td>
+                                            <td>50 PLN</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Przypisany sprzęt</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nazwa</th>
+                                            <th>Typ</th>
+                                            <th>Model</th>
+                                            <th>Naklejka</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>P-102-P-BIURO</td>
+                                            <td>Desktop</td>
+                                            <td>Optiplex 760</td>
+                                            <td>Tak</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Użytkownicy</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Imię</th>
+                                            <th>Nazwisko</th>
+                                            <th>Stanowisko</th>
+                                            <th>Dział<th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Karol</td>
+                                            <td>Szałwiński</td>
+                                            <td>Kierownik IT</td>
+                                            <td>IT</td>
+                                        </tr>
+
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+
+
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

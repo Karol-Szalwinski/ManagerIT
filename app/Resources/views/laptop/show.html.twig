@@ -1,104 +1,288 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Laptop {% endblock %}
+
 {% block body %}
-    <h1>Laptop</h1>
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ laptop.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ laptop.name }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ laptop.model }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ laptop.type }}</td>
-            </tr>
-            <tr>
-                <th>Manufacturer</th>
-                <td>{{ laptop.manufacturer }}</td>
-            </tr>
-            <tr>
-                <th>Cpu</th>
-                <td>{{ laptop.cpu }}</td>
-            </tr>
-            <tr>
-                <th>Ram</th>
-                <td>{{ laptop.ram }}</td>
-            </tr>
-            <tr>
-                <th>Hdd</th>
-                <td>{{ laptop.hdd }}</td>
-            </tr>
-            <tr>
-                <th>Sdd</th>
-                <td>{{ laptop.sdd }}</td>
-            </tr>
-            <tr>
-                <th>Drive</th>
-                <td>{{ laptop.drive }}</td>
-            </tr>
-            <tr>
-                <th>Powersupply</th>
-                <td>{{ laptop.powerSupply }}</td>
-            </tr>
-            <tr>
-                <th>Battery</th>
-                <td>{{ laptop.battery }}</td>
-            </tr>
-            <tr>
-                <th>Screen</th>
-                <td>{{ laptop.screen }}</td>
-            </tr>
-            <tr>
-                <th>Os</th>
-                <td>{{ laptop.os }}</td>
-            </tr>
-            <tr>
-                <th>Ipaddress</th>
-                <td>{{ laptop.ipAddress }}</td>
-            </tr>
-            <tr>
-                <th>Macaddress</th>
-                <td>{{ laptop.macAddress }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ laptop.picture }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ laptop.price }}</td>
-            </tr>
-            <tr>
-                <th>Purchasedate</th>
-                <td>{% if laptop.purchaseDate %}{{ laptop.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Adddate</th>
-                <td>{{ laptop.addDate }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <div class="row">
 
-    <ul>
-        <li>
-            <a href="{{ path('laptop_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('laptop_edit', { 'id': laptop.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane identyfikacyjne</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Nazwa</td>
+                                            <td>{{ laptop.id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Model</td>
+                                            <td>{{ laptop.model }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Producent</td>
+                                            <td>{{ laptop.manufacturer }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Obudowa</td>
+                                            <td>{{ laptop.screen }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nr seryjny</td>
+                                            <td>ERER0-FDSF-DFDFD4-DF3</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Parametry</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td><span class="fa fa-microchip"></span> Procesor</td>
+                                            <td>{{ laptop.cpu }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ram</td>
+                                            <td>{{ laptop.ram }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GPU</td>
+                                            <td>Zintegrowana</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HDD</td>
+                                            <td>{{ laptop.hdd }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SDD</td>
+                                            <td>{{ laptop.sdd }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Napęd</td>
+                                            <td>{{ laptop.drive }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Zasilacz</td>
+                                            <td>{{ laptop.powerSupply }}</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane sieciowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Adres IP</td>
+                                            <td>{{ laptop.ipAddress }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MAC Adres</td>
+                                            <td>{{ laptop.macAddress }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nazwa sieciowa</td>
+                                            <td>{{ laptop.name }}</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane finansowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Data zakupu</td>
+                                            <td>{% if laptop.purchaseDate %}{{ laptop.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data wprowadzenia</td>
+                                            <td>{{ laptop.addDate|date('Y-m-d H:i:s') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cena zakupu</td>
+                                            <td>{{ laptop.price }}</td>
+                                        </tr>
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Licencje</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Program</th>
+                                            <th>Typ licencji</th>
+                                            <th>Wygasa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Windows 10</td>
+                                            <td>OEM</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>                                                    
+                                            <td>Office 365</td>
+                                            <td>Roczna</td>
+                                            <td>05.15.2017</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stacja Allegro</td>
+                                            <td>zwykła</td>
+                                            <td>-</td>
+                                        </tr>
+
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Pracownicy</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Imię</th>
+                                            <th>Nazwisko</th>
+                                            <th>Stanowisko</th>
+                                            <th>Dział<th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                                    
+                                            <td>Janusz</td>
+                                            <td>Handlarz</td>
+                                            <td>Sprzedawca</td>
+                                            <td>Sprzedaży</td>
+                                        </tr>
+
+                                    </tbody>                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+
 {% endblock %}

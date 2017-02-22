@@ -36,6 +36,8 @@
                                             <th>Id</th>
                                             <th>Imię</th>
                                             <th>Nazwisko</th>
+                                            <th>Stanowisko</th>
+                                            <th>Dział</th>
                                             <th>Płeć</th>
                                             <th>Telefon</th>
                                             <th>Email</th>
@@ -48,6 +50,8 @@
                                                 <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
                                                 <td>{{ employee.name }}</td>
                                                 <td>{{ employee.surname }}</td>
+                                                <td>{{ employee.job }}</td>
+                                                <td>{{ employee.departament.name }}</td>
                                                 <td>{{ employee.sex }}</td>
                                                 <td>{{ employee.phone }}</td>
                                                 <td>{{ employee.email }}</td>

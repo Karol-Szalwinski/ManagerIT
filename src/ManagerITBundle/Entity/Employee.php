@@ -58,6 +58,13 @@ class Employee
     private $email;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=255)
+     */
+    private $job;
+    
+    /**
       * @ORM\ManyToOne(targetEntity="Departament", inversedBy="employees")
       * @ORM\JoinColumn(name="departament_id", referencedColumnName="id")
       */
@@ -81,7 +88,16 @@ class Employee
      */
     private $laptops;
     
-    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -206,14 +222,28 @@ class Employee
     {
         return $this->email;
     }
+
     /**
-     * Constructor
+     * Set job
+     *
+     * @param string $job
+     * @return Employee
      */
-    public function __construct()
+    public function setJob($job)
     {
-        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string 
+     */
+    public function getJob()
+    {
+        return $this->job;
     }
 
     /**

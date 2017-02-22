@@ -31,7 +31,7 @@ class Departament
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="addDate", type="datetime")
+     * @ORM\Column(name="addDate", type="datetime" )
      */
     private $addDate;
 
@@ -47,6 +47,7 @@ class Departament
     public function __construct()
     {
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**

@@ -46,7 +46,7 @@
                                     </thead>
                                     <tbody>
                                         {% for desktop in desktops %}
-                                            <tr>
+                                            <tr onclick='location.href="{{ path('desktop_show', { 'id': desktop.id }) }}"'>
                                                 <td>{{ desktop.name }}</td>
                                                 <td>{{ desktop.model }}</td>
                                                 <td>{{ desktop.type }}</td>

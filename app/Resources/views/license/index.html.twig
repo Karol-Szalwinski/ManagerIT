@@ -45,7 +45,7 @@
                                     </thead>
                                     <tbody>
                                         {% for license in licenses %}
-                                            <tr>
+                                            <tr onclick='location.href="{{ path('license_show', { 'id': license.id }) }}"'>
                                                 <td>{{ license.name }}</td>
                                                 <td>{{ license.licenseKey }}</td>
                                                 <td>{{ license.type }}</td>

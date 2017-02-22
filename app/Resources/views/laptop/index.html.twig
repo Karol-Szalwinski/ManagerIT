@@ -44,7 +44,7 @@
                                     </thead>
                                     <tbody>
                                         {% for laptop in laptops %}
-                                            <tr>
+                                            <tr onclick='location.href="{{ path('laptop_show', { 'id': laptop.id }) }}"'>
                                                 <td>{{ laptop.name }}</td>
                                                 <td>{{ laptop.model }}</td>
                                                 <td>{{ laptop.type }}</td>

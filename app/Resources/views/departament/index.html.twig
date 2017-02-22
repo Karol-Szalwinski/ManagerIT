@@ -42,7 +42,7 @@
                                     </thead>
                                     <tbody>
                                         {% for departament in departaments %}
-                                            <tr>
+                                            <tr onclick='location.href="{{ path('departament_show', { 'id': departament.id }) }}"'>
                                                 <td><a href="{{ path('user_show', { 'id': departament.id }) }}">{{ departament.id }}</a></td>
                                                 <td>{{ departament.name }}</td>
                                                 <td>10</td>

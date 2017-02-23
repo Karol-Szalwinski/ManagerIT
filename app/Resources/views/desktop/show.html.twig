@@ -213,22 +213,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>                                                    
-                                            <td>Windows XP</td>
-                                            <td>OEM</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>                                                    
-                                            <td>Office 365</td>
-                                            <td>Roczna</td>
-                                            <td>05.15.2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stacja Allegro</td>
-                                            <td>zwykła</td>
-                                            <td>-</td>
-                                        </tr>
-
+                                        {% for license in desktop.licenses %}
+                                            <tr>                                                    
+                                                <td>{{ license.name }}</td>
+                                                <td>{{ license.type}}</td>
+                                                <td>{{ license.expireDate|date("m/d/Y") }}</td>
+                                            </tr>       
+                                        {% endfor %}
+                                       
                                     </tbody>                </table>
                             </div>
                         </div>
@@ -260,15 +252,17 @@
                                             <th>Stanowisko</th>
                                             <th>Dział<th>
                                         </tr>
-                                    </thead>
+                                    </thead>                                    
                                     <tbody>
-                                        <tr>                                                    
-                                            <td>Karol</td>
-                                            <td>Szałwiński</td>
-                                            <td>Kierownik IT</td>
-                                            <td>IT</td>
-                                        </tr>
-
+                                        {% for employee in desktop.employees %}
+                                            <tr>                                                    
+                                                <td>{{ employee.name }}</td>
+                                                <td>{{ employee.surname }}</td>
+                                                <td>{{ employee.job }}</td>
+                                                <td>{{ employee.departament.name }}</td>
+                                            </tr>       
+                                        {% endfor %}
+                                        
                                     </tbody>                </table>
                             </div>
                         </div>

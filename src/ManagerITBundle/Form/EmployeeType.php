@@ -13,7 +13,11 @@ class EmployeeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('surname')->add('sex')->add('phone')->add('email')->add('departament')->add('licenses')->add('desktops')->add('laptops')        ;
+        $builder->add('name')->add('surname')->add('sex')->add('phone')->add('email')
+                ->add('departament', 'entity', [
+                    'class' => 'ManagerITBundle:Departament',
+                    'choice_label' => 'name']);
+                
     }
     
     /**

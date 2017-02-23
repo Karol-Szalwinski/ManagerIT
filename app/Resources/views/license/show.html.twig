@@ -128,12 +128,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>                                                    
-                                            <td>P-102-P-BIURO</td>
-                                            <td>Desktop</td>
-                                            <td>Optiplex 760</td>
-                                            <td>Tak</td>
-                                        </tr>
+                                        {% for desktop in license.desktops %}
+                                            <tr>                                                    
+                                                <td>{{ desktop.name }}</td>
+                                                <td>{{ desktop.type }}</td>
+                                                <td>{{ desktop.model }}</td>
+                                                <td>Tak</td>
+                                            </tr>       
+                                        {% endfor %}
+                                        {% for laptop in license.laptops %}
+                                            <tr>                                                    
+                                                <td>{{ laptop.name }}</td>
+                                                <td>{{ laptop.type }}</td>
+                                                <td>{{ laptop.model }}</td>
+                                                <td>Tak</td>
+                                            </tr>       
+                                        {% endfor %}
                                     </tbody>                </table>
                             </div>
                         </div>
@@ -167,12 +177,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>                                                    
-                                            <td>Karol</td>
-                                            <td>Szałwiński</td>
-                                            <td>Kierownik IT</td>
-                                            <td>IT</td>
-                                        </tr>
+                                        {% for employee in license.employees %}
+                                            <tr>                                                    
+                                                <td>{{ employee.name }}</td>
+                                                <td>{{ employee.surname }}</td>
+                                                <td>{{ employee.job }}</td>
+                                                <td>{{ employee.departament.name }}</td>
+                                            </tr>       
+                                        {% endfor %}
 
                                     </tbody>                </table>
                             </div>

@@ -89,12 +89,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>                                                    
-                                            <td>P-102-P-BIURO</td>
-                                            <td>Desktop</td>
-                                            <td>Optiplex 760</td>
-                                            <td>Tak</td>
-                                        </tr>
+                                        {% for desktop in employee.desktops %}
+                                            <tr>                                                    
+                                                <td>{{ desktop.name }}</td>
+                                                <td>{{ desktop.type }}</td>
+                                                <td>{{ desktop.model }}</td>
+                                                <td>Tak</td>
+                                            </tr>       
+                                        {% endfor %}
+                                        {% for laptop in employee.laptops %}
+                                            <tr>                                                    
+                                                <td>{{ laptop.name }}</td>
+                                                <td>{{ laptop.type }}</td>
+                                                <td>{{ laptop.model }}</td>
+                                                <td>Tak</td>
+                                            </tr>       
+                                        {% endfor %}
                                     </tbody>                </table>
                             </div>
                         </div>
@@ -127,21 +137,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>                                                    
-                                            <td>Windows XP</td>
-                                            <td>OEM</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>                                                    
-                                            <td>Office 365</td>
-                                            <td>Roczna</td>
-                                            <td>05.15.2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stacja Allegro</td>
-                                            <td>zwykła</td>
-                                            <td>-</td>
-                                        </tr>
+                                        {% for license in employee.licenses %}
+                                            <tr>                                                    
+                                                <td>{{ license.name }}</td>
+                                                <td>{{ license.type}}</td>
+                                                <td>{{ license.expireDate|date("m/d/Y") }}</td>
+                                            </tr>       
+                                        {% endfor %}
 
                                     </tbody>                </table>
                             </div>

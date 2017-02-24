@@ -2593,4 +2593,11 @@ body.error .logo h1 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+
+.my-radio label {
+    font-weight: normal;
+     margin-right: 10px;
+    margin-left: 5px;
+}
 /* END LOGIN PAGE STYLES */

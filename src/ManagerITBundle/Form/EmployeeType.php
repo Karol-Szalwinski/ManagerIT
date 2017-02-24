@@ -13,11 +13,14 @@ class EmployeeType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('name')
-                ->add('surname')->add('sex', 'choice', array(
+                ->add('surname')
+                ->add('sex', 'choice', array(
                     'choices' => array(
-                        'Male' => 'Mężczyzna',
-                        'Female' => 'Kobieta',
-                    )
+                        'Female' => 'Kobieta ',
+                        'Male' => 'Mężczyzna ',      
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
                 ))
                 ->add('phone')->add('email')
                 ->add('job')

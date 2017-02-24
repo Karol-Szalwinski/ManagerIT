@@ -1,16 +1,64 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Dodaj dział {% endblock %}
+
 {% block body %}
-    <h1>Departament creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowy dział firmy</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('departament_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group" >
+                                    {{ form_label(form.name, 'Nazwa działu', { 'label_attr': {'class': 'control-label'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <input type="submit" value="Dodaj nowy dział" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!----------------------------------------------------->                    
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}
+

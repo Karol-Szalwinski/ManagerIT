@@ -265,6 +265,7 @@ class License
         $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
         $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**

@@ -13,7 +13,7 @@
         <meta name="description" content="Free Admin Template Based On Twitter Bootstrap 3.x">
         <meta name="author" content="">
 
-        <meta name="msapplication-TileColor" content="#5bc0de" />
+        <meta name="msapplication-TileColor" content="#333" />
         <meta name="msapplication-TileImage" content="{{ asset('/img/metis-tile.png') }}" />
 
         {% block stylesheets %}
@@ -35,7 +35,26 @@
 
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('lib/inputlimiter/jquery.inputlimiter.css') }}" >
+            <link rel="stylesheet" href="{{ asset('lib/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" >
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/themes/default/css/uniform.default.min.css">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.min.css">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.css">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.min.css">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/css/bootstrap-colorpicker.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+            
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            
             <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
             <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
             <!--[if lt IE 9]>
@@ -54,6 +73,8 @@
             <link rel="stylesheet" href="{{ asset('css/style-switcher.css') }}" />
             <link rel="stylesheet/less" type="text/css" href="{{ asset('less/theme.less') }}" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+            
+
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -131,7 +152,7 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                             <!-- .nav -->
-                            
+
                             <!-- /.nav -->
                         </div>
                     </div>
@@ -155,9 +176,9 @@
 
                     <div class="main-bar">
                         <h3>
-                            
+
                             {% block content %}
-                                
+
                             {% endblock %}
                         </h3>
                     </div>
@@ -251,7 +272,7 @@
 
             <!-- /#left -->
             {% block body %}
-                
+
             {% endblock %}
 
 
@@ -344,38 +365,56 @@
         </div>
         <!-- /.modal -->
         <!-- /#helpModal -->
-        {% block javascripts %}
-            <!--jQuery -->
-            <script src="{{ asset('lib/jquery/jquery.js') }}"></script>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <!--jQuery -->
+        <script src="{{ asset('lib/jquery/jquery.js') }}"></script>
 
-            <!--Bootstrap -->
-            <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}" ></script>
-            <!-- MetisMenu -->
-            <script src="{{ asset('lib/metismenu/metisMenu.js') }}" ></script>
-            <!-- Screenfull -->
-            <script src="{{ asset('lib/screenfull/screenfull.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/jquery.uniform.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.17/jquery.autosize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/js/bootstrap-colorpicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+        <!--Bootstrap -->
+        <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}" ></script>
+        <!-- MetisMenu -->
+        <script src="{{ asset('lib/metismenu/metisMenu.js') }}" ></script>
+        <!-- Screenfull -->
+        <script src="{{ asset('lib/screenfull/screenfull.js') }}"></script>
 
 
-            <!-- Metis core scripts -->
-            <script src="{{ asset('js/core.js') }}"></script>
-            <!-- Metis demo scripts -->
-            <script src="{{ asset('js/app.js') }}"></script>
-
-            <script>
-                $(function () {
-                    Metis.MetisTable();
-                    Metis.metisSortable();
+        <!-- Metis core scripts -->
+        <script src="{{ asset('js/core.js') }}"></script>
+        <!-- Metis demo scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $('.js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
                 });
-            </script>
+            });
+        </script>
+        <script>
+            $(function () {
+                Metis.formGeneral();
+                Metis.MetisTable();
+                Metis.metisSortable();
+            });
+        </script>
 
-            <script src="{{ asset('js/style-switcher.js') }}"></script>
-        {% endblock %}
+        <script src="{{ asset('js/style-switcher.js') }}"></script>
+
     </body>
 
 </html>

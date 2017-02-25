@@ -1,16 +1,170 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Dodaj komputer{% endblock %}
+
 {% block body %}
-    <h1>Desktop creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowy komputer typu desktop</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('desktop_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group" >
+                                    {{ form_label(form.name, 'Nazwa komputera', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.type, 'Typ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.manufacturer, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.manufacturer, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.cpu, 'Procesor', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.cpu, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź procesor'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.ram, 'Pamięć RAM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.ram, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź RAM'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.hdd, 'Dysk HDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.hdd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk HDD'} }) }}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" >
+                                    {{ form_label(form.ssd, 'Dysk SDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.ssd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk SDD'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.drive, 'Napęd optyczny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.drive, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź napęd CD-ROM / DVD ROM'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź tym i moc zasilacza'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.caseType, 'Rodzaj obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.caseType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ obudowy'} }) }}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" >
+                                    {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zainstalowany system'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}
+                                    </div>
+                                </div>
+                                
+                                    
+                                <div class="form-group" >
+                                    {{ form_label(form.price, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-3">
+                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Dodaj nowy komputer" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!----------------------------------------------------->                    
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

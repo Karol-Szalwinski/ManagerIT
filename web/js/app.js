@@ -390,6 +390,7 @@
         /*----------- END colorpicker CODE -------------------------*/
 
         /*----------- BEGIN datepicker CODE -------------------------*/
+        $('.js-datepicker').datepicker();
         $('#dp1').datepicker({
             format: 'mm-dd-yyyy'
         });

@@ -67,21 +67,21 @@ class Laptop
     /**
      * @var string
      *
-     * @ORM\Column(name="hdd", type="string", length=255)
+     * @ORM\Column(name="hdd", type="string", length=255, nullable=true)
      */
     private $hdd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sdd", type="string", length=255)
+     * @ORM\Column(name="sdd", type="string", length=255, nullable=true)
      */
     private $sdd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="drive", type="string", length=255)
+     * @ORM\Column(name="drive", type="string", length=255, nullable=true)
      */
     private $drive;
 
@@ -109,7 +109,7 @@ class Laptop
     /**
      * @var string
      *
-     * @ORM\Column(name="os", type="string", length=255)
+     * @ORM\Column(name="os", type="string", length=255, nullable=true)
      */
     private $os;
 
@@ -130,7 +130,7 @@ class Laptop
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
 
@@ -151,7 +151,7 @@ class Laptop
     /**
      * @var string
      *
-     * @ORM\Column(name="addDate", type="string", length=255)
+     * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
 
@@ -590,28 +590,7 @@ class Laptop
         return $this->purchaseDate;
     }
 
-    /**
-     * Set addDate
-     *
-     * @param string $addDate
-     * @return Laptop
-     */
-    public function setAddDate($addDate)
-    {
-        $this->addDate = $addDate;
-
-        return $this;
-    }
-
-    /**
-     * Get addDate
-     *
-     * @return string 
-     */
-    public function getAddDate()
-    {
-        return $this->addDate;
-    }
+    
     /**
      * Constructor
      */
@@ -619,6 +598,7 @@ class Laptop
     {
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**
@@ -685,5 +665,28 @@ class Laptop
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Set addDate
+     *
+     * @param \DateTime $addDate
+     * @return Laptop
+     */
+    public function setAddDate($addDate)
+    {
+        $this->addDate = $addDate;
+
+        return $this;
+    }
+
+    /**
+     * Get addDate
+     *
+     * @return \DateTime 
+     */
+    public function getAddDate()
+    {
+        return $this->addDate;
     }
 }

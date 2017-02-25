@@ -67,21 +67,21 @@ class Desktop
     /**
      * @var string
      *
-     * @ORM\Column(name="hdd", type="string", length=255)
+     * @ORM\Column(name="hdd", type="string", length=255, nullable=true)
      */
     private $hdd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ssd", type="string", length=255)
+     * @ORM\Column(name="ssd", type="string", length=255, nullable=true)
      */
     private $ssd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="drive", type="string", length=255)
+     * @ORM\Column(name="drive", type="string", length=255, nullable=true)
      */
     private $drive;
 
@@ -102,28 +102,28 @@ class Desktop
     /**
      * @var string
      *
-     * @ORM\Column(name="os", type="string", length=255)
+     * @ORM\Column(name="os", type="string", length=255, nullable=true)
      */
     private $os;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ipAddress", type="string", length=255)
+     * @ORM\Column(name="ipAddress", type="string", length=255, nullable=true)
      */
     private $ipAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="macAddress", type="string", length=255)
+     * @ORM\Column(name="macAddress", type="string", length=255, nullable=true)
      */
     private $macAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
 
@@ -589,6 +589,7 @@ class Desktop
     {
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**

@@ -50,7 +50,7 @@
                                         </tr>
                                         <tr>
                                             <td>Data wygaśnięcia</td>
-                                            <td>{{ license.expireDate|date('Y-m-d H:i:s')  }}</td>
+                                            <td>{{ license.expireDate|date('Y-m-d')  }}</td>
                                         </tr>
                                     </tbody>                </table>
                             </div>
@@ -81,11 +81,11 @@
                                     <tbody>
                                         <tr>                                                    
                                             <td>Data zakupu</td>
-                                            <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>{% if license.purchaseDate %}{{ license.purchaseDate|date('Y-m-d') }}{% endif %}</td>
                                         </tr>
                                         <tr>
                                             <td>Data wprowadzenia</td>
-                                            <td>{% if license.addDate %}{{ license.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>{% if license.addDate %}{{ license.addDate|date('Y-m-d') }}{% endif %}</td>
                                         </tr>
                                         <tr>
                                             <td>Cena zakupu</td>

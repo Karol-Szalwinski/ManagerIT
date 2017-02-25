@@ -13,7 +13,28 @@ class DesktopType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('model')->add('type')->add('manufacturer')->add('cpu')->add('ram')->add('hdd')->add('ssd')->add('drive')->add('powerSupply')->add('caseType')->add('os')->add('ipAddress')->add('macAddress')->add('picture')->add('price')->add('purchaseDate')->add('addDate')->add('licenses')->add('employees')        ;
+        $builder->add('name')
+                ->add('model')
+                ->add('type')
+                ->add('manufacturer')
+                ->add('cpu')
+                ->add('ram')
+                ->add('hdd')
+                ->add('ssd')
+                ->add('drive')
+                ->add('powerSupply')
+                ->add('caseType')
+                ->add('os')
+                ->add('ipAddress')
+                ->add('macAddress')
+                ->add('price')
+                ->add('purchaseDate', 'date', [
+                    'widget' => 'single_text',
+                    'placeholder' => 'Select a value',
+                    // do not render as type="date", to avoid HTML5 date pickers
+                    'html5' => false,
+                ])
+                ;
     }
     
     /**

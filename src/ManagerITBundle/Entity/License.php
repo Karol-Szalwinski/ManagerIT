@@ -46,7 +46,7 @@ class License
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expireDate", type="datetimetz", nullable=true)
+     * @ORM\Column(name="expireDate", type="datetime", nullable=true)
      */
     private $expireDate;
 

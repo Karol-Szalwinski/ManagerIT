@@ -4,13 +4,21 @@
 
 {% block mainbar %}
     <div class="main-bar">
-        <h3>
-            <a href="{{ path('license_index') }}">
+        <div>
+            <a href="{{ path('license_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista licencji</span>
-                <i class="fa fa-file-text"></i>
             </a>
-        </h3>
+            <a href="{{ path('license_edit', { 'id': license.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-wrench"></i>
+                <span class="link-title">Edytuj</span>
+            </a>
+            <div style="display: inline-block;">
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i class="fa fa-trash"></i> Usuń</button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
     </div>
     <!-- /.main-bar -->
 {% endblock %}

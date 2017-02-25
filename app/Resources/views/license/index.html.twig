@@ -5,15 +5,13 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('license_index') }}" class="btn btn-primary btn-line btn-rect btn-large">
+            <a href="{{ path('license_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista licencji</span>
-                <i class="fa fa-file-text"></i>
             </a>
-            <a href="{{ path('license_index') }}" class="btn btn-primary btn-line btn-rect btn-large">
+            <a href="{{ path('license_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-plus"></i>
-                <span class="link-title"> Dodaj nową</span>
-                <i class="fa fa-file-text"></i>
+                <span class="link-title">Dodaj</span>
             </a>
         </div>
     </div>
@@ -58,7 +56,7 @@
                                     </thead>
                                     <tbody>
                                         {% for license in licenses %}
-                                            <tr onclick='location.href="{{ path('license_show', { 'id': license.id }) }}"'>
+                                            <tr onclick='location.href = "{{ path('license_show', { 'id': license.id }) }}"'>
                                                 <td>{{ license.name }}</td>
                                                 <td>{{ license.licenseKey }}</td>
                                                 <td>{{ license.type }}</td>

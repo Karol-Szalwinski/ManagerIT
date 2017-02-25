@@ -88,7 +88,7 @@ class LicenseController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('license_edit', array('id' => $license->getId()));
+            return $this->redirectToRoute('license_show', array('id' => $license->getId()));
         }
 
         return $this->render('license/edit.html.twig', array(

@@ -2,6 +2,19 @@
 
 {% block title %} Dział {% endblock %}
 
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('departament_index') }}">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista działów</span>
+                <i class="fa fa-building"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
     <!-- /#left -->
     <div id="content">

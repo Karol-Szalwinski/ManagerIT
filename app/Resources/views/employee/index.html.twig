@@ -2,9 +2,17 @@
 
 {% block title %} Pracownicy {% endblock %}
 
-{% block content %}
-    <i class="fa fa-id-card"></i>&nbsp;
-    Lista pracowników
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('employee_index') }}">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista pracowników</span>
+                <i class="fa fa-id-card"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
 
 {% block body %}

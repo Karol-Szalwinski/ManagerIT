@@ -2,9 +2,17 @@
 
 {% block title %} Laptopy {% endblock %}
 
-{% block content %}
-    <i class="fa fa-laptop"></i>&nbsp;
-    Lista komputerów przenośnych
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('laptop_index') }}">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista laptopów</span>
+                <i class="fa fa-laptop"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
 
 {% block body %}

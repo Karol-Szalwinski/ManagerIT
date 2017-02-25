@@ -2,9 +2,22 @@
 
 {% block title %} Licencje {% endblock %}
 
-{% block content %}
-    <i class="fa fa-file-text"></i>&nbsp;
-    Lista licencji
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('license_index') }}" class="btn btn-primary btn-line btn-rect btn-large">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista licencji</span>
+                <i class="fa fa-file-text"></i>
+            </a>
+            <a href="{{ path('license_index') }}" class="btn btn-primary btn-line btn-rect btn-large">
+                <i class="fa fa-plus"></i>
+                <span class="link-title"> Dodaj nową</span>
+                <i class="fa fa-file-text"></i>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
 
 {% block body %}

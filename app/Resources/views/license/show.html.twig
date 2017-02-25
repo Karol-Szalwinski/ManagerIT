@@ -2,6 +2,18 @@
 
 {% block title %} Licencje {% endblock %}
 
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('license_index') }}">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista licencji</span>
+                <i class="fa fa-file-text"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
 
 {% block body %}
     <!-- /#left -->

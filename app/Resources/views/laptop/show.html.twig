@@ -2,6 +2,19 @@
 
 {% block title %} Laptop {% endblock %}
 
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('laptop_index') }}">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista laptopów</span>
+                <i class="fa fa-laptop"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
     <div id="content">
         <div class="outer">

@@ -2,10 +2,19 @@
 
 {% block title %} Desktopy {% endblock %}
 
-{% block content %}
-    <i class="fa fa-desktop"></i>&nbsp;
-    Lista komputerów stacjonarnych
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('desktop_index') }}">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista desktopów</span>
+                <i class="fa fa-desktop"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
+
 
 {% block body %}
 

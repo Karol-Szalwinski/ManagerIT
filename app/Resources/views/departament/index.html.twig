@@ -6,6 +6,18 @@
     <i class="fa fa-building"></i>&nbsp;
     Lista działów
 {% endblock %}
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('departament_index') }}">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista działów</span>
+                <i class="fa fa-building"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
 
 {% block body %}
 

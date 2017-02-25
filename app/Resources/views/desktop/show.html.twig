@@ -2,6 +2,19 @@
 
 {% block title %} Desktop {% endblock %}
 
+{% block mainbar %}
+    <div class="main-bar">
+        <h3>
+            <a href="{{ path('desktop_index') }}">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista desktopów</span>
+                <i class="fa fa-desktop"></i>
+            </a>
+        </h3>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
     <div id="content">
         <div class="outer">
@@ -219,7 +232,7 @@
                                                 <td>{{ license.expireDate|date("m/d/Y") }}</td>
                                             </tr>       
                                         {% endfor %}
-                                       
+
                                     </tbody>                </table>
                             </div>
                         </div>
@@ -261,7 +274,7 @@
                                                 <td>{{ employee.departament.name }}</td>
                                             </tr>       
                                         {% endfor %}
-                                        
+
                                     </tbody>                </table>
                             </div>
                         </div>

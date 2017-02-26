@@ -2,19 +2,18 @@
 
 {% block title %} Działy firmy {% endblock %}
 
-{% block content %}
-    <i class="fa fa-building"></i>&nbsp;
-    Lista działów
-{% endblock %}
 {% block mainbar %}
     <div class="main-bar">
-        <h3>
-            <a href="{{ path('departament_index') }}">
+        <div>
+            <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista działów</span>
-                <i class="fa fa-building"></i>
             </a>
-        </h3>
+            <a href="{{ path('departament_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
     </div>
     <!-- /.main-bar -->
 {% endblock %}

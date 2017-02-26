@@ -4,13 +4,16 @@
 
 {% block mainbar %}
     <div class="main-bar">
-        <h3>
-            <a href="{{ path('employee_index') }}">
+        <div>
+            <a href="{{ path('employee_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista pracowników</span>
-                <i class="fa fa-id-card"></i>
             </a>
-        </h3>
+            <a href="{{ path('employee_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
     </div>
     <!-- /.main-bar -->
 {% endblock %}

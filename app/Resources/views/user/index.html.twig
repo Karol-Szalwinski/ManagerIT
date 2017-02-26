@@ -4,13 +4,16 @@
 
 {% block mainbar %}
     <div class="main-bar">
-        <h3>
-            <a href="{{ path('user_index') }}">
+        <div>
+            <a href="{{ path('user_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista użytkowników</span>
-                <i class="fa fa-user-o"></i>
             </a>
-        </h3>
+            <a href="{{ path('user_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
     </div>
     <!-- /.main-bar -->
 {% endblock %}

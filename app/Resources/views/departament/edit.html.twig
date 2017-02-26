@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Edycja działu {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-fast-backward"></i>
+                <span class="link-title">Lista działów</span>
+            </a>
+            <a href="{{ path('departament_show', { 'id': departament.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż dział</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
     <h1>Departament edit</h1>
 

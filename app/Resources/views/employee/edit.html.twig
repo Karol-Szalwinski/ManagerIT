@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Edycja pracownika {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('employee_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-fast-backward"></i>
+                <span class="link-title">Lista pracowników</span>
+            </a>
+            <a href="{{ path('employee_show', { 'id': employee.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż kartę pracownika</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
     <h1>Employee edit</h1>
 

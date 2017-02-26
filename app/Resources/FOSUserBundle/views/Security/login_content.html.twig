@@ -4,7 +4,7 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 <div >
-    
+
     <div class="form-signin">
         <div class="text-center">
             <img src="{{ asset('img/logo.png') }}" alt="Metis Logo">
@@ -25,8 +25,10 @@
                     <input type="password" placeholder="Hasło" class="form-control bottom" id="password" name="_password" required="required" />
 
                     <div class="checkbox">
-                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                        <label for="remember_me">Pamiętaj mnie</label>
+                        <label for="remember_me">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            Pamiętaj mnie
+                        </label>
                     </div>
 
                     <input type="submit" id="_submit" class="btn btn-lg btn-primary btn-block"  name="_submit" value="Zaloguj mnie" />

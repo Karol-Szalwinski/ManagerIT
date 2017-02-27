@@ -2,6 +2,17 @@
 
 {% block title %} Dodaj dział {% endblock %}
 
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista działów</span>
+            </a>
+        </div>
+        <!-- /.main-bar -->
+    {% endblock %}
+
 {% block body %}
     <!-- /#left -->
     <div id="content">

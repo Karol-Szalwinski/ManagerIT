@@ -45,10 +45,11 @@
                                             <th>Procesor</th>
                                             <th>RAM</th>
                                             <th>System</th>
+                                            <th>Użytkownicy</th>
+                                            <th>Licencje</th>
+                                            <th>Dział</th>
                                             <th>Mac adress</th>
                                             <th>Adres IP</th>
-                                            <th></th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -62,10 +63,23 @@
                                                 <td>{{ laptop.cpu }}</td>
                                                 <td>{{ laptop.ram }}</td>
                                                 <td>{{ laptop.os }}</td>
+                                                <td>
+                                                    {% for employee in laptop.employees %}
+                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    {% for license in laptop.licenses %}
+                                                        {{ license.name }}<br>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    {% for employee in laptop.employees %}
+                                                        {{ employee.departament.name }}<br>
+                                                    {% endfor %}
+                                                </td>
                                                 <td>{{ laptop.ipAddress }}</td>
                                                 <td>{{ laptop.macAddress }}</td>
-                                                <td><a href="{{ path('laptop_show', { 'id': laptop.id }) }}">{{ laptop.id }}</a></td>
-                                                <td><a href="{{ path('laptop_edit', { 'id': laptop.id }) }}">edit</a></td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

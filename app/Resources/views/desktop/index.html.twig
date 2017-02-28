@@ -43,10 +43,11 @@
                                             <th>Procesor</th>
                                             <th>RAM</th>
                                             <th>System</th>
+                                            <th>Użytkownicy</th>
+                                            <th>Licencje</th>
+                                            <th>Dział</th>
                                             <th>Adres IP </th>
-                                            <th>MAC adres</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>MAC adres</th>                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,10 +60,23 @@
                                                 <td>{{ desktop.cpu }}</td>
                                                 <td>{{ desktop.ram }}</td>
                                                 <td>{{ desktop.os }}</td>
+                                                <td>
+                                                    {% for employee in desktop.employees %}
+                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    {% for license in desktop.licenses %}
+                                                        {{ license.name }}<br>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    {% for employee in desktop.employees %}
+                                                        {{ employee.departament.name }}<br>
+                                                    {% endfor %}
+                                                </td>
                                                 <td>{{ desktop.ipAddress }}</td>
                                                 <td>{{ desktop.macAddress }}</td>
-                                                <td><a href="{{ path('desktop_show', { 'id': desktop.id }) }}">{{ desktop.id }}</a></td>
-                                                <td><a href="{{ path('desktop_edit', { 'id': desktop.id }) }}">edit</a></td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

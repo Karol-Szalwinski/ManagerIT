@@ -44,19 +44,35 @@
                                             <th>Ilość komputerów</th>
                                             <th>Ilość laptopów</th>
                                             <th>Ilosć licencji</th>  
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for departament in departaments %}
-                                            <tr onclick='location.href="{{ path('departament_show', { 'id': departament.id }) }}"'>
+                                            <tr onclick='location.href = "{{ path('departament_show', { 'id': departament.id }) }}"'>
                                                 <td><a href="{{ path('user_show', { 'id': departament.id }) }}">{{ departament.id }}</a></td>
                                                 <td>{{ departament.name }}</td>
-                                                <td>10</td>
-                                                <td>10</td>
-                                                <td>3</td>
-                                                <td>23</td>
-                                                <td><a href="{{ path('departament_edit', { 'id': departament.id }) }}">edit</a></td>
+                                                <td>{{ departament.employees |length }}</td>
+                                                <td>
+                                                    {% set desktopsCounter = 0 %}
+                                                    {% for employee in departament.employees %}
+                                                        {% set desktopsCounter = desktopsCounter + employee.desktops|length %}
+                                                    {% endfor %}
+                                                    {{ desktopsCounter }}
+                                                </td>
+                                                <td>
+                                                    {% set laptopsCounter = 0 %}
+                                                    {% for employee in departament.employees %}
+                                                        {% set laptopsCounter = laptopsCounter + employee.laptops|length %}
+                                                    {% endfor %}
+                                                    {{ laptopsCounter }}
+                                                </td>
+                                                <td>
+                                                    {% set licenseCounter = 0 %}
+                                                    {% for employee in departament.employees %}
+                                                        {% set licenseCounter = licenseCounter + employee.licenses|length %}
+                                                    {% endfor %}
+                                                    {{ licenseCounter }}
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

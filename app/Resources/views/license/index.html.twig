@@ -43,10 +43,10 @@
                                             <th>Klucz</th>
                                             <th>Typ licencji</th>
                                             <th>Data wygaśnięcia</th>
+                                            <th>Sprzęt przypisany</th>
+                                            <th>Użytkownik przypisany</th>
                                             <th>Cena zakupu</th>
-                                            <th>Data zakupu</th> 
-                                            <th></th>
-                                            <th></th>
+                                            <th>Data zakupu</th>                          
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,10 +56,21 @@
                                                 <td>{{ license.licenseKey }}</td>
                                                 <td>{{ license.type }}</td>
                                                 <td>{{ license.expireDate|date('Y-m-d') }}</td>
+                                                <td>
+                                                    {% for desktop in license.desktops %}
+                                                        {{ desktop.name }}<br>
+                                                    {% endfor %}
+                                                    {% for laptop in license.laptops %}
+                                                        {{ laptop.name }}<br>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    {% for employee in license.employees %}
+                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                    {% endfor %}
+                                                </td>
                                                 <td>{{ license.price }}</td>
                                                 <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
-                                                <td><a href="{{ path('license_show', { 'id': license.id }) }}">{{ license.id }}</a></td>
-                                                <td><a href="{{ path('license_edit', { 'id': license.id }) }}">edit</a></td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

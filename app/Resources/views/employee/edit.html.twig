@@ -19,21 +19,103 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Employee edit</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowego pracownika</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('employee_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.name, 'Imię', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź imię'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.surname, 'Nazwisko', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.surname, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwisko'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.sex, 'Płeć', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6 my-radio uniform">   
+                                        {{ form_widget(edit_form.sex, { 'attr': {'class': 'uniform'} }) }} 
+
+                                    </div>
+                                </div>           
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.phone, 'Telefon', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            {{ form_widget(edit_form.phone, { 'attr': {'class': 'form-control', 'data-mask': '999-999-999'} }) }}
+                                            <span class="input-group-addon">999-999-999</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.email, 'Email', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Podaj email'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.job, 'Stanowisko', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.job, { 'attr': {'class': 'form-control', 'placeholder': 'Podaj stanowisko'} }) }}
+                                    </div>
+                                </div>    
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.departament, 'Dział w firmie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.departament, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <input type="submit" value="Zapisz zmiany" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(edit_form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------------------------->                    
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}

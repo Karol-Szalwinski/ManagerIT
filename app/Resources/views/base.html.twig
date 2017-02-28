@@ -200,11 +200,11 @@
                             </a>
 
                             <div class="media-body">
-                                <h5 class="media-heading">Karol</h5>
+                                <h5 class="media-heading">{{ app.user }}</h5>
                                 <ul class="list-unstyled user-info">
                                     <li><a href="">Administrator</a></li>
-                                    <li>Last Access : <br>
-                                        <small><i class="fa fa-calendar"></i>&nbsp;1 Mar 16:32</small>
+                                    <li>Ostatnie zalogowanie : <br>
+                                        <small><i class="fa fa-calendar"></i>&nbsp;{{ app.user.lastLogin |date("m/d/Y") }}</small>
                                     </li>
                                 </ul>
                             </div>

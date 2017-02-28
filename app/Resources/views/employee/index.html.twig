@@ -46,7 +46,8 @@
                                             <th>Płeć</th>
                                             <th>Telefon</th>
                                             <th>Email</th>
-                                            <th></th>
+                                            <th>Sprzęt</th>
+                                            <th>Licencje</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +61,19 @@
                                                 <td>{{ employee.sex }}</td>
                                                 <td>{{ employee.phone }}</td>
                                                 <td>{{ employee.email }}</td>
-                                                <td><a href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a></td>
+                                                <td>
+                                                    {% for desktop in employee.desktops %}
+                                                        {{ desktop.name }}<br>
+                                                    {% endfor %}
+                                                    {% for laptop in employee.laptops %}
+                                                        {{ laptop.name }}<br>
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    {% for license in employee.licenses %}
+                                                        {{ license.name }}<br>
+                                                    {% endfor %}
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

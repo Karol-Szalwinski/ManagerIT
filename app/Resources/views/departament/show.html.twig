@@ -4,16 +4,25 @@
 
 {% block mainbar %}
     <div class="main-bar">
-        <h3>
-            <a href="{{ path('departament_index') }}">
+        <div>
+            <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista działów</span>
-                <i class="fa fa-building"></i>
+                <span class="link-title">Lista diałów</span>
             </a>
-        </h3>
+            <a href="{{ path('departament_edit', { 'id': departament.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-wrench"></i>
+                <span class="link-title">Edytuj</span>
+            </a>
+            <div style="display: inline-block;">
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i class="fa fa-trash"></i> Usuń</button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
     </div>
     <!-- /.main-bar -->
 {% endblock %}
+
 
 {% block body %}
     <!-- /#left -->

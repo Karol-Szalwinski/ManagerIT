@@ -232,6 +232,7 @@
                                             <th>Program</th>
                                             <th>Typ licencji</th>
                                             <th>Wygasa</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -240,6 +241,12 @@
                                                 <td>{{ license.name }}</td>
                                                 <td>{{ license.type}}</td>
                                                 <td>{{ license.expireDate|date("m/d/Y") }}</td>
+                                                <td>
+                                                    <a href="{{ path('desktop_detach_license', { 'id': desktop.id, 'license': license.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                        <i class="fa fa-unlink"></i>
+                                                        <span class="link-title">odłącz</span>
+                                                    </a>
+                                                </td>
                                             </tr>       
                                         {% endfor %}
 
@@ -273,6 +280,7 @@
                                             <th>Nazwisko</th>
                                             <th>Stanowisko</th>
                                             <th>Dział<th>
+                                            <th></th>
                                         </tr>
                                     </thead>                                    
                                     <tbody>
@@ -282,6 +290,12 @@
                                                 <td>{{ employee.surname }}</td>
                                                 <td>{{ employee.job }}</td>
                                                 <td>{{ employee.departament.name }}</td>
+                                                <td>
+                                                    <a href="{{ path('desktop_detach_employee', { 'id': desktop.id, 'employee': employee.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                        <i class="fa fa-unlink"></i>
+                                                        <span class="link-title">odłącz</span>
+                                                    </a>
+                                                </td>
                                             </tr>       
                                         {% endfor %}
 

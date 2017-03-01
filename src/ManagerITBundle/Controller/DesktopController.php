@@ -3,6 +3,9 @@
 namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Desktop;
+use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\License;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -132,5 +135,41 @@ class DesktopController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+    /**
+     * Action to disconnect desktop with license
+     * 
+     *  @Route("/{id}/detach_license/{license}", name="desktop_detach_license")
+     *  @Method({"GET"})
+     */
+    public function detachLicenseAction(Desktop $desktop, License $license) {
+        $desktop->removeLicense($license);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush($desktop);
+        $deleteForm = $this->createDeleteForm($desktop);
+
+        return $this->render('desktop/show.html.twig', array(
+                    'desktop' => $desktop,
+                    'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    
+     /**
+     * Action to disconnect desktop with license
+     * 
+     *  @Route("/{id}/detach_employee/{employee}", name="desktop_detach_employee")
+     *  @Method({"GET"})
+     */
+    public function detachEmployeeAction(Desktop $desktop, Employee $employee) {
+        $desktop->removeEmployee($employee);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush($desktop);
+        $deleteForm = $this->createDeleteForm($desktop);
+
+        return $this->render('desktop/show.html.twig', array(
+                    'desktop' => $desktop,
+                    'delete_form' => $deleteForm->createView(),
+        ));
     }
 }

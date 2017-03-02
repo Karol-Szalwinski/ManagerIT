@@ -156,7 +156,7 @@ class DesktopController extends Controller
     }
     
      /**
-     * Action to disconnect desktop with license
+     * Action to disconnect desktop with employee
      * 
      *  @Route("/{id}/detach_employee/{employee}", name="desktop_detach_employee")
      *  @Method({"GET"})

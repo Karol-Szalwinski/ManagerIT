@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class LicenseRepository extends EntityRepository
 {
+    public function findAllDisconnect()
+    {
+        $em = $this->getEntityManager();
+        
+        $licenses = $em->getRepository('ManagerITBundle:License')->findAll();
+        //$diff = array_merge(array_diff($tablica1,$tablica2));
+        return $licenses;
+        
+    }
 }

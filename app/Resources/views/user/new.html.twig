@@ -1,16 +1,86 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Dodaj usera {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('user_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista użytkowników</span>
+            </a>
+        </div>
+        <!-- /.main-bar -->
+    {% endblock %}
+
 {% block body %}
-    <h1>User creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowego pracownika</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                <div class="form-group" >
+                                    {{ form_label(form.username, 'Nazwa usera', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź imię'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.email, 'Email', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź email'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.plainPassword, 'Płeć', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6 my-radio uniform">   
+                                        {{ form_widget(form.plainPassword, { 'attr': {'class': 'uniform'} }) }} 
+
+                                    </div>
+                                </div>           
+
+                               
+                                <input type="submit" value="Dodaj nowego użytkownika" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------------------------->                    
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}

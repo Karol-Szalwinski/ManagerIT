@@ -183,8 +183,9 @@ class LaptopController extends Controller {
                             'choice_label' => "name",
                             'query_builder' => function (EntityRepository $er) use ($laptop) {
                                 return $er->createQueryBuilder('license')
-                                        ->innerJoin('license.laptops', 'laptop')
-                                        ->where('laptop = :laptop' )
+                                        ->leftJoin('license.laptops', 'laptop')
+                                        ->where('laptop != :laptop' )
+                                        ->orWhere('laptop is NULL')
                                         ->setParameter('laptop', $laptop);
                             },
                         ])

@@ -181,8 +181,11 @@ class LaptopController extends Controller {
                         ->add('licenses', 'entity', [
                             'class' => 'ManagerITBundle:License',
                             'choice_label' => "name",
-                            'query_builder' => function (LicenseRepository $er) use ($laptop) {
-                                return $er->findAllDisconnect();
+                            'query_builder' => function (EntityRepository $er) use ($laptop) {
+                                return $er->createQueryBuilder('license')
+                                        ->innerJoin('license.laptops', 'laptop')
+                                        ->where('laptop = :laptop' )
+                                        ->setParameter('laptop', $laptop);
                             },
                         ])
                         ->getForm()

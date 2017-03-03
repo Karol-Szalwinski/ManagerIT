@@ -2600,4 +2600,9 @@ body.error .logo h1 {
      margin-right: 10px;
     margin-left: 5px;
 }
+
+.fa-8x {
+  font-size: 8em !important;
+      color: black ;
+}
 /* END LOGIN PAGE STYLES */

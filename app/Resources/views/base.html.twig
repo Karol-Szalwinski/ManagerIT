@@ -128,7 +128,7 @@
                                 </a>
                             </div>
                             <div class="btn-group">
-                                <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
+                                <a href="{{ path('fos_user_security_logout') }}" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
                                    class="btn btn-metis-1 btn-sm">
                                     <i class="fa fa-power-off"></i>
                                 </a>
@@ -212,15 +212,22 @@
                     </div>
                     <!-- #menu -->
                     <ul id="menu" class="bg-blue dker">
-                        <li class="nav-header">Menu</li>
+                        <li class="nav-header"><i class="fa fa-bars"></i> Menu</li>
                         <li class="nav-divider"></li>
-
+                        <li>
+                            <a href="{{ path('managerit_default_index') }}">
+                                <i class="fa fa-home"></i>
+                                <span class="link-title">Główna</span>
+                            </a>
+                        </li>
+                        <li class="nav-divider"></li>
                         <li>
                             <a href="{{ path('desktop_index') }}">
                                 <i class="fa fa-desktop"></i>
                                 <span class="link-title">Komputery</span>
                             </a>
                         </li>
+                        
                         <li>
                             <a href="{{ path('laptop_index') }}">
                                 <i class="fa fa-laptop"></i>
@@ -240,27 +247,20 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ path('departament_index') }}">
+                                <i class="fa fa-building"></i>
+                                <span class="link-title">Działy</span>
+                            </a>
+                        </li>
+                        <li class="nav-divider"></li>
+                        <li>
                             <a href="{{ path('user_index') }}">
                                 <i class="fa fa-users"></i>
                                 <span class="link-title">Użytkownicy</span>
                             </a>
                         </li>
 
-                        <li>
-                            <a href="{{ path('departament_index') }}">
-                                <i class="fa fa-building"></i>
-                                <span class="link-title">Działy</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ path('fos_user_security_login') }}">
-                                <i class="fa fa-sign-in"></i>
-                                <span class="link-title">
-                                    Login Page
-                                </span>
-                            </a>
-                        </li>
+                        
 
                     </ul>
                     <!-- /#menu -->
@@ -405,7 +405,7 @@
         </script>
         <script>
             $(function () {
-                
+
                 Metis.MetisTable();
                 Metis.metisSortable();
                 Metis.formGeneral();

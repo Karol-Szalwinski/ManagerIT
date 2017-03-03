@@ -1,1 +1,59 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+{% block title %} Manager IT {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="content">
+        <div class="">
+
+            <a  class="btn btn-grad btn-metis-5" href="{{ path('desktop_index') }}">
+                <span class="fa-stack fa-8x"> 
+                    <i class="fa fa-desktop fa-inverse"></i>
+                </span>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('laptop_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('license_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-file-text fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('employee_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-id-card fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('departament_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-building fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('user_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-users  fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+
+        </div>
+    </div>
+    <!-- /#content -->
+{% endblock %}

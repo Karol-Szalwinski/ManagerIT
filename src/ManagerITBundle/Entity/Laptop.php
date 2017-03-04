@@ -607,7 +607,7 @@ class Laptop
      * @param \ManagerITBundle\Entity\License $licenses
      * @return Laptop
      */
-    public function addLicense(\ManagerITBundle\Entity\License $licenses)
+    public function addLicense($licenses)
     {
         $this->licenses[] = $licenses;
 

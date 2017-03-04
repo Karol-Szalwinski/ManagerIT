@@ -80,7 +80,10 @@ class LaptopController extends Controller {
      */
     public function showAction(Laptop $laptop) {
         $deleteForm = $this->createDeleteForm($laptop);
-        $licenseForm = $this->createLaptopConnectLicenseForm($laptop);
+        $licenseForm = $this->createForm('ManagerITBundle\Form\LaptopConnectLicenseType', $laptop, ['attr'=>[
+            'laptop' => $laptop->getId()
+        ]]);
+     
 
         return $this->render('laptop/show.html.twig', array(
                     'laptop' => $laptop,
@@ -148,50 +151,30 @@ class LaptopController extends Controller {
     }
 
     /**
-     * Deletes a laptop entity.
+     * 
      *
      * @Route("/{id}", name="laptop_connect_license")
      * @Method("POST")
      */
     public function laptopConnectLicenseAction(Request $request, Laptop $laptop) {
-        $form = $this->createLaptopConnectLicenseForm($laptop);
+
+        $form = $this->createForm('ManagerITBundle\Form\LaptopConnectLicenseType', $laptop, ['attr'=>[
+            'laptop' => $laptop->getId()
+        ]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $licensesToConnect = $form->getData()['licenses'];
-            $licensesToConnect->addLaptop($laptop);
-            $laptop->addLicense($licensesToConnect);
+            $laptop = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($laptop);
+            $em->flush();
 
-            $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->redirectToRoute('laptop_show', array('id' => $laptop->getId()));
     }
 
-    /**
-     * Creates a form to connect laptop and license
-     *
-     * @param Laptop $laptop The laptop entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createLaptopConnectLicenseForm(Laptop $laptop) {
-        return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('laptop_connect_license', array('id' => $laptop->getId())))
-                        ->add('licenses', 'entity', [
-                            'class' => 'ManagerITBundle:License',
-                            'choice_label' => "name",
-                            'query_builder' => function (EntityRepository $er) use ($laptop) {
-                                return $er->createQueryBuilder('license')
-                                        ->leftJoin('license.laptops', 'laptop')
-                                        ->where('laptop != :laptop' )
-                                        ->orWhere('laptop is NULL')
-                                        ->setParameter('laptop', $laptop);
-                            },
-                        ])
-                        ->getForm()
-        ;
-    }
+  
 
     /**
      * Action to disconnect laptop with employee

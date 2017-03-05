@@ -153,7 +153,6 @@ class LaptopController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($laptop);
             $em->flush();
-            //var_dump($laptop);exit;
         }
 
         return $this->redirectToRoute('laptop_show', array('id' => $laptop->getId()));

@@ -230,7 +230,7 @@
   
                             <div id="chose-license" class="collapse">
                                 
-                                {{ form_start(license_form, { 'attr': {'class': 'form-wertical'} }) }}
+                                {{ form_start(license_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_license', { 'id': desktop.id }) }) }} 
                                 <div class="form-group">
                                     {{ form_label(license_form.licenses, 'Wybierz licencję', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
@@ -282,6 +282,7 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#chose-employee">Zmień <i class="fa fa-wrench"></i></button>
                                         <a href="#condensedTable6" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
@@ -289,6 +290,19 @@
                                     </div>
                                 </div>
                             </header>
+                             {#<header id="chose-employee" class="collapse">
+                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_employee', { 'id': laptop.id }) }) }} 
+                                <div class="form-group">
+                                    {{ form_label(employee_form.employees, 'Wybierz pracownika', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-6">
+                                        {{ form_widget(employee_form.employees, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <input type="submit" value="Zapisz" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(employee_form) }}
+                            </header>#}
                             <div id="condensedTable6" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>

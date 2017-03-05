@@ -7,7 +7,7 @@
         <div>
             <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista diałów</span>
+                <span class="link-title">Lista działów</span>
             </a>
             <a href="{{ path('departament_edit', { 'id': departament.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-wrench"></i>
@@ -64,15 +64,23 @@
                                         </tr>
                                         <tr>
                                             <td>Liczba pracowników</td>
-                                            <td>{{ departament.name }}</td>
+                                            <td>{{ departament.employees |length }}</td>
                                         </tr>
                                         <tr>
                                             <td>Liczba komputerów</td>
-                                            <td>{{ departament.name }}</td>
+                                            <td>{% set desktopsCounter = 0 %}
+                                                {% for employee in departament.employees %}
+                                                    {% set desktopsCounter = desktopsCounter + employee.desktops|length %}
+                                                {% endfor %}
+                                                {{ desktopsCounter }}</td>
                                         </tr>
                                         <tr>
                                             <td>Liczba licencji</td>
-                                            <td>{{ departament.name }}</td>
+                                            <td>{% set laptopsCounter = 0 %}
+                                                    {% for employee in departament.employees %}
+                                                        {% set laptopsCounter = laptopsCounter + employee.laptops|length %}
+                                                    {% endfor %}
+                                                    {{ laptopsCounter }}</td>
                                         </tr>
 
                                     </tbody>                </table>

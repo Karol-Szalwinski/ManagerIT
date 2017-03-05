@@ -21,17 +21,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class LaptopController extends Controller {
 
     /**
-     * Test
-     *
-     * @Route("/test", name="test")
-     * @Method("GET")
-     */
-    public function testAction($kurde) {
-
-        return $this->render('laptop/test.html.twig', ['kurde' => $kurde]);
-    }
-
-    /**
      * Lists all laptop entities.
      *
      * @Route("/", name="laptop_index")
@@ -80,15 +69,14 @@ class LaptopController extends Controller {
      */
     public function showAction(Laptop $laptop) {
         $deleteForm = $this->createDeleteForm($laptop);
-        $licenseForm = $this->createForm('ManagerITBundle\Form\LaptopConnectLicenseType', $laptop, ['attr'=>[
-            'laptop' => $laptop->getId()
-        ]]);
-     
+        $licenseForm = $this->createForm('ManagerITBundle\Form\LaptopConnectLicenseType', $laptop);
+        $employeeForm = $this->createForm('ManagerITBundle\Form\LaptopConnectEmployeeType', $laptop);
 
         return $this->render('laptop/show.html.twig', array(
                     'laptop' => $laptop,
                     'delete_form' => $deleteForm->createView(),
                     'license_form' => $licenseForm->createView(),
+                    'employee_form' => $employeeForm->createView(),
         ));
     }
 
@@ -152,15 +140,12 @@ class LaptopController extends Controller {
 
     /**
      * 
-     *
-     * @Route("/{id}", name="laptop_connect_license")
+     * @Route("/{id}/laptoptoemployee}", name="laptop_connect_employee")
      * @Method("POST")
      */
-    public function laptopConnectLicenseAction(Request $request, Laptop $laptop) {
+    public function laptopConnectEmployeeAction(Request $request, Laptop $laptop) {
 
-        $form = $this->createForm('ManagerITBundle\Form\LaptopConnectLicenseType', $laptop, ['attr'=>[
-            'laptop' => $laptop->getId()
-        ]]);
+        $form = $this->createForm('ManagerITBundle\Form\LaptopConnectEmployeeType', $laptop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -168,13 +153,32 @@ class LaptopController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->persist($laptop);
             $em->flush();
-
+            //var_dump($laptop);exit;
         }
 
         return $this->redirectToRoute('laptop_show', array('id' => $laptop->getId()));
     }
+    
+    /**
+     * 
+     * @Route("/{id}/laptoptolicense", name="laptop_connect_license")
+     * @Method("POST")
+     */
+    public function laptopConnectLicenseAction(Request $request, Laptop $laptop) {
 
-  
+        $form = $this->createForm('ManagerITBundle\Form\LaptopConnectLicenseType', $laptop);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $laptop = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($laptop);
+            $em->flush();
+                        
+        }
+
+        return $this->redirectToRoute('laptop_show', array('id' => $laptop->getId()));
+    }
 
     /**
      * Action to disconnect laptop with employee

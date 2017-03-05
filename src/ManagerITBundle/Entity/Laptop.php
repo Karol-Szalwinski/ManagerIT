@@ -162,7 +162,8 @@ class Laptop
     private $licenses;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="laptops")
+     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="laptops")
+     * @ORM\JoinTable(name="employees_laptops")
      */
     private $employees;
     

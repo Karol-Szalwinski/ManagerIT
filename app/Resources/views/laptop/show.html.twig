@@ -217,6 +217,7 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#chose-license">Zmień <i class="fa fa-wrench"></i></button>
                                         <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
@@ -224,12 +225,10 @@
                                     </div>
                                 </div>
                             </header>
-                            <header>
-                                <div class="icons"><i class="fa fa-list"></i></div>
-                                <h5>Skojarz licencje</h5>
-                                {{ form_start(license_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                            <header id="chose-license" class="collapse">
+                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('laptop_connect_license', { 'id': laptop.id }) }) }} 
                                 <div class="form-group">
-                                    {{ form_label(license_form.licenses, 'Licencja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(license_form.licenses, 'Wybierz licencję', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
                                     <div class="col-lg-6">
                                         {{ form_widget(license_form.licenses, { 'attr': {'class': 'form-control'} }) }}
@@ -279,12 +278,26 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#chose-employee">Zmień <i class="fa fa-wrench"></i></button>
                                         <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
+                            </header>
+                            <header id="chose-employee" class="collapse">
+                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('laptop_connect_employee', { 'id': laptop.id }) }) }} 
+                                <div class="form-group">
+                                    {{ form_label(employee_form.employees, 'Wybierz pracownika', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-6">
+                                        {{ form_widget(employee_form.employees, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <input type="submit" value="Zapisz" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(employee_form) }}
                             </header>
                             <div id="condensedTable" class="body collapse in">
                                 <table class="table table-condensed responsive-table">

@@ -69,10 +69,13 @@ class DesktopController extends Controller
     public function showAction(Desktop $desktop)
     {
         $deleteForm = $this->createDeleteForm($desktop);
-
+        $licenseForm = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
+     
+        
         return $this->render('desktop/show.html.twig', array(
             'desktop' => $desktop,
             'delete_form' => $deleteForm->createView(),
+            'license_form' => $licenseForm->createView(),
         ));
     }
 
@@ -138,6 +141,28 @@ class DesktopController extends Controller
     }
     
     /**
+     * Action to connect desktop with license
+     *
+     * @Route("/{id}", name="desktop_connect_license")
+     * @Method("POST")
+     */
+    public function desktopConnectLicenseAction(Request $request, Desktop $desktop) {
+
+        $form = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $desktop = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($desktop);
+            $em->flush();
+
+        }
+
+        return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
+    }
+    
+    /**
      * Action to disconnect desktop with license
      * 
      *  @Route("/{id}/detach_license/{license}", name="desktop_detach_license")
@@ -149,10 +174,7 @@ class DesktopController extends Controller
         $em->flush($desktop);
         $deleteForm = $this->createDeleteForm($desktop);
 
-        return $this->render('desktop/show.html.twig', array(
-                    'desktop' => $desktop,
-                    'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
     
      /**

@@ -9,25 +9,17 @@ use ManagerITBundle\Entity\Laptop;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class LaptopConnectLicenseType extends AbstractType {
+class LaptopConnectEmployeeType extends AbstractType {
 
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('licenses', EntityType::class, [
-                    'class' => 'ManagerITBundle:License',
+                ->add('employees', EntityType::class, [
+                    'class' => 'ManagerITBundle:Employee',
                     'choice_label' => 'name',
-//                    'expanded' => true,
                      'multiple' => true, 
-//                    'query_builder' => function (EntityRepository $er) use ($laptop) {
-//                        return $er->createQueryBuilder('license')
-//                                ->leftJoin('license.laptops', 'laptop')
-//                                ->where('laptop <> :laptop')
-//                                ->orWhere('laptop is NULL')
-//                                ->setParameter('laptop', $laptop);
-//                    },
                 ])
         ;
     }

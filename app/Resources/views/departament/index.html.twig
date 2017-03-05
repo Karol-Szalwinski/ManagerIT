@@ -43,7 +43,6 @@
                                             <th>Ilość pracowników</th>
                                             <th>Ilość komputerów</th>
                                             <th>Ilość laptopów</th>
-                                            <th>Ilosć licencji</th>  
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,13 +64,6 @@
                                                         {% set laptopsCounter = laptopsCounter + employee.laptops|length %}
                                                     {% endfor %}
                                                     {{ laptopsCounter }}
-                                                </td>
-                                                <td>
-                                                    {% set licenseCounter = 0 %}
-                                                    {% for employee in departament.employees %}
-                                                        {% set licenseCounter = licenseCounter + employee.licenses|length %}
-                                                    {% endfor %}
-                                                    {{ licenseCounter }}
                                                 </td>
                                             </tr>
                                         {% endfor %}

@@ -42,14 +42,14 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable1" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable" class="body collapse in">
+                            <div id="condensedTable1" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
 
                                     <tbody>
@@ -88,14 +88,14 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable2" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable" class="body collapse in">
+                            <div id="condensedTable2" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
 
                                     <tbody>
@@ -142,14 +142,14 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable3" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable" class="body collapse in">
+                            <div id="condensedTable3" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
 
                                     <tbody>
@@ -180,14 +180,14 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable4" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable" class="body collapse in">
+                            <div id="condensedTable4" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
 
                                     <tbody>
@@ -218,14 +218,31 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#chose-license">Zmień <i class="fa fa-wrench"></i></button>
+                                        <a href="#condensedTable5" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable" class="body collapse in">
+                            
+  
+                            <div id="chose-license" class="collapse">
+                                
+                                {{ form_start(license_form, { 'attr': {'class': 'form-wertical'} }) }}
+                                <div class="form-group">
+                                    {{ form_label(license_form.licenses, 'Wybierz licencję', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-6">
+                                        {{ form_widget(license_form.licenses, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <input type="submit" value="Zapisz" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(license_form) }}
+                            </div>
+                            <div id="condensedTable5" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>
                                         <tr>
@@ -265,14 +282,14 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable6" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable" class="body collapse in">
+                            <div id="condensedTable6" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>
                                         <tr>

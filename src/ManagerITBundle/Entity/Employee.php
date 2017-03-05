@@ -83,8 +83,8 @@ class Employee
     private $desktops;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Laptop", inversedBy="employees")
-     * @ORM\JoinTable(name="employees_laptops")
+     * @ORM\ManyToMany(targetEntity="Laptop", mappedBy="employees")
+     * 
      */
     private $laptops;
     

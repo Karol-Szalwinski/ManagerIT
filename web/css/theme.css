@@ -7,7 +7,7 @@
 
 
 body.boxed {
-  background: url("/img/pattern/arches.png") repeat;
+  background: url("../img/pattern/arches.png") repeat;
 }
 #top > .navbar {
   border-top: 3px solid #4A5B7D;

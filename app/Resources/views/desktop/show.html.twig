@@ -290,8 +290,8 @@
                                     </div>
                                 </div>
                             </header>
-                             {#<header id="chose-employee" class="collapse">
-                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_employee', { 'id': laptop.id }) }) }} 
+                            <header id="chose-employee" class="collapse">
+                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_employee', { 'id': desktop.id }) }) }} 
                                 <div class="form-group">
                                     {{ form_label(employee_form.employees, 'Wybierz pracownika', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
@@ -302,7 +302,7 @@
                                 <input type="submit" value="Zapisz" class="btn btn-primary btn-grad control-label" />
                                 <br>
                                 {{ form_end(employee_form) }}
-                            </header>#}
+                            </header>
                             <div id="condensedTable6" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>

@@ -164,7 +164,7 @@ class DesktopController extends Controller
     /**
      * Action to connect desktop with license
      *
-     * @Route("/{id/desktoptolicense}", name="desktop_connect_license")
+     * @Route("/{id}/desktoptolicense", name="desktop_connect_license")
      * @Method("POST")
      */
     public function desktopConnectLicenseAction(Request $request, Desktop $desktop) {
@@ -191,9 +191,10 @@ class DesktopController extends Controller
      */
     public function detachLicenseAction(Desktop $desktop, License $license) {
         $desktop->removeLicense($license);
+        $license->removeDesktop($desktop);
         $em = $this->getDoctrine()->getManager();
         $em->flush($desktop);
-        $deleteForm = $this->createDeleteForm($desktop);
+        $em->flush($license);
 
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
@@ -206,13 +207,13 @@ class DesktopController extends Controller
      */
     public function detachEmployeeAction(Desktop $desktop, Employee $employee) {
         $desktop->removeEmployee($employee);
+        $employee->removeDesktop($desktop);
         $em = $this->getDoctrine()->getManager();
         $em->flush($desktop);
-        $deleteForm = $this->createDeleteForm($desktop);
-
-        return $this->render('desktop/show.html.twig', array(
-                    'desktop' => $desktop,
-                    'delete_form' => $deleteForm->createView(),
-        ));
+        $em->flush($employee);
+        
+        return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
+
+    
 }

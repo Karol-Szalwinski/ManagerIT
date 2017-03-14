@@ -100,18 +100,17 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Name</th>
+                                            <th>Nazwa</th>
                                             <th>Model</th>
-                                            <th>Type</th>
-                                            <th>Manufacturer</th>
-                                            <th>Powersupply</th>
-                                            <th>Price</th>
-                                            <th>Adddate</th>
-                                            <th>Purchasedate</th>
-                                            <th>Macaddress</th>
-                                            <th>Ipaddress</th>
-                                            <th>Picture</th>
-                                            <th>Actions</th>                          
+                                            <th>Typ</th>
+                                            <th>Producent</th>
+                                            <th>Zasilanie</th>
+                                            <th>Cena zakupu</th>
+                                            <th>Data dodania</th>
+                                            <th>Data zakupu</th>
+                                            <th>MAC adres</th>
+                                            <th>Adres IP</th>
+                                                                     
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -128,37 +127,6 @@
                                                 <td>{% if printer.purchaseDate %}{{ printer.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                                                 <td>{{ printer.macAddress }}</td>
                                                 <td>{{ printer.ipAddress }}</td>
-                                                <td>{{ printer.picture }}</td>
-                                                <td>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="{{ path('printer_show', { 'id': printer.id }) }}">show</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ path('printer_edit', { 'id': printer.id }) }}">edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
- {#                                               <!--td>{{ license.name }}</td>
-                                                <td>{{ license.licenseKey }}</td>
-                                                <td>{{ license.type }}</td>
-                                                <td>{{ license.expireDate|date('Y-m-d') }}</td>
-                                                <td>
-                                                    {% for desktop in license.desktops %}
-                                                        {{ desktop.name }}<br>
-                                                    {% endfor %}
-                                                    {% for laptop in license.laptops %}
-                                                        {{ laptop.name }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>
-                                                    {% for employee in license.employees %}
-                                                        {{ employee.name }} {{ employee.surname }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>{{ license.price }}</td>
-                                                <td>{{ license.purchaseDate|date('Y-m-d') }}</td-->
- #}
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

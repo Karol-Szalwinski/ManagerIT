@@ -18,7 +18,7 @@
     <!-- /.main-bar -->
 {% endblock %}
 
-{% block body %}
+{# block body 
     <h1>Printers list</h1>
 
     <table>
@@ -74,7 +74,7 @@
             <a href="{{ path('printer_new') }}">Create a new printer</a>
         </li>
     </ul>
-{% endblock %}
+ endblock #}
 
 
 
@@ -89,7 +89,7 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-file-text"></i></div>
-                                <h5>Lista licencji</h5>
+                                <h5>Lista drukarek</h5>
                             </header>
 
 
@@ -115,8 +115,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for license in licenses %}
-                                            <tr onclick='location.href = "{{ path('license_show', { 'id': license.id }) }}"'>
+                                        {% for printer in printers %}
+                                            <tr onclick='location.href = "{{ path('printer_show', { 'id': printer.id }) }}"'>
                                                 <td><a href="{{ path('printer_show', { 'id': printer.id }) }}">{{ printer.id }}</a></td>
                                                 <td>{{ printer.name }}</td>
                                                 <td>{{ printer.model }}</td>
@@ -139,7 +139,7 @@
                                                         </li>
                                                     </ul>
                                                 </td>
-                                                <td>{{ license.name }}</td>
+                                                <!--td>{{ license.name }}</td>
                                                 <td>{{ license.licenseKey }}</td>
                                                 <td>{{ license.type }}</td>
                                                 <td>{{ license.expireDate|date('Y-m-d') }}</td>
@@ -157,7 +157,7 @@
                                                     {% endfor %}
                                                 </td>
                                                 <td>{{ license.price }}</td>
-                                                <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
+                                                <td>{{ license.purchaseDate|date('Y-m-d') }}</td-->
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

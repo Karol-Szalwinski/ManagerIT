@@ -10,8 +10,9 @@
                 <span class="link-title">Lista desktopów</span>
             </a>
         </div>
-        <!-- /.main-bar -->
-    {% endblock %}
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
 
 {% block body %}
     <!-- /#left -->
@@ -80,56 +81,56 @@
                                         {{ form_widget(form.cpu, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź procesor'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group" >
                                     {{ form_label(form.ram, 'Pamięć RAM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.ram, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź RAM'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group" >
                                     {{ form_label(form.hdd, 'Dysk HDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.hdd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk HDD'} }) }}
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group" >
                                     {{ form_label(form.ssd, 'Dysk SDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.ssd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk SDD'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group" >
                                     {{ form_label(form.drive, 'Napęd optyczny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.drive, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź napęd CD-ROM / DVD ROM'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group" >
                                     {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź tym i moc zasilacza'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group" >
                                     {{ form_label(form.caseType, 'Rodzaj obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.caseType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ obudowy'} }) }}
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group" >
                                     {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zainstalowany system'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group" >
                                     {{ form_label(form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
@@ -143,15 +144,15 @@
                                         {{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}
                                     </div>
                                 </div>
-                                
-                                    
+
+
                                 <div class="form-group" >
                                     {{ form_label(form.price, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
                                     </div>
                                 </div>
-                                    
+
                                 <div class="form-group">
                                     {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 

@@ -1,21 +1,166 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Edytuj procesor desktopowy{% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('desktopcpu_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista procesorów desktopowych</span>
+            </a>
+            <a href="{{ path('desktopcpu_show', { 'id': desktopCPU.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż procesor</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Desktopcpu edit</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowy procesor desktopowy</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('desktopcpu_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.name, 'Nazwa robocza procesora', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę procesora'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.manufacturer, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6 my-radio uniform">   
+                                        {{ form_widget(edit_form.manufacturer, { 'attr': {'class': 'uniform'} }) }} 
+
+                                    </div>
+                                </div> 
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.baseFrequency, 'Bazowe taktowanie w GHz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.baseFrequency, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź bazowe taktowanie'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.maxTurboFrequency, 'Taktowanie maksymalne', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.maxTurboFrequency, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź taktowanie w trybie turbo'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.numberOfCores, 'Liczba rdzeni', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.numberOfCores, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź liczbę'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.numberOfThreads, 'Liczba wątków logicznych', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.numberOfThreads, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź liczbę wątków'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.casheMB, 'Pamięc cache MB', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.casheMB, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź rozmiar pamięci w MB'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.tDP, 'TDP', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.tDP, { 'attr': {'class': 'form-control', 'placeholder': 'TDP'} }) }}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.gPU, 'GPU', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.gPU, { 'attr': {'class': 'form-control', 'placeholder': 'GPU'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.lithographyNM, 'Litografia NM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.lithographyNM, { 'attr': {'class': 'form-control', 'placeholder': 'Litografia NM'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.launchDate, 'Data premiery', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-3">
+                                        {{ form_widget(edit_form.launchDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.sockets, 'Podstawka procesora', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.sockets, { 'attr': {'class': 'form-control', 'placeholder': 'Podstawka procesora'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(edit_form.generation, 'Generacja procesora', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.generation, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź generację / rodzinę procesora'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <input type="submit" value="Dodaj nowy procesor" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(edit_form) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!----------------------------------------------------->                    
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

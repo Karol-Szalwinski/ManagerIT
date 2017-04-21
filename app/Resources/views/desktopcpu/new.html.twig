@@ -1,23 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Desktopcpu creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('desktopcpu_index') }}">Back to the list</a>
-        </li>
-    </ul>
-{% endblock %}
-
-
-{% extends 'base.html.twig' %}
-
 {% block title %} Dodaj procesor desktopowy{% endblock %}
 
 {% block mainbar %}
@@ -68,118 +50,98 @@
                                 <div class="form-group" >
                                     {{ form_label(form.name, 'Nazwa robocza procesora', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.type, 'Typ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę procesora'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
                                     {{ form_label(form.manufacturer, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6 my-radio uniform">   
+                                        {{ form_widget(form.manufacturer, { 'attr': {'class': 'uniform'} }) }} 
+
+                                    </div>
+                                </div> 
+
+                                <div class="form-group" >
+                                    {{ form_label(form.baseFrequency, 'Bazowe taktowanie w GHz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.manufacturer, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
+                                        {{ form_widget(form.baseFrequency, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź bazowe taktowanie'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.cpu, 'Procesor', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.maxTurboFrequency, 'Taktowanie maksymalne', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.cpu, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź procesor'} }) }}
+                                        {{ form_widget(form.maxTurboFrequency, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź taktowanie w trybie turbo'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.ram, 'Pamięć RAM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.numberOfCores, 'Liczba rdzeni', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.ram, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź RAM'} }) }}
+                                        {{ form_widget(form.numberOfCores, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź liczbę'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.hdd, 'Dysk HDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.numberOfThreads, 'Liczba wątków logicznych', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.hdd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk HDD'} }) }}
+                                        {{ form_widget(form.numberOfThreads, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź liczbę wątków'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.ssd, 'Dysk SDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.casheMB, 'Pamięc cache MB', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.ssd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk SDD'} }) }}
+                                        {{ form_widget(form.casheMB, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź rozmiar pamięci w MB'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.drive, 'Napęd optyczny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.tDP, 'TDP', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.drive, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź napęd CD-ROM / DVD ROM'} }) }}
+                                        {{ form_widget(form.tDP, { 'attr': {'class': 'form-control', 'placeholder': 'TDP'} }) }}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" >
+                                    {{ form_label(form.gPU, 'GPU', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.gPU, { 'attr': {'class': 'form-control', 'placeholder': 'GPU'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.lithographyNM, 'Litografia NM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź tym i moc zasilacza'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.caseType, 'Rodzaj obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.caseType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ obudowy'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zainstalowany system'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group" >
-                                    {{ form_label(form.price, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
+                                        {{ form_widget(form.lithographyNM, { 'attr': {'class': 'form-control', 'placeholder': 'Litografia NM'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.launchDate, 'Data premiery', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
                                     <div class="col-lg-3">
-                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                        {{ form_widget(form.launchDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
                                     </div>
                                 </div>
 
-                                <input type="submit" value="Dodaj nowy komputer" class="btn btn-primary btn-grad control-label" />
+                                <div class="form-group" >
+                                    {{ form_label(form.sockets, 'Podstawka procesora', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.sockets, { 'attr': {'class': 'form-control', 'placeholder': 'Podstawka procesora'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.generation, 'Generacja procesora', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.generation, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź generację / rodzinę procesora'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <input type="submit" value="Dodaj nowy procesor" class="btn btn-primary btn-grad control-label" />
                                 <br>
                                 {{ form_end(form) }}
                             </div>

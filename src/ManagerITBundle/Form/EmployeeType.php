@@ -22,7 +22,8 @@ class EmployeeType extends AbstractType {
                     'expanded' => true,
                     'multiple' => false,
                 ))
-                ->add('phone')->add('email')
+                ->add('phone')
+                ->add('email')
                 ->add('job')
                 ->add('departament', 'entity', [
                     'class' => 'ManagerITBundle:Departament',

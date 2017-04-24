@@ -33,60 +33,48 @@
                                 <h5>Lista komputerów</h5>
                             </header>
                             <div id="collapse4" class="body">
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Nazwa</th>
-                                            <th>Producent</th>
-                                            <th>Taktowanie Bazowe</th>
-                                            <th>Taktowanie Maksymalne</th>
-                                            <th>Rdzeni</th>
-                                            <th>Wątków</th>
-                                            <th>Cashe</th>
-                                            <th>TDP</th>
-                                            <th>Zintegrowana grafika</th>
-                                            <th>Litografia</th>
-                                            <th>Data wdrożenia</th>
-                                            <th>Gniazdo</th>
-                                            <th>Generacja</th>
-                                            <th>Actions</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nazwa</th>
+                                        <th>Producent</th>
+                                        <th>Taktowanie Bazowe</th>
+                                        <th>Taktowanie Maksymalne</th>
+                                        <th>Rdzeni</th>
+                                        <th>Wątków</th>
+                                        <th>Cashe</th>
+                                        <th>TDP</th>
+                                        <th>Zintegrowana grafika</th>
+                                        <th>Litografia</th>
+                                        <th>Data wdrożenia</th>
+                                        <th>Gniazdo</th>
+                                        <th>Generacja</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {% for desktopCPU in desktopCPUs %}
-                                            <tr onclick='location.href = "{{ path('desktopcpu_show', { 'id': desktopCPU.id }) }}"'>
-                                                <td>{{ desktopCPU.id }}</td>
-                                                <td>{{ desktopCPU.name }}</td>
-                                                <td>{{ desktopCPU.manufacturer }}</td>
-                                                <td>{{ desktopCPU.baseFrequency }} GHz</td>
-                                                <td>{{ desktopCPU.maxTurboFrequency }} GHz</td>
-                                                <td>{{ desktopCPU.numberOfCores }}</td>
-                                                <td>{{ desktopCPU.numberOfThreads }}</td>
-                                                <td>{{ desktopCPU.casheMB }} MB</td>
-                                                <td>{{ desktopCPU.tDP }} W</td>
-                                                <td>{{ desktopCPU.gPU }}</td>
-                                                <td>{{ desktopCPU.lithographyNM }}</td>
-                                                <td>{% if desktopCPU.launchDate %}{{ desktopCPU.launchDate|date('Y-m') }}{% endif %}</td>
-                                                <td>{{ desktopCPU.sockets }}</td>
-                                                <td>{{ desktopCPU.generation }}</td>
-                                                <td>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="{{ path('desktopcpu_show', { 'id': desktopCPU.id }) }}">show</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="{{ path('desktopcpu_edit', { 'id': desktopCPU.id }) }}">edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-
-                                                
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>                </table>
+                                    {% for desktopCPU in desktopCPUs %}
+                                        <tr onclick='location.href = "{{ path('desktopcpu_show', { 'id': desktopCPU.id }) }}"'>
+                                            <td>{{ desktopCPU.id }}</td>
+                                            <td>{{ desktopCPU.name }}</td>
+                                            <td>{{ desktopCPU.manufacturer }}</td>
+                                            <td>{{ desktopCPU.baseFrequency }} GHz</td>
+                                            <td>{{ desktopCPU.maxTurboFrequency }} GHz</td>
+                                            <td>{{ desktopCPU.numberOfCores }}</td>
+                                            <td>{{ desktopCPU.numberOfThreads }}</td>
+                                            <td>{{ desktopCPU.casheMB }} MB</td>
+                                            <td>{{ desktopCPU.tDP }} W</td>
+                                            <td>{{ desktopCPU.gPU }}</td>
+                                            <td>{{ desktopCPU.lithographyNM }}</td>
+                                            <td>{% if desktopCPU.launchDate %}{{ desktopCPU.launchDate|date('Y-m') }}{% endif %}</td>
+                                            <td>{{ desktopCPU.sockets }}</td>
+                                            <td>{{ desktopCPU.generation }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
                     </div>
                 </div>

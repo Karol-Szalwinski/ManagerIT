@@ -51,9 +51,8 @@ class Desktop
     private $manufacturer;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="cpu", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="DesktopCPU")
+     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
      */
     private $cpu;
 
@@ -147,13 +146,13 @@ class Desktop
      * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="License", inversedBy="desktops")
      * @ORM\JoinTable(name="desktops_licenses")
      */
     private $licenses;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="desktops")
      * @ORM\JoinTable(name="employees_desktops")
@@ -163,7 +162,7 @@ class Desktop
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -186,7 +185,7 @@ class Desktop
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -209,7 +208,7 @@ class Desktop
     /**
      * Get model
      *
-     * @return string 
+     * @return string
      */
     public function getModel()
     {
@@ -232,7 +231,7 @@ class Desktop
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -255,7 +254,7 @@ class Desktop
     /**
      * Get manufacturer
      *
-     * @return string 
+     * @return string
      */
     public function getManufacturer()
     {
@@ -278,7 +277,7 @@ class Desktop
     /**
      * Get cpu
      *
-     * @return string 
+     * @return string
      */
     public function getCpu()
     {
@@ -301,7 +300,7 @@ class Desktop
     /**
      * Get ram
      *
-     * @return string 
+     * @return string
      */
     public function getRam()
     {
@@ -324,7 +323,7 @@ class Desktop
     /**
      * Get hdd
      *
-     * @return string 
+     * @return string
      */
     public function getHdd()
     {
@@ -347,7 +346,7 @@ class Desktop
     /**
      * Get ssd
      *
-     * @return string 
+     * @return string
      */
     public function getSsd()
     {
@@ -370,7 +369,7 @@ class Desktop
     /**
      * Get drive
      *
-     * @return string 
+     * @return string
      */
     public function getDrive()
     {
@@ -393,7 +392,7 @@ class Desktop
     /**
      * Get powerSupply
      *
-     * @return string 
+     * @return string
      */
     public function getPowerSupply()
     {
@@ -416,7 +415,7 @@ class Desktop
     /**
      * Get caseType
      *
-     * @return string 
+     * @return string
      */
     public function getCaseType()
     {
@@ -439,7 +438,7 @@ class Desktop
     /**
      * Get os
      *
-     * @return string 
+     * @return string
      */
     public function getOs()
     {
@@ -462,7 +461,7 @@ class Desktop
     /**
      * Get ipAddress
      *
-     * @return string 
+     * @return string
      */
     public function getIpAddress()
     {
@@ -485,7 +484,7 @@ class Desktop
     /**
      * Get macAddress
      *
-     * @return string 
+     * @return string
      */
     public function getMacAddress()
     {
@@ -508,7 +507,7 @@ class Desktop
     /**
      * Get picture
      *
-     * @return string 
+     * @return string
      */
     public function getPicture()
     {
@@ -531,7 +530,7 @@ class Desktop
     /**
      * Get price
      *
-     * @return string 
+     * @return string
      */
     public function getPrice()
     {
@@ -554,7 +553,7 @@ class Desktop
     /**
      * Get purchaseDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPurchaseDate()
     {
@@ -577,12 +576,13 @@ class Desktop
     /**
      * Get addDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getAddDate()
     {
         return $this->addDate;
     }
+
     /**
      * Constructor
      */
@@ -619,7 +619,7 @@ class Desktop
     /**
      * Get licenses
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getLicenses()
     {
@@ -652,7 +652,7 @@ class Desktop
     /**
      * Get employees
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployees()
     {

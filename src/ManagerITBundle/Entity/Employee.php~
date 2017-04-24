@@ -77,14 +77,14 @@ class Employee
     private $licenses;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Desktop", inversedBy="employees")
-     * @ORM\JoinTable(name="employees_desktops")
+     * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="employees")
+     * 
      */
     private $desktops;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Laptop", inversedBy="employees")
-     * @ORM\JoinTable(name="employees_laptops")
+     * @ORM\ManyToMany(targetEntity="Laptop", mappedBy="employees")
+     * 
      */
     private $laptops;
     

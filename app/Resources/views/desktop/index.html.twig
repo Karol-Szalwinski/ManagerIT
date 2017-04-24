@@ -33,53 +33,59 @@
                                 <h5>Lista komputerów</h5>
                             </header>
                             <div id="collapse4" class="body">
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>Nazwa</th>
-                                            <th>Model</th>
-                                            <th>Typ</th>
-                                            <th>Producent</th>
-                                            <th>Procesor</th>
-                                            <th>RAM</th>
-                                            <th>System</th>
-                                            <th>Użytkownicy</th>
-                                            <th>Licencje</th>
-                                            <th>Dział</th>
-                                            <th>Adres IP </th>
-                                            <th>MAC adres</th>                                            
-                                        </tr>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Model</th>
+                                        <th>Typ</th>
+                                        <th>Producent</th>
+                                        <th>Procesor</th>
+                                        <th>RAM</th>
+                                        <th>System</th>
+                                        <th>Użytkownicy</th>
+                                        <th>Licencje</th>
+                                        <th>Dział</th>
+                                        <th>Adres IP</th>
+                                        <th>MAC adres</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {% for desktop in desktops %}
-                                            <tr onclick='location.href = "{{ path('desktop_show', { 'id': desktop.id }) }}"'>
-                                                <td>{{ desktop.name }}</td>
-                                                <td>{{ desktop.model }}</td>
-                                                <td>{{ desktop.type }}</td>
-                                                <td>{{ desktop.manufacturer }}</td>
-                                                <td>{{ desktop.cpu }}</td>
-                                                <td>{{ desktop.ram }}</td>
-                                                <td>{{ desktop.os }}</td>
-                                                <td>
-                                                    {% for employee in desktop.employees %}
-                                                        {{ employee.name }} {{ employee.surname }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>
-                                                    {% for license in desktop.licenses %}
-                                                        {{ license.name }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>
-                                                    {% for employee in desktop.employees %}
-                                                        {{ employee.departament.name }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>{{ desktop.ipAddress }}</td>
-                                                <td>{{ desktop.macAddress }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>                </table>
+                                    {% for desktop in desktops %}
+                                        <tr onclick='location.href = "{{ path('desktop_show', { 'id': desktop.id }) }}"'>
+                                            <td>{{ desktop.name }}</td>
+                                            <td>{{ desktop.model }}</td>
+                                            <td>{{ desktop.type }}</td>
+                                            <td>{{ desktop.manufacturer }}</td>
+                                            <td>
+                                                {% if desktop.cpu is not null %}
+                                                    {{ desktop.cpu.name }}
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ desktop.ram }}</td>
+                                            <td>{{ desktop.os }}</td>
+                                            <td>
+                                                {% for employee in desktop.employees %}
+                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {% for license in desktop.licenses %}
+                                                    {{ license.name }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {% for employee in desktop.employees %}
+                                                    {{ employee.departament.name }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{ desktop.ipAddress }}</td>
+                                            <td>{{ desktop.macAddress }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>

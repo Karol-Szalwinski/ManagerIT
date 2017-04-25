@@ -1,55 +1,82 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Desktoprams list</h1>
+{% block title %} Pamięć RAM desktopowa {% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Model</th>
-                <th>Series</th>
-                <th>Brand</th>
-                <th>Capacity</th>
-                <th>Type</th>
-                <th>Busspeed</th>
-                <th>Caslatency</th>
-                <th>Numberofpins</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for desktopRam in desktopRams %}
-            <tr>
-                <td><a href="{{ path('desktopram_show', { 'id': desktopRam.id }) }}">{{ desktopRam.id }}</a></td>
-                <td>{{ desktopRam.name }}</td>
-                <td>{{ desktopRam.model }}</td>
-                <td>{{ desktopRam.series }}</td>
-                <td>{{ desktopRam.brand }}</td>
-                <td>{{ desktopRam.capacity }}</td>
-                <td>{{ desktopRam.type }}</td>
-                <td>{{ desktopRam.busSpeed }}</td>
-                <td>{{ desktopRam.casLatency }}</td>
-                <td>{{ desktopRam.numberOfPins }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('desktopram_show', { 'id': desktopRam.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('desktopram_edit', { 'id': desktopRam.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('desktopram_new') }}">Create a new desktopRam</a>
-        </li>
-    </ul>
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('desktopram_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista pamięci Ram</span>
+            </a>
+            <a href="{{ path('desktopram_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
+
+
+{% block body %}
+
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                <h5>Lista komputerów</h5>
+                            </header>
+                            <div id="collapse4" class="body">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Model</th>
+                                        <th>Seria</th>
+                                        <th>Producent</th>
+                                        <th>Pojemność w Gb</th>
+                                        <th>Typ</th>
+                                        <th>Taktowanie</th>
+                                        <th>CAS opóźnienie</th>
+                                        <th>Ilość pinów</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for desktopRam in desktopRams %}
+                                        <tr onclick='location.href = "{{ path('desktopram_show', { 'id': desktopRam.id }) }}"'>
+                                            <td>{{ desktopRam.name }}</td>
+                                            <td>{{ desktopRam.model }}</td>
+                                            <td>{{ desktopRam.series }}</td>
+                                            <td>{{ desktopRam.brand }}</td>
+                                            <td>{{ desktopRam.capacity }} GB</td>
+                                            <td>{{ desktopRam.type }}</td>
+                                            <td>{{ desktopRam.busSpeed }}</td>
+                                            <td>CL{{ desktopRam.casLatency }}</td>
+                                            <td>{{ desktopRam.numberOfPins }} pins</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+{% endblock %}
+
+

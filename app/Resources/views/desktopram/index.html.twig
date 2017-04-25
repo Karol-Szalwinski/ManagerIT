@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Desktoprams list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Series</th>
+                <th>Brand</th>
+                <th>Capacity</th>
+                <th>Type</th>
+                <th>Busspeed</th>
+                <th>Caslatency</th>
+                <th>Numberofpins</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for desktopRam in desktopRams %}
+            <tr>
+                <td><a href="{{ path('desktopram_show', { 'id': desktopRam.id }) }}">{{ desktopRam.id }}</a></td>
+                <td>{{ desktopRam.name }}</td>
+                <td>{{ desktopRam.model }}</td>
+                <td>{{ desktopRam.series }}</td>
+                <td>{{ desktopRam.brand }}</td>
+                <td>{{ desktopRam.capacity }}</td>
+                <td>{{ desktopRam.type }}</td>
+                <td>{{ desktopRam.busSpeed }}</td>
+                <td>{{ desktopRam.casLatency }}</td>
+                <td>{{ desktopRam.numberOfPins }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('desktopram_show', { 'id': desktopRam.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('desktopram_edit', { 'id': desktopRam.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('desktopram_new') }}">Create a new desktopRam</a>
+        </li>
+    </ul>
+{% endblock %}

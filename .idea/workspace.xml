@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktopram/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktopram/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,21 +16,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="103" column="38" lean-forward="false" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
+            <state relative-caret-position="136">
+              <caret line="71" column="67" lean-forward="false" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DesktopRamType.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DesktopRamType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+            <state relative-caret-position="459">
+              <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -84,8 +83,8 @@
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktopram/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktopram/show.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig" />
       </list>
     </option>
   </component>
@@ -576,7 +575,7 @@
       <updated>1493038893972</updated>
       <workItem from="1493038900801" duration="6123000" />
       <workItem from="1493105577421" duration="940000" />
-      <workItem from="1493108112275" duration="5534000" />
+      <workItem from="1493108112275" duration="6298000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -589,10 +588,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12597000" />
+    <option name="totallyTimeSpent" value="13361000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="56" y="109" width="1856" height="1000" extended-state="1" />
+    <frame x="56" y="109" width="1856" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26213592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -806,18 +805,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="103" column="38" lean-forward="false" selection-start-line="103" selection-start-column="38" selection-end-line="103" selection-end-column="38" />
+        <state relative-caret-position="459">
+          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        <state relative-caret-position="136">
+          <caret line="71" column="67" lean-forward="false" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
           <folding />
         </state>
       </provider>

@@ -22,9 +22,14 @@ class DesktopRamType extends AbstractType
                 'choices' => array(
                     '0.5' => '512 MB',
                     '1' => '1 GB',
+                    '2' => '2 GB',
+                    '4' => '4 GB',
+                    '8' => '8 GB',
+                    '16' => '16 GB',
                 ),
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => false,
+                'placeholder' => 'Wybierz pojemność',
             ))
             ->add('type')
             ->add('busSpeed')

@@ -113,7 +113,15 @@
                                     </tr>
                                     <tr>
                                         <td>Ram</td>
-                                        <td>{{ desktop.ram }}</td>
+                                        <td>
+                                            {% if desktop.rams is empty %}
+                                                Brak
+                                            {% else %}
+                                                {% for ram in desktop.rams %}
+                                                    {{ ram.capacity }} GB - {{ ram.name }}</br>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>GPU</td>

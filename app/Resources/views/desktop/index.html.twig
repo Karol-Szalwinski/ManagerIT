@@ -63,7 +63,17 @@
                                                     {{ desktop.cpu.name }}
                                                 {% endif %}
                                             </td>
-                                            <td>{{ desktop.ram }}</td>
+                                            <td>
+                                                {% if desktop.rams is empty %}
+                                                    Brak
+                                                {% else %}
+                                                    {% set sum = 0 %}
+                                                    {% for ram in desktop.rams %}
+                                                        {% set sum = sum + ram.capacity %}
+                                                    {% endfor %}
+                                                    {{ sum }} GB
+                                                {% endif %}
+                                            </td>
                                             <td>{{ desktop.os }}</td>
                                             <td>
                                                 {% for employee in desktop.employees %}

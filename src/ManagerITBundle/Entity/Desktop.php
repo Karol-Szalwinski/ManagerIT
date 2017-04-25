@@ -57,11 +57,13 @@ class Desktop
     private $cpu;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ram", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="DesktopRam")
+     * @ORM\JoinTable(name="desktop_desktopram",
+     *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="desktopram_id", referencedColumnName="id")}
+     *      )
      */
-    private $ram;
+    private $rams;
 
     /**
      * @var string
@@ -159,10 +161,21 @@ class Desktop
      */
     private $employees;
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -185,7 +198,7 @@ class Desktop
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -208,7 +221,7 @@ class Desktop
     /**
      * Get model
      *
-     * @return string
+     * @return string 
      */
     public function getModel()
     {
@@ -231,7 +244,7 @@ class Desktop
     /**
      * Get type
      *
-     * @return string
+     * @return string 
      */
     public function getType()
     {
@@ -254,57 +267,11 @@ class Desktop
     /**
      * Get manufacturer
      *
-     * @return string
+     * @return string 
      */
     public function getManufacturer()
     {
         return $this->manufacturer;
-    }
-
-    /**
-     * Set cpu
-     *
-     * @param string $cpu
-     * @return Desktop
-     */
-    public function setCpu($cpu)
-    {
-        $this->cpu = $cpu;
-
-        return $this;
-    }
-
-    /**
-     * Get cpu
-     *
-     * @return string
-     */
-    public function getCpu()
-    {
-        return $this->cpu;
-    }
-
-    /**
-     * Set ram
-     *
-     * @param string $ram
-     * @return Desktop
-     */
-    public function setRam($ram)
-    {
-        $this->ram = $ram;
-
-        return $this;
-    }
-
-    /**
-     * Get ram
-     *
-     * @return string
-     */
-    public function getRam()
-    {
-        return $this->ram;
     }
 
     /**
@@ -323,7 +290,7 @@ class Desktop
     /**
      * Get hdd
      *
-     * @return string
+     * @return string 
      */
     public function getHdd()
     {
@@ -346,7 +313,7 @@ class Desktop
     /**
      * Get ssd
      *
-     * @return string
+     * @return string 
      */
     public function getSsd()
     {
@@ -369,7 +336,7 @@ class Desktop
     /**
      * Get drive
      *
-     * @return string
+     * @return string 
      */
     public function getDrive()
     {
@@ -392,7 +359,7 @@ class Desktop
     /**
      * Get powerSupply
      *
-     * @return string
+     * @return string 
      */
     public function getPowerSupply()
     {
@@ -415,7 +382,7 @@ class Desktop
     /**
      * Get caseType
      *
-     * @return string
+     * @return string 
      */
     public function getCaseType()
     {
@@ -438,7 +405,7 @@ class Desktop
     /**
      * Get os
      *
-     * @return string
+     * @return string 
      */
     public function getOs()
     {
@@ -461,7 +428,7 @@ class Desktop
     /**
      * Get ipAddress
      *
-     * @return string
+     * @return string 
      */
     public function getIpAddress()
     {
@@ -484,7 +451,7 @@ class Desktop
     /**
      * Get macAddress
      *
-     * @return string
+     * @return string 
      */
     public function getMacAddress()
     {
@@ -507,7 +474,7 @@ class Desktop
     /**
      * Get picture
      *
-     * @return string
+     * @return string 
      */
     public function getPicture()
     {
@@ -530,7 +497,7 @@ class Desktop
     /**
      * Get price
      *
-     * @return string
+     * @return string 
      */
     public function getPrice()
     {
@@ -553,7 +520,7 @@ class Desktop
     /**
      * Get purchaseDate
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getPurchaseDate()
     {
@@ -576,7 +543,7 @@ class Desktop
     /**
      * Get addDate
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getAddDate()
     {
@@ -584,13 +551,59 @@ class Desktop
     }
 
     /**
-     * Constructor
+     * Set cpu
+     *
+     * @param \ManagerITBundle\Entity\DesktopCPU $cpu
+     * @return Desktop
      */
-    public function __construct()
+    public function setCpu(\ManagerITBundle\Entity\DesktopCPU $cpu = null)
     {
-        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->addDate = new \DateTime();
+        $this->cpu = $cpu;
+
+        return $this;
+    }
+
+    /**
+     * Get cpu
+     *
+     * @return \ManagerITBundle\Entity\DesktopCPU 
+     */
+    public function getCpu()
+    {
+        return $this->cpu;
+    }
+
+    /**
+     * Add rams
+     *
+     * @param \ManagerITBundle\Entity\DesktopRam $rams
+     * @return Desktop
+     */
+    public function addRam(\ManagerITBundle\Entity\DesktopRam $rams)
+    {
+        $this->rams[] = $rams;
+
+        return $this;
+    }
+
+    /**
+     * Remove rams
+     *
+     * @param \ManagerITBundle\Entity\DesktopRam $rams
+     */
+    public function removeRam(\ManagerITBundle\Entity\DesktopRam $rams)
+    {
+        $this->rams->removeElement($rams);
+    }
+
+    /**
+     * Get rams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRams()
+    {
+        return $this->rams;
     }
 
     /**
@@ -619,7 +632,7 @@ class Desktop
     /**
      * Get licenses
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getLicenses()
     {
@@ -652,7 +665,7 @@ class Desktop
     /**
      * Get employees
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getEmployees()
     {

@@ -13,9 +13,25 @@ class DesktopRamType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('model')->add('series')->add('brand')->add('capacity')->add('type')->add('busSpeed')->add('casLatency')->add('numberOfPins')        ;
+        $builder
+            ->add('name')
+            ->add('model')
+            ->add('series')
+            ->add('brand')
+            ->add('capacity', 'choice', array(
+                'choices' => array(
+                    '0.5' => '512 MB',
+                    '1' => '1 GB',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+            ))
+            ->add('type')
+            ->add('busSpeed')
+            ->add('casLatency')
+            ->add('numberOfPins');
     }
-    
+
     /**
      * {@inheritdoc}
      */

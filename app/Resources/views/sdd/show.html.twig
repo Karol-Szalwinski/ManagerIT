@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sdd</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sdd.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ sdd.name }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ sdd.model }}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{ sdd.series }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ sdd.brand }}</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ sdd.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Formfactor</th>
+                <td>{{ sdd.formFactor }}</td>
+            </tr>
+            <tr>
+                <th>Interface</th>
+                <td>{{ sdd.interface }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sdd_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('sdd_edit', { 'id': sdd.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

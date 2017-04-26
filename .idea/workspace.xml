@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/hdd/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/hdd/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/hdd/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/hdd/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Form/HddType.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Form/HddType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +14,18 @@
   <component name="ComposerSettings" doNotAsk="true" />
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="561">
+              <caret line="276" column="53" lean-forward="false" selection-start-line="276" selection-start-column="53" selection-end-line="276" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -51,7 +60,6 @@
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopRamType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktopram/new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktopram/edit.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
@@ -63,6 +71,7 @@
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/HddType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/hdd/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/hdd/new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       </list>
     </option>
   </component>
@@ -528,7 +537,7 @@
       <workItem from="1493038900801" duration="6123000" />
       <workItem from="1493105577421" duration="940000" />
       <workItem from="1493108112275" duration="11645000" />
-      <workItem from="1493193960738" duration="6811000" />
+      <workItem from="1493193960738" duration="7190000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -541,12 +550,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25519000" />
+    <option name="totallyTimeSpent" value="25898000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="109" width="1856" height="1000" extended-state="0" />
+    <frame x="59" y="109" width="1856" height="1000" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26213592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26213592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -689,13 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="48" column="101" lean-forward="false" selection-start-line="48" selection-start-column="101" selection-end-line="48" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="270" column="56" lean-forward="false" selection-start-line="270" selection-start-column="56" selection-end-line="270" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -843,6 +846,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="112" column="75" lean-forward="false" selection-start-line="112" selection-start-column="75" selection-end-line="112" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="276" column="53" lean-forward="false" selection-start-line="276" selection-start-column="53" selection-end-line="276" selection-end-column="53" />
           <folding />
         </state>
       </provider>

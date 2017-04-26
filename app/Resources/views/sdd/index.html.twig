@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sdds list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Series</th>
+                <th>Brand</th>
+                <th>Capacity</th>
+                <th>Formfactor</th>
+                <th>Interface</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sdd in sdds %}
+            <tr>
+                <td><a href="{{ path('sdd_show', { 'id': sdd.id }) }}">{{ sdd.id }}</a></td>
+                <td>{{ sdd.name }}</td>
+                <td>{{ sdd.model }}</td>
+                <td>{{ sdd.series }}</td>
+                <td>{{ sdd.brand }}</td>
+                <td>{{ sdd.capacity }}</td>
+                <td>{{ sdd.formFactor }}</td>
+                <td>{{ sdd.interface }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sdd_show', { 'id': sdd.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sdd_edit', { 'id': sdd.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sdd_new') }}">Create a new sdd</a>
+        </li>
+    </ul>
+{% endblock %}

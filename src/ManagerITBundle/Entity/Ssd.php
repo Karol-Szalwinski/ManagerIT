@@ -5,12 +5,12 @@ namespace ManagerITBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sdd
+ * Ssd
  *
- * @ORM\Table(name="sdd")
- * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\SddRepository")
+ * @ORM\Table(name="ssd")
+ * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\SsdRepository")
  */
-class Sdd
+class Ssd
 {
     /**
      * @var int
@@ -85,7 +85,7 @@ class Sdd
      * Set name
      *
      * @param string $name
-     * @return Sdd
+     * @return Ssd
      */
     public function setName($name)
     {
@@ -108,7 +108,7 @@ class Sdd
      * Set model
      *
      * @param string $model
-     * @return Sdd
+     * @return Ssd
      */
     public function setModel($model)
     {
@@ -131,7 +131,7 @@ class Sdd
      * Set series
      *
      * @param string $series
-     * @return Sdd
+     * @return Ssd
      */
     public function setSeries($series)
     {
@@ -154,7 +154,7 @@ class Sdd
      * Set brand
      *
      * @param string $brand
-     * @return Sdd
+     * @return Ssd
      */
     public function setBrand($brand)
     {
@@ -177,7 +177,7 @@ class Sdd
      * Set capacity
      *
      * @param integer $capacity
-     * @return Sdd
+     * @return Ssd
      */
     public function setCapacity($capacity)
     {
@@ -200,7 +200,7 @@ class Sdd
      * Set formFactor
      *
      * @param string $formFactor
-     * @return Sdd
+     * @return Ssd
      */
     public function setFormFactor($formFactor)
     {
@@ -223,7 +223,7 @@ class Sdd
      * Set interface
      *
      * @param string $interface
-     * @return Sdd
+     * @return Ssd
      */
     public function setInterface($interface)
     {

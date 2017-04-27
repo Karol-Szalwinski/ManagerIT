@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SddType extends AbstractType
+class SsdType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -62,7 +62,7 @@ class SddType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ManagerITBundle\Entity\Sdd'
+            'data_class' => 'ManagerITBundle\Entity\Ssd'
         ));
     }
 
@@ -71,7 +71,7 @@ class SddType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'manageritbundle_sdd';
+        return 'manageritbundle_ssd';
     }
 
 

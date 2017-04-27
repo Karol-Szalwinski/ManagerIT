@@ -74,9 +74,9 @@ class Laptop
     /**
      * @var string
      *
-     * @ORM\Column(name="sdd", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ssd", type="string", length=255, nullable=true)
      */
-    private $sdd;
+    private $ssd;
 
     /**
      * @var string
@@ -339,26 +339,26 @@ class Laptop
     }
 
     /**
-     * Set sdd
+     * Set ssd
      *
-     * @param string $sdd
+     * @param string $ssd
      * @return Laptop
      */
-    public function setSdd($sdd)
+    public function setSsd($ssd)
     {
-        $this->sdd = $sdd;
+        $this->ssd = $ssd;
 
         return $this;
     }
 
     /**
-     * Get sdd
+     * Get ssd
      *
      * @return string 
      */
-    public function getSdd()
+    public function getSsd()
     {
-        return $this->sdd;
+        return $this->ssd;
     }
 
     /**

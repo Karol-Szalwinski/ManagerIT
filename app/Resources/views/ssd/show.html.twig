@@ -1,0 +1,141 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Dysk SSD {% endblock %}
+
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('ssd_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista dysków</span>
+            </a>
+            <a href="{{ path('ssd_edit', { 'id': ssd.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-wrench"></i>
+                <span class="link-title">Edytuj</span>
+            </a>
+            <div style="display: inline-block;">
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                            class="fa fa-trash"></i> Usuń
+                </button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+
+{% block body %}
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane podstawowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td>{{ ssd.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <td>{{ ssd.model }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Seria</th>
+                                        <td>{{ ssd.series }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Producent</th>
+                                        <td>{{ ssd.brand }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Wydajność</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable2" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable2" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Pojemność</th>
+                                        <td> {% if ssd.capacity < 1024 %}
+                                                {{ ssd.capacity }} GB
+                                            {% else %}
+                                                {% set capacityTB = ssd.capacity / 1024 %}
+                                                {{ capacityTB }} TB
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Format</th>
+                                        <td>{{ ssd.formFactor }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Interfejs</th>
+                                        <td>{{ ssd.interface }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+{% endblock %}
+
+

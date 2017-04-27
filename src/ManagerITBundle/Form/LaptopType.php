@@ -21,7 +21,7 @@ class LaptopType extends AbstractType {
                 ->add('hdd', 'text', [
                     'required' => false,
                 ])
-                ->add('sdd', 'text', [
+                ->add('ssd', 'text', [
                     'required' => false,
                 ])
                 ->add('drive', 'text', [

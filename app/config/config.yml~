@@ -71,8 +71,8 @@ fos_user:
     firewall_name: main
     user_class: ManagerITBundle\Entity\User
     from_email:
-        address: "shalvinsky@op.pl"
-        sender_name: "karol%"
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
 services:
     fos_user.doctrine_registry:
         alias: doctrine

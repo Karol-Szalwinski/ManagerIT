@@ -129,11 +129,27 @@
                                     </tr>
                                     <tr>
                                         <td>HDD</td>
-                                        <td>{{ desktop.hdd }}</td>
+                                        <td>
+                                            {% if desktop.hdds is empty %}
+                                                Brak
+                                            {% else %}
+                                                {% for hdd in desktop.hdds %}
+                                                    {{ hdd.capacity }} GB - {{ hdd.name }}</br>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td
                                     </tr>
                                     <tr>
                                         <td>SSD</td>
-                                        <td>{{ desktop.ssd }}</td>
+                                        <td>
+                                            {% if desktop.ssds is empty %}
+                                                Brak
+                                            {% else %}
+                                                {% for ssd in desktop.ssds %}
+                                                    {{ ssd.capacity }} GB - {{ ssd.name }}</br>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td
                                     </tr>
                                     <tr>
                                         <td>Napęd</td>

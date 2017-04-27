@@ -28,8 +28,16 @@ class DesktopType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
             ])
-            ->add('hdd')
-            ->add('ssd')
+            ->add('hdds', EntityType::class, [
+                'class' => 'ManagerITBundle:Hdd',
+                'choice_label' => 'name',
+                'multiple' => true,
+            ])
+            ->add('ssds', EntityType::class, [
+                'class' => 'ManagerITBundle:Ssd',
+                'choice_label' => 'name',
+                'multiple' => true,
+            ])
             ->add('drive')
             ->add('powerSupply')
             ->add('caseType')

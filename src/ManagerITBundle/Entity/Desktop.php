@@ -66,18 +66,22 @@ class Desktop
     private $rams;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="hdd", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="Hdd")
+     * @ORM\JoinTable(name="desktop_hdd",
+     *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="hdd_id", referencedColumnName="id")}
+     *      )
      */
-    private $hdd;
+    private $hdds;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ssd", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="Ssd")
+     * @ORM\JoinTable(name="desktop_ssd",
+     *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ssd_id", referencedColumnName="id")}
+     *      )
      */
-    private $ssd;
+    private $ssds;
 
     /**
      * @var string
@@ -168,8 +172,11 @@ class Desktop
     public function __construct()
     {
         $this->rams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**
@@ -272,52 +279,6 @@ class Desktop
     public function getManufacturer()
     {
         return $this->manufacturer;
-    }
-
-    /**
-     * Set hdd
-     *
-     * @param string $hdd
-     * @return Desktop
-     */
-    public function setHdd($hdd)
-    {
-        $this->hdd = $hdd;
-
-        return $this;
-    }
-
-    /**
-     * Get hdd
-     *
-     * @return string 
-     */
-    public function getHdd()
-    {
-        return $this->hdd;
-    }
-
-    /**
-     * Set ssd
-     *
-     * @param string $ssd
-     * @return Desktop
-     */
-    public function setSsd($ssd)
-    {
-        $this->ssd = $ssd;
-
-        return $this;
-    }
-
-    /**
-     * Get ssd
-     *
-     * @return string 
-     */
-    public function getSsd()
-    {
-        return $this->ssd;
     }
 
     /**
@@ -604,6 +565,72 @@ class Desktop
     public function getRams()
     {
         return $this->rams;
+    }
+
+    /**
+     * Add hdds
+     *
+     * @param \ManagerITBundle\Entity\Hdd $hdds
+     * @return Desktop
+     */
+    public function addHdd(\ManagerITBundle\Entity\Hdd $hdds)
+    {
+        $this->hdds[] = $hdds;
+
+        return $this;
+    }
+
+    /**
+     * Remove hdds
+     *
+     * @param \ManagerITBundle\Entity\Hdd $hdds
+     */
+    public function removeHdd(\ManagerITBundle\Entity\Hdd $hdds)
+    {
+        $this->hdds->removeElement($hdds);
+    }
+
+    /**
+     * Get hdds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHdds()
+    {
+        return $this->hdds;
+    }
+
+    /**
+     * Add ssds
+     *
+     * @param \ManagerITBundle\Entity\Ssd $ssds
+     * @return Desktop
+     */
+    public function addSsd(\ManagerITBundle\Entity\Ssd $ssds)
+    {
+        $this->ssds[] = $ssds;
+
+        return $this;
+    }
+
+    /**
+     * Remove ssds
+     *
+     * @param \ManagerITBundle\Entity\Ssd $ssds
+     */
+    public function removeSsd(\ManagerITBundle\Entity\Ssd $ssds)
+    {
+        $this->ssds->removeElement($ssds);
+    }
+
+    /**
+     * Get ssds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSsds()
+    {
+        return $this->ssds;
     }
 
     /**

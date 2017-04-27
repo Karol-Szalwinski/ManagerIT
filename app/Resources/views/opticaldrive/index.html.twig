@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Napędy optyczne {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('opticaldrive_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista napędów</span>
+            </a>
+            <a href="{{ path('opticaldrive_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                <h5>Lista napędów</h5>
+                            </header>
+                            <div id="collapse4" class="body">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Model</th>
+                                        <th>Seria</th>
+                                        <th>Producent</th>
+                                        <th>Typ</th>
+                                        <th>Interfejs</th>
+                                        <th>Rozmiar</th>
+                                    </thead>
+                                    <tbody>
+                                    {% for opticalDrive in opticalDrives %}
+                                        <tr onclick='location.href = "{{ path('opticaldrive_show', { 'id': opticalDrive.id }) }}"'>
+                                            <td>{{ opticalDrive.name }}</td>
+                                            <td>{{ opticalDrive.model }}</td>
+                                            <td>{{ opticalDrive.series }}</td>
+                                            <td>{{ opticalDrive.brand }}</td>
+                                            <td>{{ opticalDrive.type }}</td>
+                                            <td>{{ opticalDrive.interface }}</td>
+                                            <td>{{ opticalDrive.factoryFormat }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+{% endblock %}
+
+
+

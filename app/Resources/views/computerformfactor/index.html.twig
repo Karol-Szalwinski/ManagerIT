@@ -1,47 +1,84 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Computerformfactors list</h1>
+                {% block title %} Obudowy komputerowe {% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Model</th>
-                <th>Seria</th>
-                <th>Brand</th>
-                <th>Dedicatedformodel</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for computerFormFactor in computerFormFactors %}
-            <tr>
-                <td><a href="{{ path('computerformfactor_show', { 'id': computerFormFactor.id }) }}">{{ computerFormFactor.id }}</a></td>
-                <td>{{ computerFormFactor.name }}</td>
-                <td>{{ computerFormFactor.model }}</td>
-                <td>{{ computerFormFactor.seria }}</td>
-                <td>{{ computerFormFactor.brand }}</td>
-                <td>{{ computerFormFactor.dedicatedForModel }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('computerformfactor_show', { 'id': computerFormFactor.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('computerformfactor_edit', { 'id': computerFormFactor.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                {% block mainbar %}
+                    <div class="main-bar">
+                        <div>
+                            <a href="{{ path('computerformfactor_index') }}"
+                               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                                <i class="fa fa-arrow-down"></i>
+                                <span class="link-title">Lista Obudów</span>
+                            </a>
+                            <a href="{{ path('computerformfactor_new') }}"
+                               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                                <i class="fa fa-plus"></i>
+                                <span class="link-title">Dodaj</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.main-bar -->
+                {% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('computerformfactor_new') }}">Create a new computerFormFactor</a>
-        </li>
-    </ul>
-{% endblock %}
+
+                {% block body %}
+
+                    <div id="content">
+                        <div class="outer">
+                            <div class="inner bg-light lter">
+                                <!--Begin Datatables-->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <header>
+                                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                                <h5>Lista obudów</h5>
+                                            </header>
+                                            <div id="collapse4" class="body">
+                                                <table id="dataTable"
+                                                       class="table table-bordered table-condensed table-hover table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Nazwa</th>
+                                                        <th>Model</th>
+                                                        <th>Seria</th>
+                                                        <th>Producent</th>
+                                                        <th>Typ</th>
+                                                        <th>Dedykowana dla modelu</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for computerFormFactor in computerFormFactors %}
+                                                        <tr onclick='location.href = "{{ path('computerformfactor_show', { 'id': computerFormFactor.id }) }}"'>
+                                                            <td>{{ computerFormFactor.name }}</td>
+                                                            <td>{{ computerFormFactor.model }}</td>
+                                                            <td>{{ computerFormFactor.seria }}</td>
+                                                            <td>{{ computerFormFactor.brand }}</td>
+                                                            <td>
+                                                                {% if computerFormFactor.dedicatedForModel > 0 %}
+                                                                    tak
+                                                                {% else %}
+                                                                    nie
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                                <!--End Datatables-->
+
+                            </div>
+                            <!-- /.inner -->
+                        </div>
+                        <!-- /.outer -->
+                    </div>
+                    <!-- /#content -->
+                {% endblock %}
+
+
+
+

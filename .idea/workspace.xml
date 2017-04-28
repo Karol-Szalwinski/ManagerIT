@@ -7,8 +7,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/Resources/views/sdd/new.html.twig" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/Resources/views/sdd/show.html.twig" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/cache/.gitkeep" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -441,7 +439,7 @@
       <workItem from="1493105577421" duration="940000" />
       <workItem from="1493108112275" duration="11645000" />
       <workItem from="1493193960738" duration="9315000" />
-      <workItem from="1493281951147" duration="9662000" />
+      <workItem from="1493281951147" duration="9768000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -454,7 +452,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37685000" />
+    <option name="totallyTimeSpent" value="37791000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="30" width="1922" height="1171" extended-state="6" />

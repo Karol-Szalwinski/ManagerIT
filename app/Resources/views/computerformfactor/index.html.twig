@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Computerformfactors list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Seria</th>
+                <th>Brand</th>
+                <th>Dedicatedformodel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for computerFormFactor in computerFormFactors %}
+            <tr>
+                <td><a href="{{ path('computerformfactor_show', { 'id': computerFormFactor.id }) }}">{{ computerFormFactor.id }}</a></td>
+                <td>{{ computerFormFactor.name }}</td>
+                <td>{{ computerFormFactor.model }}</td>
+                <td>{{ computerFormFactor.seria }}</td>
+                <td>{{ computerFormFactor.brand }}</td>
+                <td>{{ computerFormFactor.dedicatedForModel }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('computerformfactor_show', { 'id': computerFormFactor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('computerformfactor_edit', { 'id': computerFormFactor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('computerformfactor_new') }}">Create a new computerFormFactor</a>
+        </li>
+    </ul>
+{% endblock %}

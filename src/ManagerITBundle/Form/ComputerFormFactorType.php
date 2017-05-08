@@ -13,7 +13,19 @@ class ComputerFormFactorType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('model')->add('seria')->add('brand')->add('dedicatedForModel')        ;
+        $builder->add('name')
+            ->add('model')
+            ->add('seria')
+            ->add('brand')
+            ->add('dedicatedForModel', 'choice', array(
+                'choices' => array(
+                    '0' => 'Uniwersalna ',
+                    '1' => 'Dedykowana ',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+            ))
+        ;
     }
     
     /**

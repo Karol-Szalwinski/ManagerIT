@@ -1,42 +1,16 @@
-<tr>
-    <th>Id</th>
-    <td>{{ computerFormFactor.id }}</td>
-</tr>
-<tr>
-    <th>Name</th>
-    <td>{{ computerFormFactor.name }}</td>
-</tr>
-<tr>
-    <th>Model</th>
-    <td>{{ computerFormFactor.model }}</td>
-</tr>
-<tr>
-    <th>Seria</th>
-    <td>{{ computerFormFactor.seria }}</td>
-</tr>
-<tr>
-    <th>Brand</th>
-    <td>{{ computerFormFactor.brand }}</td>
-</tr>
-<tr>
-    <th>Dedicatedformodel</th>
-    <td>{{ computerFormFactor.dedicatedForModel }}</td>
-</tr>
-
-
 {% extends 'base.html.twig' %}
 
-{% block title %} Napęd optyczny {% endblock %}
+{% block title %} Obudowa komputerowa {% endblock %}
 
 
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('opticaldrive_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computerformfactor_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista napędów</span>
+                <span class="link-title">Wszystkie typy obudów</span>
             </a>
-            <a href="{{ path('opticaldrive_edit', { 'id': opticalDrive.id }) }}"
+            <a href="{{ path('computerformfactor_edit', { 'id': computerFormFactor.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
@@ -84,19 +58,19 @@
                                     <tbody>
                                     <tr>
                                         <th>Name</th>
-                                        <td>{{ opticalDrive.name }}</td>
+                                        <td>{{ computerFormFactor.name }}</td>
                                     </tr>
                                     <tr>
                                         <th>Model</th>
-                                        <td>{{ opticalDrive.model }}</td>
+                                        <td>{{ computerFormFactor.model }}</td>
                                     </tr>
                                     <tr>
                                         <th>Seria</th>
-                                        <td>{{ opticalDrive.series }}</td>
+                                        <td>{{ computerFormFactor.seria }}</td>
                                     </tr>
                                     <tr>
                                         <th>Producent</th>
-                                        <td>{{ opticalDrive.brand }}</td>
+                                        <td>{{ computerFormFactor.brand }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -110,7 +84,7 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
-                                <h5>Wydajność</h5>
+                                <h5>Dane techniczne</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">

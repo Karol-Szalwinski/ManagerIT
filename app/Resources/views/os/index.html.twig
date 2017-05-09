@@ -1,53 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Os list</h1>
+{% block title %} Systemy operacyjne {% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Series</th>
-                <th>Edition</th>
-                <th>Language</th>
-                <th>Architecture</th>
-                <th>Brand</th>
-                <th>Format</th>
-                <th>License</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for o in os %}
-            <tr>
-                <td><a href="{{ path('os_show', { 'id': o.id }) }}">{{ o.id }}</a></td>
-                <td>{{ o.name }}</td>
-                <td>{{ o.series }}</td>
-                <td>{{ o.edition }}</td>
-                <td>{{ o.language }}</td>
-                <td>{{ o.architecture }}</td>
-                <td>{{ o.brand }}</td>
-                <td>{{ o.format }}</td>
-                <td>{{ o.license }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('os_show', { 'id': o.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('os_edit', { 'id': o.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('os_new') }}">Create a new o</a>
-        </li>
-    </ul>
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('os_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista systemów operacyjnych</span>
+            </a>
+            <a href="{{ path('os_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
+
+
+{% block body %}
+
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                <h5>Lista systemów operacyjnych</h5>
+                            </header>
+                            <div id="collapse4" class="body">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazea</th>
+                                        <th>Seria</th>
+                                        <th>Edycja</th>
+                                        <th>Wersja językowa</th>
+                                        <th>Architektura</th>
+                                        <th>Producent</th>
+                                        <th>Format nośnika</th>
+                                        <th>Typ licencji</th>
+                                    </thead>
+                                    <tbody>
+                                    {% for o in os %}
+                                        <tr onclick='location.href = "{{ path('os_show', { 'id': o.id }) }}"'>
+                                            <td>{{ o.name }}</td>
+                                            <td>{{ o.series }}</td>
+                                            <td>{{ o.edition }}</td>
+                                            <td>{{ o.language }}</td>
+                                            <td>{{ o.architecture }}</td>
+                                            <td>{{ o.brand }}</td>
+                                            <td>{{ o.format }}</td>
+                                            <td>{{ o.license }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+{% endblock %}
+
+
+

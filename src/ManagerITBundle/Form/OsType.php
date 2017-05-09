@@ -13,7 +13,22 @@ class OsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('series')->add('edition')->add('language')->add('architecture')->add('brand')->add('format')->add('license')        ;
+        $builder
+            ->add('name')
+            ->add('series')
+            ->add('edition')
+            ->add('language', 'choice', array(
+                'choices' => array(
+                    'pl' => 'Polska',
+                    'en' => 'Angielska ',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+            ))
+            ->add('architecture')
+            ->add('brand')
+            ->add('format')
+            ->add('license')        ;
     }
     
     /**

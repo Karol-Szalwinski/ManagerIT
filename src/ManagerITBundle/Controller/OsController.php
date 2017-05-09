@@ -39,20 +39,20 @@ class OsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $o = new O();
-        $form = $this->createForm('ManagerITBundle\Form\OsType', $o);
+        $os = new Os();
+        $form = $this->createForm('ManagerITBundle\Form\OsType', $os);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($o);
-            $em->flush($o);
+            $em->persist($os);
+            $em->flush($os);
 
-            return $this->redirectToRoute('os_show', array('id' => $o->getId()));
+            return $this->redirectToRoute('os_show', array('id' => $os->getId()));
         }
 
         return $this->render('os/new.html.twig', array(
-            'o' => $o,
+            'o' => $os,
             'form' => $form->createView(),
         ));
     }

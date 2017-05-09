@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>O</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ o.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ o.name }}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{ o.series }}</td>
+            </tr>
+            <tr>
+                <th>Edition</th>
+                <td>{{ o.edition }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ o.language }}</td>
+            </tr>
+            <tr>
+                <th>Architecture</th>
+                <td>{{ o.architecture }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ o.brand }}</td>
+            </tr>
+            <tr>
+                <th>Format</th>
+                <td>{{ o.format }}</td>
+            </tr>
+            <tr>
+                <th>License</th>
+                <td>{{ o.license }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('os_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('os_edit', { 'id': o.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

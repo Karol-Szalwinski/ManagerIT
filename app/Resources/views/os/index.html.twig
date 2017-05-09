@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Os list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Series</th>
+                <th>Edition</th>
+                <th>Language</th>
+                <th>Architecture</th>
+                <th>Brand</th>
+                <th>Format</th>
+                <th>License</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for o in os %}
+            <tr>
+                <td><a href="{{ path('os_show', { 'id': o.id }) }}">{{ o.id }}</a></td>
+                <td>{{ o.name }}</td>
+                <td>{{ o.series }}</td>
+                <td>{{ o.edition }}</td>
+                <td>{{ o.language }}</td>
+                <td>{{ o.architecture }}</td>
+                <td>{{ o.brand }}</td>
+                <td>{{ o.format }}</td>
+                <td>{{ o.license }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('os_show', { 'id': o.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('os_edit', { 'id': o.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('os_new') }}">Create a new o</a>
+        </li>
+    </ul>
+{% endblock %}

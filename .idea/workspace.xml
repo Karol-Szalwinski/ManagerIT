@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/os/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/os/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/os/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/os/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/os/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/os/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/os/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/os/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/ssd/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/ssd/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Controller/OsController.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Controller/OsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Form/OsType.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Form/OsType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -115,7 +109,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/opticaldrive/new.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/OpticalDriveType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/opticaldrive/edit.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/opticaldrive/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/computerformfactor/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/computerformfactor/index.html.twig" />
@@ -130,6 +123,7 @@
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/OsType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/os/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/os/new.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       </list>
     </option>
   </component>
@@ -325,32 +319,6 @@
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ssd" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManagerIT" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManagerIT" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -459,7 +427,7 @@
       <workItem from="1493281951147" duration="9768000" />
       <workItem from="1493389001800" duration="1922000" />
       <workItem from="1494248452225" duration="3783000" />
-      <workItem from="1494325706566" duration="6940000" />
+      <workItem from="1494325706566" duration="7916000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -472,7 +440,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50436000" />
+    <option name="totallyTimeSpent" value="51412000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="30" width="1922" height="1171" extended-state="6" />
@@ -713,13 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="287" column="46" lean-forward="false" selection-start-line="287" selection-start-column="46" selection-end-line="287" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/computerformfactor/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
@@ -856,6 +817,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-373">
           <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="300" column="55" lean-forward="false" selection-start-line="300" selection-start-column="55" selection-end-line="300" selection-end-column="55" />
           <folding />
         </state>
       </provider>

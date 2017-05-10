@@ -4,7 +4,7 @@ namespace ManagerITBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Desktop
  *
@@ -129,6 +129,9 @@ class Desktop
      * @var string
      *
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     *
+     * @Assert\NotBlank(message="Proszę, wgrać obrazek")
+     * @Assert\File(mimeTypes={ "image/*" })
      */
     private $picture;
 
@@ -182,7 +185,7 @@ class Desktop
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -205,7 +208,7 @@ class Desktop
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -228,7 +231,7 @@ class Desktop
     /**
      * Get model
      *
-     * @return string 
+     * @return string
      */
     public function getModel()
     {
@@ -251,7 +254,7 @@ class Desktop
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -274,7 +277,7 @@ class Desktop
     /**
      * Get manufacturer
      *
-     * @return string 
+     * @return string
      */
     public function getManufacturer()
     {
@@ -297,7 +300,7 @@ class Desktop
     /**
      * Get drive
      *
-     * @return string 
+     * @return string
      */
     public function getDrive()
     {
@@ -320,7 +323,7 @@ class Desktop
     /**
      * Get powerSupply
      *
-     * @return string 
+     * @return string
      */
     public function getPowerSupply()
     {
@@ -343,7 +346,7 @@ class Desktop
     /**
      * Get caseType
      *
-     * @return string 
+     * @return string
      */
     public function getCaseType()
     {
@@ -366,7 +369,7 @@ class Desktop
     /**
      * Get os
      *
-     * @return string 
+     * @return string
      */
     public function getOs()
     {
@@ -389,7 +392,7 @@ class Desktop
     /**
      * Get ipAddress
      *
-     * @return string 
+     * @return string
      */
     public function getIpAddress()
     {
@@ -412,7 +415,7 @@ class Desktop
     /**
      * Get macAddress
      *
-     * @return string 
+     * @return string
      */
     public function getMacAddress()
     {
@@ -435,7 +438,7 @@ class Desktop
     /**
      * Get picture
      *
-     * @return string 
+     * @return string
      */
     public function getPicture()
     {
@@ -458,7 +461,7 @@ class Desktop
     /**
      * Get price
      *
-     * @return string 
+     * @return string
      */
     public function getPrice()
     {
@@ -481,7 +484,7 @@ class Desktop
     /**
      * Get purchaseDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPurchaseDate()
     {
@@ -504,7 +507,7 @@ class Desktop
     /**
      * Get addDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getAddDate()
     {
@@ -527,7 +530,7 @@ class Desktop
     /**
      * Get cpu
      *
-     * @return \ManagerITBundle\Entity\DesktopCPU 
+     * @return \ManagerITBundle\Entity\DesktopCPU
      */
     public function getCpu()
     {
@@ -560,7 +563,7 @@ class Desktop
     /**
      * Get rams
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRams()
     {
@@ -593,7 +596,7 @@ class Desktop
     /**
      * Get hdds
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getHdds()
     {
@@ -626,7 +629,7 @@ class Desktop
     /**
      * Get ssds
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSsds()
     {
@@ -659,7 +662,7 @@ class Desktop
     /**
      * Get licenses
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getLicenses()
     {
@@ -692,7 +695,7 @@ class Desktop
     /**
      * Get employees
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployees()
     {

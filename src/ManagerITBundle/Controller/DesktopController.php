@@ -5,10 +5,12 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Desktop;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
+use ManagerITBundle\FileUploader;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Desktop controller.
@@ -47,6 +49,10 @@ class DesktopController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $desktop->getPicture();
+            $fileName = $this->get('app.brochure_uploader')->upload($file);
+
+            $desktop->setPicture($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($desktop);
             $em->flush($desktop);

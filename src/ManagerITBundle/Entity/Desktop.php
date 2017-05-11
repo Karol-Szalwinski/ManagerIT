@@ -131,7 +131,7 @@ class Desktop
      *
      * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      *
-     * @Assert\NotBlank(message="Proszę, wgrać obrazek")
+     *
      * @Assert\File(mimeTypes={ "image/*" })
      */
     private $picture;

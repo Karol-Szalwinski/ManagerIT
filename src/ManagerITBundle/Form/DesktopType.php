@@ -53,7 +53,7 @@ class DesktopType extends AbstractType
                 // do not render as type="date", to avoid HTML5 date pickers
                 'html5' => false,
             ])
-            ->add('picture', FileType::class, array('label' => 'Obrazek JPG, PNG'))
+
         ;
     }
 

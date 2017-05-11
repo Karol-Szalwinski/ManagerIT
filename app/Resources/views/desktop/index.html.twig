@@ -49,6 +49,7 @@
                                         <th>Dział</th>
                                         <th>Adres IP</th>
                                         <th>MAC adres</th>
+                                        <th>Zdjęcie</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -92,6 +93,17 @@
                                             </td>
                                             <td>{{ desktop.ipAddress }}</td>
                                             <td>{{ desktop.macAddress }}</td>
+                                            <td>
+                                                {% if desktop.picture is not null %}
+                                                    {% set picture = desktop.picture %}
+                                                {% else %}
+                                                    {% set picture = "default.png" %}
+                                                {% endif %}
+                                                <a href="{{ asset('pictures/' ~ picture) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                         height="40" width="40">
+                                                </a>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

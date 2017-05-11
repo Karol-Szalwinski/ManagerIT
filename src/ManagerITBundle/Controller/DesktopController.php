@@ -95,31 +95,52 @@ class DesktopController extends Controller
      */
     public function editAction(Request $request, Desktop $desktop)
     {
-        //Zmieniamy wartość pola Picture ze stringa na obiekt pliku
-        if ($desktop->getPicture() != null) {
-            $desktop->setPicture(
-                new File($this->getParameter('pictures_directory') . '/' . $desktop->getPicture())
-            );
-        }
+
+
         $deleteForm = $this->createDeleteForm($desktop);
         $editForm = $this->createForm('ManagerITBundle\Form\DesktopType', $desktop);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            var_dump($desktop); die('W pierwszym formularzu');
+            $desktop = $editForm->getData();
+            $this->getDoctrine()->getManager()
+                ->flush();
 
-            $file = $desktop->getPicture();
-            $fileName = $this->get('app.picture_uploader')->upload($file);
-
-            $desktop->setPicture($fileName);
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('desktop_edit', array('id' => $desktop->getId()));
+            return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
         }
+        var_dump($desktop); die('Za pierwszym formularzem');
+        if ($desktop->getPicture() != null) {
+            $desktop->setPicture(
+                new File($this->getParameter('pictures_directory') . '/' . $desktop->getPicture())
+            );
+        }
+        $pictureForm = $this->createForm('ManagerITBundle\Form\DesktopPictureType', $desktop);
+        $pictureForm->handleRequest($request);
+
+        if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {
+
+            //$desktop = $pictureForm->getData();
+            //Zmieniamy wartość pola Picture ze stringa na obiekt pliku
+            $desktopFromForm = $pictureForm->getData();
+
+            $file = $desktopFromForm->getPicture();
+            $fileName = $this->get('app.picture_uploader')->upload($file);
+            var_dump($desktopFromForm, $desktop, $file, $fileName); die();
+            $desktop->setPicture($fileName);
+
+            $this->getDoctrine()->getManager()
+                ->flush();
+
+            return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
+        }
+
 
         return $this->render('desktop/edit.html.twig', array(
             'desktop' => $desktop,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'picture_form' => $pictureForm->createView(),
         ));
     }
 

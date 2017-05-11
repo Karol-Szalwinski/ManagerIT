@@ -5,6 +5,7 @@ namespace ManagerITBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Desktop
  *
@@ -180,6 +181,7 @@ class Desktop
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
+        $this->picture = null;
     }
 
     /**

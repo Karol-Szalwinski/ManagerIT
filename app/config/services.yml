@@ -8,8 +8,11 @@ services:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
+parameters:
+    pictures_directory: '%kernel.root_dir%/../web/pictures'
+
 services:
     # ...
-    app.brochure_uploader:
+    app.picture_uploader:
         class: ManagerITBundle\FileUploader
-        arguments: ['%kernel.root_dir%/../web/pictures']
+        arguments: ['%pictures_directory%']

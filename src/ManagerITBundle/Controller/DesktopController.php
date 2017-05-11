@@ -6,6 +6,7 @@ use ManagerITBundle\Entity\Desktop;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\FileUploader;
+use Symfony\Component\HttpFoundation\File\File;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -50,7 +51,7 @@ class DesktopController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $desktop->getPicture();
-            $fileName = $this->get('app.brochure_uploader')->upload($file);
+            $fileName = $this->get('app.picture_uploader')->upload($file);
 
             $desktop->setPicture($fileName);
             $em = $this->getDoctrine()->getManager();
@@ -77,7 +78,7 @@ class DesktopController extends Controller
         $deleteForm = $this->createDeleteForm($desktop);
         $licenseForm = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
         $employeeForm = $this->createForm('ManagerITBundle\Form\DesktopConnectEmployeeType', $desktop);
-        
+
         return $this->render('desktop/show.html.twig', array(
             'desktop' => $desktop,
             'delete_form' => $deleteForm->createView(),
@@ -94,11 +95,22 @@ class DesktopController extends Controller
      */
     public function editAction(Request $request, Desktop $desktop)
     {
+        //Zmieniamy wartość pola Picture ze stringa na obiekt pliku
+        if ($desktop->getPicture() != null) {
+            $desktop->setPicture(
+                new File($this->getParameter('pictures_directory') . '/' . $desktop->getPicture())
+            );
+        }
         $deleteForm = $this->createDeleteForm($desktop);
         $editForm = $this->createForm('ManagerITBundle\Form\DesktopType', $desktop);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $file = $desktop->getPicture();
+            $fileName = $this->get('app.picture_uploader')->upload($file);
+
+            $desktop->setPicture($fileName);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('desktop_edit', array('id' => $desktop->getId()));
@@ -143,16 +155,16 @@ class DesktopController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('desktop_delete', array('id' => $desktop->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
-    
-        /**
-     * 
+
+    /**
+     *
      * @Route("/{id}/desktoptoemployee}", name="desktop_connect_employee")
      * @Method("POST")
      */
-    public function desktopConnectEmployeeAction(Request $request, Desktop $desktop) {
+    public function desktopConnectEmployeeAction(Request $request, Desktop $desktop)
+    {
 
         $form = $this->createForm('ManagerITBundle\Form\DesktopConnectEmployeeType', $desktop);
         $form->handleRequest($request);
@@ -166,14 +178,15 @@ class DesktopController extends Controller
 
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
-    
+
     /**
      * Action to connect desktop with license
      *
      * @Route("/{id}/desktoptolicense", name="desktop_connect_license")
      * @Method("POST")
      */
-    public function desktopConnectLicenseAction(Request $request, Desktop $desktop) {
+    public function desktopConnectLicenseAction(Request $request, Desktop $desktop)
+    {
 
         $form = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
         $form->handleRequest($request);
@@ -188,14 +201,15 @@ class DesktopController extends Controller
 
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
-    
+
     /**
      * Action to disconnect desktop with license
-     * 
-     *  @Route("/{id}/detach_license/{license}", name="desktop_detach_license")
-     *  @Method({"GET"})
+     *
+     * @Route("/{id}/detach_license/{license}", name="desktop_detach_license")
+     * @Method({"GET"})
      */
-    public function detachLicenseAction(Desktop $desktop, License $license) {
+    public function detachLicenseAction(Desktop $desktop, License $license)
+    {
         $desktop->removeLicense($license);
         $license->removeDesktop($desktop);
         $em = $this->getDoctrine()->getManager();
@@ -204,22 +218,23 @@ class DesktopController extends Controller
 
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
-    
-     /**
+
+    /**
      * Action to disconnect desktop with employee
-     * 
-     *  @Route("/{id}/detach_employee/{employee}", name="desktop_detach_employee")
-     *  @Method({"GET"})
+     *
+     * @Route("/{id}/detach_employee/{employee}", name="desktop_detach_employee")
+     * @Method({"GET"})
      */
-    public function detachEmployeeAction(Desktop $desktop, Employee $employee) {
+    public function detachEmployeeAction(Desktop $desktop, Employee $employee)
+    {
         $desktop->removeEmployee($employee);
         $employee->removeDesktop($desktop);
         $em = $this->getDoctrine()->getManager();
         $em->flush($desktop);
         $em->flush($employee);
-        
+
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
 
-    
+
 }

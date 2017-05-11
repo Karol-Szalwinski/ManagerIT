@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/services.yml" afterPath="$PROJECT_DIR$/app/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DesktopController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DesktopController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
@@ -85,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="112" column="58" lean-forward="false" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
+            <state relative-caret-position="560">
+              <caret line="114" column="88" lean-forward="false" selection-start-line="114" selection-start-column="88" selection-end-line="114" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -199,12 +195,12 @@
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/new.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/FileUploader" />
-        <option value="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Entity/Image.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
       </list>
     </option>
   </component>
@@ -532,7 +528,7 @@
       <workItem from="1494248452225" duration="3783000" />
       <workItem from="1494325706566" duration="8261000" />
       <workItem from="1494406977079" duration="14880000" />
-      <workItem from="1494487772134" duration="8211000" />
+      <workItem from="1494487772134" duration="9114000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -545,7 +541,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74848000" />
+    <option name="totallyTimeSpent" value="75751000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -950,14 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="112" column="58" lean-forward="false" selection-start-line="112" selection-start-column="58" selection-end-line="112" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -983,6 +971,14 @@
           <folding>
             <element signature="e#46#81#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="114" column="88" lean-forward="false" selection-start-line="114" selection-start-column="88" selection-end-line="114" selection-end-column="88" />
+          <folding />
         </state>
       </provider>
     </entry>

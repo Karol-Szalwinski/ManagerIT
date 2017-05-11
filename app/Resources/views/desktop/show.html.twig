@@ -106,11 +106,17 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <a href="{{ asset('pictures/' ~ desktop.picture) }}">
-                                            <img src="{{ asset('pictures/' ~ desktop.picture) }}" alt="Desktop" height="200" width="200">
+                                            {% if desktop.picture is not null %}
+                                                {% set picture = desktop.picture %}
+                                            {% else %}
+                                                {% set picture = "default.png" %}
+                                            {% endif %}
+                                            <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop" height="200"
+                                                     width="200">
                                             </a>
                                         </td>
-                                    Kliknij aby powiększyć
+                                        Kliknij aby powiększyć
                                     </tbody>
                                 </table>
                             </div>

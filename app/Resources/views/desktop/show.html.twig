@@ -70,7 +70,7 @@
                                     </tr>
                                     <tr>
                                         <td>Obudowa</td>
-                                        <td>{{ desktop.caseType }}</td>
+                                        <td>{{ desktop.caseType.name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nr seryjny</td>
@@ -192,10 +192,17 @@
                                                 {% endfor %}
                                             {% endif %}
                                         </td
-                                    </tr>
-                                    <tr>
+                                    </tr><tr>
                                         <td>Napęd</td>
-                                        <td>{{ desktop.drive }}</td>
+                                        <td>
+                                            {% if desktop.drives is empty %}
+                                                Brak
+                                            {% else %}
+                                                {% for drive in desktop.drives %}
+                                                    {{ drive.name }}</br>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td
                                     </tr>
                                     <tr>
                                         <td>Zasilacz</td>

@@ -85,11 +85,13 @@ class Desktop
     private $ssds;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="drive", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="OpticalDrive")
+     * @ORM\JoinTable(name="desktop_opticaldrive",
+     *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="opticaldrive_id", referencedColumnName="id")}
+     *      )
      */
-    private $drive;
+    private $drives;
 
     /**
      * @var string
@@ -99,16 +101,14 @@ class Desktop
     private $powerSupply;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="caseType", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="ComputerFormFactor")
+     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
      */
     private $caseType;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="os", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Os")
+     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
      */
     private $os;
 
@@ -178,6 +178,7 @@ class Desktop
         $this->rams = new \Doctrine\Common\Collections\ArrayCollection();
         $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->drives = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
@@ -187,7 +188,7 @@ class Desktop
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -210,7 +211,7 @@ class Desktop
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
@@ -233,7 +234,7 @@ class Desktop
     /**
      * Get model
      *
-     * @return string
+     * @return string 
      */
     public function getModel()
     {
@@ -256,7 +257,7 @@ class Desktop
     /**
      * Get type
      *
-     * @return string
+     * @return string 
      */
     public function getType()
     {
@@ -279,34 +280,11 @@ class Desktop
     /**
      * Get manufacturer
      *
-     * @return string
+     * @return string 
      */
     public function getManufacturer()
     {
         return $this->manufacturer;
-    }
-
-    /**
-     * Set drive
-     *
-     * @param string $drive
-     * @return Desktop
-     */
-    public function setDrive($drive)
-    {
-        $this->drive = $drive;
-
-        return $this;
-    }
-
-    /**
-     * Get drive
-     *
-     * @return string
-     */
-    public function getDrive()
-    {
-        return $this->drive;
     }
 
     /**
@@ -325,57 +303,11 @@ class Desktop
     /**
      * Get powerSupply
      *
-     * @return string
+     * @return string 
      */
     public function getPowerSupply()
     {
         return $this->powerSupply;
-    }
-
-    /**
-     * Set caseType
-     *
-     * @param string $caseType
-     * @return Desktop
-     */
-    public function setCaseType($caseType)
-    {
-        $this->caseType = $caseType;
-
-        return $this;
-    }
-
-    /**
-     * Get caseType
-     *
-     * @return string
-     */
-    public function getCaseType()
-    {
-        return $this->caseType;
-    }
-
-    /**
-     * Set os
-     *
-     * @param string $os
-     * @return Desktop
-     */
-    public function setOs($os)
-    {
-        $this->os = $os;
-
-        return $this;
-    }
-
-    /**
-     * Get os
-     *
-     * @return string
-     */
-    public function getOs()
-    {
-        return $this->os;
     }
 
     /**
@@ -394,7 +326,7 @@ class Desktop
     /**
      * Get ipAddress
      *
-     * @return string
+     * @return string 
      */
     public function getIpAddress()
     {
@@ -417,7 +349,7 @@ class Desktop
     /**
      * Get macAddress
      *
-     * @return string
+     * @return string 
      */
     public function getMacAddress()
     {
@@ -440,7 +372,7 @@ class Desktop
     /**
      * Get picture
      *
-     * @return string
+     * @return string 
      */
     public function getPicture()
     {
@@ -463,7 +395,7 @@ class Desktop
     /**
      * Get price
      *
-     * @return string
+     * @return string 
      */
     public function getPrice()
     {
@@ -486,7 +418,7 @@ class Desktop
     /**
      * Get purchaseDate
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getPurchaseDate()
     {
@@ -509,7 +441,7 @@ class Desktop
     /**
      * Get addDate
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getAddDate()
     {
@@ -532,7 +464,7 @@ class Desktop
     /**
      * Get cpu
      *
-     * @return \ManagerITBundle\Entity\DesktopCPU
+     * @return \ManagerITBundle\Entity\DesktopCPU 
      */
     public function getCpu()
     {
@@ -565,7 +497,7 @@ class Desktop
     /**
      * Get rams
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRams()
     {
@@ -598,7 +530,7 @@ class Desktop
     /**
      * Get hdds
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getHdds()
     {
@@ -631,11 +563,90 @@ class Desktop
     /**
      * Get ssds
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getSsds()
     {
         return $this->ssds;
+    }
+
+    /**
+     * Add drive
+     *
+     * @param \ManagerITBundle\Entity\OpticalDrive $drive
+     * @return Desktop
+     */
+    public function addDrive(\ManagerITBundle\Entity\OpticalDrive $drive)
+    {
+        $this->drive[] = $drive;
+
+        return $this;
+    }
+
+    /**
+     * Remove drive
+     *
+     * @param \ManagerITBundle\Entity\OpticalDrive $drive
+     */
+    public function removeDrive(\ManagerITBundle\Entity\OpticalDrive $drive)
+    {
+        $this->drive->removeElement($drive);
+    }
+
+    /**
+     * Get drive
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDrive()
+    {
+        return $this->drive;
+    }
+
+    /**
+     * Set caseType
+     *
+     * @param \ManagerITBundle\Entity\ComputerFormFactor $caseType
+     * @return Desktop
+     */
+    public function setCaseType(\ManagerITBundle\Entity\ComputerFormFactor $caseType = null)
+    {
+        $this->caseType = $caseType;
+
+        return $this;
+    }
+
+    /**
+     * Get caseType
+     *
+     * @return \ManagerITBundle\Entity\ComputerFormFactor 
+     */
+    public function getCaseType()
+    {
+        return $this->caseType;
+    }
+
+    /**
+     * Set os
+     *
+     * @param \ManagerITBundle\Entity\Os $os
+     * @return Desktop
+     */
+    public function setOs(\ManagerITBundle\Entity\Os $os = null)
+    {
+        $this->os = $os;
+
+        return $this;
+    }
+
+    /**
+     * Get os
+     *
+     * @return \ManagerITBundle\Entity\Os 
+     */
+    public function getOs()
+    {
+        return $this->os;
     }
 
     /**
@@ -664,7 +675,7 @@ class Desktop
     /**
      * Get licenses
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getLicenses()
     {
@@ -697,10 +708,20 @@ class Desktop
     /**
      * Get employees
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Get drives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDrives()
+    {
+        return $this->drives;
     }
 }

@@ -40,10 +40,22 @@ class DesktopType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
             ])
-            ->add('drive')
+            ->add('drives', EntityType::class, [
+                'class' => 'ManagerITBundle:OpticalDrive',
+                'choice_label' => 'name',
+                'multiple' => true,
+            ])
             ->add('powerSupply')
-            ->add('caseType')
-            ->add('os')
+            ->add('caseType', EntityType::class, [
+                'class' => 'ManagerITBundle:ComputerFormFactor',
+                'choice_label' => 'name',
+                'multiple' => false,
+            ])
+            ->add('os', EntityType::class, [
+                'class' => 'ManagerITBundle:Os',
+                'choice_label' => 'name',
+                'multiple' => false,
+            ])
             ->add('ipAddress')
             ->add('macAddress')
             ->add('price')

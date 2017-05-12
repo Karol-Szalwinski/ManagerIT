@@ -75,7 +75,11 @@
                                                     {{ sum }} GB
                                                 {% endif %}
                                             </td>
-                                            <td>{{ desktop.os }}</td>
+                                            {#<td>#}
+                                                {#{% if desktop.os is not null %}#}
+                                                    {#{{ desktop.os.name }}#}
+                                                {#{% endif %}#}
+                                            {#</td>#}
                                             <td>
                                                 {% for employee in desktop.employees %}
                                                     {{ employee.name }} {{ employee.surname }}<br>

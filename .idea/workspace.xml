@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,11 +29,33 @@
     <splitter split-orientation="horizontal" split-proportion="0.62732095">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="DesktopPictureType.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopPictureType.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Desktop.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-3314">
+                  <caret line="131" column="75" lean-forward="false" selection-start-line="131" selection-start-column="75" selection-end-line="131" selection-end-column="75" />
+                  <folding>
+                    <element signature="e#42#74#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="DesktopController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="79" column="34" lean-forward="true" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
+                <state relative-caret-position="544">
+                  <caret line="112" column="51" lean-forward="false" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
                   <folding>
                     <element signature="e#46#81#0#PHP" expanded="true" />
                   </folding>
@@ -48,11 +63,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
+          <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="901">
+                <state relative-caret-position="2839">
                   <caret line="185" column="25" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DesktopType.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="782">
+                  <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -193,8 +218,8 @@
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/new.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php" />
-        <option value="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
       </list>
     </option>
   </component>
@@ -586,7 +611,7 @@
       <workItem from="1494406977079" duration="14880000" />
       <workItem from="1494487772134" duration="19518000" />
       <workItem from="1494583946903" duration="4132000" />
-      <workItem from="1494589852742" duration="7816000" />
+      <workItem from="1494589852742" duration="8925000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -599,7 +624,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98103000" />
+    <option name="totallyTimeSpent" value="99212000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -969,16 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="180" column="21" lean-forward="false" selection-start-line="180" selection-start-column="21" selection-end-line="180" selection-end-column="21" />
-          <folding>
-            <element signature="e#42#74#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-833">
@@ -1011,41 +1026,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2839">
+          <caret line="185" column="25" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
           <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding>
-            <element signature="e#40#80#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopPictureType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="68">
           <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
-          <folding>
-            <element signature="e#40#80#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="79" column="34" lean-forward="true" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
+        <state relative-caret-position="544">
+          <caret line="112" column="51" lean-forward="false" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
           <folding>
             <element signature="e#46#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="185" column="25" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="-3314">
+          <caret line="131" column="75" lean-forward="false" selection-start-line="131" selection-start-column="75" selection-end-line="131" selection-end-column="75" />
+          <folding>
+            <element signature="e#42#74#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

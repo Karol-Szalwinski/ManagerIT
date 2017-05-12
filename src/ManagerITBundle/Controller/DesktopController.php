@@ -92,6 +92,13 @@ class DesktopController extends Controller
      */
     public function editAction(Request $request, Desktop $desktop)
     {
+        $pictureName = $desktop->getPicture();
+        if ( $pictureName != null) {
+            $desktop->setPicture(
+                new File($this->getParameter('pictures_directory') . '/' . $pictureName)
+            );
+        }
+
         $validator = $this->get('validator');
 
         $errors = $validator->validate($desktop);
@@ -103,7 +110,7 @@ class DesktopController extends Controller
             //die('Walidacja przeszła');
             if ($editForm->isValid()) {
 
-
+                $desktop->setPicture($pictureName);
                 $this->getDoctrine()->getManager()
                     ->flush();
 

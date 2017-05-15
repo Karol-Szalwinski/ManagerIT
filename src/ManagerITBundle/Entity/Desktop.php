@@ -102,13 +102,13 @@ class Desktop
 
     /**
      * @ORM\ManyToOne(targetEntity="ComputerFormFactor")
-     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="desktopformfactor_id", referencedColumnName="id")
      */
     private $caseType;
 
     /**
      * @ORM\ManyToOne(targetEntity="Os")
-     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="desktopos_id", referencedColumnName="id")
      */
     private $os;
 

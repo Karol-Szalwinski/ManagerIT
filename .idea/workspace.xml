@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="" />
+    <list default="true" id="76ca6548-ab30-46a1-b90e-9f5c2fc3322c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Database/manager (3).sql" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" afterPath="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,90 +32,7 @@
     <favorites_list name="ManagerIT" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.62732095">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="DesktopPictureType.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopPictureType.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Desktop.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3314">
-                  <caret line="131" column="75" lean-forward="false" selection-start-line="131" selection-start-column="75" selection-end-line="131" selection-end-column="75" />
-                  <folding>
-                    <element signature="e#42#74#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DesktopController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="112" column="51" lean-forward="false" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
-                  <folding>
-                    <element signature="e#46#81#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2839">
-                  <caret line="185" column="25" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DesktopType.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="782">
-                  <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="LaptopController.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/LaptopController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="LaptopController.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/LaptopController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1173">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -137,6 +62,7 @@
       <find>ssd</find>
       <find>(form</find>
       <find>Os</find>
+      <find>cpu</find>
     </findStrings>
     <replaceStrings>
       <replace>desktopRam</replace>
@@ -211,13 +137,13 @@
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopPictureType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/photo.html.twig" />
-        <option value="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/desktop/new.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig" />
       </list>
     </option>
   </component>
@@ -229,10 +155,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="30" />
-    <option name="width" value="1922" />
-    <option name="height" value="1171" />
+    <option name="width" value="1920" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -505,7 +430,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Pobrane/stopka_clear (1).html" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -610,6 +535,7 @@
       <workItem from="1494487772134" duration="19518000" />
       <workItem from="1494583946903" duration="4132000" />
       <workItem from="1494589852742" duration="9057000" />
+      <workItem from="1494876564034" duration="3135000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawiłem wyświetlanie procka">
       <created>1493041029275</created>
@@ -622,7 +548,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99344000" />
+    <option name="totallyTimeSpent" value="102479000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -634,9 +560,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="30" width="1922" height="1171" extended-state="6" />
+    <frame x="0" y="30" width="1920" height="1050" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21428572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -844,20 +770,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../stopka_clear.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Pobrane/stopka_clear (1).html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../stopka_clear.html" />
+    <entry file="file://$USER_HOME$/Pobrane/stopka_clear (1).html" />
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/HddController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -866,13 +780,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml" />
     <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -933,13 +841,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Entity/Image.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FileType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="22" column="6" lean-forward="false" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type/FileType.php" />
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/FileUploader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -991,27 +893,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-833">
-          <caret line="71" column="45" lean-forward="false" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="81" column="51" lean-forward="false" selection-start-line="77" selection-start-column="46" selection-end-line="81" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="698">
           <caret line="108" column="66" lean-forward="false" selection-start-line="108" selection-start-column="66" selection-end-line="108" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,29 +904,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="49" lean-forward="false" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2839">
-          <caret line="185" column="25" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+        <state relative-caret-position="618">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Form/DesktopPictureType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="64">
           <caret line="10" column="56" lean-forward="false" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
           <folding />
         </state>
@@ -1049,8 +933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Controller/DesktopController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="112" column="51" lean-forward="false" selection-start-line="112" selection-start-column="51" selection-end-line="112" selection-end-column="51" />
+        <state relative-caret-position="-96">
+          <caret line="143" column="46" lean-forward="false" selection-start-line="143" selection-start-column="46" selection-end-line="143" selection-end-column="46" />
           <folding>
             <element signature="e#46#81#0#PHP" expanded="true" />
           </folding>
@@ -1059,11 +943,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ManagerITBundle/Entity/Desktop.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3314">
-          <caret line="131" column="75" lean-forward="false" selection-start-line="131" selection-start-column="75" selection-end-line="131" selection-end-column="75" />
+        <state relative-caret-position="181">
+          <caret line="110" column="70" lean-forward="false" selection-start-line="110" selection-start-column="70" selection-end-line="110" selection-end-column="70" />
           <folding>
             <element signature="e#42#74#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="77" column="44" lean-forward="false" selection-start-line="77" selection-start-column="44" selection-end-line="81" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/desktop/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="48" lean-forward="false" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

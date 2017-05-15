@@ -93,37 +93,27 @@ class DesktopController extends Controller
     public function editAction(Request $request, Desktop $desktop)
     {
         $pictureName = $desktop->getPicture();
-        if ( $pictureName != null) {
+        if ($pictureName != null) {
             $desktop->setPicture(
                 new File($this->getParameter('pictures_directory') . '/' . $pictureName)
             );
         }
 
-        $validator = $this->get('validator');
-
-        $errors = $validator->validate($desktop);
         $deleteForm = $this->createDeleteForm($desktop);
         $editForm = $this->createForm('ManagerITBundle\Form\DesktopType', $desktop);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted()) {
-            //die('Walidacja przeszła');
-            if ($editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $desktop->setPicture($pictureName);
+            $this->getDoctrine()->getManager()->flush();
 
-                $desktop->setPicture($pictureName);
-                $this->getDoctrine()->getManager()
-                    ->flush();
-
-                return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
-            }
+            return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
         }
-
 
         return $this->render('desktop/edit.html.twig', array(
             'desktop' => $desktop,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'errors' => $errors,
         ));
 
     }
@@ -134,8 +124,7 @@ class DesktopController extends Controller
      * @Route("/{id}/photo", name="desktop_photo")
      * @Method({"GET", "POST"})
      */
-    public
-    function photoAction(Request $request, Desktop $desktop)
+    public function photoAction(Request $request, Desktop $desktop)
     {
         if ($desktop->getPicture() != null) {
             $desktop->setPicture(
@@ -147,17 +136,12 @@ class DesktopController extends Controller
         $pictureForm->handleRequest($request);
 
         if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {
-            //var_dump($desktop);die();
-            //Jeżeli w obiekcie mamy zdjęcie to zmieniamy string na obiekt file
 
-//            //Zmieniamy wartość pola Picture ze stringa na obiekt pliku
-//
             $file = $desktop->getPicture();
             $fileName = $this->get('app.picture_uploader')->upload($file);
 
             $desktop->setPicture($fileName);
-            $this->getDoctrine()->getManager()
-                ->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
         }
@@ -214,15 +198,18 @@ class DesktopController extends Controller
     public
     function desktopConnectEmployeeAction(Request $request, Desktop $desktop)
     {
-
+        $pictureName = $desktop->getPicture();
+        if ($pictureName != null) {
+            $desktop->setPicture(
+                new File($this->getParameter('pictures_directory') . '/' . $pictureName)
+            );
+        }
         $form = $this->createForm('ManagerITBundle\Form\DesktopConnectEmployeeType', $desktop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $desktop = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($desktop);
-            $em->flush();
+            $desktop->setPicture($pictureName);
+            $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
@@ -237,16 +224,18 @@ class DesktopController extends Controller
     public
     function desktopConnectLicenseAction(Request $request, Desktop $desktop)
     {
-
+        $pictureName = $desktop->getPicture();
+        if ($pictureName != null) {
+            $desktop->setPicture(
+                new File($this->getParameter('pictures_directory') . '/' . $pictureName)
+            );
+        }
         $form = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $desktop = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($desktop);
-            $em->flush();
-
+            $desktop->setPicture($pictureName);
+            $this->getDoctrine()->getManager()->flush();
         }
 
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));

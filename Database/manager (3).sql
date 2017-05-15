@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 10 Maj 2017, 16:40
+-- Czas wygenerowania: 15 Maj 2017, 20:54
 -- Wersja serwera: 5.5.50-0ubuntu0.14.04.1
 -- Wersja PHP: 5.5.9-1ubuntu4.17
 
@@ -25,8 +25,6 @@ SET time_zone = "+00:00";
 --
 -- Struktura tabeli dla tabeli `computer_form_factor`
 --
--- Data utworzenia: 28 Kwi 2017, 13:58
---
 
 CREATE TABLE IF NOT EXISTS `computer_form_factor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -43,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `computer_form_factor` (
 --
 
 INSERT INTO `computer_form_factor` (`id`, `name`, `model`, `seria`, `brand`, `dedicatedForModel`) VALUES
-(2, 'Mini tower', 'Optiplex', '7XX', 'DELL', 1),
+(2, 'Mini tower', 'Optiplex', '7XX', 'DELL', 0),
 (3, 'Big Tower', 'Silent', '800', 'Be Quiet!', 1),
 (4, 'SFF', 'Optiplex', '7XX', 'DELL', 1);
 
@@ -51,8 +49,6 @@ INSERT INTO `computer_form_factor` (`id`, `name`, `model`, `seria`, `brand`, `de
 
 --
 -- Struktura tabeli dla tabeli `departament`
---
--- Data utworzenia: 22 Lut 2017, 09:18
 --
 
 CREATE TABLE IF NOT EXISTS `departament` (
@@ -77,8 +73,6 @@ INSERT INTO `departament` (`id`, `addDate`, `name`) VALUES
 --
 -- Struktura tabeli dla tabeli `desktop`
 --
--- Data utworzenia: 27 Kwi 2017, 10:21
---
 
 CREATE TABLE IF NOT EXISTS `desktop` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,10 +80,7 @@ CREATE TABLE IF NOT EXISTS `desktop` (
   `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `manufacturer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `drive` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `powerSupply` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `caseType` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `os` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ipAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `macAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -99,28 +90,19 @@ CREATE TABLE IF NOT EXISTS `desktop` (
   `desktopcpu_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_96105A4C5B70775` (`desktopcpu_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Zrzut danych tabeli `desktop`
 --
 
-INSERT INTO `desktop` (`id`, `name`, `model`, `type`, `manufacturer`, `drive`, `powerSupply`, `caseType`, `os`, `ipAddress`, `macAddress`, `picture`, `price`, `purchaseDate`, `addDate`, `desktopcpu_id`) VALUES
-(1, 'S-103-DL', 'OPTIPLEX', '755', 'DELL', 'CD ROM', '305 W', 'MIDI TOWER', 'WINDOWS 10', '192.168.2.44', 'EA:32:23:11:00:00', 'D', '1000', '2017-02-08 00:00:00', '2017-02-16 00:00:00', 3),
-(2, 'S-102-DL', 'OPTIPLEX', '755', 'DELL', 'CD ROM', '305 W', 'MIDI TOWER', 'WINDOWS 10', '192.168.2.6', 'EA:32:23:11:00:00', '', '1000', '2017-02-08 00:00:00', '2017-02-16 00:00:00', 2),
-(3, 'S-106-DL', 'OPTIPLEX', '755', 'DELL', 'CD ROM', '305 W', 'MIDI TOWER', 'WINDOWS 10', '192.168.2.54', 'EA:32:23:11:00:00', '', '1000', '2017-02-08 00:00:00', '2017-02-16 00:00:00', 2),
-(4, 'OPTIPLEX 7010', 'OPTIPLEX', '7010', 'DELL', '-', '290', 'MIDI TOWER', 'WINDOWS 10', '192.168.2.3', 'EE:23:22:32:AB:BA', NULL, '1000', '2017-04-18 00:00:00', '2017-04-27 12:44:12', 3),
-(5, 'test', 'tsess', 'dfs', 'dfsfs', 'dfs', 'fsf', 'sf', 'sfsf', '1212', '21', '/tmp/phpeDAOWN', '111', '2017-05-23 00:00:00', '2017-05-10 14:20:45', 2),
-(6, 'd', 'd', 'd', 'd', 'd', 'g', 'c', 'c', 'c', '122', '6adb985f3d214ab7822b9d408b68e7cc.png', '2', '2017-05-24 00:00:00', '2017-05-10 15:00:54', 2),
-(7, 'test', 'OPTIPLEX', '7010', 'DELL', 'c', 's', 's', 's', 's', '122', 'ecc2f0aa1f91c2db0feea219ea62400c.png', '2', '2017-05-24 00:00:00', '2017-05-10 16:17:06', 3),
-(8, 'dff', 'fddf', 'fddf', 'fd', 'dfdf', 'fdfd', 'fddff', 'dfdffd', 'dffddf', '12:12:21:21:22:11', 'e8055e4ee0a6321fbad3f08879eca719.jpeg', '192:168:2:3', '2017-05-23 00:00:00', '2017-05-10 16:34:53', 3);
+INSERT INTO `desktop` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupply`, `ipAddress`, `macAddress`, `picture`, `price`, `purchaseDate`, `addDate`, `desktopcpu_id`) VALUES
+(12, 'OPTIPLEX 703e', 'OPTIPLEX 55', '7010', 'DELL', '300', '123.344.3434.3', 'a2:22:33:33:ab:45', '9394329228aa728483f8aee9eca3aa47.jpeg', '12222', '2017-05-24 00:00:00', '2017-05-12 16:15:00', 2);
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `desktops_licenses`
---
--- Data utworzenia: 21 Lut 2017, 11:57
 --
 
 CREATE TABLE IF NOT EXISTS `desktops_licenses` (
@@ -136,15 +118,12 @@ CREATE TABLE IF NOT EXISTS `desktops_licenses` (
 --
 
 INSERT INTO `desktops_licenses` (`desktop_id`, `license_id`) VALUES
-(1, 3),
-(1, 4);
+(12, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `desktop_c_p_u`
---
--- Data utworzenia: 19 Kwi 2017, 10:28
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_c_p_u` (
@@ -180,8 +159,6 @@ INSERT INTO `desktop_c_p_u` (`id`, `name`, `Manufacturer`, `baseFrequency`, `max
 --
 -- Struktura tabeli dla tabeli `desktop_desktopram`
 --
--- Data utworzenia: 25 Kwi 2017, 14:03
---
 
 CREATE TABLE IF NOT EXISTS `desktop_desktopram` (
   `desktop_id` int(11) NOT NULL,
@@ -196,22 +173,12 @@ CREATE TABLE IF NOT EXISTS `desktop_desktopram` (
 --
 
 INSERT INTO `desktop_desktopram` (`desktop_id`, `desktopram_id`) VALUES
-(1, 1),
-(1, 2),
-(3, 2),
-(3, 3),
-(4, 1),
-(5, 2),
-(6, 1),
-(7, 2),
-(8, 2);
+(12, 2);
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `desktop_hdd`
---
--- Data utworzenia: 26 Kwi 2017, 13:48
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_hdd` (
@@ -227,19 +194,33 @@ CREATE TABLE IF NOT EXISTS `desktop_hdd` (
 --
 
 INSERT INTO `desktop_hdd` (`desktop_id`, `hdd_id`) VALUES
-(1, 1),
-(4, 3),
-(5, 2),
-(6, 1),
-(7, 2),
-(8, 2);
+(12, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `desktop_opticaldrive`
+--
+
+CREATE TABLE IF NOT EXISTS `desktop_opticaldrive` (
+  `desktop_id` int(11) NOT NULL,
+  `opticaldrive_id` int(11) NOT NULL,
+  PRIMARY KEY (`desktop_id`,`opticaldrive_id`),
+  KEY `IDX_EE52BBDFFF2950E` (`desktop_id`),
+  KEY `IDX_EE52BBD4A3FA43D` (`opticaldrive_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `desktop_opticaldrive`
+--
+
+INSERT INTO `desktop_opticaldrive` (`desktop_id`, `opticaldrive_id`) VALUES
+(12, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `desktop_ram`
---
--- Data utworzenia: 25 Kwi 2017, 08:11
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_ram` (
@@ -270,8 +251,6 @@ INSERT INTO `desktop_ram` (`id`, `name`, `model`, `series`, `brand`, `capacity`,
 --
 -- Struktura tabeli dla tabeli `desktop_sdd`
 --
--- Data utworzenia: 26 Kwi 2017, 13:48
---
 
 CREATE TABLE IF NOT EXISTS `desktop_sdd` (
   `desktop_id` int(11) NOT NULL,
@@ -285,8 +264,6 @@ CREATE TABLE IF NOT EXISTS `desktop_sdd` (
 
 --
 -- Struktura tabeli dla tabeli `desktop_ssd`
---
--- Data utworzenia: 26 Kwi 2017, 14:06
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_ssd` (
@@ -302,19 +279,12 @@ CREATE TABLE IF NOT EXISTS `desktop_ssd` (
 --
 
 INSERT INTO `desktop_ssd` (`desktop_id`, `ssd_id`) VALUES
-(1, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1);
+(12, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `employee`
---
--- Data utworzenia: 22 Lut 2017, 14:43
 --
 
 CREATE TABLE IF NOT EXISTS `employee` (
@@ -344,8 +314,6 @@ INSERT INTO `employee` (`id`, `departament_id`, `name`, `surname`, `sex`, `phone
 --
 -- Struktura tabeli dla tabeli `employees_desktops`
 --
--- Data utworzenia: 13 Mar 2017, 13:20
---
 
 CREATE TABLE IF NOT EXISTS `employees_desktops` (
   `employee_id` int(11) NOT NULL,
@@ -355,21 +323,10 @@ CREATE TABLE IF NOT EXISTS `employees_desktops` (
   KEY `IDX_B48D0783FFF2950E` (`desktop_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Zrzut danych tabeli `employees_desktops`
---
-
-INSERT INTO `employees_desktops` (`employee_id`, `desktop_id`) VALUES
-(4, 1),
-(5, 2),
-(6, 1);
-
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `employees_laptops`
---
--- Data utworzenia: 08 Mar 2017, 14:30
 --
 
 CREATE TABLE IF NOT EXISTS `employees_laptops` (
@@ -387,14 +344,14 @@ CREATE TABLE IF NOT EXISTS `employees_laptops` (
 INSERT INTO `employees_laptops` (`employee_id`, `laptop_id`) VALUES
 (4, 1),
 (5, 1),
-(5, 4);
+(5, 4),
+(6, 2),
+(6, 4);
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `employees_licenses`
---
--- Data utworzenia: 21 Lut 2017, 11:57
 --
 
 CREATE TABLE IF NOT EXISTS `employees_licenses` (
@@ -409,8 +366,6 @@ CREATE TABLE IF NOT EXISTS `employees_licenses` (
 
 --
 -- Struktura tabeli dla tabeli `fos_user`
---
--- Data utworzenia: 21 Lut 2017, 11:57
 --
 
 CREATE TABLE IF NOT EXISTS `fos_user` (
@@ -437,15 +392,13 @@ CREATE TABLE IF NOT EXISTS `fos_user` (
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-10 15:43:21', NULL, NULL, 'a:0:{}'),
+(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-12 15:14:40', NULL, NULL, 'a:0:{}'),
 (2, 'Janek', 'janek', 'jam@jam.pl', 'jam@jam.pl', 0, NULL, '$2y$13$otms8EkVthxQyxGZ2HD7EeqNB9e6wuBmQz/LaqA.KYMMEm4RVPwy6', NULL, NULL, NULL, 'a:0:{}');
 
 -- --------------------------------------------------------
 
 --
 -- Struktura tabeli dla tabeli `hdd`
---
--- Data utworzenia: 26 Kwi 2017, 10:02
 --
 
 CREATE TABLE IF NOT EXISTS `hdd` (
@@ -475,8 +428,6 @@ INSERT INTO `hdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFa
 
 --
 -- Struktura tabeli dla tabeli `laptop`
---
--- Data utworzenia: 27 Kwi 2017, 09:07
 --
 
 CREATE TABLE IF NOT EXISTS `laptop` (
@@ -519,8 +470,6 @@ INSERT INTO `laptop` (`id`, `name`, `model`, `type`, `manufacturer`, `cpu`, `ram
 --
 -- Struktura tabeli dla tabeli `laptops_licenses`
 --
--- Data utworzenia: 21 Lut 2017, 11:57
---
 
 CREATE TABLE IF NOT EXISTS `laptops_licenses` (
   `laptop_id` int(11) NOT NULL,
@@ -538,7 +487,6 @@ INSERT INTO `laptops_licenses` (`laptop_id`, `license_id`) VALUES
 (1, 3),
 (1, 4),
 (1, 5),
-(4, 2),
 (4, 3),
 (4, 4),
 (5, 1);
@@ -547,8 +495,6 @@ INSERT INTO `laptops_licenses` (`laptop_id`, `license_id`) VALUES
 
 --
 -- Struktura tabeli dla tabeli `license`
---
--- Data utworzenia: 22 Lut 2017, 14:43
 --
 
 CREATE TABLE IF NOT EXISTS `license` (
@@ -580,8 +526,6 @@ INSERT INTO `license` (`id`, `name`, `licenseKey`, `type`, `price`, `purchaseDat
 --
 -- Struktura tabeli dla tabeli `optical_drive`
 --
--- Data utworzenia: 27 Kwi 2017, 12:20
---
 
 CREATE TABLE IF NOT EXISTS `optical_drive` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -606,8 +550,6 @@ INSERT INTO `optical_drive` (`id`, `name`, `model`, `series`, `brand`, `type`, `
 
 --
 -- Struktura tabeli dla tabeli `os`
---
--- Data utworzenia: 09 Maj 2017, 11:11
 --
 
 CREATE TABLE IF NOT EXISTS `os` (
@@ -635,8 +577,6 @@ INSERT INTO `os` (`id`, `name`, `series`, `edition`, `language`, `architecture`,
 
 --
 -- Struktura tabeli dla tabeli `printer`
---
--- Data utworzenia: 13 Mar 2017, 13:20
 --
 
 CREATE TABLE IF NOT EXISTS `printer` (
@@ -668,8 +608,6 @@ INSERT INTO `printer` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupp
 --
 -- Struktura tabeli dla tabeli `sdd`
 --
--- Data utworzenia: 26 Kwi 2017, 13:02
---
 
 CREATE TABLE IF NOT EXISTS `sdd` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -694,8 +632,6 @@ INSERT INTO `sdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFa
 
 --
 -- Struktura tabeli dla tabeli `ssd`
---
--- Data utworzenia: 26 Kwi 2017, 14:06
 --
 
 CREATE TABLE IF NOT EXISTS `ssd` (
@@ -722,12 +658,6 @@ INSERT INTO `ssd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFa
 --
 
 --
--- Ograniczenia dla tabeli `desktop`
---
-ALTER TABLE `desktop`
-  ADD CONSTRAINT `FK_96105A4C5B70775` FOREIGN KEY (`desktopcpu_id`) REFERENCES `desktop_c_p_u` (`id`);
-
---
 -- Ograniczenia dla tabeli `desktops_licenses`
 --
 ALTER TABLE `desktops_licenses`
@@ -747,6 +677,13 @@ ALTER TABLE `desktop_desktopram`
 ALTER TABLE `desktop_hdd`
   ADD CONSTRAINT `FK_7E58FF691493816F` FOREIGN KEY (`hdd_id`) REFERENCES `hdd` (`id`),
   ADD CONSTRAINT `FK_7E58FF69FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
+
+--
+-- Ograniczenia dla tabeli `desktop_opticaldrive`
+--
+ALTER TABLE `desktop_opticaldrive`
+  ADD CONSTRAINT `FK_EE52BBD4A3FA43D` FOREIGN KEY (`opticaldrive_id`) REFERENCES `optical_drive` (`id`),
+  ADD CONSTRAINT `FK_EE52BBDFFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
 -- Ograniczenia dla tabeli `desktop_sdd`

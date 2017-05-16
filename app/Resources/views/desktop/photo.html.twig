@@ -23,6 +23,48 @@
     <div id="content">
         <div class="outer">
             <div class="inner bg-light lter">
+                <!-- .col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-photo"></i></div>
+                            <h5>Zdjęcia</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable1" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+                        <div id="condensedTable1" class="body collapse in">
+                            <table class="table table-condensed responsive-table">
+
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {% if desktop.picture is not null %}
+                                            {% set picture = desktop.picture.filename %}
+                                        {% else %}
+                                            {% set picture = "default.png" %}
+                                        {% endif %}
+
+                                        <a href="{{ asset('pictures/' ~ picture) }}">
+                                            <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop" height="200"
+                                                 width="200">
+                                        </a>
+                                    </td>
+                                    Kliknij aby powiększyć
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-6 -->
+
                 <!-- /.row -->
                 <div class="row">
 
@@ -59,12 +101,12 @@
                                 <br>
                                 {{ form_end(picture_form) }}
 
-
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
+
             </div>
             <!-- /.inner -->
         </div>

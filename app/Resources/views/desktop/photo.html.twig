@@ -61,51 +61,14 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Przycisk uruchamiający modal -->
+                        <button class="btn btn-primary btn-grad control-label" data-toggle="modal"
+                                data-target="#myModal">
+                            Dodaj nowe zdjęcie
+                        </button>
                     </div>
                 </div>
                 <!-- /.col-lg-6 -->
-
-                <!-- /.row -->
-                <div class="row">
-
-                    <!----------------------------------------------------->
-
-                    <div class="col-lg-8">
-                        <div class="box dark">
-                            <header>
-                                <div class="icons"><i class="fa fa-edit"></i></div>
-                                <h5>Dodaj zdjęcie</h5>
-                                <!-- .toolbar -->
-                                <div class="toolbar">
-                                    <nav style="padding: 8px;">
-                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
-                                            <i class="fa fa-expand"></i>
-                                        </a>
-                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </nav>
-                                </div>            <!-- /.toolbar -->
-                            </header>
-                            <div id="div-1" class="body">
-                                {{ form_start(picture_form, { 'attr': {'class': 'form-horizontal'} }) }}
-                                <div class="form-group">
-                                    {{ form_row(picture_form.picture) }}
-                                </div>
-
-                                <input type="submit" value="Ustaw jako zdjęcie poglądowe"
-                                       class="btn btn-primary btn-grad control-label"/>
-                                <br>
-                                {{ form_end(picture_form) }}
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
 
             </div>
             <!-- /.inner -->
@@ -114,4 +77,39 @@
     </div>
     <!-- /#content -->
 
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Wgraj zdjęcie z dysku</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="div-1" class="body">
+                        {{ form_start(picture_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                        <div class="form-group">
+                            {{ form_label(picture_form.picture, 'Zdjęcie', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                            <div class="col-lg-8">
+                                {{ form_row(picture_form.picture, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Wgraj zdjęcie"
+                                   class="btn btn-primary btn-grad control-label"/>
+                            <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">Zamknij
+                            </button>
+                        </div>
+
+                        {{ form_end(picture_form) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

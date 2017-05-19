@@ -129,12 +129,12 @@ class Desktop
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="pictures", type="string", length=255, nullable=true)
      *
      *
      * @Assert\File(mimeTypes={ "image/*" })
      */
-    private $picture;
+    private $pictures;
 
     /**
      * @var string
@@ -182,7 +182,7 @@ class Desktop
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
-        $this->picture = null;
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -356,29 +356,7 @@ class Desktop
         return $this->macAddress;
     }
 
-    /**
-     * Set picture
-     *
-     * @param string $picture
-     * @return Desktop
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return string 
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
+    
     /**
      * Set price
      *
@@ -723,5 +701,39 @@ class Desktop
     public function getDrives()
     {
         return $this->drives;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param string $pictures
+     * @return Desktop
+     */
+    public function addPicture($pictures)
+    {
+
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     *
+     */
+    public function removePicture($pictures)
+    {
+        $this->$pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
     }
 }

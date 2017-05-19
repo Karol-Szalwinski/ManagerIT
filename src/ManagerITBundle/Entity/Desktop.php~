@@ -102,13 +102,13 @@ class Desktop
 
     /**
      * @ORM\ManyToOne(targetEntity="ComputerFormFactor")
-     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="desktopformfactor_id", referencedColumnName="id")
      */
     private $caseType;
 
     /**
      * @ORM\ManyToOne(targetEntity="Os")
-     * @ORM\JoinColumn(name="desktopcpu_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="desktopos_id", referencedColumnName="id")
      */
     private $os;
 
@@ -129,12 +129,12 @@ class Desktop
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="pictures", type="string", length=255, nullable=true)
      *
      *
      * @Assert\File(mimeTypes={ "image/*" })
      */
-    private $picture;
+    private $pictures;
 
     /**
      * @var string
@@ -182,7 +182,7 @@ class Desktop
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
-        $this->picture = null;
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -356,29 +356,7 @@ class Desktop
         return $this->macAddress;
     }
 
-    /**
-     * Set picture
-     *
-     * @param string $picture
-     * @return Desktop
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return string 
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
+    
     /**
      * Set price
      *
@@ -713,5 +691,15 @@ class Desktop
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Get drives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDrives()
+    {
+        return $this->drives;
     }
 }

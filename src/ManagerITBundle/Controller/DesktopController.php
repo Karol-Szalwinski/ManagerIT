@@ -45,10 +45,12 @@ class DesktopController extends Controller
      */
     public function newAction(Request $request)
     {
+        $validator = $this->get('validator');
+
         $desktop = new Desktop();
         $form = $this->createForm('ManagerITBundle\Form\DesktopType', $desktop);
         $form->handleRequest($request);
-
+        $errors = $validator->validate($desktop);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
@@ -61,6 +63,7 @@ class DesktopController extends Controller
         return $this->render('desktop/new.html.twig', array(
             'desktop' => $desktop,
             'form' => $form->createView(),
+            'errors' => $errors,
         ));
     }
 

@@ -66,6 +66,10 @@ class DesktopType extends AbstractType
                 'html5' => false,
             ])
 
+            ->setAttributes(array(
+                'novalidate'=>'novalidate',
+            ))
+
         ;
     }
 

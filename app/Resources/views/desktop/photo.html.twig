@@ -46,16 +46,18 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        {% if desktop.picture is not null %}
-                                            {% set picture = desktop.picture.filename %}
+                                        {% for picture in desktop.pictures %}
+                                            <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                     height="200" width="200">
+                                            </a>
                                         {% else %}
                                             {% set picture = "default.png" %}
-                                        {% endif %}
-
-                                        <a href="{{ asset('pictures/' ~ picture) }}">
-                                            <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop" height="200"
-                                                 width="200">
-                                        </a>
+                                            <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                     height="200" width="200">
+                                            </a>
+                                        {% endfor %}
                                     </td>
                                     Kliknij aby powiększyć
                                 </tbody>
@@ -92,9 +94,9 @@
                     <div id="div-1" class="body">
                         {{ form_start(picture_form, { 'attr': {'class': 'form-horizontal'} }) }}
                         <div class="form-group">
-                            {{ form_label(picture_form.picture, 'Zdjęcie', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                            {{ form_label(picture_form.name, 'Zdjęcie', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
                             <div class="col-lg-8">
-                                {{ form_row(picture_form.picture, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_row(picture_form.name, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -105,6 +107,10 @@
                         </div>
 
                         {{ form_end(picture_form) }}
+                        {#{{ form_start(picture_form) }}#}
+                        {#{{ form_widget(picture_form) }}#}
+                        {#<input type="submit" value="Create" />#}
+                        {#{{ form_end(picture_form) }}#}
 
                     </div>
                 </div>

@@ -5,6 +5,7 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Desktop;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
+use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -129,8 +130,8 @@ class DesktopController extends Controller
      */
     public function photoAction(Request $request, Desktop $desktop)
     {
-
-        $pictureForm = $this->createForm('ManagerITBundle\Form\DesktopPictureType', $desktop);
+        $picture = new Picture();
+        $pictureForm = $this->createForm('ManagerITBundle\Form\PictureType', $picture);
         $pictureForm->handleRequest($request);
 
         if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {

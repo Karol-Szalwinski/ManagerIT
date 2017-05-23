@@ -3,7 +3,9 @@
 namespace ManagerITBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Asset\Package;
+use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 
 /**
  * Picture
@@ -11,7 +13,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Table(name="picture")
  * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\PictureRepository")
  */
-class Picture extends UploadedFile
+class Picture extends File
 {
     /**
      * @var int
@@ -22,9 +24,12 @@ class Picture extends UploadedFile
      */
     protected $id;
 
+    /**
+     * Picture constructor.
+     */
     public function __construct() {
 
-        parent::__construct();
+        parent::__construct($path = '/home/anonymous/Workspace/ManagerIT/web/pictures/default.png');
     }
 
 

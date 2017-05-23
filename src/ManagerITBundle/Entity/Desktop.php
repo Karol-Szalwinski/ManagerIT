@@ -127,12 +127,11 @@ class Desktop
     private $macAddress;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pictures", type="string", length=255, nullable=true)
-     *
-     *
-     * @Assert\File(mimeTypes={ "image/*" })
+     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\JoinTable(name="desktops_pictures",
+     *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
+     *      )
      */
     private $pictures;
 
@@ -706,12 +705,11 @@ class Desktop
     /**
      * Add pictures
      *
-     * @param string $pictures
+     * @param \ManagerITBundle\Entity\Picture $pictures
      * @return Desktop
      */
-    public function addPicture($pictures)
+    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
     {
-
         $this->pictures[] = $pictures;
 
         return $this;
@@ -720,17 +718,17 @@ class Desktop
     /**
      * Remove pictures
      *
-     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
      */
-    public function removePicture($pictures)
+    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
     {
-        $this->$pictures->removeElement($pictures);
+        $this->pictures->removeElement($pictures);
     }
 
     /**
      * Get pictures
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getPictures()
     {

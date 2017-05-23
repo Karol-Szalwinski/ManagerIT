@@ -98,15 +98,18 @@
                                             <td>{{ desktop.ipAddress }}</td>
                                             <td>{{ desktop.macAddress }}</td>
                                             <td>
-                                                {% if desktop.picture is not null %}
-                                                    {% set picture = desktop.picture %}
+                                                {% for picture in desktop.pictures %}
+                                                    <a href="{{ asset('pictures/' ~ picture) }}">
+                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
                                                 {% else %}
                                                     {% set picture = "default.png" %}
-                                                {% endif %}
-                                                <a href="{{ asset('pictures/' ~ picture) }}">
-                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
-                                                         height="40" width="40">
-                                                </a>
+                                                    <a href="{{ asset('pictures/' ~ picture) }}">
+                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
+                                                {% endfor %}
                                             </td>
                                         </tr>
                                     {% endfor %}

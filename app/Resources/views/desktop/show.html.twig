@@ -110,15 +110,18 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            {% if desktop.picture is not null %}
-                                                {% set picture = desktop.picture %}
+                                            {% for picture in desktop.pictures %}
+                                                <a href="{{ asset('pictures/' ~ picture) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                         height="200" width="200">
+                                                </a>
                                             {% else %}
                                                 {% set picture = "default.png" %}
-                                            {% endif %}
-                                            <a href="{{ asset('pictures/' ~ picture) }}">
-                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop" height="200"
-                                                     width="200">
-                                            </a>
+                                                <a href="{{ asset('pictures/' ~ picture) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% endfor %}
                                         </td>
                                         Kliknij aby powiększyć
                                     </tbody>

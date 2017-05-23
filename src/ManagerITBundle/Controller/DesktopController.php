@@ -129,11 +129,6 @@ class DesktopController extends Controller
      */
     public function photoAction(Request $request, Desktop $desktop)
     {
-        if ($desktop->getPicture() != null) {
-            $desktop->setPicture(
-                new File($this->getParameter('pictures_directory') . '/' . $desktop->getPicture())
-            );
-        }
 
         $pictureForm = $this->createForm('ManagerITBundle\Form\DesktopPictureType', $desktop);
         $pictureForm->handleRequest($request);
@@ -201,17 +196,11 @@ class DesktopController extends Controller
     public
     function desktopConnectEmployeeAction(Request $request, Desktop $desktop)
     {
-        $pictureName = $desktop->getPicture();
-        if ($pictureName != null) {
-            $desktop->setPicture(
-                new File($this->getParameter('pictures_directory') . '/' . $pictureName)
-            );
-        }
+
         $form = $this->createForm('ManagerITBundle\Form\DesktopConnectEmployeeType', $desktop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $desktop->setPicture($pictureName);
             $this->getDoctrine()->getManager()->flush();
         }
 
@@ -227,17 +216,11 @@ class DesktopController extends Controller
     public
     function desktopConnectLicenseAction(Request $request, Desktop $desktop)
     {
-        $pictureName = $desktop->getPicture();
-        if ($pictureName != null) {
-            $desktop->setPicture(
-                new File($this->getParameter('pictures_directory') . '/' . $pictureName)
-            );
-        }
+
         $form = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $desktop->setPicture($pictureName);
             $this->getDoctrine()->getManager()->flush();
         }
 

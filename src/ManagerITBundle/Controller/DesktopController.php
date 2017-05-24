@@ -149,6 +149,26 @@ class DesktopController extends Controller
     }
 
     /**
+     * Action to disconnect and delete photo
+     *
+     * @Route("/{id}/deletepicture/{picture}", name="desktop_delete_picture")
+     * @Method({"GET"})
+     */
+    public
+    function deletePictureAction(Desktop $desktop, Picture $picture)
+    {
+        $desktop->removePicture($picture);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush($desktop);
+        $em->remove($picture);
+        $em->flush($picture);
+
+
+        return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
+    }
+
+    /**
      * Deletes a desktop entity.
      *
      * @Route("/{id}", name="desktop_delete")

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 17 Maj 2017, 12:33
+-- Czas wygenerowania: 24 Maj 2017, 16:37
 -- Wersja serwera: 5.5.50-0ubuntu0.14.04.1
 -- Wersja PHP: 5.5.9-1ubuntu4.17
 
@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `desktop` (
   `powerSupply` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ipAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `macAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `purchaseDate` datetime NOT NULL,
   `addDate` datetime NOT NULL,
@@ -94,16 +93,18 @@ CREATE TABLE IF NOT EXISTS `desktop` (
   KEY `IDX_96105A4C5B70775` (`desktopcpu_id`),
   KEY `IDX_96105A453310D1` (`desktopformfactor_id`),
   KEY `IDX_96105A41764D7EB` (`desktopos_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Zrzut danych tabeli `desktop`
 --
 
-INSERT INTO `desktop` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupply`, `ipAddress`, `macAddress`, `picture`, `price`, `purchaseDate`, `addDate`, `desktopcpu_id`, `desktopformfactor_id`, `desktopos_id`) VALUES
-(12, 'OPTIPLEX 703', 'OPTIPLEX 55', '7010', 'DELL', '300', '123.344.3434.3', 'a2:22:33:33:ab:45', 'cc3dfb838550ffda36fb7b1029039d1b.jpeg', '12222', '2017-05-24 00:00:00', '2017-05-12 16:15:00', 2, 3, 1),
-(13, 'MSI POWER', 'GE72 Titan', 'TITAN', 'MSI', '300', '192.122.212.122', 'aa:bb:23:32:23:33', 'f814d070c84c0073c671154b8b065da1.jpeg', '4334', '2017-05-09 00:00:00', '2017-05-15 22:24:58', 2, 3, 1),
-(14, 'OPTIPLEXTRON', 'OPTIPLEX', '455', 'DELL', '300', '192.168.2.44', 'ab:01:20:12:12:12', 'e7fede8e0eb6f9bcf71ded99ebcc2d01.jpeg', '1234', '2017-05-31 00:00:00', '2017-05-16 14:11:38', 3, 3, 1);
+INSERT INTO `desktop` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupply`, `ipAddress`, `macAddress`, `price`, `purchaseDate`, `addDate`, `desktopcpu_id`, `desktopformfactor_id`, `desktopos_id`) VALUES
+(12, 'OPTIPLEX 703', 'OPTIPLEX 55', '7010', 'DELL', '300', '123.344.3434.3', 'a2:22:33:33:ab:45', '12222', '2017-05-24 00:00:00', '2017-05-12 16:15:00', 2, 3, 1),
+(13, 'MSI POWER', 'GE72 Titan', 'TITAN', 'MSI', '300', '192.122.212.122', 'aa:bb:23:32:23:33', '4334', '2017-05-09 00:00:00', '2017-05-15 22:24:58', 2, 3, 1),
+(14, 'OPTIPLEXTRON', 'OPTIPLEX', '455', 'DELL', '300', '192.168.2.44', 'ab:01:20:12:12:12', '1234', '2017-05-31 00:00:00', '2017-05-16 14:11:38', 3, 3, 1),
+(15, 'MSI DRAGON FORCE', 'DRAGON FORCE', '987', 'MSI', '344', '192.168.2.44', 'a2:22:33:33:ab:45', '1233', '2017-05-02 00:00:00', '2017-05-23 13:54:45', 2, 3, 1),
+(16, 'OPTIPLEX 7030 ROBOCZY', 'OPTIPLEX 7030', '7030', 'DELL', '345', '123.344.3434.3', '1212', '4566', '2017-05-23 00:00:00', '2017-05-24 16:34:59', 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,34 @@ INSERT INTO `desktops_licenses` (`desktop_id`, `license_id`) VALUES
 (12, 4),
 (13, 2),
 (14, 2),
-(14, 3);
+(14, 3),
+(15, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `desktops_pictures`
+--
+
+CREATE TABLE IF NOT EXISTS `desktops_pictures` (
+  `desktop_id` int(11) NOT NULL,
+  `picture_id` int(11) NOT NULL,
+  PRIMARY KEY (`desktop_id`,`picture_id`),
+  KEY `IDX_DABC22F1FFF2950E` (`desktop_id`),
+  KEY `IDX_DABC22F1EE45BDBF` (`picture_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Zrzut danych tabeli `desktops_pictures`
+--
+
+INSERT INTO `desktops_pictures` (`desktop_id`, `picture_id`) VALUES
+(12, 5),
+(13, 3),
+(15, 2),
+(15, 6),
+(16, 7),
+(16, 8);
 
 -- --------------------------------------------------------
 
@@ -185,7 +213,9 @@ CREATE TABLE IF NOT EXISTS `desktop_desktopram` (
 INSERT INTO `desktop_desktopram` (`desktop_id`, `desktopram_id`) VALUES
 (12, 2),
 (13, 1),
-(14, 1);
+(14, 1),
+(15, 1),
+(16, 1);
 
 -- --------------------------------------------------------
 
@@ -208,7 +238,9 @@ CREATE TABLE IF NOT EXISTS `desktop_hdd` (
 INSERT INTO `desktop_hdd` (`desktop_id`, `hdd_id`) VALUES
 (12, 2),
 (13, 1),
-(14, 2);
+(14, 2),
+(15, 1),
+(16, 2);
 
 -- --------------------------------------------------------
 
@@ -231,7 +263,9 @@ CREATE TABLE IF NOT EXISTS `desktop_opticaldrive` (
 INSERT INTO `desktop_opticaldrive` (`desktop_id`, `opticaldrive_id`) VALUES
 (12, 1),
 (13, 1),
-(14, 1);
+(14, 1),
+(15, 1),
+(16, 1);
 
 -- --------------------------------------------------------
 
@@ -297,7 +331,9 @@ CREATE TABLE IF NOT EXISTS `desktop_ssd` (
 INSERT INTO `desktop_ssd` (`desktop_id`, `ssd_id`) VALUES
 (12, 1),
 (13, 1),
-(14, 1);
+(14, 1),
+(15, 1),
+(16, 1);
 
 -- --------------------------------------------------------
 
@@ -350,6 +386,7 @@ INSERT INTO `employees_desktops` (`employee_id`, `desktop_id`) VALUES
 (4, 13),
 (4, 14),
 (5, 14),
+(5, 15),
 (6, 12),
 (6, 13);
 
@@ -422,7 +459,7 @@ CREATE TABLE IF NOT EXISTS `fos_user` (
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-17 12:01:07', NULL, NULL, 'a:0:{}'),
+(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-24 16:00:10', NULL, NULL, 'a:0:{}'),
 (2, 'Janek', 'janek', 'jam@jam.pl', 'jam@jam.pl', 0, NULL, '$2y$13$otms8EkVthxQyxGZ2HD7EeqNB9e6wuBmQz/LaqA.KYMMEm4RVPwy6', NULL, NULL, NULL, 'a:0:{}');
 
 -- --------------------------------------------------------
@@ -606,6 +643,30 @@ INSERT INTO `os` (`id`, `name`, `series`, `edition`, `language`, `architecture`,
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `picture`
+--
+
+CREATE TABLE IF NOT EXISTS `picture` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Zrzut danych tabeli `picture`
+--
+
+INSERT INTO `picture` (`id`, `file`) VALUES
+(2, '216d24040145e029b6566000f1bba2f9.jpeg'),
+(3, '16fceee52bab6f0ef44a49b5207a8553.jpeg'),
+(5, '25ea28eafbe68e79ce52c5a2b9ea769f.jpeg'),
+(6, 'db16947da7cd775a11dd908a8cddeeb5.jpeg'),
+(7, '38cd90b432b312ab3e6d9e57f356e39a.jpeg'),
+(8, 'cd5631051a956ebf10a33fecaf568b35.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `printer`
 --
 
@@ -701,6 +762,13 @@ ALTER TABLE `desktop`
 ALTER TABLE `desktops_licenses`
   ADD CONSTRAINT `FK_2AF2020E460F904B` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_2AF2020EFFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`) ON DELETE CASCADE;
+
+--
+-- Ograniczenia dla tabeli `desktops_pictures`
+--
+ALTER TABLE `desktops_pictures`
+  ADD CONSTRAINT `FK_DABC22F1EE45BDBF` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`id`),
+  ADD CONSTRAINT `FK_DABC22F1FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
 -- Ograniczenia dla tabeli `desktop_desktopram`

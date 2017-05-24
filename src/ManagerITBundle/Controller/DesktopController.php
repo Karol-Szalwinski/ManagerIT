@@ -96,20 +96,13 @@ class DesktopController extends Controller
      */
     public function editAction(Request $request, Desktop $desktop)
     {
-        $pictureName = $desktop->getPicture();
-        if ($pictureName != null) {
-            $desktop->setPicture(
-                new File($this->getParameter('pictures_directory') . '/' . $pictureName)
-            );
-        }
 
         $deleteForm = $this->createDeleteForm($desktop);
         $editForm = $this->createForm('ManagerITBundle\Form\DesktopType', $desktop);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $desktop->setPicture($pictureName);
-            $this->getDoctrine()->getManager()->flush();
+                        $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
         }
@@ -136,11 +129,14 @@ class DesktopController extends Controller
 
         if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {
 
-            $file = $desktop->getPicture();
+            $file = $picture->getFile();
             $fileName = $this->get('app.picture_uploader')->upload($file);
 
-            $desktop->setPicture($fileName);
-            $this->getDoctrine()->getManager()->flush();
+            $picture->setFile($fileName);
+            $desktop->addPicture($picture);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($picture);
+            $em->flush();
 
             return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
         }

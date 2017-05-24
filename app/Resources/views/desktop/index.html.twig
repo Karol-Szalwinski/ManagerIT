@@ -98,18 +98,20 @@
                                             <td>{{ desktop.ipAddress }}</td>
                                             <td>{{ desktop.macAddress }}</td>
                                             <td>
-                                                {% for picture in desktop.pictures %}
-                                                    <a href="{{ asset('pictures/' ~ picture) }}">
-                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
-                                                             height="40" width="40">
-                                                    </a>
-                                                {% else %}
+
+                                                {% if desktop.pictures is empty %}
                                                     {% set picture = "default.png" %}
                                                     <a href="{{ asset('pictures/' ~ picture) }}">
                                                         <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
                                                              height="40" width="40">
                                                     </a>
-                                                {% endfor %}
+                                                {% else %}
+                                                    <a href="{{ asset('pictures/' ~ desktop.pictures|first.file) }}">
+                                                        <img src="{{ asset('pictures/' ~ desktop.pictures|first.file) }}"
+                                                             alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     {% endfor %}

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Picture
@@ -13,7 +14,7 @@ use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
  * @ORM\Table(name="picture")
  * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\PictureRepository")
  */
-class Picture extends File
+class Picture
 {
     /**
      * @var int
@@ -25,12 +26,13 @@ class Picture extends File
     protected $id;
 
     /**
-     * Picture constructor.
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/*" })
      */
-    public function __construct() {
+    private $file;
 
-        parent::__construct($path = '/home/anonymous/Workspace/ManagerIT/web/pictures/default.png');
-    }
 
 
     /**
@@ -41,5 +43,28 @@ class Picture extends File
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     * @return Picture
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
     }
 }

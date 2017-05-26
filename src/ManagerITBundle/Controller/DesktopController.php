@@ -3,6 +3,7 @@
 namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Desktop;
+use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
@@ -76,9 +77,12 @@ class DesktopController extends Controller
      */
     public function componentsAction(Desktop $desktop)
     {
+        $em = $this->getDoctrine()->getManager();
 
+        $desktopCPUs = $em->getRepository('ManagerITBundle:DesktopCPU')->findAll();
         return $this->render('desktop/components.html.twig', array(
             'desktop' => $desktop,
+            'desktopCPUs' => $desktopCPUs,
         ));
     }
 
@@ -294,5 +298,19 @@ class DesktopController extends Controller
         return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
     }
 
+    /**
+     *
+     * @Route("/{id}/desktop_connect_cpu/{desktopcpu}", name="desktop_connect_cpu")
+     * @Method("GET")
+     */
+    public
+    function desktopConnectCpuAction(Desktop $desktop, DesktopCPU $desktopcpu)
+    {
+
+        $desktop->setCpu($desktopcpu);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
 
 }

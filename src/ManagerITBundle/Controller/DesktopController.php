@@ -4,6 +4,7 @@ namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Desktop;
 use ManagerITBundle\Entity\DesktopCPU;
+use ManagerITBundle\Entity\DesktopRam;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
@@ -80,9 +81,11 @@ class DesktopController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $desktopCPUs = $em->getRepository('ManagerITBundle:DesktopCPU')->findAll();
+        $desktopRams = $em->getRepository('ManagerITBundle:DesktopRam')->findAll();
         return $this->render('desktop/components.html.twig', array(
             'desktop' => $desktop,
             'desktopCPUs' => $desktopCPUs,
+            'desktopRams' => $desktopRams,
         ));
     }
 
@@ -308,6 +311,30 @@ class DesktopController extends Controller
     {
 
         $desktop->setCpu($desktopcpu);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+
+    /**
+     *
+     * @Route("/{id}/desktop_connect_rams/{ram}", name="desktop_connect_ram")
+     * @Method("GET")
+     */
+    public
+    function desktopConnectRamsAction(Desktop $desktop, DesktopRam $ram)
+    {
+        $connected = false;
+        foreach ($desktop->getRams() as $desktopRam) {
+            if ($desktopRam == $ram)  {
+                $connected = true;
+        }
+        }
+        if(!$connected) {
+            $desktop->addRam($ram);
+        } else  {
+            $desktop->removeRam($ram);
+        }
         $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));

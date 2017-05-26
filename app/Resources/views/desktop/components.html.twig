@@ -226,5 +226,72 @@
 
                 </div>
             </div>
+            <!-- Modal rams-->
+            <div class="modal fade" id="rams" tabindex="-1" role="dialog" aria-labelledby="ramssModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                        aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                            <h5 class="modal-title" id="ramsModalLabel">Wybierz procesor z listy</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div id="div-1" class="body">
+                                <!--Begin Datatables-->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="box">
+                                            <header>
+                                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                                <h5>Lista komputerów</h5>
+                                            </header>
+                                            <div id="collapse4" class="body">
+                                                <table id="dataTable"
+                                                       class="table table-bordered table-condensed table-hover table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Nazwa</th>
+                                                        <th>Model</th>
+                                                        <th>Seria</th>
+                                                        <th>Producent</th>
+                                                        <th>Pojemność w Gb</th>
+                                                        <th>Typ</th>
+                                                        <th>Taktowanie</th>
+                                                        <th>CAS opóźnienie</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for desktopRam in desktopRams %}
+                                                        <tr onclick='location.href = "{{ path('desktop_connect_ram', { 'id': desktop.id,  'ram': desktopRam.id }) }}"'>
+                                                            <td>{{ desktopRam.name }}</td>
+                                                            <td>{{ desktopRam.model }}</td>
+                                                            <td>{{ desktopRam.series }}</td>
+                                                            <td>{{ desktopRam.brand }}</td>
+                                                            <td>{{ desktopRam.capacity }} GB</td>
+                                                            <td>{{ desktopRam.type }}</td>
+                                                            <td>{{ desktopRam.busSpeed }}</td>
+                                                            <td>CL{{ desktopRam.casLatency }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                                <!--End Datatables-->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary btn-grad control-label"
+                                        data-dismiss="modal">Zamknij
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
         {% endblock %}

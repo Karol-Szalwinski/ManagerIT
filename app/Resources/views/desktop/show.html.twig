@@ -14,6 +14,10 @@
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
+            <a href="{{ path('desktop_components', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-cogs"></i>
+                <span class="link-title">Podzespoły bazowe</span>
+            </a>
             <a href="{{ path('desktop_photo', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
@@ -137,7 +141,7 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
-                                <h5>Parametry</h5>
+                                <h5>Podzespoły bazowe</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">

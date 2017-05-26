@@ -69,6 +69,20 @@ class DesktopController extends Controller
     }
 
     /**
+     * Finds and displays a desktop components.
+     *
+     * @Route("/{id}/components", name="desktop_components")
+     * @Method("GET")
+     */
+    public function componentsAction(Desktop $desktop)
+    {
+
+        return $this->render('desktop/components.html.twig', array(
+            'desktop' => $desktop,
+        ));
+    }
+
+    /**
      * Finds and displays a desktop entity.
      *
      * @Route("/{id}", name="desktop_show")
@@ -102,7 +116,7 @@ class DesktopController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-                        $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('desktop_show', array('id' => $desktop->getId()));
         }

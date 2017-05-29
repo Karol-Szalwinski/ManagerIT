@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 24 Maj 2017, 16:37
--- Wersja serwera: 5.5.50-0ubuntu0.14.04.1
--- Wersja PHP: 5.5.9-1ubuntu4.17
+-- Generation Time: May 29, 2017 at 03:52 PM
+-- Server version: 5.5.50-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Baza danych: `manager`
+-- Database: `manager`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `computer_form_factor`
+-- Table structure for table `computer_form_factor`
 --
 
 CREATE TABLE IF NOT EXISTS `computer_form_factor` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `computer_form_factor` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Zrzut danych tabeli `computer_form_factor`
+-- Dumping data for table `computer_form_factor`
 --
 
 INSERT INTO `computer_form_factor` (`id`, `name`, `model`, `seria`, `brand`, `dedicatedForModel`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `computer_form_factor` (`id`, `name`, `model`, `seria`, `brand`, `de
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `departament`
+-- Table structure for table `departament`
 --
 
 CREATE TABLE IF NOT EXISTS `departament` (
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `departament` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Zrzut danych tabeli `departament`
+-- Dumping data for table `departament`
 --
 
 INSERT INTO `departament` (`id`, `addDate`, `name`) VALUES
@@ -71,7 +71,7 @@ INSERT INTO `departament` (`id`, `addDate`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop`
+-- Table structure for table `desktop`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop` (
@@ -96,20 +96,20 @@ CREATE TABLE IF NOT EXISTS `desktop` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
--- Zrzut danych tabeli `desktop`
+-- Dumping data for table `desktop`
 --
 
 INSERT INTO `desktop` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupply`, `ipAddress`, `macAddress`, `price`, `purchaseDate`, `addDate`, `desktopcpu_id`, `desktopformfactor_id`, `desktopos_id`) VALUES
 (12, 'OPTIPLEX 703', 'OPTIPLEX 55', '7010', 'DELL', '300', '123.344.3434.3', 'a2:22:33:33:ab:45', '12222', '2017-05-24 00:00:00', '2017-05-12 16:15:00', 2, 3, 1),
 (13, 'MSI POWER', 'GE72 Titan', 'TITAN', 'MSI', '300', '192.122.212.122', 'aa:bb:23:32:23:33', '4334', '2017-05-09 00:00:00', '2017-05-15 22:24:58', 2, 3, 1),
 (14, 'OPTIPLEXTRON', 'OPTIPLEX', '455', 'DELL', '300', '192.168.2.44', 'ab:01:20:12:12:12', '1234', '2017-05-31 00:00:00', '2017-05-16 14:11:38', 3, 3, 1),
-(15, 'MSI DRAGON FORCE', 'DRAGON FORCE', '987', 'MSI', '344', '192.168.2.44', 'a2:22:33:33:ab:45', '1233', '2017-05-02 00:00:00', '2017-05-23 13:54:45', 2, 3, 1),
+(15, 'MSI DRAGON FORCE', 'DRAGON FORCE', '987', 'MSI', '344', '192.168.2.44', 'a2:22:33:33:ab:45', '1233', '2017-05-02 00:00:00', '2017-05-23 13:54:45', 3, 3, 1),
 (16, 'OPTIPLEX 7030 ROBOCZY', 'OPTIPLEX 7030', '7030', 'DELL', '345', '123.344.3434.3', '1212', '4566', '2017-05-23 00:00:00', '2017-05-24 16:34:59', 3, 3, 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktops_licenses`
+-- Table structure for table `desktops_licenses`
 --
 
 CREATE TABLE IF NOT EXISTS `desktops_licenses` (
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `desktops_licenses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `desktops_licenses`
+-- Dumping data for table `desktops_licenses`
 --
 
 INSERT INTO `desktops_licenses` (`desktop_id`, `license_id`) VALUES
@@ -135,7 +135,7 @@ INSERT INTO `desktops_licenses` (`desktop_id`, `license_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktops_pictures`
+-- Table structure for table `desktops_pictures`
 --
 
 CREATE TABLE IF NOT EXISTS `desktops_pictures` (
@@ -147,21 +147,23 @@ CREATE TABLE IF NOT EXISTS `desktops_pictures` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `desktops_pictures`
+-- Dumping data for table `desktops_pictures`
 --
 
 INSERT INTO `desktops_pictures` (`desktop_id`, `picture_id`) VALUES
-(12, 5),
+(12, 10),
+(12, 11),
 (13, 3),
-(15, 2),
+(14, 13),
 (15, 6),
+(15, 12),
 (16, 7),
 (16, 8);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_c_p_u`
+-- Table structure for table `desktop_c_p_u`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_c_p_u` (
@@ -183,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `desktop_c_p_u` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Zrzut danych tabeli `desktop_c_p_u`
+-- Dumping data for table `desktop_c_p_u`
 --
 
 INSERT INTO `desktop_c_p_u` (`id`, `name`, `Manufacturer`, `baseFrequency`, `maxTurboFrequency`, `numberOfCores`, `numberOfThreads`, `casheMB`, `TDP`, `GPU`, `LithographyNM`, `launchDate`, `sockets`, `generation`) VALUES
@@ -195,7 +197,7 @@ INSERT INTO `desktop_c_p_u` (`id`, `name`, `Manufacturer`, `baseFrequency`, `max
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_desktopram`
+-- Table structure for table `desktop_desktopram`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_desktopram` (
@@ -207,20 +209,21 @@ CREATE TABLE IF NOT EXISTS `desktop_desktopram` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `desktop_desktopram`
+-- Dumping data for table `desktop_desktopram`
 --
 
 INSERT INTO `desktop_desktopram` (`desktop_id`, `desktopram_id`) VALUES
 (12, 2),
 (13, 1),
 (14, 1),
+(14, 2),
 (15, 1),
 (16, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_hdd`
+-- Table structure for table `desktop_hdd`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_hdd` (
@@ -232,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `desktop_hdd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `desktop_hdd`
+-- Dumping data for table `desktop_hdd`
 --
 
 INSERT INTO `desktop_hdd` (`desktop_id`, `hdd_id`) VALUES
@@ -245,7 +248,7 @@ INSERT INTO `desktop_hdd` (`desktop_id`, `hdd_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_opticaldrive`
+-- Table structure for table `desktop_opticaldrive`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_opticaldrive` (
@@ -257,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `desktop_opticaldrive` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `desktop_opticaldrive`
+-- Dumping data for table `desktop_opticaldrive`
 --
 
 INSERT INTO `desktop_opticaldrive` (`desktop_id`, `opticaldrive_id`) VALUES
@@ -270,7 +273,7 @@ INSERT INTO `desktop_opticaldrive` (`desktop_id`, `opticaldrive_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_ram`
+-- Table structure for table `desktop_ram`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_ram` (
@@ -288,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `desktop_ram` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Zrzut danych tabeli `desktop_ram`
+-- Dumping data for table `desktop_ram`
 --
 
 INSERT INTO `desktop_ram` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `type`, `busSpeed`, `casLatency`, `numberOfPins`) VALUES
@@ -299,7 +302,7 @@ INSERT INTO `desktop_ram` (`id`, `name`, `model`, `series`, `brand`, `capacity`,
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_sdd`
+-- Table structure for table `desktop_sdd`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_sdd` (
@@ -313,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `desktop_sdd` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `desktop_ssd`
+-- Table structure for table `desktop_ssd`
 --
 
 CREATE TABLE IF NOT EXISTS `desktop_ssd` (
@@ -325,7 +328,7 @@ CREATE TABLE IF NOT EXISTS `desktop_ssd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `desktop_ssd`
+-- Dumping data for table `desktop_ssd`
 --
 
 INSERT INTO `desktop_ssd` (`desktop_id`, `ssd_id`) VALUES
@@ -338,7 +341,7 @@ INSERT INTO `desktop_ssd` (`desktop_id`, `ssd_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employee`
+-- Table structure for table `employee`
 --
 
 CREATE TABLE IF NOT EXISTS `employee` (
@@ -355,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Zrzut danych tabeli `employee`
+-- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`id`, `departament_id`, `name`, `surname`, `sex`, `phone`, `email`, `job`) VALUES
@@ -366,7 +369,7 @@ INSERT INTO `employee` (`id`, `departament_id`, `name`, `surname`, `sex`, `phone
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employees_desktops`
+-- Table structure for table `employees_desktops`
 --
 
 CREATE TABLE IF NOT EXISTS `employees_desktops` (
@@ -378,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `employees_desktops` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `employees_desktops`
+-- Dumping data for table `employees_desktops`
 --
 
 INSERT INTO `employees_desktops` (`employee_id`, `desktop_id`) VALUES
@@ -393,7 +396,7 @@ INSERT INTO `employees_desktops` (`employee_id`, `desktop_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employees_laptops`
+-- Table structure for table `employees_laptops`
 --
 
 CREATE TABLE IF NOT EXISTS `employees_laptops` (
@@ -405,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `employees_laptops` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `employees_laptops`
+-- Dumping data for table `employees_laptops`
 --
 
 INSERT INTO `employees_laptops` (`employee_id`, `laptop_id`) VALUES
@@ -418,7 +421,7 @@ INSERT INTO `employees_laptops` (`employee_id`, `laptop_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `employees_licenses`
+-- Table structure for table `employees_licenses`
 --
 
 CREATE TABLE IF NOT EXISTS `employees_licenses` (
@@ -432,7 +435,7 @@ CREATE TABLE IF NOT EXISTS `employees_licenses` (
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `fos_user`
+-- Table structure for table `fos_user`
 --
 
 CREATE TABLE IF NOT EXISTS `fos_user` (
@@ -455,17 +458,17 @@ CREATE TABLE IF NOT EXISTS `fos_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Zrzut danych tabeli `fos_user`
+-- Dumping data for table `fos_user`
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-24 16:00:10', NULL, NULL, 'a:0:{}'),
+(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-29 14:23:55', NULL, NULL, 'a:0:{}'),
 (2, 'Janek', 'janek', 'jam@jam.pl', 'jam@jam.pl', 0, NULL, '$2y$13$otms8EkVthxQyxGZ2HD7EeqNB9e6wuBmQz/LaqA.KYMMEm4RVPwy6', NULL, NULL, NULL, 'a:0:{}');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `hdd`
+-- Table structure for table `hdd`
 --
 
 CREATE TABLE IF NOT EXISTS `hdd` (
@@ -483,7 +486,7 @@ CREATE TABLE IF NOT EXISTS `hdd` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Zrzut danych tabeli `hdd`
+-- Dumping data for table `hdd`
 --
 
 INSERT INTO `hdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFactor`, `interface`, `rotationSpeedRpm`, `cache`) VALUES
@@ -494,7 +497,7 @@ INSERT INTO `hdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFa
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `laptop`
+-- Table structure for table `laptop`
 --
 
 CREATE TABLE IF NOT EXISTS `laptop` (
@@ -522,7 +525,7 @@ CREATE TABLE IF NOT EXISTS `laptop` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Zrzut danych tabeli `laptop`
+-- Dumping data for table `laptop`
 --
 
 INSERT INTO `laptop` (`id`, `name`, `model`, `type`, `manufacturer`, `cpu`, `ram`, `hdd`, `ssd`, `drive`, `powerSupply`, `battery`, `screen`, `os`, `ipAddress`, `macAddress`, `picture`, `price`, `purchaseDate`, `addDate`) VALUES
@@ -535,7 +538,7 @@ INSERT INTO `laptop` (`id`, `name`, `model`, `type`, `manufacturer`, `cpu`, `ram
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `laptops_licenses`
+-- Table structure for table `laptops_licenses`
 --
 
 CREATE TABLE IF NOT EXISTS `laptops_licenses` (
@@ -547,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `laptops_licenses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Zrzut danych tabeli `laptops_licenses`
+-- Dumping data for table `laptops_licenses`
 --
 
 INSERT INTO `laptops_licenses` (`laptop_id`, `license_id`) VALUES
@@ -561,7 +564,7 @@ INSERT INTO `laptops_licenses` (`laptop_id`, `license_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `license`
+-- Table structure for table `license`
 --
 
 CREATE TABLE IF NOT EXISTS `license` (
@@ -578,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `license` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Zrzut danych tabeli `license`
+-- Dumping data for table `license`
 --
 
 INSERT INTO `license` (`id`, `name`, `licenseKey`, `type`, `price`, `purchaseDate`, `addDate`, `expireDate`) VALUES
@@ -591,7 +594,7 @@ INSERT INTO `license` (`id`, `name`, `licenseKey`, `type`, `price`, `purchaseDat
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `optical_drive`
+-- Table structure for table `optical_drive`
 --
 
 CREATE TABLE IF NOT EXISTS `optical_drive` (
@@ -607,7 +610,7 @@ CREATE TABLE IF NOT EXISTS `optical_drive` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Zrzut danych tabeli `optical_drive`
+-- Dumping data for table `optical_drive`
 --
 
 INSERT INTO `optical_drive` (`id`, `name`, `model`, `series`, `brand`, `type`, `interface`, `factoryFormat`) VALUES
@@ -616,7 +619,7 @@ INSERT INTO `optical_drive` (`id`, `name`, `model`, `series`, `brand`, `type`, `
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `os`
+-- Table structure for table `os`
 --
 
 CREATE TABLE IF NOT EXISTS `os` (
@@ -633,7 +636,7 @@ CREATE TABLE IF NOT EXISTS `os` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Zrzut danych tabeli `os`
+-- Dumping data for table `os`
 --
 
 INSERT INTO `os` (`id`, `name`, `series`, `edition`, `language`, `architecture`, `brand`, `format`, `license`) VALUES
@@ -643,31 +646,33 @@ INSERT INTO `os` (`id`, `name`, `series`, `edition`, `language`, `architecture`,
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `picture`
+-- Table structure for table `picture`
 --
 
 CREATE TABLE IF NOT EXISTS `picture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Zrzut danych tabeli `picture`
+-- Dumping data for table `picture`
 --
 
 INSERT INTO `picture` (`id`, `file`) VALUES
-(2, '216d24040145e029b6566000f1bba2f9.jpeg'),
 (3, '16fceee52bab6f0ef44a49b5207a8553.jpeg'),
-(5, '25ea28eafbe68e79ce52c5a2b9ea769f.jpeg'),
 (6, 'db16947da7cd775a11dd908a8cddeeb5.jpeg'),
 (7, '38cd90b432b312ab3e6d9e57f356e39a.jpeg'),
-(8, 'cd5631051a956ebf10a33fecaf568b35.jpeg');
+(8, 'cd5631051a956ebf10a33fecaf568b35.jpeg'),
+(10, '30e01ca4cff5915d0045c8ba7444cde3.png'),
+(11, 'f62fa0ada55158a0b26d11c3d4adcc94.jpeg'),
+(12, '1bc472c48ce9c8e8639150867d403cc4.png'),
+(13, 'd6a17df0bdaced344cffdfab8bb815ce.jpeg');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `printer`
+-- Table structure for table `printer`
 --
 
 CREATE TABLE IF NOT EXISTS `printer` (
@@ -687,7 +692,7 @@ CREATE TABLE IF NOT EXISTS `printer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Zrzut danych tabeli `printer`
+-- Dumping data for table `printer`
 --
 
 INSERT INTO `printer` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupply`, `price`, `addDate`, `purchaseDate`, `macAddress`, `ipAddress`, `picture`) VALUES
@@ -697,7 +702,34 @@ INSERT INTO `printer` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupp
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `sdd`
+-- Table structure for table `ramslot_desktopram`
+--
+
+CREATE TABLE IF NOT EXISTS `ramslot_desktopram` (
+  `ramslot_id` int(11) NOT NULL,
+  `desktopram_id` int(11) NOT NULL,
+  PRIMARY KEY (`ramslot_id`,`desktopram_id`),
+  KEY `IDX_A6874BA1D549D3BC` (`ramslot_id`),
+  KEY `IDX_A6874BA1C5101709` (`desktopram_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ram_slot`
+--
+
+CREATE TABLE IF NOT EXISTS `ram_slot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `desktop_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_25F5B530FFF2950E` (`desktop_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdd`
 --
 
 CREATE TABLE IF NOT EXISTS `sdd` (
@@ -713,7 +745,7 @@ CREATE TABLE IF NOT EXISTS `sdd` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Zrzut danych tabeli `sdd`
+-- Dumping data for table `sdd`
 --
 
 INSERT INTO `sdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFactor`, `interface`) VALUES
@@ -722,7 +754,7 @@ INSERT INTO `sdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFa
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `ssd`
+-- Table structure for table `ssd`
 --
 
 CREATE TABLE IF NOT EXISTS `ssd` (
@@ -738,18 +770,18 @@ CREATE TABLE IF NOT EXISTS `ssd` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Zrzut danych tabeli `ssd`
+-- Dumping data for table `ssd`
 --
 
 INSERT INTO `ssd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFactor`, `interface`) VALUES
 (1, 'vfg', 'ffg', 'gfgf', 'gfgf', 160, '2,5"', 'SAS');
 
 --
--- Ograniczenia dla zrzutów tabel
+-- Constraints for dumped tables
 --
 
 --
--- Ograniczenia dla tabeli `desktop`
+-- Constraints for table `desktop`
 --
 ALTER TABLE `desktop`
   ADD CONSTRAINT `FK_96105A41764D7EB` FOREIGN KEY (`desktopos_id`) REFERENCES `os` (`id`),
@@ -757,87 +789,100 @@ ALTER TABLE `desktop`
   ADD CONSTRAINT `FK_96105A4C5B70775` FOREIGN KEY (`desktopcpu_id`) REFERENCES `desktop_c_p_u` (`id`);
 
 --
--- Ograniczenia dla tabeli `desktops_licenses`
+-- Constraints for table `desktops_licenses`
 --
 ALTER TABLE `desktops_licenses`
   ADD CONSTRAINT `FK_2AF2020E460F904B` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_2AF2020EFFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`) ON DELETE CASCADE;
 
 --
--- Ograniczenia dla tabeli `desktops_pictures`
+-- Constraints for table `desktops_pictures`
 --
 ALTER TABLE `desktops_pictures`
   ADD CONSTRAINT `FK_DABC22F1EE45BDBF` FOREIGN KEY (`picture_id`) REFERENCES `picture` (`id`),
   ADD CONSTRAINT `FK_DABC22F1FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
--- Ograniczenia dla tabeli `desktop_desktopram`
+-- Constraints for table `desktop_desktopram`
 --
 ALTER TABLE `desktop_desktopram`
   ADD CONSTRAINT `FK_EEF30E2BC5101709` FOREIGN KEY (`desktopram_id`) REFERENCES `desktop_ram` (`id`),
   ADD CONSTRAINT `FK_EEF30E2BFFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
--- Ograniczenia dla tabeli `desktop_hdd`
+-- Constraints for table `desktop_hdd`
 --
 ALTER TABLE `desktop_hdd`
   ADD CONSTRAINT `FK_7E58FF691493816F` FOREIGN KEY (`hdd_id`) REFERENCES `hdd` (`id`),
   ADD CONSTRAINT `FK_7E58FF69FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
--- Ograniczenia dla tabeli `desktop_opticaldrive`
+-- Constraints for table `desktop_opticaldrive`
 --
 ALTER TABLE `desktop_opticaldrive`
   ADD CONSTRAINT `FK_EE52BBD4A3FA43D` FOREIGN KEY (`opticaldrive_id`) REFERENCES `optical_drive` (`id`),
   ADD CONSTRAINT `FK_EE52BBDFFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
--- Ograniczenia dla tabeli `desktop_sdd`
+-- Constraints for table `desktop_sdd`
 --
 ALTER TABLE `desktop_sdd`
   ADD CONSTRAINT `FK_6E2BB3F87D827337` FOREIGN KEY (`sdd_id`) REFERENCES `sdd` (`id`),
   ADD CONSTRAINT `FK_6E2BB3F8FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
--- Ograniczenia dla tabeli `desktop_ssd`
+-- Constraints for table `desktop_ssd`
 --
 ALTER TABLE `desktop_ssd`
   ADD CONSTRAINT `FK_6BA8376EAF4238A5` FOREIGN KEY (`ssd_id`) REFERENCES `ssd` (`id`),
   ADD CONSTRAINT `FK_6BA8376EFFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 --
--- Ograniczenia dla tabeli `employee`
+-- Constraints for table `employee`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `FK_5D9F75A148B3EEE4` FOREIGN KEY (`departament_id`) REFERENCES `departament` (`id`);
 
 --
--- Ograniczenia dla tabeli `employees_desktops`
+-- Constraints for table `employees_desktops`
 --
 ALTER TABLE `employees_desktops`
   ADD CONSTRAINT `FK_B48D07838C03F15C` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_B48D0783FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`) ON DELETE CASCADE;
 
 --
--- Ograniczenia dla tabeli `employees_laptops`
+-- Constraints for table `employees_laptops`
 --
 ALTER TABLE `employees_laptops`
   ADD CONSTRAINT `FK_2A57E6748C03F15C` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_2A57E674D59905E5` FOREIGN KEY (`laptop_id`) REFERENCES `laptop` (`id`) ON DELETE CASCADE;
 
 --
--- Ograniczenia dla tabeli `employees_licenses`
+-- Constraints for table `employees_licenses`
 --
 ALTER TABLE `employees_licenses`
   ADD CONSTRAINT `FK_103C143460F904B` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_103C1438C03F15C` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE;
 
 --
--- Ograniczenia dla tabeli `laptops_licenses`
+-- Constraints for table `laptops_licenses`
 --
 ALTER TABLE `laptops_licenses`
   ADD CONSTRAINT `FK_175EEFA6460F904B` FOREIGN KEY (`license_id`) REFERENCES `license` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_175EEFA6D59905E5` FOREIGN KEY (`laptop_id`) REFERENCES `laptop` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `ramslot_desktopram`
+--
+ALTER TABLE `ramslot_desktopram`
+  ADD CONSTRAINT `FK_A6874BA1C5101709` FOREIGN KEY (`desktopram_id`) REFERENCES `desktop_ram` (`id`),
+  ADD CONSTRAINT `FK_A6874BA1D549D3BC` FOREIGN KEY (`ramslot_id`) REFERENCES `ram_slot` (`id`);
+
+--
+-- Constraints for table `ram_slot`
+--
+ALTER TABLE `ram_slot`
+  ADD CONSTRAINT `FK_25F5B530FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -8,6 +8,7 @@ use ManagerITBundle\Entity\DesktopRam;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
+use ManagerITBundle\Entity\RamSlot;
 use ManagerITBundle\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -324,17 +325,11 @@ class DesktopController extends Controller
     public
     function desktopConnectRamsAction(Desktop $desktop, DesktopRam $ram)
     {
-        $connected = false;
-        foreach ($desktop->getRams() as $desktopRam) {
-            if ($desktopRam == $ram)  {
-                $connected = true;
-        }
-        }
-        if(!$connected) {
-            $desktop->addRam($ram);
-        } else  {
-            $desktop->removeRam($ram);
-        }
+
+        $ramslot = new RamSlot();
+        $ramslot->setRams($ram)->setDesktop($desktop);
+        $desktop->addRamslot($ramslot);
+
         $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));

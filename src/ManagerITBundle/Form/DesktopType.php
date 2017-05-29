@@ -25,11 +25,6 @@ class DesktopType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
             ])
-            ->add('rams', EntityType::class, [
-                'class' => 'ManagerITBundle:DesktopRam',
-                'choice_label' => 'name',
-                'multiple' => true,
-            ])
             ->add('hdds', EntityType::class, [
                 'class' => 'ManagerITBundle:Hdd',
                 'choice_label' => 'name',

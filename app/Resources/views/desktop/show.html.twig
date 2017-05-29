@@ -167,11 +167,11 @@
                                     <tr>
                                         <td>Ram</td>
                                         <td>
-                                            {% if desktop.rams is empty %}
+                                            {% if desktop.ramslots is empty %}
                                                 Brak
                                             {% else %}
-                                                {% for ram in desktop.rams %}
-                                                    {{ ram.capacity }} GB - {{ ram.name }}</br>
+                                                {% for ramslot in desktop.ramslots %}
+                                                    {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>

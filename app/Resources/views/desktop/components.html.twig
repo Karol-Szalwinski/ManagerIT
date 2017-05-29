@@ -263,6 +263,7 @@
                                                     <tbody>
                                                     {% for desktopRam in desktopRams %}
                                                         <tr onclick='location.href = "{{ path('desktop_connect_ram', { 'id': desktop.id,  'ram': desktopRam.id }) }}"'>
+
                                                             <td>{{ desktopRam.name }}</td>
                                                             <td>{{ desktopRam.model }}</td>
                                                             <td>{{ desktopRam.series }}</td>

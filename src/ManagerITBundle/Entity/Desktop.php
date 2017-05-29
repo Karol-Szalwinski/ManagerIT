@@ -58,13 +58,9 @@ class Desktop
     private $cpu;
 
     /**
-     * @ORM\ManyToMany(targetEntity="DesktopRam")
-     * @ORM\JoinTable(name="desktop_desktopram",
-     *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="desktopram_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="RamSlot", mappedBy="desktop")
      */
-    private $rams;
+    private $ramslots;
 
     /**
      * @ORM\ManyToMany(targetEntity="Hdd")
@@ -174,7 +170,7 @@ class Desktop
      */
     public function __construct()
     {
-        $this->rams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ramslots = new \Doctrine\Common\Collections\ArrayCollection();
         $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->drives = new \Doctrine\Common\Collections\ArrayCollection();
@@ -448,38 +444,6 @@ class Desktop
         return $this->cpu;
     }
 
-    /**
-     * Add rams
-     *
-     * @param \ManagerITBundle\Entity\DesktopRam $rams
-     * @return Desktop
-     */
-    public function addRam(\ManagerITBundle\Entity\DesktopRam $rams)
-    {
-        $this->rams[] = $rams;
-
-        return $this;
-    }
-
-    /**
-     * Remove rams
-     *
-     * @param \ManagerITBundle\Entity\DesktopRam $rams
-     */
-    public function removeRam(\ManagerITBundle\Entity\DesktopRam $rams)
-    {
-        $this->rams->removeElement($rams);
-    }
-
-    /**
-     * Get rams
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRams()
-    {
-        return $this->rams;
-    }
 
     /**
      * Add hdds
@@ -733,5 +697,38 @@ class Desktop
     public function getPictures()
     {
         return $this->pictures;
+    }
+
+    /**
+     * Add ramslots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramslots
+     * @return Desktop
+     */
+    public function addRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
+    {
+        $this->ramslots[] = $ramslots;
+
+        return $this;
+    }
+
+    /**
+     * Remove ramslots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramslots
+     */
+    public function removeRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
+    {
+        $this->ramslots->removeElement($ramslots);
+    }
+
+    /**
+     * Get ramslots
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRamslots()
+    {
+        return $this->ramslots;
     }
 }

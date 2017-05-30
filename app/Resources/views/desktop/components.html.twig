@@ -24,7 +24,7 @@
     <div class="outer">
         <div class="inner bg-light lter">
             <!-- .col-lg-6 -->
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <div class="box">
                     <header>
                         <div class="icons"><i class="fa fa-cogs"></i></div>
@@ -60,12 +60,18 @@
                             </tr>
                             <tr>
                                 <td>Ram</td>
+
                                 <td>
                                     {% if desktop.ramslots is empty %}
                                         Brak
                                     {% else %}
-                                        {% for ramslots in desktop.ramslots %}
-                                            {{ ramslots.ram.capacity }} GB - {{ ramslots.ram.name }} </br>
+                                        {% for ramslot in desktop.ramslots %}
+                                            {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}
+                                            <a href="{{ path('desktop_remove_ram', {'id': desktop.id , 'ramslot': ramslot.id }) }}"
+                                               class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                <i class="fa fa-times "></i>
+                                                <span class="link-title">Wymontuj</span>
+                                            </a><br>
                                         {% endfor %}
                                     {% endif %}
                                 </td>

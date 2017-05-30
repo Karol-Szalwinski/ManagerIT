@@ -337,5 +337,21 @@ class DesktopController extends Controller
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
     }
+    /**
+     * Desktop disconnect ram
+     * @Route("/{id}/desktop_remove_ram/{ramslot}", name="desktop_remove_ram")
+     * @Method("GET")
+     */
+    public
+    function desktopRemoveRamAction(Desktop $desktop, RamSlot $ramslot)
+    {
 
+        $desktop->removeRamslot($ramslot);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($ramslot);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
 }

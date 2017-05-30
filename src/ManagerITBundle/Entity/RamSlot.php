@@ -28,13 +28,11 @@ class RamSlot
     private $desktop;
 
     /**
-     * @ORM\ManyToMany(targetEntity="DesktopRam")
-     * @ORM\JoinTable(name="ramslot_desktopram",
-     *      joinColumns={@ORM\JoinColumn(name="ramslot_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="desktopram_id", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToOne(targetEntity="DesktopRam", inversedBy="ramSlots")
+     * @ORM\JoinColumn(name="desktop_ram_id", referencedColumnName="id")
      */
-    private $rams;
+    private $ram;
+
 
 
     /**
@@ -50,10 +48,10 @@ class RamSlot
     /**
      * Set desktop
      *
-     * @param string $desktop
+     * @param \ManagerITBundle\Entity\Desktop $desktop
      * @return RamSlot
      */
-    public function setDesktop($desktop)
+    public function setDesktop(\ManagerITBundle\Entity\Desktop $desktop = null)
     {
         $this->desktop = $desktop;
 
@@ -63,7 +61,7 @@ class RamSlot
     /**
      * Get desktop
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\Desktop 
      */
     public function getDesktop()
     {
@@ -71,55 +69,25 @@ class RamSlot
     }
 
     /**
-     * Set rams
+     * Set ram
      *
-     * @param string $rams
+     * @param \ManagerITBundle\Entity\DesktopRam $ram
      * @return RamSlot
      */
-    public function setRams($rams)
+    public function setRam(\ManagerITBundle\Entity\DesktopRam $ram = null)
     {
-        $this->rams = $rams;
+        $this->ram = $ram;
 
         return $this;
     }
 
     /**
-     * Get rams
+     * Get ram
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\DesktopRam 
      */
-    public function getRams()
+    public function getRam()
     {
-        return $this->rams;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->rams = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add rams
-     *
-     * @param \ManagerITBundle\Entity\DesktopRam $rams
-     * @return RamSlot
-     */
-    public function addRam(\ManagerITBundle\Entity\DesktopRam $rams)
-    {
-        $this->rams[] = $rams;
-
-        return $this;
-    }
-
-    /**
-     * Remove rams
-     *
-     * @param \ManagerITBundle\Entity\DesktopRam $rams
-     */
-    public function removeRam(\ManagerITBundle\Entity\DesktopRam $rams)
-    {
-        $this->rams->removeElement($rams);
+        return $this->ram;
     }
 }

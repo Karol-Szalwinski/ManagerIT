@@ -308,10 +308,10 @@ class DesktopController extends Controller
      * @Method("GET")
      */
     public
-    function desktopConnectCpuAction(Desktop $desktop, DesktopCPU $desktopcpu)
+    function desktopConnectCpuAction(Desktop $desktop, DesktopCPU $desktopCpu)
     {
 
-        $desktop->setCpu($desktopcpu);
+        $desktop->setCpu($desktopCpu);
         $this->getDoctrine()->getManager()->flush();
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
@@ -326,11 +326,14 @@ class DesktopController extends Controller
     function desktopConnectRamsAction(Desktop $desktop, DesktopRam $ram)
     {
 
-        $ramslot = new RamSlot();
-        $ramslot->setRams($ram)->setDesktop($desktop);
-        $desktop->addRamslot($ramslot);
+        $ramSlot = new RamSlot();
+        $ramSlot->setRam($ram);
+        $ramSlot->setDesktop($desktop);
+        $desktop->addRamslot($ramSlot);
 
-        $this->getDoctrine()->getManager()->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($ramSlot);
+        $em->flush();
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
     }

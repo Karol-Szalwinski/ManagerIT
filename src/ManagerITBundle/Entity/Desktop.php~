@@ -698,4 +698,37 @@ class Desktop
     {
         return $this->pictures;
     }
+
+    /**
+     * Add ramslots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramslots
+     * @return Desktop
+     */
+    public function addRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
+    {
+        $this->ramslots[] = $ramslots;
+
+        return $this;
+    }
+
+    /**
+     * Remove ramslots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramslots
+     */
+    public function removeRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
+    {
+        $this->ramslots->removeElement($ramslots);
+    }
+
+    /**
+     * Get ramslots
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRamslots()
+    {
+        return $this->ramslots;
+    }
 }

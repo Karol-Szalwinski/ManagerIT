@@ -28,68 +28,10 @@ class RamSlot
     private $desktop;
 
     /**
-     * @ORM\ManyToMany(targetEntity="DesktopRam")
-     * @ORM\JoinTable(name="ramslot_desktopram",
-     *      joinColumns={@ORM\JoinColumn(name="ramslot_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="desktopram_id", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToOne(targetEntity="DesktopRam", inversedBy="ramslots")
+     * @ORM\JoinColumn(name="desktop_ram_id", referencedColumnName="id")
      */
-    private $rams;
+    private $ram;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set desktop
-     *
-     * @param string $desktop
-     * @return RamSlot
-     */
-    public function setDesktop($desktop)
-    {
-        $this->desktop = $desktop;
-
-        return $this;
-    }
-
-    /**
-     * Get desktop
-     *
-     * @return string 
-     */
-    public function getDesktop()
-    {
-        return $this->desktop;
-    }
-
-    /**
-     * Set rams
-     *
-     * @param string $rams
-     * @return RamSlot
-     */
-    public function setRams($rams)
-    {
-        $this->rams = $rams;
-
-        return $this;
-    }
-
-    /**
-     * Get rams
-     *
-     * @return string 
-     */
-    public function getRams()
-    {
-        return $this->rams;
-    }
 }

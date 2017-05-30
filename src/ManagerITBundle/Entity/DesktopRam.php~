@@ -84,11 +84,15 @@ class DesktopRam
      */
     private $numberOfPins;
 
+    /**
+     * @ORM\OneToMany(targetEntity="RamSlot", mappedBy="ram")
+     */
+    private $ramSlots;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -111,7 +115,7 @@ class DesktopRam
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -134,7 +138,7 @@ class DesktopRam
     /**
      * Get model
      *
-     * @return string 
+     * @return string
      */
     public function getModel()
     {
@@ -157,7 +161,7 @@ class DesktopRam
     /**
      * Get series
      *
-     * @return string 
+     * @return string
      */
     public function getSeries()
     {
@@ -180,7 +184,7 @@ class DesktopRam
     /**
      * Get brand
      *
-     * @return string 
+     * @return string
      */
     public function getBrand()
     {
@@ -203,7 +207,7 @@ class DesktopRam
     /**
      * Get capacity
      *
-     * @return float 
+     * @return float
      */
     public function getCapacity()
     {
@@ -226,7 +230,7 @@ class DesktopRam
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -249,7 +253,7 @@ class DesktopRam
     /**
      * Get busSpeed
      *
-     * @return string 
+     * @return string
      */
     public function getBusSpeed()
     {
@@ -272,7 +276,7 @@ class DesktopRam
     /**
      * Get casLatency
      *
-     * @return integer 
+     * @return integer
      */
     public function getCasLatency()
     {
@@ -295,7 +299,7 @@ class DesktopRam
     /**
      * Get numberOfPins
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumberOfPins()
     {

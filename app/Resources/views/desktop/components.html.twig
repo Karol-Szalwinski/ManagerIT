@@ -201,7 +201,7 @@
                                                     </thead>
                                                     <tbody>
                                                     {% for desktopCPU in desktopCPUs %}
-                                                        <tr onclick='location.href = "{{ path('desktop_connect_cpu', { 'id': desktop.id,  'desktopcpu': desktopCPU.id }) }}"'>
+                                                        <tr onclick='location.href = "{{ path('desktop_connect_cpu', { 'id': desktop.id,  'desktopCpu': desktopCPU.id }) }}"'>
                                                             <td>{{ desktopCPU.id }}</td>
                                                             <td>{{ desktopCPU.name }}</td>
                                                             <td>{{ desktopCPU.manufacturer }}</td>

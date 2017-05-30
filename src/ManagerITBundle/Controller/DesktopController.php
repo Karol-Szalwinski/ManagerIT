@@ -304,13 +304,12 @@ class DesktopController extends Controller
 
     /**
      *
-     * @Route("/{id}/desktop_connect_cpu/{desktopcpu}", name="desktop_connect_cpu")
+     * @Route("/{id}/desktop_connect_cpu/{desktopCpu}", name="desktop_connect_cpu")
      * @Method("GET")
      */
     public
     function desktopConnectCpuAction(Desktop $desktop, DesktopCPU $desktopCpu)
     {
-
         $desktop->setCpu($desktopCpu);
         $this->getDoctrine()->getManager()->flush();
 

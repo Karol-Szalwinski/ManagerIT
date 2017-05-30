@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 29, 2017 at 03:52 PM
+-- Generation Time: May 30, 2017 at 03:46 PM
 -- Server version: 5.5.50-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.17
 
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `desktop` (
 
 INSERT INTO `desktop` (`id`, `name`, `model`, `type`, `manufacturer`, `powerSupply`, `ipAddress`, `macAddress`, `price`, `purchaseDate`, `addDate`, `desktopcpu_id`, `desktopformfactor_id`, `desktopos_id`) VALUES
 (12, 'OPTIPLEX 703', 'OPTIPLEX 55', '7010', 'DELL', '300', '123.344.3434.3', 'a2:22:33:33:ab:45', '12222', '2017-05-24 00:00:00', '2017-05-12 16:15:00', 2, 3, 1),
-(13, 'MSI POWER', 'GE72 Titan', 'TITAN', 'MSI', '300', '192.122.212.122', 'aa:bb:23:32:23:33', '4334', '2017-05-09 00:00:00', '2017-05-15 22:24:58', 2, 3, 1),
+(13, 'MSI POWER', 'GE72 Titan', 'TITAN', 'MSI', '300', '192.122.212.122', 'aa:bb:23:32:23:33', '4334', '2017-05-09 00:00:00', '2017-05-15 22:24:58', 1, 3, 1),
 (14, 'OPTIPLEXTRON', 'OPTIPLEX', '455', 'DELL', '300', '192.168.2.44', 'ab:01:20:12:12:12', '1234', '2017-05-31 00:00:00', '2017-05-16 14:11:38', 3, 3, 1),
 (15, 'MSI DRAGON FORCE', 'DRAGON FORCE', '987', 'MSI', '344', '192.168.2.44', 'a2:22:33:33:ab:45', '1233', '2017-05-02 00:00:00', '2017-05-23 13:54:45', 3, 3, 1),
 (16, 'OPTIPLEX 7030 ROBOCZY', 'OPTIPLEX 7030', '7030', 'DELL', '345', '123.344.3434.3', '1212', '4566', '2017-05-23 00:00:00', '2017-05-24 16:34:59', 3, 3, 2);
@@ -151,8 +151,8 @@ CREATE TABLE IF NOT EXISTS `desktops_pictures` (
 --
 
 INSERT INTO `desktops_pictures` (`desktop_id`, `picture_id`) VALUES
-(12, 10),
 (12, 11),
+(12, 14),
 (13, 3),
 (14, 13),
 (15, 6),
@@ -207,18 +207,6 @@ CREATE TABLE IF NOT EXISTS `desktop_desktopram` (
   KEY `IDX_EEF30E2BFFF2950E` (`desktop_id`),
   KEY `IDX_EEF30E2BC5101709` (`desktopram_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `desktop_desktopram`
---
-
-INSERT INTO `desktop_desktopram` (`desktop_id`, `desktopram_id`) VALUES
-(12, 2),
-(13, 1),
-(14, 1),
-(14, 2),
-(15, 1),
-(16, 1);
 
 -- --------------------------------------------------------
 
@@ -288,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `desktop_ram` (
   `casLatency` int(11) DEFAULT NULL,
   `numberOfPins` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `desktop_ram`
@@ -297,7 +285,8 @@ CREATE TABLE IF NOT EXISTS `desktop_ram` (
 INSERT INTO `desktop_ram` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `type`, `busSpeed`, `casLatency`, `numberOfPins`) VALUES
 (1, 'Ballistix Elite 8GB Single DDR4 3000 MT/s (PC4-24000) DIMM 288-Pin Memory', 'BLE8G4D30AEEA', 'Elite', 'Ballistix ', 8, 'DDR4 DIMM', 'PC4-24000', 15, 288),
 (2, 'RAm testowy', 'HP', 'złom', 'HP', 4, 'DDR4', '233', 32, 254),
-(3, 'testowy ram', '123', '22', 'HP', 2, 'DDR4', '1234', 12, 255);
+(3, 'testowy ram', '123', '22', 'HP', 2, 'DDR4', '1234', 12, 255),
+(4, 'PAMIĘĆ RAM 16 GB DDR3 GOODRAM PLAY CL 10', 'GYS1866D364L10/16GDC', 'PLAY', 'GOODRAM', 16, 'DDR3', '1866 MHz', 10, 230);
 
 -- --------------------------------------------------------
 
@@ -462,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `fos_user` (
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-29 14:23:55', NULL, NULL, 'a:0:{}'),
+(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-05-30 14:49:31', NULL, NULL, 'a:0:{}'),
 (2, 'Janek', 'janek', 'jam@jam.pl', 'jam@jam.pl', 0, NULL, '$2y$13$otms8EkVthxQyxGZ2HD7EeqNB9e6wuBmQz/LaqA.KYMMEm4RVPwy6', NULL, NULL, NULL, 'a:0:{}');
 
 -- --------------------------------------------------------
@@ -653,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `picture`
@@ -664,10 +653,10 @@ INSERT INTO `picture` (`id`, `file`) VALUES
 (6, 'db16947da7cd775a11dd908a8cddeeb5.jpeg'),
 (7, '38cd90b432b312ab3e6d9e57f356e39a.jpeg'),
 (8, 'cd5631051a956ebf10a33fecaf568b35.jpeg'),
-(10, '30e01ca4cff5915d0045c8ba7444cde3.png'),
 (11, 'f62fa0ada55158a0b26d11c3d4adcc94.jpeg'),
 (12, '1bc472c48ce9c8e8639150867d403cc4.png'),
-(13, 'd6a17df0bdaced344cffdfab8bb815ce.jpeg');
+(13, 'd6a17df0bdaced344cffdfab8bb815ce.jpeg'),
+(14, 'd3071e1bb71167d897085eda05410175.png');
 
 -- --------------------------------------------------------
 
@@ -709,8 +698,8 @@ CREATE TABLE IF NOT EXISTS `ramslot_desktopram` (
   `ramslot_id` int(11) NOT NULL,
   `desktopram_id` int(11) NOT NULL,
   PRIMARY KEY (`ramslot_id`,`desktopram_id`),
-  KEY `IDX_A6874BA1D549D3BC` (`ramslot_id`),
-  KEY `IDX_A6874BA1C5101709` (`desktopram_id`)
+  UNIQUE KEY `UNIQ_A6874BA1C5101709` (`desktopram_id`),
+  KEY `IDX_A6874BA1D549D3BC` (`ramslot_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -722,9 +711,23 @@ CREATE TABLE IF NOT EXISTS `ramslot_desktopram` (
 CREATE TABLE IF NOT EXISTS `ram_slot` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `desktop_id` int(11) DEFAULT NULL,
+  `desktop_ram_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `IDX_25F5B530FFF2950E` (`desktop_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  KEY `IDX_25F5B530FFF2950E` (`desktop_id`),
+  KEY `IDX_25F5B530C076F052` (`desktop_ram_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
+
+--
+-- Dumping data for table `ram_slot`
+--
+
+INSERT INTO `ram_slot` (`id`, `desktop_id`, `desktop_ram_id`) VALUES
+(17, 14, 1),
+(22, 15, 1),
+(23, 15, 3),
+(27, 15, 2),
+(28, 13, 1),
+(29, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -882,6 +885,7 @@ ALTER TABLE `ramslot_desktopram`
 -- Constraints for table `ram_slot`
 --
 ALTER TABLE `ram_slot`
+  ADD CONSTRAINT `FK_25F5B530C076F052` FOREIGN KEY (`desktop_ram_id`) REFERENCES `desktop_ram` (`id`),
   ADD CONSTRAINT `FK_25F5B530FFF2950E` FOREIGN KEY (`desktop_id`) REFERENCES `desktop` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

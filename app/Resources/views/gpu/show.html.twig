@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gpu</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gpu.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ gpu.name }}</td>
+            </tr>
+            <tr>
+                <th>Chipset</th>
+                <td>{{ gpu.chipset }}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{ gpu.series }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ gpu.brand }}</td>
+            </tr>
+            <tr>
+                <th>Memorysize</th>
+                <td>{{ gpu.memorySize }}</td>
+            </tr>
+            <tr>
+                <th>Memorytype</th>
+                <td>{{ gpu.memoryType }}</td>
+            </tr>
+            <tr>
+                <th>Compatiableslotport</th>
+                <td>{{ gpu.compatiableSlotPort }}</td>
+            </tr>
+            <tr>
+                <th>Cooling</th>
+                <td>{{ gpu.cooling }}</td>
+            </tr>
+            <tr>
+                <th>Monitorconnectors</th>
+                <td>{{ gpu.monitorConnectors }}</td>
+            </tr>
+            <tr>
+                <th>Powerconnectors</th>
+                <td>{{ gpu.powerConnectors }}</td>
+            </tr>
+            <tr>
+                <th>Formfactor</th>
+                <td>{{ gpu.formFactor }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('gpu_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('gpu_edit', { 'id': gpu.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

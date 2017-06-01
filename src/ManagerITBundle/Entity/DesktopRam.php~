@@ -305,4 +305,44 @@ class DesktopRam
     {
         return $this->numberOfPins;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ramSlots = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add ramSlots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramSlots
+     * @return DesktopRam
+     */
+    public function addRamSlot(\ManagerITBundle\Entity\RamSlot $ramSlots)
+    {
+        $this->ramSlots[] = $ramSlots;
+
+        return $this;
+    }
+
+    /**
+     * Remove ramSlots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramSlots
+     */
+    public function removeRamSlot(\ManagerITBundle\Entity\RamSlot $ramSlots)
+    {
+        $this->ramSlots->removeElement($ramSlots);
+    }
+
+    /**
+     * Get ramSlots
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRamSlots()
+    {
+        return $this->ramSlots;
+    }
 }

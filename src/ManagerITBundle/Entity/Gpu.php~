@@ -1,0 +1,102 @@
+<?php
+
+namespace ManagerITBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Gpu
+ *
+ * @ORM\Table(name="gpu")
+ * @ORM\Entity(repositoryClass="ManagerITBundle\Repository\GpuRepository")
+ */
+class Gpu
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chipset", type="string", length=255)
+     */
+    private $chipset;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="series", type="string", length=255)
+     */
+    private $series;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="brand", type="string", length=100)
+     */
+    private $brand;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="memorySize", type="integer")
+     */
+    private $memorySize;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="memoryType", type="string", length=100)
+     */
+    private $memoryType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="compatiableSlot", type="string", length=255)
+     */
+    private $compatiableSlotPort;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cooling", type="string", length=255)
+     */
+    private $cooling;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="monitorConnectors", type="string", length=255)
+     */
+    private $monitorConnectors;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="powerConnectors", type="string", length=255)
+     */
+    private $powerConnectors;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formFactor", type="string", length=100)
+     */
+    private $formFactor;
+
+   
+}

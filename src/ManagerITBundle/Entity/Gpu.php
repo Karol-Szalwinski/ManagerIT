@@ -98,7 +98,6 @@ class Gpu
      */
     private $formFactor;
 
-   
 
     /**
      * Get id

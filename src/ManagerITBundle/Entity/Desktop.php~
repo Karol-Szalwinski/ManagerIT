@@ -63,6 +63,11 @@ class Desktop
     private $ramslots;
 
     /**
+     * @ORM\OneToMany(targetEntity="InterfacePci", mappedBy="desktop")
+     */
+    private $interfacePcies;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Hdd")
      * @ORM\JoinTable(name="desktop_hdd",
      *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
@@ -164,21 +169,7 @@ class Desktop
      */
     private $employees;
 
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ramslots = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->drives = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->addDate = new \DateTime();
-        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    
 
     /**
      * Get id
@@ -730,5 +721,53 @@ class Desktop
     public function getRamslots()
     {
         return $this->ramslots;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ramslots = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->interfacePcies = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->drives = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
+    }
+
+    /**
+     * Add interfacePcies
+     *
+     * @param \ManagerITBundle\Entity\InterfacePci $interfacePcies
+     * @return Desktop
+     */
+    public function addInterfacePcy(\ManagerITBundle\Entity\InterfacePci $interfacePcies)
+    {
+        $this->interfacePcies[] = $interfacePcies;
+
+        return $this;
+    }
+
+    /**
+     * Remove interfacePcies
+     *
+     * @param \ManagerITBundle\Entity\InterfacePci $interfacePcies
+     */
+    public function removeInterfacePcy(\ManagerITBundle\Entity\InterfacePci $interfacePcies)
+    {
+        $this->interfacePcies->removeElement($interfacePcies);
+    }
+
+    /**
+     * Get interfacePcies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInterfacePcies()
+    {
+        return $this->interfacePcies;
     }
 }

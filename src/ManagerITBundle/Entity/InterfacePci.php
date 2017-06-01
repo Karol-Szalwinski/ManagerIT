@@ -22,18 +22,17 @@ class InterfacePci
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="computer", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="interfacePcies")
+     * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
      */
-    private $computer;
+    private $desktop;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="card", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Gpu")
+     * @ORM\JoinColumn(name="$cardGpu_id", referencedColumnName="id")
      */
-    private $card;
+    private $cardGpu;
+
 
 
     /**
@@ -47,48 +46,48 @@ class InterfacePci
     }
 
     /**
-     * Set computer
+     * Set desktop
      *
-     * @param string $computer
+     * @param \ManagerITBundle\Entity\Desktop $desktop
      * @return InterfacePci
      */
-    public function setComputer($computer)
+    public function setDesktop(\ManagerITBundle\Entity\Desktop $desktop = null)
     {
-        $this->computer = $computer;
+        $this->desktop = $desktop;
 
         return $this;
     }
 
     /**
-     * Get computer
+     * Get desktop
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\Desktop 
      */
-    public function getComputer()
+    public function getDesktop()
     {
-        return $this->computer;
+        return $this->desktop;
     }
 
     /**
-     * Set card
+     * Set cardGpu
      *
-     * @param string $card
+     * @param \ManagerITBundle\Entity\Gpu $cardGpu
      * @return InterfacePci
      */
-    public function setCard($card)
+    public function setCardGpu(\ManagerITBundle\Entity\Gpu $cardGpu = null)
     {
-        $this->card = $card;
+        $this->cardGpu = $cardGpu;
 
         return $this;
     }
 
     /**
-     * Get card
+     * Get cardGpu
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\Gpu 
      */
-    public function getCard()
+    public function getCardGpu()
     {
-        return $this->card;
+        return $this->cardGpu;
     }
 }

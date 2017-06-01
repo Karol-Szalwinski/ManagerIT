@@ -6,6 +6,7 @@ use ManagerITBundle\Entity\Desktop;
 use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\DesktopRam;
 use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\RamSlot;
@@ -353,4 +354,42 @@ class DesktopController extends Controller
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
     }
+    /**
+     *
+     * @Route("/{id}/desktop_connect_gpu/{gpu}", name="desktop_connect_gpu")
+     * @Method("GET")
+     */
+    public
+    function desktopConnectGpuAction(Desktop $desktop, Gpu $gpu)
+    {
+
+        $interfacePci = new InterfacePci();
+        $interfacePci->setCardGpu($gpu);
+        $interfacePci->setDesktop($desktop);
+        $desktop->addInterfacePcy($interfacePci);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($interfacePci);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+    /**
+     * Desktop remove gpu
+     * @Route("/{id}/desktop_remove_gpu/{interfacePci}", name="desktop_remove_gpu")
+     * @Method("GET")
+     */
+    public
+    function desktopRemoveGpuAction(Desktop $desktop, InterfacePci $interfacePci)
+    {
+
+        $desktop->removeInterfacePcy($interfacePci);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($interfacePci);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+
 }

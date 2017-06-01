@@ -1,59 +1,86 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Gpus list</h1>
+{% block title %} Karty graficzne {% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Chipset</th>
-                <th>Series</th>
-                <th>Brand</th>
-                <th>Memorysize</th>
-                <th>Memorytype</th>
-                <th>Compatiableslotport</th>
-                <th>Cooling</th>
-                <th>Monitorconnectors</th>
-                <th>Powerconnectors</th>
-                <th>Formfactor</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for gpu in gpus %}
-            <tr>
-                <td><a href="{{ path('gpu_show', { 'id': gpu.id }) }}">{{ gpu.id }}</a></td>
-                <td>{{ gpu.name }}</td>
-                <td>{{ gpu.chipset }}</td>
-                <td>{{ gpu.series }}</td>
-                <td>{{ gpu.brand }}</td>
-                <td>{{ gpu.memorySize }}</td>
-                <td>{{ gpu.memoryType }}</td>
-                <td>{{ gpu.compatiableSlotPort }}</td>
-                <td>{{ gpu.cooling }}</td>
-                <td>{{ gpu.monitorConnectors }}</td>
-                <td>{{ gpu.powerConnectors }}</td>
-                <td>{{ gpu.formFactor }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('gpu_show', { 'id': gpu.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('gpu_edit', { 'id': gpu.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('gpu_new') }}">Create a new gpu</a>
-        </li>
-    </ul>
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('gpu_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista kart graficznych</span>
+            </a>
+            <a href="{{ path('gpu_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
+
+
+{% block body %}
+
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                <h5>Lista kart graficznych</h5>
+                            </header>
+                            <div id="collapse4" class="body">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Chipset</th>
+                                        <th>Seria</th>
+                                        <th>Marka</th>
+                                        <th>Pamięć</th>
+                                        <th>Typ pamięci</th>
+                                        <th>Porty</th>
+                                        <th>Chłodzenie</th>
+                                        <th>Wyjścia</th>
+                                        <th>Dodatkowe zasilanie</th>
+                                        <th>Typ grafiki</th>
+                                    </thead>
+                                    <tbody>
+                                    {% for gpu in gpus %}
+                                        <tr onclick='location.href = "{{ path('gpu_show', { 'id': gpu.id }) }}"'>
+                                            <td>{{ gpu.name }}</td>
+                                            <td>{{ gpu.chipset }}</td>
+                                            <td>{{ gpu.series }}</td>
+                                            <td>{{ gpu.brand }}</td>
+                                            <td>{{ gpu.memorySize }}</td>
+                                            <td>{{ gpu.memoryType }}</td>
+                                            <td>{{ gpu.compatiableSlotPort }}</td>
+                                            <td>{{ gpu.cooling }}</td>
+                                            <td>{{ gpu.monitorConnectors }}</td>
+                                            <td>{{ gpu.powerConnectors }}</td>
+                                            <td>{{ gpu.formFactor }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+{% endblock %}
+
+
+

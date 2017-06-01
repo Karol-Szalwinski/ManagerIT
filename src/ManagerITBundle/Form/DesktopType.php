@@ -20,11 +20,6 @@ class DesktopType extends AbstractType
             ->add('model')
             ->add('type')
             ->add('manufacturer')
-            ->add('cpu', EntityType::class, [
-                'class' => 'ManagerITBundle:DesktopCPU',
-                'choice_label' => 'name',
-                'multiple' => false,
-            ])
             ->add('hdds', EntityType::class, [
                 'class' => 'ManagerITBundle:Hdd',
                 'choice_label' => 'name',

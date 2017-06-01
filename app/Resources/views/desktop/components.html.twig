@@ -271,7 +271,7 @@
                                             <div class="box">
                                                 <header>
                                                     <div class="icons"><i class="fa fa-desktop"></i></div>
-                                                    <h5>Lista komputerów</h5>
+                                                    <h5>Lista procesorów</h5>
                                                 </header>
                                                 <div id="collapse4" class="body">
                                                     <table id="dataTable"
@@ -290,7 +290,6 @@
                                                         <tbody>
                                                         {% for desktopRam in desktopRams %}
                                                             <tr onclick='location.href = "{{ path('desktop_connect_ram', { 'id': desktop.id,  'ram': desktopRam.id }) }}"'>
-
                                                                 <td>{{ desktopRam.name }}</td>
                                                                 <td>{{ desktopRam.model }}</td>
                                                                 <td>{{ desktopRam.series }}</td>
@@ -329,7 +328,7 @@
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
-                                <h5 class="modal-title" id="gpusModalLabel">Wybierz procesor z listy</h5>
+                                <h5 class="modal-title" id="gpusModalLabel">Wybierz gpu z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -347,26 +346,25 @@
                                                         <thead>
                                                         <tr>
                                                             <th>Nazwa</th>
-                                                            <th>Model</th>
+                                                            <th>Chipset</th>
                                                             <th>Seria</th>
-                                                            <th>Producent</th>
-                                                            <th>Pojemność w Gb</th>
-                                                            <th>Typ</th>
-                                                            <th>Taktowanie</th>
-                                                            <th>CAS opóźnienie</th>
+                                                            <th>Marka</th>
+                                                            <th>Pamięć</th>
+                                                            <th>Typ pamięci</th>
+                                                            <th>Porty</th>
+                                                            <th>Typ grafiki</th>
                                                         </thead>
                                                         <tbody>
-                                                        {% for desktopRam in desktopRams %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_ram', { 'id': desktop.id,  'ram': desktopRam.id }) }}"'>
-
-                                                                <td>{{ desktopRam.name }}</td>
-                                                                <td>{{ desktopRam.model }}</td>
-                                                                <td>{{ desktopRam.series }}</td>
-                                                                <td>{{ desktopRam.brand }}</td>
-                                                                <td>{{ desktopRam.capacity }} GB</td>
-                                                                <td>{{ desktopRam.type }}</td>
-                                                                <td>{{ desktopRam.busSpeed }}</td>
-                                                                <td>CL{{ desktopRam.casLatency }}</td>
+                                                        {% for gpu in gpus %}
+                                                            <tr onclick='location.href = "{{ path('desktop_connect_gpu', { 'id': desktop.id,  'gpu': gpu.id }) }}"'>
+                                                                <td>{{ gpu.name }}</td>
+                                                                <td>{{ gpu.chipset }}</td>
+                                                                <td>{{ gpu.series }}</td>
+                                                                <td>{{ gpu.brand }}</td>
+                                                                <td>{{ gpu.memorySize }}</td>
+                                                                <td>{{ gpu.memoryType }}</td>
+                                                                <td>{{ gpu.compatiableSlotPort }}</td>
+                                                                <td>{{ gpu.formFactor }}</td>
                                                             </tr>
                                                         {% endfor %}
                                                         </tbody>

@@ -178,7 +178,15 @@
                                     </tr>
                                     <tr>
                                         <td>GPU</td>
-                                        <td>brak</td>
+                                        <td>
+                                            {% if desktop.interfacePcies is empty %}
+                                                Brak
+                                            {% else %}
+                                                {% for interfacePci in desktop.interfacePcies %}
+                                                   {{ interfacePci.cardGpu.name }}</br>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>HDD</td>
@@ -190,7 +198,7 @@
                                                     {{ hdd.capacity }} GB - {{ hdd.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
-                                        </td
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>SSD</td>
@@ -202,7 +210,7 @@
                                                     {{ ssd.capacity }} GB - {{ ssd.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
-                                        </td
+                                        </td>
                                     </tr><tr>
                                         <td>Napęd</td>
                                         <td>

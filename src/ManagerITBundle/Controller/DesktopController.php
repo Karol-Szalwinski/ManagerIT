@@ -10,6 +10,7 @@ use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\RamSlot;
+use ManagerITBundle\Entity\Gpu;
 use ManagerITBundle\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -84,10 +85,12 @@ class DesktopController extends Controller
 
         $desktopCPUs = $em->getRepository('ManagerITBundle:DesktopCPU')->findAll();
         $desktopRams = $em->getRepository('ManagerITBundle:DesktopRam')->findAll();
+        $gpus = $em->getRepository('ManagerITBundle:Gpu')->findAll();
         return $this->render('desktop/components.html.twig', array(
             'desktop' => $desktop,
             'desktopCPUs' => $desktopCPUs,
             'desktopRams' => $desktopRams,
+            'gpus' => $gpus,
         ));
     }
 

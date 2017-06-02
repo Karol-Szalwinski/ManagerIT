@@ -75,33 +75,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
-                                    {{ form_label(form.cpu, 'Procesor', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.cpu, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź procesor'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.hdds, 'Dysk HDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.hdds, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz Dysk HDD'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.ssds, 'Dysk SSD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.ssds, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz Dysk SSD'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.drives, 'Napęd optyczny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.drives, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź napęd CD-ROM / DVD ROM'} }) }}
-                                    </div>
-                                </div>
 
                                 <div class="form-group" >
                                     {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
@@ -140,9 +113,9 @@
 
 
                                 <div class="form-group" >
-                                    {{ form_label(form.price, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
+                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź cenę PLN'} }) }}
                                     </div>
                                 </div>
 
@@ -153,10 +126,6 @@
                                         {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
                                     </div>
                                 </div>
-
-                                {#<div class="form-group">#}
-                                    {#{{ form_row(form.picture) }}#}
-                                {#</div>#}
 
                                 <input type="submit" value="Dodaj nowy komputer" class="btn btn-primary btn-grad control-label" />
                                 <br>

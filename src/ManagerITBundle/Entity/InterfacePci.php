@@ -34,7 +34,6 @@ class InterfacePci
     private $cardGpu;
 
 
-
     /**
      * Get id
      *

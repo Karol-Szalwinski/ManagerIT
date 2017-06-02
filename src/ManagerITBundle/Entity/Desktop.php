@@ -68,6 +68,11 @@ class Desktop
     private $interfacePcies;
 
     /**
+     * @ORM\OneToMany(targetEntity="StorageController", mappedBy="desktop")
+     */
+    private $storageControllers;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Hdd")
      * @ORM\JoinTable(name="desktop_hdd",
      *      joinColumns={@ORM\JoinColumn(name="desktop_id", referencedColumnName="id")},
@@ -169,7 +174,23 @@ class Desktop
      */
     private $employees;
 
-    
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ramslots = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->interfacePcies = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->storageControllers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->drives = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
+    }
 
     /**
      * Get id
@@ -342,7 +363,6 @@ class Desktop
         return $this->macAddress;
     }
 
-    
     /**
      * Set price
      *
@@ -435,6 +455,104 @@ class Desktop
         return $this->cpu;
     }
 
+    /**
+     * Add ramslots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramslots
+     * @return Desktop
+     */
+    public function addRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
+    {
+        $this->ramslots[] = $ramslots;
+
+        return $this;
+    }
+
+    /**
+     * Remove ramslots
+     *
+     * @param \ManagerITBundle\Entity\RamSlot $ramslots
+     */
+    public function removeRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
+    {
+        $this->ramslots->removeElement($ramslots);
+    }
+
+    /**
+     * Get ramslots
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRamslots()
+    {
+        return $this->ramslots;
+    }
+
+    /**
+     * Add interfacePcies
+     *
+     * @param \ManagerITBundle\Entity\InterfacePci $interfacePcies
+     * @return Desktop
+     */
+    public function addInterfacePcy(\ManagerITBundle\Entity\InterfacePci $interfacePcies)
+    {
+        $this->interfacePcies[] = $interfacePcies;
+
+        return $this;
+    }
+
+    /**
+     * Remove interfacePcies
+     *
+     * @param \ManagerITBundle\Entity\InterfacePci $interfacePcies
+     */
+    public function removeInterfacePcy(\ManagerITBundle\Entity\InterfacePci $interfacePcies)
+    {
+        $this->interfacePcies->removeElement($interfacePcies);
+    }
+
+    /**
+     * Get interfacePcies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInterfacePcies()
+    {
+        return $this->interfacePcies;
+    }
+
+    /**
+     * Add storageControllers
+     *
+     * @param \ManagerITBundle\Entity\StorageController $storageControllers
+     * @return Desktop
+     */
+    public function addStorageController(\ManagerITBundle\Entity\StorageController $storageControllers)
+    {
+        $this->storageControllers[] = $storageControllers;
+
+        return $this;
+    }
+
+    /**
+     * Remove storageControllers
+     *
+     * @param \ManagerITBundle\Entity\StorageController $storageControllers
+     */
+    public function removeStorageController(\ManagerITBundle\Entity\StorageController $storageControllers)
+    {
+        $this->storageControllers->removeElement($storageControllers);
+    }
+
+    /**
+     * Get storageControllers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStorageControllers()
+    {
+        return $this->storageControllers;
+    }
 
     /**
      * Add hdds
@@ -503,36 +621,36 @@ class Desktop
     }
 
     /**
-     * Add drive
+     * Add drives
      *
-     * @param \ManagerITBundle\Entity\OpticalDrive $drive
+     * @param \ManagerITBundle\Entity\OpticalDrive $drives
      * @return Desktop
      */
-    public function addDrive(\ManagerITBundle\Entity\OpticalDrive $drive)
+    public function addDrive(\ManagerITBundle\Entity\OpticalDrive $drives)
     {
-        $this->drive[] = $drive;
+        $this->drives[] = $drives;
 
         return $this;
     }
 
     /**
-     * Remove drive
+     * Remove drives
      *
-     * @param \ManagerITBundle\Entity\OpticalDrive $drive
+     * @param \ManagerITBundle\Entity\OpticalDrive $drives
      */
-    public function removeDrive(\ManagerITBundle\Entity\OpticalDrive $drive)
+    public function removeDrive(\ManagerITBundle\Entity\OpticalDrive $drives)
     {
-        $this->drive->removeElement($drive);
+        $this->drives->removeElement($drives);
     }
 
     /**
-     * Get drive
+     * Get drives
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getDrive()
+    public function getDrives()
     {
-        return $this->drive;
+        return $this->drives;
     }
 
     /**
@@ -579,6 +697,39 @@ class Desktop
     public function getOs()
     {
         return $this->os;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     * @return Desktop
+     */
+    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
     }
 
     /**
@@ -645,129 +796,5 @@ class Desktop
     public function getEmployees()
     {
         return $this->employees;
-    }
-
-    /**
-     * Get drives
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDrives()
-    {
-        return $this->drives;
-    }
-
-    /**
-     * Add pictures
-     *
-     * @param \ManagerITBundle\Entity\Picture $pictures
-     * @return Desktop
-     */
-    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
-    {
-        $this->pictures[] = $pictures;
-
-        return $this;
-    }
-
-    /**
-     * Remove pictures
-     *
-     * @param \ManagerITBundle\Entity\Picture $pictures
-     */
-    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
-    {
-        $this->pictures->removeElement($pictures);
-    }
-
-    /**
-     * Get pictures
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPictures()
-    {
-        return $this->pictures;
-    }
-
-    /**
-     * Add ramslots
-     *
-     * @param \ManagerITBundle\Entity\RamSlot $ramslots
-     * @return Desktop
-     */
-    public function addRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
-    {
-        $this->ramslots[] = $ramslots;
-
-        return $this;
-    }
-
-    /**
-     * Remove ramslots
-     *
-     * @param \ManagerITBundle\Entity\RamSlot $ramslots
-     */
-    public function removeRamslot(\ManagerITBundle\Entity\RamSlot $ramslots)
-    {
-        $this->ramslots->removeElement($ramslots);
-    }
-
-    /**
-     * Get ramslots
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRamslots()
-    {
-        return $this->ramslots;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->ramslots = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->interfacePcies = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->hdds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ssds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->drives = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->addDate = new \DateTime();
-    }
-
-    /**
-     * Add interfacePcies
-     *
-     * @param \ManagerITBundle\Entity\InterfacePci $interfacePcies
-     * @return Desktop
-     */
-    public function addInterfacePcy(\ManagerITBundle\Entity\InterfacePci $interfacePcies)
-    {
-        $this->interfacePcies[] = $interfacePcies;
-
-        return $this;
-    }
-
-    /**
-     * Remove interfacePcies
-     *
-     * @param \ManagerITBundle\Entity\InterfacePci $interfacePcies
-     */
-    public function removeInterfacePcy(\ManagerITBundle\Entity\InterfacePci $interfacePcies)
-    {
-        $this->interfacePcies->removeElement($interfacePcies);
-    }
-
-    /**
-     * Get interfacePcies
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getInterfacePcies()
-    {
-        return $this->interfacePcies;
     }
 }

@@ -11,6 +11,10 @@ use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\RamSlot;
 use ManagerITBundle\Entity\Gpu;
+use ManagerITBundle\Entity\StorageController;
+use ManagerITBundle\Entity\Hdd;
+use ManagerITBundle\Entity\Ssd;
+use ManagerITBundle\Entity\OpticalDrive;
 use ManagerITBundle\FileUploader;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -86,11 +90,18 @@ class DesktopController extends Controller
         $desktopCPUs = $em->getRepository('ManagerITBundle:DesktopCPU')->findAll();
         $desktopRams = $em->getRepository('ManagerITBundle:DesktopRam')->findAll();
         $gpus = $em->getRepository('ManagerITBundle:Gpu')->findAll();
+        $hdds = $em->getRepository('ManagerITBundle:Hdd')->findAll();
+        $ssds = $em->getRepository('ManagerITBundle:Ssd')->findAll();
+        $opticalDrives = $em->getRepository('ManagerITBundle:OpticalDrive')->findAll();
+
         return $this->render('desktop/components.html.twig', array(
             'desktop' => $desktop,
             'desktopCPUs' => $desktopCPUs,
             'desktopRams' => $desktopRams,
             'gpus' => $gpus,
+            'hdds' => $hdds,
+            'ssds' => $ssds,
+            'opticalDrives' => $opticalDrives,
         ));
     }
 
@@ -394,5 +405,116 @@ class DesktopController extends Controller
 
         return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
     }
+    /**
+     * Desktop connect hdd
+     * @Route("/{id}/desktop_connect_hdd/{hdd}", name="desktop_connect_hdd")
+     * @Method("GET")
+     */
+    public
+    function desktopConnectHddAction(Desktop $desktop, Hdd $hdd)
+    {
 
+        $storageController = new StorageController();
+        $storageController->setHdd($hdd);
+        $storageController->setDesktop($desktop);
+        $desktop->addStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+    /**
+     * Desktop remove hdd
+     * @Route("/{id}/desktop_remove_hdd/{storageController}", name="desktop_remove_hdd")
+     * @Method("GET")
+     */
+    public
+    function desktopRemoveHddAction(Desktop $desktop, StorageController $storageController)
+    {
+
+        $desktop->removeStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+    /**
+     * Desktop connect ssd
+     * @Route("/{id}/desktop_connect_ssd/{ssd}", name="desktop_connect_ssd")
+     * @Method("GET")
+     */
+    public
+    function desktopConnectSsdAction(Desktop $desktop, Ssd $ssd)
+    {
+
+        $storageController = new StorageController();
+        $storageController->setSsd($ssd);
+        $storageController->setDesktop($desktop);
+        $desktop->addStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+    /**
+     * Desktop remove ssd
+     * @Route("/{id}/desktop_remove_ssd/{storageController}", name="desktop_remove_ssd")
+     * @Method("GET")
+     */
+    public
+    function desktopRemoveSsdAction(Desktop $desktop, StorageController $storageController)
+    {
+
+        $desktop->removeStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+
+    /**
+     * Desktop connect optical drive
+     * @Route("/{id}/desktop_connect_drive/{opticalDrive}", name="desktop_connect_drive")
+     * @Method("GET")
+     */
+    public
+    function desktopConnectDriveAction(Desktop $desktop, OpticalDrive $opticalDrive)
+    {
+
+        $storageController = new StorageController();
+        $storageController->setOpticalDrive($opticalDrive);
+        $storageController->setDesktop($desktop);
+        $desktop->addStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
+    /**
+     * Desktop remove optical drive
+     * @Route("/{id}/desktop_remove_drive/{storageController}", name="desktop_remove_drive")
+     * @Method("GET")
+     */
+    public
+    function desktopRemoveDriveAction(Desktop $desktop, StorageController $storageController)
+    {
+
+        $desktop->removeStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('desktop_components', array('id' => $desktop->getId()));
+    }
 }

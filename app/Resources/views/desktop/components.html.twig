@@ -113,12 +113,20 @@
                                 <tr>
                                     <td>HDD</td>
                                     <td>
-                                        {% if desktop.hdds is empty %}
-                                            Brak
-                                        {% else %}
-                                            {% for hdd in desktop.hdds %}
-                                                {{ hdd.capacity }} GB - {{ hdd.name }}</br>
+                                        {% set empty = 1 %}
+                                            {% for storageController in desktop.storageControllers %}
+                                                {% if storageController.hdd is not null %}
+                                                    {% set empty = 0 %}
+                                                    {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
+                                                    <a href="{{ path('desktop_remove_hdd', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                       class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                        <i class="fa fa-times "></i>
+                                                        <span class="link-title">Wymontuj</span>
+                                                    </a></br>
+                                                {% endif %}
                                             {% endfor %}
+                                        {% if empty == 1 %}
+                                            Brak dysku hdd
                                         {% endif %}
                                     </td>
                                     <td>
@@ -133,13 +141,23 @@
                                 <tr>
                                     <td>SSD</td>
                                     <td>
-                                        {% if desktop.ssds is empty %}
-                                            Brak
-                                        {% else %}
-                                            {% for ssd in desktop.ssds %}
-                                                {{ ssd.capacity }} GB - {{ ssd.name }}</br>
-                                            {% endfor %}
+                                        {% set empty = 1 %}
+                                        {% for storageController in desktop.storageControllers %}
+
+                                            {% if storageController.ssd is not null %}
+                                                {% set empty = 0 %}
+                                                {{ storageController.ssd.capacity }} GB - {{ storageController.ssd.name }}
+                                                <a href="{{ path('desktop_remove_ssd', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <i class="fa fa-times "></i>
+                                                    <span class="link-title">Wymontuj</span>
+                                                </a></br>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if empty == 1 %}
+                                            Brak dysku ssd
                                         {% endif %}
+
                                     </td>
                                     <td>
                                         <!-- Przycisk uruchamiający modal -->
@@ -153,12 +171,21 @@
                                 <tr>
                                     <td>Napęd</td>
                                     <td>
-                                        {% if desktop.drives is empty %}
-                                            Brak
-                                        {% else %}
-                                            {% for drive in desktop.drives %}
-                                                {{ drive.name }}</br>
-                                            {% endfor %}
+                                        {% set empty = 1 %}
+                                        {% for storageController in desktop.storageControllers %}
+
+                                            {% if storageController.opticalDrive is not null %}
+                                                {% set empty = 0 %}
+                                                {{ storageController.opticalDrive.name }}
+                                                <a href="{{ path('desktop_remove_drive', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <i class="fa fa-times "></i>
+                                                    <span class="link-title">Wymontuj</span>
+                                                </a></br>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if empty == 1 %}
+                                            Brak napędów
                                         {% endif %}
                                     </td>
                                     <td>
@@ -169,10 +196,6 @@
                                             Zmień
                                         </button>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>Zasilacz</td>
-                                    <td>{{ desktop.powerSupply }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -252,6 +275,7 @@
 
                     </div>
                 </div>
+
                 <!-- Modal rams-->
                 <div class="modal fade" id="rams" tabindex="-1" role="dialog" aria-labelledby="ramssModalLabel"
                      aria-hidden="true">
@@ -319,6 +343,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Modal gpus-->
                 <div class="modal fade" id="gpus" tabindex="-1" role="dialog" aria-labelledby="gpusModalLabel"
                      aria-hidden="true">
@@ -387,6 +412,215 @@
 
                     </div>
                 </div>
+
+                <!-- Modal hdds-->
+                <div class="modal fade" id="hdds" tabindex="-1" role="dialog" aria-labelledby="hddsModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+                                <h5 class="modal-title" id="hddsModalLabel">Wybierz hdd z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <header>
+                                                    <div class="icons"><i class="fa fa-desktop"></i></div>
+                                                    <h5>Lista dysków ssd</h5>
+                                                </header>
+                                                <div id="collapse4" class="body">
+                                                    <table id="dataTable"
+                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nazwa</th>
+                                                            <th>Model</th>
+                                                            <th>Seria</th>
+                                                            <th>Producent</th>
+                                                            <th>Pojemność GB</th>
+                                                            <th>Format</th>
+                                                            <th>Interfejs</th>
+                                                            <th>Prędkość obrotowa rpm</th>
+                                                            <th>Cache MB</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for hdd in hdds %}
+                                                            <tr onclick='location.href = "{{ path('desktop_connect_hdd', { 'id': desktop.id,  'hdd': hdd.id }) }}"'>
+                                                                <td>{{ hdd.name }}</td>
+                                                                <td>{{ hdd.model }}</td>
+                                                                <td>{{ hdd.series }}</td>
+                                                                <td>{{ hdd.brand }}</td>
+                                                                <td>{{ hdd.capacity }}</td>
+                                                                <td>{{ hdd.formFactor }}</td>
+                                                                <td>{{ hdd.interface }}</td>
+                                                                <td>{{ hdd.rotationSpeedRpm }}</td>
+                                                                <td>{{ hdd.cache }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal ssds-->
+                <div class="modal fade" id="ssds" tabindex="-1" role="dialog" aria-labelledby="ssdsModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+                                <h5 class="modal-title" id="ssdsModalLabel">Wybierz hdd z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <header>
+                                                    <div class="icons"><i class="fa fa-desktop"></i></div>
+                                                    <h5>Lista dysków ssd</h5>
+                                                </header>
+                                                <div id="collapse4" class="body">
+                                                    <table id="dataTable"
+                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nazwa</th>
+                                                            <th>Model</th>
+                                                            <th>Seria</th>
+                                                            <th>Producent</th>
+                                                            <th>Pojemność GB</th>
+                                                            <th>Format</th>
+                                                            <th>Interfejs</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for ssd in ssds %}
+                                                            <tr onclick='location.href = "{{ path('desktop_connect_ssd', { 'id': desktop.id,  'ssd': ssd.id }) }}"'>
+                                                                <td>{{ ssd.name }}</td>
+                                                                <td>{{ ssd.model }}</td>
+                                                                <td>{{ ssd.series }}</td>
+                                                                <td>{{ ssd.brand }}</td>
+                                                                <td>{{ ssd.capacity }}</td>
+                                                                <td>{{ ssd.formFactor }}</td>
+                                                                <td>{{ ssd.interface }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Modal drives-->
+                <div class="modal fade" id="drives" tabindex="-1" role="dialog" aria-labelledby="drivesModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+                                <h5 class="modal-title" id="drivesModalLabel">Wybierz napęd z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <header>
+                                                    <div class="icons"><i class="fa fa-desktop"></i></div>
+                                                    <h5>Lista napędów optycznych</h5>
+                                                </header>
+                                                <div id="collapse4" class="body">
+                                                    <table id="dataTable"
+                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nazwa</th>
+                                                            <th>Model</th>
+                                                            <th>Seria</th>
+                                                            <th>Producent</th>
+                                                            <th>Typ</th>
+                                                            <th>Interfejs</th>
+                                                            <th>Rozmiar</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for opticalDrive in opticalDrives %}
+                                                            <tr onclick='location.href = "{{ path('desktop_connect_drive', { 'id': desktop.id,  'opticalDrive': opticalDrive.id }) }}"'>
+                                                                <td>{{ opticalDrive.name }}</td>
+                                                                <td>{{ opticalDrive.model }}</td>
+                                                                <td>{{ opticalDrive.series }}</td>
+                                                                <td>{{ opticalDrive.brand }}</td>
+                                                                <td>{{ opticalDrive.type }}</td>
+                                                                <td>{{ opticalDrive.interface }}</td>
+                                                                <td>{{ opticalDrive.factoryFormat }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
             </div>
         </div>
     </div>

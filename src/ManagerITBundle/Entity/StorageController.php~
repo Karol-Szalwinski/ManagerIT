@@ -22,7 +22,7 @@ class StorageController
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="interfacePcies")
+     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="storageControllers")
      * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
      */
     private $desktop;

@@ -47,7 +47,6 @@ class DesktopCPUController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($desktopCPU);
             $em->flush($desktopCPU);
-
             return $this->redirectToRoute('desktopcpu_show', array('id' => $desktopCPU->getId()));
         }
 

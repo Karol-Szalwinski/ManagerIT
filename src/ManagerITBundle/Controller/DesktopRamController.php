@@ -34,10 +34,10 @@ class DesktopRamController extends Controller
     /**
      * Creates a new desktopRam entity.
      *
-     * @Route("/new", name="desktopram_new")
+     * @Route("/new/{desktop}", name="desktopram_new", defaults={"desktop" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($desktop, Request $request)
     {
         $desktopRam = new Desktopram();
         $form = $this->createForm('ManagerITBundle\Form\DesktopRamType', $desktopRam);
@@ -48,12 +48,15 @@ class DesktopRamController extends Controller
             $em->persist($desktopRam);
             $em->flush($desktopRam);
 
-            return $this->redirectToRoute('desktopram_show', array('id' => $desktopRam->getId()));
+            $route = ($desktop == null) ? $this->redirectToRoute('desktopram_show', array('id' => $desktopRam->getId())) :
+                $this->redirectToRoute('desktop_components', array('id' => $desktop));
+            return $route;
         }
 
         return $this->render('desktopram/new.html.twig', array(
             'desktopRam' => $desktopRam,
             'form' => $form->createView(),
+            'desktop' => $desktop,
         ));
     }
 

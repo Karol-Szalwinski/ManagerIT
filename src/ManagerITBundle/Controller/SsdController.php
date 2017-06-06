@@ -34,10 +34,10 @@ class SsdController extends Controller
     /**
      * Creates a new ssd entity.
      *
-     * @Route("/new", name="ssd_new")
+     * @Route("/new/{desktop}", name="ssd_new", defaults={"desktop" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($desktop, Request $request)
     {
         $ssd = new Ssd();
         $form = $this->createForm('ManagerITBundle\Form\SsdType', $ssd);
@@ -47,13 +47,15 @@ class SsdController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($ssd);
             $em->flush($ssd);
-
-            return $this->redirectToRoute('ssd_show', array('id' => $ssd->getId()));
+            $route = ($desktop == null) ? $this->redirectToRoute('ssd_show', array('id' => $ssd->getId())) :
+                $this->redirectToRoute('desktop_components', array('id' => $desktop));
+            return $route;
         }
 
         return $this->render('ssd/new.html.twig', array(
             'ssd' => $ssd,
             'form' => $form->createView(),
+            'desktop' => $desktop,
         ));
     }
 

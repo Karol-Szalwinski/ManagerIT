@@ -343,7 +343,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('desktopram_new') }}"
+                                    <a href="{{ path('desktopram_new', {'desktop' : desktop.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
@@ -416,7 +416,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('gpu_new') }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('gpu_new', {'desktop' : desktop.id}) }}" class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -491,7 +491,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('hdd_new') }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('hdd_new', {'desktop' : desktop.id}) }}" class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -562,7 +562,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('ssd_new') }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('ssd_new', {'desktop' : desktop.id}) }}" class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -576,6 +576,7 @@
 
                     </div>
                 </div>
+
                 <!-- Modal drives-->
                 <div class="modal fade" id="drives" tabindex="-1" role="dialog" aria-labelledby="drivesModalLabel"
                      aria-hidden="true">
@@ -632,7 +633,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('opticaldrive_new') }}"
+                                    <a href="{{ path('opticaldrive_new', {'desktop' : desktop.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>

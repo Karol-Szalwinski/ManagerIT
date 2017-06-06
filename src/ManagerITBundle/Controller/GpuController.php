@@ -34,10 +34,10 @@ class GpuController extends Controller
     /**
      * Creates a new gpu entity.
      *
-     * @Route("/new", name="gpu_new")
+     * @Route("/new/desktop", name="gpu_new", defaults={"desktop" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($desktop, Request $request)
     {
         $gpu = new Gpu();
         $form = $this->createForm('ManagerITBundle\Form\GpuType', $gpu);
@@ -48,12 +48,15 @@ class GpuController extends Controller
             $em->persist($gpu);
             $em->flush($gpu);
 
-            return $this->redirectToRoute('gpu_show', array('id' => $gpu->getId()));
+            $route = ($desktop == null) ? $this->redirectToRoute('gpu_show', array('id' => $gpu->getId())) :
+                $this->redirectToRoute('desktop_components', array('id' => $desktop));
+            return $route;
         }
 
         return $this->render('gpu/new.html.twig', array(
             'gpu' => $gpu,
             'form' => $form->createView(),
+            'desktop' => $desktop,
         ));
     }
 

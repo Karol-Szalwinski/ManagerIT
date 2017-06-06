@@ -34,10 +34,10 @@ class OpticalDriveController extends Controller
     /**
      * Creates a new opticalDrive entity.
      *
-     * @Route("/new", name="opticaldrive_new")
+     * @Route("/new/{desktop}", name="opticaldrive_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($desktop, Request $request)
     {
         $opticalDrive = new Opticaldrive();
         $form = $this->createForm('ManagerITBundle\Form\OpticalDriveType', $opticalDrive);
@@ -47,13 +47,15 @@ class OpticalDriveController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($opticalDrive);
             $em->flush($opticalDrive);
-
-            return $this->redirectToRoute('opticaldrive_show', array('id' => $opticalDrive->getId()));
+            $route = ($desktop == null) ? $this->redirectToRoute('opticaldrive_show', array('id' => $opticalDrive->getId())) :
+                $this->redirectToRoute('desktop_components', array('id' => $desktop));
+            return $route;
         }
 
         return $this->render('opticaldrive/new.html.twig', array(
             'opticalDrive' => $opticalDrive,
             'form' => $form->createView(),
+            'desktop' => $desktop,
         ));
     }
 

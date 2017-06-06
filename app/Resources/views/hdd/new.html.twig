@@ -27,7 +27,12 @@
                         <div class="box dark">
                             <header>
                                 <div class="icons"><i class="fa fa-edit"></i></div>
-                                <h5>Dodaj nowy dysk HDD</h5>
+                                <h5>Dodaj nowy dysk HDD
+                                    {% if desktop is not null %}
+                                        {{ desktop.id }}
+
+                                    {% endif %}
+                                </h5>
                                 <!-- .toolbar -->
                                 <div class="toolbar">
                                     <nav style="padding: 8px;">
@@ -117,6 +122,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!----------------------------------------------------->
                 </div>
                 <!-- /.row -->

@@ -34,10 +34,10 @@ class HddController extends Controller
     /**
      * Creates a new hdd entity.
      *
-     * @Route("/new", name="hdd_new")
+     * @Route("/new/{desktop}", name="hdd_new", defaults={"desktop" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($desktop, Request $request)
     {
         $hdd = new Hdd();
         $form = $this->createForm('ManagerITBundle\Form\HddType', $hdd);
@@ -48,12 +48,15 @@ class HddController extends Controller
             $em->persist($hdd);
             $em->flush($hdd);
 
-            return $this->redirectToRoute('hdd_show', array('id' => $hdd->getId()));
+            $route = ($desktop == null) ? $this->redirectToRoute('hdd_show', array('id' => $hdd->getId())) :
+                $this->redirectToRoute('desktop_components', array('id' => $desktop));
+            return $route;
         }
 
         return $this->render('hdd/new.html.twig', array(
             'hdd' => $hdd,
             'form' => $form->createView(),
+            'desktop' => $desktop,
         ));
     }
 

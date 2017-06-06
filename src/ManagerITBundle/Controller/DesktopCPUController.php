@@ -3,9 +3,11 @@
 namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\DesktopCPU;
+use ManagerITBundle\Entity\Desktop;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Desktopcpu controller.
@@ -34,10 +36,10 @@ class DesktopCPUController extends Controller
     /**
      * Creates a new desktopCPU entity.
      *
-     * @Route("/new", name="desktopcpu_new")
+     * @Route("/new/{desktop}", name="desktopcpu_new", defaults={"desktop" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction( $desktop, Request $request)
     {
         $desktopCPU = new Desktopcpu();
         $form = $this->createForm('ManagerITBundle\Form\DesktopCPUType', $desktopCPU);
@@ -47,12 +49,15 @@ class DesktopCPUController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($desktopCPU);
             $em->flush($desktopCPU);
-            return $this->redirectToRoute('desktopcpu_show', array('id' => $desktopCPU->getId()));
+            $route = ($desktop == null) ? $this->redirectToRoute('desktopcpu_show', array('id' => $desktopCPU->getId())) :
+                $this->redirectToRoute('desktop_components', array('id' => $desktop));
+            return $route;
         }
 
         return $this->render('desktopcpu/new.html.twig', array(
             'desktopCPU' => $desktopCPU,
             'form' => $form->createView(),
+            'desktop' => $desktop,
         ));
     }
 
@@ -129,7 +134,6 @@ class DesktopCPUController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('desktopcpu_delete', array('id' => $desktopCPU->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

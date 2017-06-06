@@ -114,17 +114,17 @@
                                     <td>HDD</td>
                                     <td>
                                         {% set empty = 1 %}
-                                            {% for storageController in desktop.storageControllers %}
-                                                {% if storageController.hdd is not null %}
-                                                    {% set empty = 0 %}
-                                                    {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
-                                                    <a href="{{ path('desktop_remove_hdd', {'id': desktop.id , 'storageController': storageController.id }) }}"
-                                                       class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                        <i class="fa fa-times "></i>
-                                                        <span class="link-title">Wymontuj</span>
-                                                    </a></br>
-                                                {% endif %}
-                                            {% endfor %}
+                                        {% for storageController in desktop.storageControllers %}
+                                            {% if storageController.hdd is not null %}
+                                                {% set empty = 0 %}
+                                                {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
+                                                <a href="{{ path('desktop_remove_hdd', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <i class="fa fa-times "></i>
+                                                    <span class="link-title">Wymontuj</span>
+                                                </a></br>
+                                            {% endif %}
+                                        {% endfor %}
                                         {% if empty == 1 %}
                                             Brak dysku hdd
                                         {% endif %}
@@ -269,7 +269,8 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('desktopcpu_new') }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('desktopcpu_new', {'desktop' : desktop.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -342,7 +343,8 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('desktopram_new') }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('desktopram_new') }}"
+                                       class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -630,7 +632,8 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('opticaldrive_new') }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('opticaldrive_new') }}"
+                                       class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -644,9 +647,6 @@
 
                     </div>
                 </div>
-
-
-
 
 
             </div>

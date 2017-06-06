@@ -212,13 +212,11 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <a href="{{ path('desktopcpu_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-sm">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="link-title">Dodaj</span>
-                                </a>
+
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
+
                                 <h5 class="modal-title" id="cpusModalLabel">Wybierz procesor z listy</h5>
                             </div>
                             <div class="modal-body">
@@ -229,9 +227,11 @@
                                             <div class="box">
                                                 <header>
                                                     <div class="icons"><i class="fa fa-desktop"></i></div>
-                                                    <h5>Lista komputerów</h5>
+                                                    <h5>Lista procesorów</h5>
+
                                                 </header>
                                                 <div id="collapse4" class="body">
+
                                                     <table id="dataTable"
                                                            class="table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
@@ -269,6 +269,10 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="{{ path('desktopcpu_new') }}" class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>
@@ -338,6 +342,10 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="{{ path('desktopram_new') }}" class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>
@@ -406,6 +414,10 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="{{ path('gpu_new') }}" class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>
@@ -477,6 +489,10 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="{{ path('hdd_new') }}" class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>
@@ -544,6 +560,10 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="{{ path('ssd_new') }}" class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>
@@ -610,6 +630,10 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
+                                    <a href="{{ path('opticaldrive_new') }}" class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>

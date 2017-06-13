@@ -1,65 +1,134 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Komputery {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista komputerów</span>
+            </a>
+            <a href="{{ path('computer_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+
 {% block body %}
-    <h1>Computers list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Model</th>
-                <th>Formfactor</th>
-                <th>Brand</th>
-                <th>Series</th>
-                <th>Powersupply</th>
-                <th>Ipaddresss</th>
-                <th>Macaddress</th>
-                <th>Price</th>
-                <th>Purchasedate</th>
-                <th>Adddate</th>
-                <th>Battery</th>
-                <th>Screensize</th>
-                <th>Screentype</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for computer in computers %}
-            <tr>
-                <td><a href="{{ path('computer_show', { 'id': computer.id }) }}">{{ computer.id }}</a></td>
-                <td>{{ computer.name }}</td>
-                <td>{{ computer.model }}</td>
-                <td>{{ computer.formFactor }}</td>
-                <td>{{ computer.brand }}</td>
-                <td>{{ computer.series }}</td>
-                <td>{{ computer.powerSupply }}</td>
-                <td>{{ computer.ipAddresss }}</td>
-                <td>{{ computer.macAddress }}</td>
-                <td>{{ computer.price }}</td>
-                <td>{% if computer.purchaseDate %}{{ computer.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if computer.addDate %}{{ computer.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ computer.battery }}</td>
-                <td>{{ computer.screenSize }}</td>
-                <td>{{ computer.screenType }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('computer_show', { 'id': computer.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('computer_edit', { 'id': computer.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-desktop"></i></div>
+                                <h5>Lista komputerów</h5>
+                            </header>
+                            <div id="collapse4" class="body">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Model</th>
+                                        <th>Typ</th>
+                                        <th>Producent</th>
+                                        <th>Procesor</th>
+                                        <th>RAM</th>
+                                        <th>System</th>
+                                        <th>Użytkownicy</th>
+                                        <th>Licencje</th>
+                                        <th>Dział</th>
+                                        <th>Adres IP</th>
+                                        <th>MAC adres</th>
+                                        <th>Zdjęcie</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for computer in computers %}
+                                        <tr onclick='location.href = "{{ path('computer_show', { 'id': computer.id }) }}"'>
+                                            <td>{{ computer.name }}</td>
+                                            <td>{{ computer.model }}</td>
+                                            <td>{{ computer.formFactor }}</td>
+                                            <td>{{ computer.brand }}</td>
+                                            <td>
+                                                {% if computer.cpu is not null %}
+                                                    {{ computer.cpu.name }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if computer.ramslots is empty %}
+                                                    Brak
+                                                {% else %}
+                                                    {% set sum = 0 %}
+                                                    {% for ramslot in computer.ramslots %}
+                                                        {% set sum = sum + ramslot.ram.capacity %}
+                                                    {% endfor %}
+                                                    {{ sum }} GB
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if computer.os is not null %}
+                                                    {{ computer.os.name }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% for employee in computer.employees %}
+                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {% for license in computer.licenses %}
+                                                    {{ license.name }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {% for employee in computer.employees %}
+                                                    {{ employee.departament.name }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{ computer.ipAddress }}</td>
+                                            <td>{{ computer.macAddress }}</td>
+                                            <td>
 
-    <ul>
-        <li>
-            <a href="{{ path('computer_new') }}">Create a new computer</a>
-        </li>
-    </ul>
+                                                {% if computer.pictures is empty %}
+                                                    {% set picture = "default.png" %}
+                                                    <a href="{{ asset('pictures/' ~ picture) }}">
+                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
+                                                {% else %}
+                                                    <a href="{{ asset('pictures/' ~ computer.pictures|first.file) }}">
+                                                        <img src="{{ asset('pictures/' ~ computer.pictures|first.file) }}"
+                                                             alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}

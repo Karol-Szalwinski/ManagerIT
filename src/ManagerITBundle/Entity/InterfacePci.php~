@@ -95,4 +95,27 @@ class InterfacePci
     {
         return $this->cardGpu;
     }
+
+    /**
+     * Set computer
+     *
+     * @param \ManagerITBundle\Entity\Computer $computer
+     * @return InterfacePci
+     */
+    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
+    {
+        $this->computer = $computer;
+
+        return $this;
+    }
+
+    /**
+     * Get computer
+     *
+     * @return \ManagerITBundle\Entity\Computer 
+     */
+    public function getComputer()
+    {
+        return $this->computer;
+    }
 }

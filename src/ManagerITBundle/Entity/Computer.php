@@ -102,9 +102,9 @@ class Computer
     /**
      * @var string
      *
-     * @ORM\Column(name="ipAddresss", type="string", length=255)
+     * @ORM\Column(name="ipAddress", type="string", length=255)
      */
-    private $ipAddresss;
+    private $ipAddress;
 
     /**
      * @var string
@@ -115,7 +115,7 @@ class Computer
 
     /**
      * @ORM\ManyToMany(targetEntity="Picture")
-     * @ORM\JoinTable(name="cpmputers_pictures",
+     * @ORM\JoinTable(name="computers_pictures",
      *      joinColumns={@ORM\JoinColumn(name="computer_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
      *      )
@@ -876,5 +876,28 @@ class Computer
     public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
     {
         $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Set ipAddress
+     *
+     * @param string $ipAddress
+     * @return Computer
+     */
+    public function setIpAddress($ipAddress)
+    {
+        $this->ipAddress = $ipAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get ipAddress
+     *
+     * @return string 
+     */
+    public function getIpAddress()
+    {
+        return $this->ipAddress;
     }
 }

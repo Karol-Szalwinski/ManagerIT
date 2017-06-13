@@ -28,6 +28,12 @@ class InterfacePci
     private $desktop;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Computer", inversedBy="pciInterfaces")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
+     */
+    private $computer;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Gpu")
      * @ORM\JoinColumn(name="$cardGpu_id", referencedColumnName="id")
      */
@@ -88,5 +94,28 @@ class InterfacePci
     public function getCardGpu()
     {
         return $this->cardGpu;
+    }
+
+    /**
+     * Set computer
+     *
+     * @param \ManagerITBundle\Entity\Computer $computer
+     * @return InterfacePci
+     */
+    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
+    {
+        $this->computer = $computer;
+
+        return $this;
+    }
+
+    /**
+     * Get computer
+     *
+     * @return \ManagerITBundle\Entity\Computer 
+     */
+    public function getComputer()
+    {
+        return $this->computer;
     }
 }

@@ -72,6 +72,11 @@ class License
     private $addDate;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Computer", mappedBy="licenses")
+     */
+    private $computers;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="licenses")
      */
     private $desktops;
@@ -365,5 +370,38 @@ class License
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Add computers
+     *
+     * @param \ManagerITBundle\Entity\Computer $computers
+     * @return License
+     */
+    public function addComputer(\ManagerITBundle\Entity\Computer $computers)
+    {
+        $this->computers[] = $computers;
+
+        return $this;
+    }
+
+    /**
+     * Remove computers
+     *
+     * @param \ManagerITBundle\Entity\Computer $computers
+     */
+    public function removeComputer(\ManagerITBundle\Entity\Computer $computers)
+    {
+        $this->computers->removeElement($computers);
+    }
+
+    /**
+     * Get computers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComputers()
+    {
+        return $this->computers;
     }
 }

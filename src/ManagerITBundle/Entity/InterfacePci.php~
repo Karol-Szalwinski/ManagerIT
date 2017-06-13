@@ -28,6 +28,12 @@ class InterfacePci
     private $desktop;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Computer", inversedBy="pciInterfaces")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
+     */
+    private $computer;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Gpu")
      * @ORM\JoinColumn(name="$cardGpu_id", referencedColumnName="id")
      */

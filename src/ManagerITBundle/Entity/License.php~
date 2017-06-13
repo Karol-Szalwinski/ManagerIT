@@ -72,6 +72,11 @@ class License
     private $addDate;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Computer", mappedBy="licenses")
+     */
+    private $computers;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="licenses")
      */
     private $desktops;

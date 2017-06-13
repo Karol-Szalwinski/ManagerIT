@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Computer</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ computer.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ computer.name }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ computer.model }}</td>
+            </tr>
+            <tr>
+                <th>Formfactor</th>
+                <td>{{ computer.formFactor }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ computer.brand }}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{ computer.series }}</td>
+            </tr>
+            <tr>
+                <th>Powersupply</th>
+                <td>{{ computer.powerSupply }}</td>
+            </tr>
+            <tr>
+                <th>Ipaddresss</th>
+                <td>{{ computer.ipAddresss }}</td>
+            </tr>
+            <tr>
+                <th>Macaddress</th>
+                <td>{{ computer.macAddress }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ computer.price }}</td>
+            </tr>
+            <tr>
+                <th>Purchasedate</th>
+                <td>{% if computer.purchaseDate %}{{ computer.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Adddate</th>
+                <td>{% if computer.addDate %}{{ computer.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Battery</th>
+                <td>{{ computer.battery }}</td>
+            </tr>
+            <tr>
+                <th>Screensize</th>
+                <td>{{ computer.screenSize }}</td>
+            </tr>
+            <tr>
+                <th>Screentype</th>
+                <td>{{ computer.screenType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('computer_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('computer_edit', { 'id': computer.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

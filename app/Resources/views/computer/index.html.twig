@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Computers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Formfactor</th>
+                <th>Brand</th>
+                <th>Series</th>
+                <th>Powersupply</th>
+                <th>Ipaddresss</th>
+                <th>Macaddress</th>
+                <th>Price</th>
+                <th>Purchasedate</th>
+                <th>Adddate</th>
+                <th>Battery</th>
+                <th>Screensize</th>
+                <th>Screentype</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for computer in computers %}
+            <tr>
+                <td><a href="{{ path('computer_show', { 'id': computer.id }) }}">{{ computer.id }}</a></td>
+                <td>{{ computer.name }}</td>
+                <td>{{ computer.model }}</td>
+                <td>{{ computer.formFactor }}</td>
+                <td>{{ computer.brand }}</td>
+                <td>{{ computer.series }}</td>
+                <td>{{ computer.powerSupply }}</td>
+                <td>{{ computer.ipAddresss }}</td>
+                <td>{{ computer.macAddress }}</td>
+                <td>{{ computer.price }}</td>
+                <td>{% if computer.purchaseDate %}{{ computer.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if computer.addDate %}{{ computer.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ computer.battery }}</td>
+                <td>{{ computer.screenSize }}</td>
+                <td>{{ computer.screenType }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('computer_show', { 'id': computer.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('computer_edit', { 'id': computer.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('computer_new') }}">Create a new computer</a>
+        </li>
+    </ul>
+{% endblock %}

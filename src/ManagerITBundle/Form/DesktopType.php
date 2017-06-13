@@ -18,8 +18,8 @@ class DesktopType extends AbstractType
     {
         $builder->add('name')
             ->add('model')
-            ->add('type')
-            ->add('manufacturer')
+            ->add('series')
+            ->add('brand')
             ->add('powerSupply')
             ->add('caseType', EntityType::class, [
                 'class' => 'ManagerITBundle:ComputerFormFactor',
@@ -54,7 +54,7 @@ class DesktopType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ManagerITBundle\Entity\Desktop'
+            'data_class' => 'ManagerITBundle\Entity\Computer'
         ));
     }
 

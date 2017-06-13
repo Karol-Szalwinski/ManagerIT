@@ -5,7 +5,7 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('desktop_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
             </a>
@@ -62,16 +62,16 @@
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.type, 'Typ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.series, 'Seria', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
+                                        {{ form_widget(form.series, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź serię'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.manufacturer, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.manufacturer, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
+                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
                                     </div>
                                 </div>
 
@@ -133,13 +133,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <h3>The desktop has the following errors</h3>
-                    <ul>
-                        {% for error in errors %}
-                            <li>{{ error.message }}</li>
-                        {% endfor %}
-                    </ul>
 
 
                     <!----------------------------------------------------->                    

@@ -32,18 +32,38 @@ class ComputerController extends Controller
     }
 
     /**
+     * Lists specific entities type.
+     *
+     * @Route("/{type}", name="computer_type_index")
+     * @Method("GET")
+     */
+    public function computerTypeIndexAction($type)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $computers = $em->getRepository('ManagerITBundle:Computer')->findByFormFactor($type);
+
+        return $this->render('computer/index.html.twig', array(
+            'computers' => $computers,
+        ));
+    }
+
+
+    /**
      * Creates a new computer entity.
      *
-     * @Route("/new", name="computer_new")
+     * @Route("/{type}/new", name="computer_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $type)
     {
         $computer = new Computer();
-        $form = $this->createForm('ManagerITBundle\Form\ComputerType', $computer);
+        $typeForm = ($type == 'desktop') ? 'ManagerITBundle\Form\DesktopType': 'ManagerITBundle\Form\LaptopType'  ;
+        $form = $this->createForm($typeForm, $computer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $computer->setFormFactor($type);
             $em = $this->getDoctrine()->getManager();
             $em->persist($computer);
             $em->flush($computer);
@@ -51,25 +71,30 @@ class ComputerController extends Controller
             return $this->redirectToRoute('computer_show', array('id' => $computer->getId()));
         }
 
-        return $this->render('computer/new.html.twig', array(
+        return $this->render($type .'/new.html.twig', array(
             'computer' => $computer,
             'form' => $form->createView(),
+            'type' => $type,
         ));
     }
 
     /**
      * Finds and displays a computer entity.
      *
-     * @Route("/{id}", name="computer_show")
+     * @Route("/{type}/{id}", name="computer_show")
      * @Method("GET")
      */
-    public function showAction(Computer $computer)
+    public function showAction($type, Computer $computer)
     {
         $deleteForm = $this->createDeleteForm($computer);
+        $licenseForm = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
+        $employeeForm = $this->createForm('ManagerITBundle\Form\DesktopConnectEmployeeType', $desktop);
 
-        return $this->render('computer/show.html.twig', array(
+        return $this->render($type .'/show.html.twig', array(
             'computer' => $computer,
             'delete_form' => $deleteForm->createView(),
+            'license_form' => $licenseForm->createView(),
+            'employee_form' => $employeeForm->createView(),
         ));
     }
 

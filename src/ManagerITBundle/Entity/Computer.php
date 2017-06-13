@@ -728,6 +728,7 @@ class Computer
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**

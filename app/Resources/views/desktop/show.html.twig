@@ -10,15 +10,15 @@
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
             </a>
-            <a href="{{ path('desktop_edit', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('desktop_edit', { 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
-            <a href="{{ path('desktop_components', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('desktop_components', { 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-cogs"></i>
                 <span class="link-title">Podzespoły bazowe</span>
             </a>
-            <a href="{{ path('desktop_photo', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('desktop_photo', { 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
             </a>
@@ -66,19 +66,19 @@
                                     <tbody>
                                     <tr>
                                         <td>Nazwa</td>
-                                        <td>{{ desktop.name }}</td>
+                                        <td>{{ computer.name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Model</td>
-                                        <td>{{ desktop.model }}</td>
+                                        <td>{{ computer.model }}</td>
                                     </tr>
                                     <tr>
                                         <td>Producent</td>
-                                        <td>{{ desktop.manufacturer }}</td>
+                                        <td>{{ computer.brand }}</td>
                                     </tr>
                                     <tr>
                                         <td>Obudowa</td>
-                                        <td>{{ desktop.caseType.name }}</td>
+                                        <td>{{ computer.caseType.name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nr seryjny</td>
@@ -114,7 +114,7 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            {% for picture in desktop.pictures %}
+                                            {% for picture in computer.pictures %}
                                                 <a href="{{ asset('pictures/' ~ picture.file) }}">
                                                     <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
                                                          height="200" width="200">
@@ -159,18 +159,18 @@
                                     <tbody>
                                     <tr>
                                         <td><span class="fa fa-microchip"></span> Procesor</td>
-                                        <td>{% if desktop.cpu is not null %}
-                                                {{ desktop.cpu.name }}
+                                        <td>{% if computer.cpu is not null %}
+                                                {{ computer.cpu.name }}
                                             {% endif %}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Ram</td>
                                         <td>
-                                            {% if desktop.ramslots is empty %}
+                                            {% if computer.ramslots is empty %}
                                                 Brak
                                             {% else %}
-                                                {% for ramslot in desktop.ramslots %}
+                                                {% for ramslot in computer.ramslots %}
                                                     {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
@@ -179,11 +179,11 @@
                                     <tr>
                                         <td>GPU</td>
                                         <td>
-                                            {% if desktop.interfacePcies is empty %}
+                                            {% if computer.pciInterfaces is empty %}
                                                 Brak
                                             {% else %}
-                                                {% for interfacePci in desktop.interfacePcies %}
-                                                   {{ interfacePci.cardGpu.name }}</br>
+                                                {% for pciInterface in computer.pciInterfaces %}
+                                                   {{ pciInterface.cardGpu.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
@@ -191,11 +191,11 @@
                                     <tr>
                                         <td>HDD</td>
                                         <td>
-                                            {% if desktop.hdds is empty %}
+                                            {% if computer.storageControllers is empty %}
                                                 Brak
                                             {% else %}
-                                                {% for hdd in desktop.hdds %}
-                                                    {{ hdd.capacity }} GB - {{ hdd.name }}</br>
+                                                {% for storageController in computer.storageControllers %}
+                                                    {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
@@ -203,29 +203,29 @@
                                     <tr>
                                         <td>SSD</td>
                                         <td>
-                                            {% if desktop.ssds is empty %}
+                                            {% if computer.storageControllers is empty %}
                                                 Brak
                                             {% else %}
-                                                {% for ssd in desktop.ssds %}
-                                                    {{ ssd.capacity }} GB - {{ ssd.name }}</br>
+                                                {% for storageController in computer.storageControllers %}
+                                                    {{ storageController.ssd.capacity }} GB - {{ storageController.ssd.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
                                     </tr><tr>
                                         <td>Napęd</td>
                                         <td>
-                                            {% if desktop.drives is empty %}
+                                            {% if computer.storageControllers is empty %}
                                                 Brak
                                             {% else %}
-                                                {% for drive in desktop.drives %}
-                                                    {{ drive.name }}</br>
+                                                {% for storageController in computer.storageControllers %}
+                                                    {{ storageController.drive.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
-                                        </td
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Zasilacz</td>
-                                        <td>{{ desktop.powerSupply }}</td>
+                                        <td>{{ computer.powerSupply }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -258,15 +258,15 @@
                                     <tbody>
                                     <tr>
                                         <td>Adres IP</td>
-                                        <td>{{ desktop.ipAddress }}</td>
+                                        <td>{{ computer.ipAddress }}</td>
                                     </tr>
                                     <tr>
                                         <td>MAC Adres</td>
-                                        <td>{{ desktop.macAddress }}</td>
+                                        <td>{{ computer.macAddress }}</td>
                                     </tr>
                                     <tr>
                                         <td>Nazwa sieciowa</td>
-                                        <td>{{ desktop.name }}</td>
+                                        <td>{{ computer.name }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -298,15 +298,15 @@
                                     <tbody>
                                     <tr>
                                         <td>Data zakupu</td>
-                                        <td>{{ desktop.purchaseDate |date("m/d/Y") }}</td>
+                                        <td>{{ computer.purchaseDate |date("m/d/Y") }}</td>
                                     </tr>
                                     <tr>
                                         <td>Data wprowadzenia</td>
-                                        <td>{{ desktop.addDate |date("m/d/Y") }}</td>
+                                        <td>{{ computer.addDate |date("m/d/Y") }}</td>
                                     </tr>
                                     <tr>
                                         <td>Cena zakupu</td>
-                                        <td>{{ desktop.price }}</td>
+                                        <td>{{ computer.price }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -361,13 +361,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for license in desktop.licenses %}
+                                    {% for license in computer.licenses %}
                                         <tr>
                                             <td>{{ license.name }}</td>
                                             <td>{{ license.type }}</td>
                                             <td>{{ license.expireDate|date("m/d/Y") }}</td>
                                             <td>
-                                                <a href="{{ path('desktop_detach_license', { 'id': desktop.id, 'license': license.id }) }}"
+                                                <a href="{{ path('desktop_detach_license', { 'id': computer.id, 'license': license.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-unlink"></i>
                                                     <span class="link-title">odłącz</span>
@@ -404,7 +404,7 @@
                                 </div>
                             </header>
                             <header id="chose-employee" class="collapse">
-                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_employee', { 'id': desktop.id }) }) }}
+                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_employee', { 'id': computer.id }) }) }}
                                 <div class="form-group">
                                     {{ form_label(employee_form.employees, 'Wybierz pracownika', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
@@ -429,14 +429,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for employee in desktop.employees %}
+                                    {% for employee in computer.employees %}
                                         <tr>
                                             <td>{{ employee.name }}</td>
                                             <td>{{ employee.surname }}</td>
                                             <td>{{ employee.job }}</td>
                                             <td>{{ employee.departament.name }}</td>
                                             <td>
-                                                <a href="{{ path('desktop_detach_employee', { 'id': desktop.id, 'employee': employee.id }) }}"
+                                                <a href="{{ path('desktop_detach_employee', { 'id': computer.id, 'employee': employee.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-unlink"></i>
                                                     <span class="link-title">odłącz</span>

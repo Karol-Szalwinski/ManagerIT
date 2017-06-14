@@ -9,7 +9,7 @@
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista komputerów</span>
             </a>
-            <a href="{{ path('computer_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_new', {'type': 'desktop'}) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-plus"></i>
                 <span class="link-title">Dodaj</span>
             </a>
@@ -54,7 +54,7 @@
                                     </thead>
                                     <tbody>
                                     {% for computer in computers %}
-                                        <tr onclick='location.href = "{{ path('computer_show', { 'id': computer.id }) }}"'>
+                                        <tr onclick='location.href = "{{ path('computer_show', { 'id': computer.id, 'type': computer.formFactor }) }}"'>
                                             <td>{{ computer.name }}</td>
                                             <td>{{ computer.model }}</td>
                                             <td>{{ computer.formFactor }}</td>

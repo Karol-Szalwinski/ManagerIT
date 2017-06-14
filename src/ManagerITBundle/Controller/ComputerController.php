@@ -87,8 +87,8 @@ class ComputerController extends Controller
     public function showAction($type, Computer $computer)
     {
         $deleteForm = $this->createDeleteForm($computer);
-        $licenseForm = $this->createForm('ManagerITBundle\Form\DesktopConnectLicenseType', $desktop);
-        $employeeForm = $this->createForm('ManagerITBundle\Form\DesktopConnectEmployeeType', $desktop);
+        $licenseForm = $this->createForm('ManagerITBundle\Form\ComputerConnectLicenseType', $computer);
+        $employeeForm = $this->createForm('ManagerITBundle\Form\ComputerConnectEmployeeType', $computer);
 
         return $this->render($type .'/show.html.twig', array(
             'computer' => $computer,

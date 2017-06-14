@@ -338,7 +338,7 @@
 
                             <div id="chose-license" class="collapse">
 
-                                {{ form_start(license_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_license', { 'id': desktop.id }) }) }}
+                                {{ form_start(license_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_license', { 'id': computer.id }) }) }}
                                 <div class="form-group">
                                     {{ form_label(license_form.licenses, 'Wybierz licencję', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 

@@ -3,6 +3,18 @@
 namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Computer;
+use ManagerITBundle\Entity\DesktopCPU;
+use ManagerITBundle\Entity\DesktopRam;
+use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\InterfacePci;
+use ManagerITBundle\Entity\License;
+use ManagerITBundle\Entity\Picture;
+use ManagerITBundle\Entity\RamSlot;
+use ManagerITBundle\Entity\Gpu;
+use ManagerITBundle\Entity\StorageController;
+use ManagerITBundle\Entity\Hdd;
+use ManagerITBundle\Entity\Ssd;
+use ManagerITBundle\Entity\OpticalDrive;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -158,5 +170,235 @@ class ComputerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+    /**
+     * Finds and displays a computer components.
+     *
+     * @Route("/{type}/{id}/components", name="computer_components")
+     * @Method("GET")
+     */
+    public function componentsAction($type, Computer $computer)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $desktopCPUs = $em->getRepository('ManagerITBundle:DesktopCPU')->findAll();
+        $desktopRams = $em->getRepository('ManagerITBundle:DesktopRam')->findAll();
+        $gpus = $em->getRepository('ManagerITBundle:Gpu')->findAll();
+        $hdds = $em->getRepository('ManagerITBundle:Hdd')->findAll();
+        $ssds = $em->getRepository('ManagerITBundle:Ssd')->findAll();
+        $opticalDrives = $em->getRepository('ManagerITBundle:OpticalDrive')->findAll();
+
+        return $this->render($type . '/components.html.twig', array(
+            'computer' => $computer,
+            'desktopCPUs' => $desktopCPUs,
+            'desktopRams' => $desktopRams,
+            'gpus' => $gpus,
+            'hdds' => $hdds,
+            'ssds' => $ssds,
+            'opticalDrives' => $opticalDrives,
+        ));
+    }
+
+    /**
+     *
+     * @Route("/{type}/{id}/computer_connect_cpu/{desktopCpu}", name="computer_connect_cpu")
+     * @Method("GET")
+     */
+    public
+    function computerConnectCpuAction($type, Computer $computer, DesktopCPU $desktopCpu)
+    {
+        $computer->setCpu($desktopCpu);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+
+    /**
+     *
+     * @Route("/{type}/{id}/computer_connect_rams/{ram}", name="computer_connect_ram")
+     * @Method("GET")
+     */
+    public
+    function computerConnectRamsAction($type, Computer $computer, DesktopRam $ram)
+    {
+
+        $ramSlot = new RamSlot();
+        $ramSlot->setRam($ram);
+        $ramSlot->setComputer($computer);
+        $computer->addRamslot($ramSlot);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($ramSlot);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer disconnect ram
+     * @Route("/{type}/{id}/computer_remove_ram/{ramslot}", name="computer_remove_ram")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveRamAction($type, Computer $computer, RamSlot $ramslot)
+    {
+
+        $computer->removeRamslot($ramslot);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($ramslot);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     *
+     * @Route("/{type}/{id}/computer_connect_gpu/{gpu}", name="computer_connect_gpu")
+     * @Method("GET")
+     */
+    public
+    function computerConnectGpuAction($type, Computer $computer, Gpu $gpu)
+    {
+
+        $interfacePci = new InterfacePci();
+        $interfacePci->setCardGpu($gpu);
+        $interfacePci->setComputer($computer);
+        $computer->addPciInterface($interfacePci);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($interfacePci);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer remove gpu
+     * @Route("/{type}/{id}/computer_remove_gpu/{interfacePci}", name="computer_remove_gpu")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveGpuAction($type, Computer $computer, InterfacePci $interfacePci)
+    {
+
+        $computer->removePciInterface($interfacePci);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($interfacePci);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer connect hdd
+     * @Route("/{type}/{id}/computer_connect_hdd/{hdd}", name="computer_connect_hdd")
+     * @Method("GET")
+     */
+    public
+    function computerConnectHddAction($type, Computer $computer, Hdd $hdd)
+    {
+
+        $storageController = new StorageController();
+        $storageController->setHdd($hdd);
+        $storageController->setComputer($computer);
+        $computer->addStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer remove hdd
+     * @Route("/{type}/{id}/computer_remove_hdd/{storageController}", name="computer_remove_hdd")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveHddAction($type, Computer $computer, StorageController $storageController)
+    {
+
+        $computer->removeStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer connect ssd
+     * @Route("/{type}/{id}/computer_connect_ssd/{ssd}", name="computer_connect_ssd")
+     * @Method("GET")
+     */
+    public
+    function computerConnectSsdAction($type, Computer $computer, Ssd $ssd)
+    {
+
+        $storageController = new StorageController();
+        $storageController->setSsd($ssd);
+        $storageController->setComputer($computer);
+        $computer->addStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer remove ssd
+     * @Route("/{type}/{id}/computer_remove_ssd/{storageController}", name="computer_remove_ssd")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveSsdAction($type, Computer $computer, StorageController $storageController)
+    {
+
+        $computer->removeStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+
+    /**
+     * Computer connect optical drive
+     * @Route("/{type}/{id}/computer_connect_drive/{opticalDrive}", name="computer_connect_drive")
+     * @Method("GET")
+     */
+    public
+    function computerConnectDriveAction($type, Computer $computer, OpticalDrive $opticalDrive)
+    {
+
+        $storageController = new StorageController();
+        $storageController->setOpticalDrive($opticalDrive);
+        $storageController->setComputer($computer);
+        $computer->addStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+    }
+    /**
+     * Computer remove optical drive
+     * @Route("/{type}/{id}/computer_remove_drive/{storageController}", name="computer_remove_drive")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveDriveAction($type, Computer $computer, StorageController $storageController)
+    {
+
+        $computer->removeStorageController($storageController);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storageController);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
     }
 }

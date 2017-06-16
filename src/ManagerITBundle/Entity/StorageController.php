@@ -22,10 +22,10 @@ class StorageController
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="storageControllers")
-     * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Computer", inversedBy="storageControllers")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
      */
-    private $desktop;
+    private $computer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Hdd")
@@ -46,6 +46,8 @@ class StorageController
     private $opticalDrive;
 
 
+    
+
     /**
      * Get id
      *
@@ -57,35 +59,35 @@ class StorageController
     }
 
     /**
-     * Set desktop
+     * Set computer
      *
-     * @param string $desktop
+     * @param \ManagerITBundle\Entity\Computer $computer
      * @return StorageController
      */
-    public function setDesktop($desktop)
+    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
     {
-        $this->desktop = $desktop;
+        $this->computer = $computer;
 
         return $this;
     }
 
     /**
-     * Get desktop
+     * Get computer
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\Computer 
      */
-    public function getDesktop()
+    public function getComputer()
     {
-        return $this->desktop;
+        return $this->computer;
     }
 
     /**
      * Set hdd
      *
-     * @param string $hdd
+     * @param \ManagerITBundle\Entity\Hdd $hdd
      * @return StorageController
      */
-    public function setHdd($hdd)
+    public function setHdd(\ManagerITBundle\Entity\Hdd $hdd = null)
     {
         $this->hdd = $hdd;
 
@@ -95,7 +97,7 @@ class StorageController
     /**
      * Get hdd
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\Hdd 
      */
     public function getHdd()
     {
@@ -105,10 +107,10 @@ class StorageController
     /**
      * Set ssd
      *
-     * @param string $ssd
+     * @param \ManagerITBundle\Entity\Ssd $ssd
      * @return StorageController
      */
-    public function setSsd($ssd)
+    public function setSsd(\ManagerITBundle\Entity\Ssd $ssd = null)
     {
         $this->ssd = $ssd;
 
@@ -118,7 +120,7 @@ class StorageController
     /**
      * Get ssd
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\Ssd 
      */
     public function getSsd()
     {
@@ -128,10 +130,10 @@ class StorageController
     /**
      * Set opticalDrive
      *
-     * @param string $opticalDrive
+     * @param \ManagerITBundle\Entity\OpticalDrive $opticalDrive
      * @return StorageController
      */
-    public function setOpticalDrive($opticalDrive)
+    public function setOpticalDrive(\ManagerITBundle\Entity\OpticalDrive $opticalDrive = null)
     {
         $this->opticalDrive = $opticalDrive;
 
@@ -141,7 +143,7 @@ class StorageController
     /**
      * Get opticalDrive
      *
-     * @return string 
+     * @return \ManagerITBundle\Entity\OpticalDrive 
      */
     public function getOpticalDrive()
     {

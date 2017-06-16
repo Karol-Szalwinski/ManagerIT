@@ -64,7 +64,7 @@ class Computer
     private $cpu;
 
     /**
-     * @ORM\OneToMany(targetEntity="RamSlot", mappedBy="desktop")
+     * @ORM\OneToMany(targetEntity="RamSlot", mappedBy="computer")
      */
     private $ramslots;
 
@@ -74,7 +74,7 @@ class Computer
     private $pciInterfaces;
 
     /**
-     * @ORM\OneToMany(targetEntity="StorageController", mappedBy="desktop")
+     * @ORM\OneToMany(targetEntity="StorageController", mappedBy="computer")
      */
     private $storageControllers;
 

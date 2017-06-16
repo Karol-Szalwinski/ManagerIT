@@ -22,10 +22,10 @@ class StorageController
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="storageControllers")
-     * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Computer", inversedBy="storageControllers")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
      */
-    private $desktop;
+    private $computer;
 
     /**
      * @ORM\ManyToOne(targetEntity="Hdd")
@@ -46,105 +46,5 @@ class StorageController
     private $opticalDrive;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set desktop
-     *
-     * @param string $desktop
-     * @return StorageController
-     */
-    public function setDesktop($desktop)
-    {
-        $this->desktop = $desktop;
-
-        return $this;
-    }
-
-    /**
-     * Get desktop
-     *
-     * @return string 
-     */
-    public function getDesktop()
-    {
-        return $this->desktop;
-    }
-
-    /**
-     * Set hdd
-     *
-     * @param string $hdd
-     * @return StorageController
-     */
-    public function setHdd($hdd)
-    {
-        $this->hdd = $hdd;
-
-        return $this;
-    }
-
-    /**
-     * Get hdd
-     *
-     * @return string 
-     */
-    public function getHdd()
-    {
-        return $this->hdd;
-    }
-
-    /**
-     * Set ssd
-     *
-     * @param string $ssd
-     * @return StorageController
-     */
-    public function setSsd($ssd)
-    {
-        $this->ssd = $ssd;
-
-        return $this;
-    }
-
-    /**
-     * Get ssd
-     *
-     * @return string 
-     */
-    public function getSsd()
-    {
-        return $this->ssd;
-    }
-
-    /**
-     * Set opticalDrive
-     *
-     * @param string $opticalDrive
-     * @return StorageController
-     */
-    public function setOpticalDrive($opticalDrive)
-    {
-        $this->opticalDrive = $opticalDrive;
-
-        return $this;
-    }
-
-    /**
-     * Get opticalDrive
-     *
-     * @return string 
-     */
-    public function getOpticalDrive()
-    {
-        return $this->opticalDrive;
-    }
+    
 }

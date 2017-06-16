@@ -5,11 +5,11 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('desktop_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
-                <i class="fa fa-fast-backward"></i>
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
             </a>
-            <a href="{{ path('desktop_show', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Pokaż destkop</span>
             </a>
@@ -46,8 +46,8 @@
                                 <tbody>
                                 <tr>
                                     <td><span class="fa fa-microchip"></span> Procesor</td>
-                                    <td>{% if desktop.cpu is not null %}
-                                            {{ desktop.cpu.name }}
+                                    <td>{% if computer.cpu is not null %}
+                                            {{ computer.cpu.name }}
                                         {% endif %}
                                     </td>
                                     <td>
@@ -63,12 +63,12 @@
                                     <td>Ram</td>
 
                                     <td>
-                                        {% if desktop.ramslots is empty %}
+                                        {% if computer.ramslots is empty %}
                                             Brak
                                         {% else %}
-                                            {% for ramslot in desktop.ramslots %}
+                                            {% for ramslot in computer.ramslots %}
                                                 {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}
-                                                <a href="{{ path('desktop_remove_ram', {'id': desktop.id , 'ramslot': ramslot.id }) }}"
+                                                <a href="{{ path('computer_remove_ram', {'type' : computer.formFactor, 'id': computer.id , 'ramslot': ramslot.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-times "></i>
                                                     <span class="link-title">Wymontuj</span>
@@ -88,12 +88,12 @@
                                 <tr>
                                     <td>GPU</td>
                                     <td>
-                                        {% if desktop.interfacePcies is empty %}
+                                        {% if computer.pciInterfaces is empty %}
                                             Brak
                                         {% else %}
-                                            {% for interfacePci in desktop.interfacePcies %}
-                                                {{ interfacePci.CardGpu.name }}
-                                                <a href="{{ path('desktop_remove_gpu', {'id': desktop.id , 'interfacePci': interfacePci.id }) }}"
+                                            {% for pciInterface in computer.pciInterfaces %}
+                                                {{ pciInterface.CardGpu.name }}
+                                                <a href="{{ path('computer_remove_gpu', {'type' : computer.formFactor, 'id': computer.id , 'interfacePci': pciInterface.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-times "></i>
                                                     <span class="link-title">Wymontuj</span>
@@ -114,11 +114,11 @@
                                     <td>HDD</td>
                                     <td>
                                         {% set empty = 1 %}
-                                        {% for storageController in desktop.storageControllers %}
+                                        {% for storageController in computer.storageControllers %}
                                             {% if storageController.hdd is not null %}
                                                 {% set empty = 0 %}
                                                 {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
-                                                <a href="{{ path('desktop_remove_hdd', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                <a href="{{ path('computer_remove_hdd', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-times "></i>
                                                     <span class="link-title">Wymontuj</span>
@@ -142,12 +142,12 @@
                                     <td>SSD</td>
                                     <td>
                                         {% set empty = 1 %}
-                                        {% for storageController in desktop.storageControllers %}
+                                        {% for storageController in computer.storageControllers %}
 
                                             {% if storageController.ssd is not null %}
                                                 {% set empty = 0 %}
                                                 {{ storageController.ssd.capacity }} GB - {{ storageController.ssd.name }}
-                                                <a href="{{ path('desktop_remove_ssd', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                <a href="{{ path('computer_remove_ssd', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-times "></i>
                                                     <span class="link-title">Wymontuj</span>
@@ -172,12 +172,12 @@
                                     <td>Napęd</td>
                                     <td>
                                         {% set empty = 1 %}
-                                        {% for storageController in desktop.storageControllers %}
+                                        {% for storageController in computer.storageControllers %}
 
                                             {% if storageController.opticalDrive is not null %}
                                                 {% set empty = 0 %}
                                                 {{ storageController.opticalDrive.name }}
-                                                <a href="{{ path('desktop_remove_drive', {'id': desktop.id , 'storageController': storageController.id }) }}"
+                                                <a href="{{ path('computer_remove_drive', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
                                                    class="btn btn-danger btn-grad btn-rect btn-sm">
                                                     <i class="fa fa-times "></i>
                                                     <span class="link-title">Wymontuj</span>
@@ -248,7 +248,7 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for desktopCPU in desktopCPUs %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_cpu', { 'id': desktop.id,  'desktopCpu': desktopCPU.id }) }}"'>
+                                                            <tr onclick='location.href = "{{ path('computer_connect_cpu', { 'type' : computer.formFactor, 'id': computer.id,  'desktopCpu': desktopCPU.id }) }}"'>
                                                                 <td>{{ desktopCPU.id }}</td>
                                                                 <td>{{ desktopCPU.name }}</td>
                                                                 <td>{{ desktopCPU.manufacturer }}</td>
@@ -269,7 +269,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('desktopcpu_new', {'desktop' : desktop.id}) }}"
+                                    <a href="{{ path('desktopcpu_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
@@ -322,7 +322,7 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for desktopRam in desktopRams %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_ram', { 'id': desktop.id,  'ram': desktopRam.id }) }}"'>
+                                                            <tr onclick='location.href = "{{ path('computer_connect_ram', { 'type' : computer.formFactor, 'id': computer.id,  'ram': desktopRam.id }) }}"'>
                                                                 <td>{{ desktopRam.name }}</td>
                                                                 <td>{{ desktopRam.model }}</td>
                                                                 <td>{{ desktopRam.series }}</td>
@@ -343,7 +343,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('desktopram_new', {'desktop' : desktop.id}) }}"
+                                    <a href="{{ path('desktopram_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
@@ -395,7 +395,7 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for gpu in gpus %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_gpu', { 'id': desktop.id,  'gpu': gpu.id }) }}"'>
+                                                            <tr onclick='location.href = "{{ path('computer_connect_gpu', { 'type' : computer.formFactor, 'id': computer.id,  'gpu': gpu.id }) }}"'>
                                                                 <td>{{ gpu.name }}</td>
                                                                 <td>{{ gpu.chipset }}</td>
                                                                 <td>{{ gpu.series }}</td>
@@ -416,7 +416,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('gpu_new', {'desktop' : desktop.id}) }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('gpu_new', {'computer' : computer.id}) }}" class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -469,7 +469,7 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for hdd in hdds %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_hdd', { 'id': desktop.id,  'hdd': hdd.id }) }}"'>
+                                                            <tr onclick='location.href = "{{ path('computer_connect_hdd', { 'type' : computer.formFactor, 'id': computer.id,  'hdd': hdd.id }) }}"'>
                                                                 <td>{{ hdd.name }}</td>
                                                                 <td>{{ hdd.model }}</td>
                                                                 <td>{{ hdd.series }}</td>
@@ -491,7 +491,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('hdd_new', {'desktop' : desktop.id}) }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('hdd_new', {'computer' : computer.id}) }}" class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -542,7 +542,7 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for ssd in ssds %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_ssd', { 'id': desktop.id,  'ssd': ssd.id }) }}"'>
+                                                            <tr onclick='location.href = "{{ path('computer_connect_ssd', { 'type' : computer.formFactor, 'id': computer.id,  'ssd': ssd.id }) }}"'>
                                                                 <td>{{ ssd.name }}</td>
                                                                 <td>{{ ssd.model }}</td>
                                                                 <td>{{ ssd.series }}</td>
@@ -562,7 +562,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('ssd_new', {'desktop' : desktop.id}) }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('ssd_new', {'computer' : computer.id}) }}" class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -613,7 +613,7 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for opticalDrive in opticalDrives %}
-                                                            <tr onclick='location.href = "{{ path('desktop_connect_drive', { 'id': desktop.id,  'opticalDrive': opticalDrive.id }) }}"'>
+                                                            <tr onclick='location.href = "{{ path('computer_connect_drive', { 'type' : computer.formFactor, 'id': computer.id,  'opticalDrive': opticalDrive.id }) }}"'>
                                                                 <td>{{ opticalDrive.name }}</td>
                                                                 <td>{{ opticalDrive.model }}</td>
                                                                 <td>{{ opticalDrive.series }}</td>
@@ -633,7 +633,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('opticaldrive_new', {'desktop' : desktop.id}) }}"
+                                    <a href="{{ path('opticaldrive_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>

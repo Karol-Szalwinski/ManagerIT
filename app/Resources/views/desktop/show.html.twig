@@ -14,7 +14,7 @@
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
-            <a href="{{ path('desktop_components', { 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-cogs"></i>
                 <span class="link-title">Podzespoły bazowe</span>
             </a>

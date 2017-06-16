@@ -22,10 +22,10 @@ class RamSlot
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="ramslots")
-     * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Computer", inversedBy="ramslots")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
      */
-    private $desktop;
+    private $computer;
 
     /**
      * @ORM\ManyToOne(targetEntity="DesktopRam", inversedBy="ramSlots")
@@ -46,26 +46,26 @@ class RamSlot
     }
 
     /**
-     * Set desktop
+     * Set computer
      *
-     * @param \ManagerITBundle\Entity\Desktop $desktop
+     * @param \ManagerITBundle\Entity\Computer $computer
      * @return RamSlot
      */
-    public function setDesktop(\ManagerITBundle\Entity\Desktop $desktop = null)
+    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
     {
-        $this->desktop = $desktop;
+        $this->computer = $computer;
 
         return $this;
     }
 
     /**
-     * Get desktop
+     * Get computer
      *
-     * @return \ManagerITBundle\Entity\Desktop 
+     * @return \ManagerITBundle\Entity\Computer 
      */
-    public function getDesktop()
+    public function getComputer()
     {
-        return $this->desktop;
+        return $this->computer;
     }
 
     /**

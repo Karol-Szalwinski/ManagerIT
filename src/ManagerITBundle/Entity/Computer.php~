@@ -465,28 +465,7 @@ class Computer
         return $this->os;
     }
 
-    /**
-     * Set ipAddresss
-     *
-     * @param string $ipAddresss
-     * @return Computer
-     */
-    public function setIpAddresss($ipAddresss)
-    {
-        $this->ipAddresss = $ipAddresss;
 
-        return $this;
-    }
-
-    /**
-     * Get ipAddresss
-     *
-     * @return string
-     */
-    public function getIpAddresss()
-    {
-        return $this->ipAddresss;
-    }
 
     /**
      * Set macAddress
@@ -728,6 +707,7 @@ class Computer
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
     }
 
     /**
@@ -877,4 +857,6 @@ class Computer
     {
         $this->employees->removeElement($employees);
     }
+
+
 }

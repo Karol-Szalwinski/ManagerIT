@@ -101,22 +101,23 @@ class ComputerController extends Controller
     /**
      * Displays a form to edit an existing computer entity.
      *
-     * @Route("/{id}/edit", name="computer_edit")
+     * @Route("/{type}/{id}/edit", name="computer_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Computer $computer)
+    public function editAction(Request $request, $type, Computer $computer)
     {
         $deleteForm = $this->createDeleteForm($computer);
-        $editForm = $this->createForm('ManagerITBundle\Form\ComputerType', $computer);
+        $typeForm = ($type == 'desktop') ? 'ManagerITBundle\Form\DesktopType': 'ManagerITBundle\Form\LaptopType'  ;
+        $editForm = $this->createForm($typeForm, $computer);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('computer_edit', array('id' => $computer->getId()));
+            return $this->redirectToRoute('computer_show', array('type' => $type,'id' => $computer->getId()));
         }
 
-        return $this->render('computer/edit.html.twig', array(
+        return $this->render($type .'/edit.html.twig', array(
             'computer' => $computer,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

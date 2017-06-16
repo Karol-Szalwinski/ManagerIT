@@ -465,28 +465,7 @@ class Computer
         return $this->os;
     }
 
-    /**
-     * Set ipAddresss
-     *
-     * @param string $ipAddresss
-     * @return Computer
-     */
-    public function setIpAddresss($ipAddresss)
-    {
-        $this->ipAddresss = $ipAddresss;
 
-        return $this;
-    }
-
-    /**
-     * Get ipAddresss
-     *
-     * @return string
-     */
-    public function getIpAddresss()
-    {
-        return $this->ipAddresss;
-    }
 
     /**
      * Set macAddress
@@ -878,6 +857,8 @@ class Computer
     {
         $this->employees->removeElement($employees);
     }
+
+
 
     /**
      * Set ipAddress

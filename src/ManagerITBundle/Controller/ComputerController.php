@@ -68,7 +68,7 @@ class ComputerController extends Controller
             $em->persist($computer);
             $em->flush($computer);
 
-            return $this->redirectToRoute('computer_show', array('id' => $computer->getId()));
+            return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
         }
 
         return $this->render($type .'/new.html.twig', array(

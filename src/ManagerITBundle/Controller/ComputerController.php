@@ -401,4 +401,75 @@ class ComputerController extends Controller
 
         return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
     }
+
+    /**
+     * Displays a form to edit photo in existing computer entity.
+     *
+     * @Route("/{type}/{id}/photo", name="computer_photo")
+     * @Method({"GET", "POST"})
+     */
+    public function photoAction($type, Request $request, Computer $computer)
+    {
+        $picture = new Picture();
+        $pictureForm = $this->createForm('ManagerITBundle\Form\PictureType', $picture);
+        $pictureForm->handleRequest($request);
+
+        if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {
+
+            $file = $picture->getFile();
+            $fileName = $this->get('app.picture_uploader')->upload($file);
+
+            $picture->setFile($fileName);
+            $computer->addPicture($picture);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($picture);
+            $em->flush();
+
+            return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+        }
+
+        return $this->render($type . '/photo.html.twig', array(
+            'computer' => $computer,
+            'picture_form' => $pictureForm->createView(),
+        ));
+
+    }
+
+    /**
+     * Action to disconnect and delete photo
+     *
+     * @Route("/{type}/{id}/deletepicture/{picture}", name="computer_delete_picture")
+     * @Method({"GET"})
+     */
+    public
+    function deletePictureAction($type, Computer $computer, Picture $picture)
+    {
+        $computer->removePicture($picture);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush($computer);
+        $em->remove($picture);
+        $em->flush($picture);
+
+        return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+    }
+
+    /**
+     *
+     * @Route("/{id}/computerconnectemployee}", name="computer_connect_employee")
+     * @Method("POST")
+     */
+    public
+    function computerConnectEmployeeAction(Request $request, Computer $computer)
+    {
+
+        $form = $this->createForm('ManagerITBundle\Form\ComputerConnectEmployeeType', $computer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+    }
 }

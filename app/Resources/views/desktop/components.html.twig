@@ -5,11 +5,13 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
             </a>
-            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Pokaż destkop</span>
             </a>
@@ -416,7 +418,8 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('gpu_new', {'computer' : computer.id}) }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('gpu_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -491,7 +494,8 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('hdd_new', {'computer' : computer.id}) }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('hdd_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>
@@ -562,7 +566,8 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('ssd_new', {'computer' : computer.id}) }}" class="btn btn-warning btn-grad control-label">
+                                    <a href="{{ path('ssd_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>
                                     </a>

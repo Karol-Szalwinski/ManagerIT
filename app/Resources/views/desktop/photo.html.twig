@@ -5,11 +5,11 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('desktop_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
-                <i class="fa fa-fast-backward"></i>
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
             </a>
-            <a href="{{ path('desktop_show', { 'id': desktop.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Pokaż destkop</span>
             </a>
@@ -46,12 +46,12 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        {% for picture in desktop.pictures %}
+                                        {% for picture in computer.pictures %}
                                             <a href="{{ asset('pictures/' ~ picture.file) }}">
                                                 <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
                                                      height="200" width="200">
                                             </a>
-                                            <a href="{{ path('desktop_delete_picture', {'id': desktop.id , 'picture': picture.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                            <a href="{{ path('computer_delete_picture', {'type' : computer.formFactor,'id': computer.id , 'picture': picture.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
                                                 <i class="fa fa-arrow-left "></i>
                                                 <i class="fa fa-trash-o "></i>
                                                 <span class="link-title">Usuń zdjęcie</span>
@@ -112,10 +112,6 @@
                         </div>
 
                         {{ form_end(picture_form) }}
-                        {#{{ form_start(picture_form) }}#}
-                        {#{{ form_widget(picture_form) }}#}
-                        {#<input type="submit" value="Create" />#}
-                        {#{{ form_end(picture_form) }}#}
 
                     </div>
                 </div>

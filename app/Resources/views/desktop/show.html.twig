@@ -6,19 +6,23 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('computer_type_index', { 'type' : 'desktop'}) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_type_index', { 'type' : 'desktop'}) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
             </a>
-            <a href="{{ path('computer_edit', { 'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_edit', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
-            <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-cogs"></i>
                 <span class="link-title">Podzespoły bazowe</span>
             </a>
-            <a href="{{ path('desktop_photo', { 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('desktop_photo', { 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
             </a>
@@ -183,7 +187,7 @@
                                                 Brak
                                             {% else %}
                                                 {% for pciInterface in computer.pciInterfaces %}
-                                                   {{ pciInterface.cardGpu.name }}</br>
+                                                    {{ pciInterface.cardGpu.name }}</br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
@@ -191,36 +195,42 @@
                                     <tr>
                                         <td>HDD</td>
                                         <td>
-                                            {% if computer.storageControllers is empty %}
-                                                Brak
-                                            {% else %}
-                                                {% for storageController in computer.storageControllers %}
-                                                    {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}</br>
-                                                {% endfor %}
-                                            {% endif %}
+                                            {% set message = 'Brak dysku hdd' %}
+                                            {% for storageController in computer.storageControllers %}
+                                                {% if storageController.hdd is not null %}
+                                                    {% set message = '' %}
+                                                    {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
+                                                    </br>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {{ message }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>SSD</td>
                                         <td>
-                                            {% if computer.storageControllers is empty %}
-                                                Brak
-                                            {% else %}
-                                                {% for storageController in computer.storageControllers %}
-                                                    {{ storageController.ssd.capacity }} GB - {{ storageController.ssd.name }}</br>
-                                                {% endfor %}
-                                            {% endif %}
+                                            {% set message = 'Brak dysku ssd' %}
+                                            {% for storageController in computer.storageControllers %}
+                                                {% if storageController.ssd is not null %}
+                                                    {% set message = '' %}
+                                                    {{ storageController.ssd.capacity }} GB - {{ storageController.ssd.name }}
+                                                    </br>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {{ message }}
                                         </td>
-                                    </tr><tr>
+                                    </tr>
+                                    <tr>
                                         <td>Napęd</td>
                                         <td>
-                                            {% if computer.storageControllers is empty %}
-                                                Brak
-                                            {% else %}
-                                                {% for storageController in computer.storageControllers %}
-                                                    {{ storageController.drive.name }}</br>
-                                                {% endfor %}
-                                            {% endif %}
+                                            {% set message = 'Brak napędu optycznego' %}
+                                            {% for storageController in computer.storageControllers %}
+                                                {% if storageController.opticalDrive is not null %}
+                                                    {% set message = '' %}
+                                                    {{ storageController.opticalDrive.name }}</br>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {{ message }}
                                         </td>
                                     </tr>
                                     <tr>

@@ -848,6 +848,11 @@ class Computer
         return $this;
     }
 
+    public function hasEmployee(Employee $employee)
+    {
+        return $this->employees->contains($employee);
+    }
+
     /**
      * Remove employees
      *

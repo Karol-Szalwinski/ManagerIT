@@ -478,10 +478,11 @@ class ComputerController extends Controller
     public
     function computerConnectEmployeeAction(Request $request, Computer $computer, Employee $employee)
     {
-
-        $computer->addEmployee($employee);
-        $employee->addComputer($computer);
-        $this->getDoctrine()->getManager()->flush();
+        if(!$computer->hasEmployee($employee)) {
+            $computer->addEmployee($employee);
+            $employee->addComputer($computer);
+            $this->getDoctrine()->getManager()->flush();
+        };
 
         $type = $computer->getFormFactor();
 

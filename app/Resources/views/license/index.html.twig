@@ -32,48 +32,45 @@
                                 <h5>Lista licencji</h5>
                             </header>
 
-
                             <div id="collapse4" class="body">
 
-
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>Nazwa</th>
-                                            <th>Klucz</th>
-                                            <th>Typ licencji</th>
-                                            <th>Data wygaśnięcia</th>
-                                            <th>Sprzęt przypisany</th>
-                                            <th>Użytkownik przypisany</th>
-                                            <th>Cena zakupu</th>
-                                            <th>Data zakupu</th>                          
-                                        </tr>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Klucz</th>
+                                        <th>Typ licencji</th>
+                                        <th>Data wygaśnięcia</th>
+                                        <th>Data zakupu</th>
+                                        <th>Sprzęt przypisany</th>
+                                        <th>Użytkownik przypisany</th>
+                                        <th>Cena zakupu</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {% for license in licenses %}
-                                            <tr onclick='location.href = "{{ path('license_show', { 'id': license.id }) }}"'>
-                                                <td>{{ license.name }}</td>
-                                                <td>{{ license.licenseKey }}</td>
-                                                <td>{{ license.type }}</td>
-                                                <td>{{ license.expireDate|date('Y-m-d') }}</td>
-                                                <td>
-                                                    {% for desktop in license.desktops %}
-                                                        {{ desktop.name }}<br>
-                                                    {% endfor %}
-                                                    {% for laptop in license.laptops %}
-                                                        {{ laptop.name }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>
-                                                    {% for employee in license.employees %}
-                                                        {{ employee.name }} {{ employee.surname }}<br>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>{{ license.price }}</td>
-                                                <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>                </table>
+                                    {% for license in licenses %}
+                                        <tr onclick='location.href = "{{ path('license_show', { 'id': license.id }) }}"'>
+                                            <td>{{ license.name }}</td>
+                                            <td>{{ license.licenseKey }}</td>
+                                            <td>{{ license.type }}</td>
+                                            <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
+                                            <td>{{ license.expireDate|date('Y-m-d') }}</td>
+                                            <td>
+                                                {% for computer in license.computers %}
+                                                    {{ computer.name }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {% for employee in license.employees %}
+                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{ license.price }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>

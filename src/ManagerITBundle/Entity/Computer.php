@@ -151,7 +151,7 @@ class Computer
     private $licenses;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="desktops")
+     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="computers")
      *
      * @ORM\JoinTable(name="employees_computers")
      */

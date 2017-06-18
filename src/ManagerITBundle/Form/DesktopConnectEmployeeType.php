@@ -18,7 +18,7 @@ class DesktopConnectEmployeeType extends AbstractType {
         $builder
                 ->add('employees', EntityType::class, [
                     'class' => 'ManagerITBundle:Employee',
-                    'choice_label' => 'name',
+                    'choice_label' => ['surname', 'sex'],
                      'multiple' => true, 
                 ])
         ;

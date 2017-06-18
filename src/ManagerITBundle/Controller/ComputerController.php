@@ -455,21 +455,57 @@ class ComputerController extends Controller
     }
 
     /**
+     * Finds and displays a computer employees.
      *
-     * @Route("/{id}/computerconnectemployee}", name="computer_connect_employee")
-     * @Method("POST")
+     * @Route("/{type}/{id}/employees", name="computer_employees")
+     * @Method("GET")
+     */
+    public function employeesAction($type, Computer $computer)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $employees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+
+        return $this->render($type . '/employees.html.twig', array(
+            'computer' => $computer,
+            'employees' => $employees,
+        ));
+    }
+
+    /**
+     * Action to connect computer to employee
+     *
+     * @Route("/{computer}/connect/{employee}", name="computer_connect_employee")
+     * @Method("GET")
      */
     public
-    function computerConnectEmployeeAction(Request $request, Computer $computer)
+    function computerConnectEmployeeAction(Request $request, Computer $computer, Employee $employee)
     {
 
-        $form = $this->createForm('ManagerITBundle\Form\ComputerConnectEmployeeType', $computer);
-        $form->handleRequest($request);
+        $computer->addEmployee($employee);
+        $employee->addComputer($computer);
+        $this->getDoctrine()->getManager()->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-        }
+        $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_employees', array('type' => $type,'id' => $computer->getId()));
+    }
+
+    /**
+     * Computer disconnect Employee
+     * @Route("/{computer}/remove/{employee}", name="computer_remove_employee")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveEmployeeAction(Computer $computer, Employee $employee)
+    {
+
+        $computer->removeEmployee($employee);
+        $employee->removeComputer($computer);
+        $this->getDoctrine()->getManager()->flush();
+
+        $type = $computer->getFormFactor();
+
+        return $this->redirectToRoute('computer_employees', array('type' => $type,'id' => $computer->getId()));
     }
 }

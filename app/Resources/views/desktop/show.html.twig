@@ -26,6 +26,11 @@
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
             </a>
+            <a href="{{ path('computer_employees', {'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-user"></i>
+                <span class="link-title">Pracownicy</span>
+            </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
                 <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i

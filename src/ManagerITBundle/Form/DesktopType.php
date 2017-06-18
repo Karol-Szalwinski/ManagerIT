@@ -63,7 +63,7 @@ class DesktopType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'manageritbundle_desktop';
+        return 'manageritbundle_computer';
     }
 
 

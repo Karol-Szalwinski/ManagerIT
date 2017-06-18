@@ -3,8 +3,7 @@
 namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Employee;
-use ManagerITBundle\Entity\Desktop;
-use ManagerITBundle\Entity\Laptop;
+use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\License;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -134,15 +133,16 @@ class EmployeeController extends Controller {
     }
 
     /**
-     * Action to disconnect employee with desktop
+     * Action to disconnect employee with computer
      * 
-     *  @Route("/{id}/detach_desktop/{desktop}", name="employee_detach_desktop")
+     *  @Route("/{employee}/remove_computer/{computer}", name="employee_remove_computer")
      *  @Method({"GET"})
      */
-    public function detachDesktopAction(Employee $employee, Desktop $desktop) {
-        $employee->removeDesktop($desktop);
-        $em = $this->getDoctrine()->getManager();
-        $em->flush($employee);
+    public function removeComputerAction(Employee $employee, Computer $computer) {
+        $employee->removeComputer($computer);
+        $computer->removeEmployee($employee);
+        $this->getDoctrine()->getManager()->flush();
+
         $deleteForm = $this->createDeleteForm($employee);
 
         return $this->render('employee/show.html.twig', array(
@@ -150,40 +150,24 @@ class EmployeeController extends Controller {
                     'delete_form' => $deleteForm->createView(),
         ));
     }
-    
-    /**
-     * Action to disconnect employee with laptop
-     * 
-     *  @Route("/{id}/detach_laptop/{laptop}", name="employee_detach_laptop")
-     *  @Method({"GET"})
-     */
-    public function detachLaptopAction(Employee $employee, Laptop $laptop) {
-        $employee->removeLaptop($laptop);
-        $em = $this->getDoctrine()->getManager();
-        $em->flush($employee);
-        $deleteForm = $this->createDeleteForm($employee);
 
-        return $this->render('employee/show.html.twig', array(
-                    'employee' => $employee,
-                    'delete_form' => $deleteForm->createView(),
-        ));
-    }
-    
+
     /**
-     * Action to disconnect employee with laptop
-     * 
-     *  @Route("/{id}/detach_license/{license}", name="employee_detach_license")
+     * Action to disconnect employee with license
+     *
+     *  @Route("/{employee}/remove_license/{license}", name="employee_remove_license")
      *  @Method({"GET"})
      */
-    public function detachLicenseAction(Employee $employee, License $license) {
+    public function removeLicenseAction(Employee $employee, License $license) {
         $employee->removeLicense($license);
-        $em = $this->getDoctrine()->getManager();
-        $em->flush($employee);
+        $license->removeEmployee($employee);
+        $this->getDoctrine()->getManager()->flush();
+
         $deleteForm = $this->createDeleteForm($employee);
 
         return $this->render('employee/show.html.twig', array(
-                    'employee' => $employee,
-                    'delete_form' => $deleteForm->createView(),
+            'employee' => $employee,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 

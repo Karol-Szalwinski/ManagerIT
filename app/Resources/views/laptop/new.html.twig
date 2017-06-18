@@ -5,9 +5,9 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('laptop_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista laptopów</span>
+                <span class="link-title">Lista komputerów</span>
             </a>
         </div>
     </div>
@@ -61,58 +61,37 @@
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.type, 'Typ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.series, 'Seria', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
+                                        {{ form_widget(form.series, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź serię '} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.manufacturer, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.manufacturer, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
+                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.screen, 'Matryca', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.screenSize, 'Matryca', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.screen, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź przekątną matrycy'} }) }}
+                                        {{ form_widget(form.screenSize, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź przekątną matrycy'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.cpu, 'Procesor', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.screenType, 'Rodzaj matrycy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.cpu, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź procesor'} }) }}
+                                        {{ form_widget(form.screenType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź rodzaj matrycy'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.ram, 'Pamięć RAM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.battery, 'Bateria', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.ram, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź RAM'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.hdd, 'Dysk HDD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.hdd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk HDD'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.ssd, 'Dysk SSD', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.ssd, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Dysk SSD'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.drive, 'Napęd optyczny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.drive, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź napęd CD-ROM / DVD ROM'} }) }}
+                                        {{ form_widget(form.battery, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model baterii'} }) }}
                                     </div>
                                 </div>
 
@@ -120,13 +99,6 @@
                                     {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ i moc zasilacza'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.battery, 'Bateria', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.battery, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ i rodzaj baterii'} }) }}
                                     </div>
                                 </div>
 
@@ -150,7 +122,6 @@
                                         {{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}
                                     </div>
                                 </div>
-
 
                                 <div class="form-group" >
                                     {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}

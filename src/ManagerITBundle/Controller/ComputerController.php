@@ -6,6 +6,7 @@ use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\DesktopRam;
 use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\Licese;
 use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Picture;
@@ -99,14 +100,10 @@ class ComputerController extends Controller
     public function showAction($type, Computer $computer)
     {
         $deleteForm = $this->createDeleteForm($computer);
-        $licenseForm = $this->createForm('ManagerITBundle\Form\ComputerConnectLicenseType', $computer);
-        $employeeForm = $this->createForm('ManagerITBundle\Form\ComputerConnectEmployeeType', $computer);
 
         return $this->render($type .'/show.html.twig', array(
             'computer' => $computer,
             'delete_form' => $deleteForm->createView(),
-            'license_form' => $licenseForm->createView(),
-            'employee_form' => $employeeForm->createView(),
         ));
     }
 
@@ -475,7 +472,7 @@ class ComputerController extends Controller
     /**
      * Action to connect computer to employee
      *
-     * @Route("/{computer}/connect/{employee}", name="computer_connect_employee")
+     * @Route("/{computer}/connectemployee/{employee}", name="computer_connect_employee")
      * @Method("GET")
      */
     public
@@ -493,7 +490,7 @@ class ComputerController extends Controller
 
     /**
      * Computer disconnect Employee
-     * @Route("/{computer}/remove/{employee}", name="computer_remove_employee")
+     * @Route("/{computer}/removeemployee/{employee}", name="computer_remove_employee")
      * @Method("GET")
      */
     public
@@ -507,5 +504,60 @@ class ComputerController extends Controller
         $type = $computer->getFormFactor();
 
         return $this->redirectToRoute('computer_employees', array('type' => $type,'id' => $computer->getId()));
+    }
+
+    /**
+     * Finds and displays a computer licenses.
+     *
+     * @Route("/{type}/{id}/license", name="computer_licenses")
+     * @Method("GET")
+     */
+    public function licensesAction($type, Computer $computer)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $licenses = $em->getRepository('ManagerITBundle:License')->findAll();
+
+        return $this->render($type . '/licenses.html.twig', array(
+            'computer' => $computer,
+            'licenses' => $licenses,
+        ));
+    }
+
+    /**
+     * Action to connect computer to license
+     *
+     * @Route("/{computer}/connectlicense/{license}", name="computer_connect_license")
+     * @Method("GET")
+     */
+    public
+    function computerConnectLicenseAction(Request $request, Computer $computer, License $license)
+    {
+
+        $computer->addLicense($license);
+        $license->addComputer($computer);
+        $this->getDoctrine()->getManager()->flush();
+
+        $type = $computer->getFormFactor();
+
+        return $this->redirectToRoute('computer_licenses', array('type' => $type,'id' => $computer->getId()));
+    }
+
+    /**
+     * Computer disconnect License
+     * @Route("/{computer}/removelicense/{license}", name="computer_remove_license")
+     * @Method("GET")
+     */
+    public
+    function computerRemoveLicenseAction(Computer $computer, License $license)
+    {
+
+        $computer->removeLicense($license);
+        $license->removeComputer($computer);
+        $this->getDoctrine()->getManager()->flush();
+
+        $type = $computer->getFormFactor();
+
+        return $this->redirectToRoute('computer_licenses', array('type' => $type,'id' => $computer->getId()));
     }
 }

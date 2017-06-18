@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Zdjęcia laptopa {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista laptopów</span>
+            </a>
+            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż destkop</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- .col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-photo"></i></div>
+                            <h5>Zdjęcia</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable1" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+                        <div id="condensedTable1" class="body collapse in">
+                            <table class="table table-condensed responsive-table">
+
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {% for picture in computer.pictures %}
+                                            <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
+                                                     height="200" width="200">
+                                            </a>
+                                            <a href="{{ path('computer_delete_picture', {'type' : computer.formFactor,'id': computer.id , 'picture': picture.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                <i class="fa fa-arrow-left "></i>
+                                                <i class="fa fa-trash-o "></i>
+                                                <span class="link-title">Usuń zdjęcie</span>
+                                            </a>
+                                        {% else %}
+                                            {% set picture = "default.png" %}
+                                            <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                     height="200" width="200">
+                                            </a>
+                                        {% endfor %}
+                                    </td>
+                                    Kliknij aby powiększyć
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Przycisk uruchamiający modal -->
+                        <button class="btn btn-primary btn-grad control-label" data-toggle="modal"
+                                data-target="#myModal">
+                            Dodaj nowe zdjęcie
+                        </button>
+                    </div>
+                </div>
+                <!-- /.col-lg-6 -->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Wgraj zdjęcie z dysku</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="div-1" class="body">
+                        {{ form_start(picture_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                        <div class="form-group">
+                            {{ form_label(picture_form.file, 'Zdjęcie', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                            <div class="col-lg-8">
+                                {{ form_row(picture_form.file, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Wgraj zdjęcie"
+                                   class="btn btn-primary btn-grad control-label"/>
+                            <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">Zamknij
+                            </button>
+                        </div>
+
+                        {{ form_end(picture_form) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -105,38 +105,26 @@
                                     <thead>
                                         <tr>
                                             <th>Nazwa</th>
-                                            <th>Typ</th>
+                                            <th>Seria</th>
                                             <th>Model</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for desktop in employee.desktops %}
+                                        {% for computer in employee.computers %}
                                             <tr>                                                    
-                                                <td>{{ desktop.name }}</td>
-                                                <td>{{ desktop.type }}</td>
-                                                <td>{{ desktop.model }}</td>
+                                                <td>{{ computer.name }}</td>
+                                                <td>{{ computer.series }}</td>
+                                                <td>{{ computer.model }}</td>
                                                 <td>
-                                                    <a href="{{ path('employee_detach_desktop', { 'id': employee.id, 'desktop': desktop.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <a href="{{ path('employee_remove_computer', { 'computer': computer.id, 'employee': employee.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
                                                         <i class="fa fa-unlink"></i>
                                                         <span class="link-title">odłącz</span>
                                                     </a>
                                                 </td>
                                             </tr>       
                                         {% endfor %}
-                                        {% for laptop in employee.laptops %}
-                                            <tr>                                                    
-                                                <td>{{ laptop.name }}</td>
-                                                <td>{{ laptop.type }}</td>
-                                                <td>{{ laptop.model }}</td>
-                                                <td>
-                                                    <a href="{{ path('employee_detach_laptop', { 'id': employee.id, 'laptop': laptop.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                        <i class="fa fa-unlink"></i>
-                                                        <span class="link-title">odłącz</span>
-                                                    </a>
-                                                </td>
-                                            </tr>       
-                                        {% endfor %}
+
                                     </tbody>                </table>
                             </div>
                         </div>
@@ -176,7 +164,7 @@
                                                 <td>{{ license.type}}</td>
                                                 <td>{{ license.expireDate|date("m/d/Y") }}</td>
                                                 <td>
-                                                    <a href="{{ path('employee_detach_license', { 'id': employee.id, 'license': license.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <a href="{{ path('employee_remove_license', { 'employee': employee.id, 'license': license.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
                                                         <i class="fa fa-unlink"></i>
                                                         <span class="link-title">odłącz</span>
                                                     </a>

@@ -31,6 +31,11 @@
                 <i class="fa fa-user"></i>
                 <span class="link-title">Pracownicy</span>
             </a>
+            <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-file-text"></i>
+                <span class="link-title">Licencje</span>
+            </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
                 <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
@@ -339,8 +344,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse"
-                                                data-target="#chose-license">Zmień <i class="fa fa-wrench"></i></button>
+                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable5" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -350,21 +358,6 @@
                                 </div>
                             </header>
 
-
-                            <div id="chose-license" class="collapse">
-
-                                {{ form_start(license_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_license', { 'id': computer.id }) }) }}
-                                <div class="form-group">
-                                    {{ form_label(license_form.licenses, 'Wybierz licencję', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-
-                                    <div class="col-lg-6">
-                                        {{ form_widget(license_form.licenses, { 'attr': {'class': 'form-control'} }) }}
-                                    </div>
-                                </div>
-                                <input type="submit" value="Zapisz" class="btn btn-primary btn-grad control-label"/>
-                                <br>
-                                {{ form_end(license_form) }}
-                            </div>
                             <div id="condensedTable5" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>
@@ -372,7 +365,6 @@
                                         <th>Program</th>
                                         <th>Typ licencji</th>
                                         <th>Wygasa</th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -381,13 +373,6 @@
                                             <td>{{ license.name }}</td>
                                             <td>{{ license.type }}</td>
                                             <td>{{ license.expireDate|date("m/d/Y") }}</td>
-                                            <td>
-                                                <a href="{{ path('desktop_detach_license', { 'id': computer.id, 'license': license.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-unlink"></i>
-                                                    <span class="link-title">odłącz</span>
-                                                </a>
-                                            </td>
                                         </tr>
                                     {% endfor %}
 
@@ -407,9 +392,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-info" data-toggle="collapse"
-                                                data-target="#chose-employee">Zmień <i class="fa fa-wrench"></i>
-                                        </button>
+                                        <a href="{{ path('computer_employees', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable6" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -417,19 +404,6 @@
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
-                            </header>
-                            <header id="chose-employee" class="collapse">
-                                {{ form_start(employee_form, { 'attr': {'class': 'form-wertical'}, 'action': path('desktop_connect_employee', { 'id': computer.id }) }) }}
-                                <div class="form-group">
-                                    {{ form_label(employee_form.employees, 'Wybierz pracownika', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-
-                                    <div class="col-lg-6">
-                                        {{ form_widget(employee_form.employees, { 'attr': {'class': 'form-control'} }) }}
-                                    </div>
-                                </div>
-                                <input type="submit" value="Zapisz" class="btn btn-primary btn-grad control-label"/>
-                                <br>
-                                {{ form_end(employee_form) }}
                             </header>
                             <div id="condensedTable6" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
@@ -439,8 +413,6 @@
                                         <th>Nazwisko</th>
                                         <th>Stanowisko</th>
                                         <th>Dział
-                                        <th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -450,13 +422,6 @@
                                             <td>{{ employee.surname }}</td>
                                             <td>{{ employee.job }}</td>
                                             <td>{{ employee.departament.name }}</td>
-                                            <td>
-                                                <a href="{{ path('desktop_detach_employee', { 'id': computer.id, 'employee': employee.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-unlink"></i>
-                                                    <span class="link-title">odłącz</span>
-                                                </a>
-                                            </td>
                                         </tr>
                                     {% endfor %}
 

@@ -11,7 +11,11 @@
             </a>
             <a href="{{ path('computer_new', {'type': 'desktop'}) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj</span>
+                <span class="link-title">Dodaj desktopa</span>
+            </a>
+            <a href="{{ path('computer_new', {'type': 'laptop'}) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj laptopa</span>
             </a>
         </div>
     </div>
@@ -48,7 +52,6 @@
                                         <th>Licencje</th>
                                         <th>Dział</th>
                                         <th>Adres IP</th>
-                                        <th>MAC adres</th>
                                         <th>Zdjęcie</th>
                                     </tr>
                                     </thead>
@@ -96,9 +99,7 @@
                                                 {% endfor %}
                                             </td>
                                             <td>{{ computer.ipAddress }}</td>
-                                            <td>{{ computer.macAddress }}</td>
                                             <td>
-
                                                 {% if computer.pictures is empty %}
                                                     {% set picture = "default.png" %}
                                                     <a href="{{ asset('pictures/' ~ picture) }}">

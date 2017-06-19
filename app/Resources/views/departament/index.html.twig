@@ -42,7 +42,6 @@
                                             <th>Nazwa działu</th>
                                             <th>Ilość pracowników</th>
                                             <th>Ilość komputerów</th>
-                                            <th>Ilość laptopów</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,19 +51,13 @@
                                                 <td>{{ departament.name }}</td>
                                                 <td>{{ departament.employees |length }}</td>
                                                 <td>
-                                                    {% set desktopsCounter = 0 %}
+                                                    {% set computersCounter = 0 %}
                                                     {% for employee in departament.employees %}
-                                                        {% set desktopsCounter = desktopsCounter + employee.desktops|length %}
+                                                        {% set computersCounter = computersCounter + employee.computers|length %}
                                                     {% endfor %}
-                                                    {{ desktopsCounter }}
+                                                    {{ computersCounter }}
                                                 </td>
-                                                <td>
-                                                    {% set laptopsCounter = 0 %}
-                                                    {% for employee in departament.employees %}
-                                                        {% set laptopsCounter = laptopsCounter + employee.laptops|length %}
-                                                    {% endfor %}
-                                                    {{ laptopsCounter }}
-                                                </td>
+
                                             </tr>
                                         {% endfor %}
                                     </tbody>                </table>

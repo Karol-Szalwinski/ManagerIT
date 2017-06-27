@@ -76,17 +76,17 @@ class Employee
      */
     private $licenses;
     
-    /**
-     * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="employees")
-     * 
-     */
-    private $desktops;
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="Laptop", mappedBy="employees")
-     * 
-     */
-    private $laptops;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="employees")
+//     *
+//     */
+//    private $desktops;
+//
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Laptop", mappedBy="employees")
+//     *
+//     */
+//    private $laptops;
 
     /**
      * @ORM\ManyToMany(targetEntity="Computer", mappedBy="employees")
@@ -102,8 +102,8 @@ class Employee
     public function __construct()
     {
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -311,71 +311,71 @@ class Employee
         return $this->licenses;
     }
 
-    /**
-     * Add desktops
-     *
-     * @param \ManagerITBundle\Entity\Desktop $desktops
-     * @return Employee
-     */
-    public function addDesktop(\ManagerITBundle\Entity\Desktop $desktops)
-    {
-        $this->desktops[] = $desktops;
-
-        return $this;
-    }
-
-    /**
-     * Remove desktops
-     *
-     * @param \ManagerITBundle\Entity\Desktop $desktops
-     */
-    public function removeDesktop(\ManagerITBundle\Entity\Desktop $desktops)
-    {
-        $this->desktops->removeElement($desktops);
-    }
-
-    /**
-     * Get desktops
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDesktops()
-    {
-        return $this->desktops;
-    }
-
-    /**
-     * Add laptops
-     *
-     * @param \ManagerITBundle\Entity\Laptop $laptops
-     * @return Employee
-     */
-    public function addLaptop(\ManagerITBundle\Entity\Laptop $laptops)
-    {
-        $this->laptops[] = $laptops;
-
-        return $this;
-    }
-
-    /**
-     * Remove laptops
-     *
-     * @param \ManagerITBundle\Entity\Laptop $laptops
-     */
-    public function removeLaptop(\ManagerITBundle\Entity\Laptop $laptops)
-    {
-        $this->laptops->removeElement($laptops);
-    }
-
-    /**
-     * Get laptops
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getLaptops()
-    {
-        return $this->laptops;
-    }
+//    /**
+//     * Add desktops
+//     *
+//     * @param \ManagerITBundle\Entity\Desktop $desktops
+//     * @return Employee
+//     */
+//    public function addDesktop(\ManagerITBundle\Entity\Desktop $desktops)
+//    {
+//        $this->desktops[] = $desktops;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove desktops
+//     *
+//     * @param \ManagerITBundle\Entity\Desktop $desktops
+//     */
+//    public function removeDesktop(\ManagerITBundle\Entity\Desktop $desktops)
+//    {
+//        $this->desktops->removeElement($desktops);
+//    }
+//
+//    /**
+//     * Get desktops
+//     *
+//     * @return \Doctrine\Common\Collections\Collection
+//     */
+//    public function getDesktops()
+//    {
+//        return $this->desktops;
+//    }
+//
+//    /**
+//     * Add laptops
+//     *
+//     * @param \ManagerITBundle\Entity\Laptop $laptops
+//     * @return Employee
+//     */
+//    public function addLaptop(\ManagerITBundle\Entity\Laptop $laptops)
+//    {
+//        $this->laptops[] = $laptops;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove laptops
+//     *
+//     * @param \ManagerITBundle\Entity\Laptop $laptops
+//     */
+//    public function removeLaptop(\ManagerITBundle\Entity\Laptop $laptops)
+//    {
+//        $this->laptops->removeElement($laptops);
+//    }
+//
+//    /**
+//     * Get laptops
+//     *
+//     * @return \Doctrine\Common\Collections\Collection
+//     */
+//    public function getLaptops()
+//    {
+//        return $this->laptops;
+//    }
 
     /**
      * Add computers

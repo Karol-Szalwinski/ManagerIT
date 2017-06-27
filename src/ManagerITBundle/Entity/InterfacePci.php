@@ -21,11 +21,11 @@ class InterfacePci
      */
     private $id;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="interfacePcies")
-     * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
-     */
-    private $desktop;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="Desktop", inversedBy="interfacePcies")
+//     * @ORM\JoinColumn(name="desktop_id", referencedColumnName="id")
+//     */
+//    private $desktop;
 
     /**
      * @ORM\ManyToOne(targetEntity="Computer", inversedBy="pciInterfaces")
@@ -50,28 +50,28 @@ class InterfacePci
         return $this->id;
     }
 
-    /**
-     * Set desktop
-     *
-     * @param \ManagerITBundle\Entity\Desktop $desktop
-     * @return InterfacePci
-     */
-    public function setDesktop(\ManagerITBundle\Entity\Desktop $desktop = null)
-    {
-        $this->desktop = $desktop;
-
-        return $this;
-    }
-
-    /**
-     * Get desktop
-     *
-     * @return \ManagerITBundle\Entity\Desktop 
-     */
-    public function getDesktop()
-    {
-        return $this->desktop;
-    }
+//    /**
+//     * Set desktop
+//     *
+//     * @param \ManagerITBundle\Entity\Desktop $desktop
+//     * @return InterfacePci
+//     */
+//    public function setDesktop(\ManagerITBundle\Entity\Desktop $desktop = null)
+//    {
+//        $this->desktop = $desktop;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get desktop
+//     *
+//     * @return \ManagerITBundle\Entity\Desktop
+//     */
+//    public function getDesktop()
+//    {
+//        return $this->desktop;
+//    }
 
     /**
      * Set cardGpu

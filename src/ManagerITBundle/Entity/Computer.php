@@ -893,13 +893,14 @@ class Computer
         return $this->ipAddress;
     }
 
+
     /**
      * Add networkInterfaceCards
      *
-     * @param \ManagerITBundle\Entity\Feature $networkInterfaceCards
+     * @param \ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards
      * @return Computer
      */
-    public function addNetworkInterfaceCard(\ManagerITBundle\Entity\Feature $networkInterfaceCards)
+    public function addNetworkInterfaceCard(\ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards)
     {
         $this->networkInterfaceCards[] = $networkInterfaceCards;
 
@@ -909,9 +910,9 @@ class Computer
     /**
      * Remove networkInterfaceCards
      *
-     * @param \ManagerITBundle\Entity\Feature $networkInterfaceCards
+     * @param \ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards
      */
-    public function removeNetworkInterfaceCard(\ManagerITBundle\Entity\Feature $networkInterfaceCards)
+    public function removeNetworkInterfaceCard(\ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards)
     {
         $this->networkInterfaceCards->removeElement($networkInterfaceCards);
     }

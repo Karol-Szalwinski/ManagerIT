@@ -6,9 +6,8 @@ use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\DesktopRam;
 use ManagerITBundle\Entity\Employee;
-use ManagerITBundle\Entity\Licese;
-use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\License;
+use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\RamSlot;
 use ManagerITBundle\Entity\Gpu;
@@ -16,6 +15,7 @@ use ManagerITBundle\Entity\StorageController;
 use ManagerITBundle\Entity\Hdd;
 use ManagerITBundle\Entity\Ssd;
 use ManagerITBundle\Entity\OpticalDrive;
+use ManagerITBundle\Entity\NetworkInterfaceCard;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -574,6 +574,64 @@ class ComputerController extends Controller
         return $this->render($type . '/network.html.twig', array(
             'computer' => $computer,
 
+        ));
+    }
+
+    /**
+     * Creates a new networkInterfaceCard entity connected with computer.
+     *
+     * @Route("/{type}/{id}/network/new", name="computer_network_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newNetworkAction(Request $request, $type, Computer $computer )
+    {
+        $networkInterfaceCard = new Networkinterfacecard();
+        $form = $this->createForm('ManagerITBundle\Form\NetworkInterfaceCardType', $networkInterfaceCard);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $networkInterfaceCard->setDevice($computer);
+            $computer->addNetworkInterfaceCard($networkInterfaceCard);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($networkInterfaceCard);
+            $em->flush($networkInterfaceCard);
+
+            return $this->redirectToRoute('computer_network', array(
+                'type' => $type,
+                'id' => $computer->getId(),
+                ));
+        }
+
+        return $this->render('networkinterfacecard/new.html.twig', array(
+            'networkInterfaceCard' => $networkInterfaceCard,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Edit networkInterfaceCard entity connected with computer.
+     *
+     * @Route("/{type}/{id}/network/{networkInterfaceCard}/edit", name="computer_network_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editNetworkAction(Request $request, $type, Computer $computer, NetworkInterfaceCard $networkInterfaceCard )
+    {
+        $editForm = $this->createForm('ManagerITBundle\Form\NetworkInterfaceCardType', $networkInterfaceCard);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('computer_network', array(
+                'type' => $type,
+                'id' => $computer->getId(),
+            ));
+        }
+
+        return $this->render('networkinterfacecard/edit.html.twig', array(
+            'networkInterfaceCard' => $networkInterfaceCard,
+            'edit_form' => $editForm->createView(),
+            'type' => $type,
         ));
     }
 

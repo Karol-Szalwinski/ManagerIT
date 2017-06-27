@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Karty sieciowe {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista desktopów</span>
+            </a>
+            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż desktop</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- .col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-cogs"></i></div>
+                            <h5>Przypisani karty sieciowe</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable2" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+
+                        {% if computer.networkInterfaceCards is not empty %}
+
+                        <div id="collapse4" class="body">
+                            <table id="dataTable"
+                                   class="table table-bordered table-condensed table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Nazwa</th>
+                                    <th>Model</th>
+                                    <th>Seria</th>
+                                    <th>Producent</th>
+                                    <th>Standard</th>
+                                    <th>Interfejs</th>
+                                    <th>Adres IP </th>
+                                    <th>MAC adres</th>
+                                    <th>Edytuj</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for networkInterfaceCard in computer.networkInterfaceCards %}
+                                    <tr>
+                                        <td>{{ networkInterfaceCard.name }}</td>
+                                        <td>{{ networkInterfaceCard.model }}</td>
+                                        <td>{{ networkInterfaceCard.series }}</td>
+                                        <td>{{ networkInterfaceCard.brand }}</td>
+                                        <td>{{ networkInterfaceCard.standard }}</td>
+                                        <td>{{ networkInterfaceCard.interface }}</td>
+                                        <td>{{ networkInterfaceCard.ipv4 }}</td>
+                                        <td>{{ networkInterfaceCard.macAddress}}</td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- /.row -->
+                    <!--End Datatables-->
+                    {% else %}
+                        <span>  Brak zdefiniowanej karty sieciowej </span>
+                    {% endif %}
+
+                </div>
+
+                <!-- /.col-lg-6 -->
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

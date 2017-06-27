@@ -561,4 +561,20 @@ class ComputerController extends Controller
 
         return $this->redirectToRoute('computer_licenses', array('type' => $type,'id' => $computer->getId()));
     }
+
+    /**
+     * Finds and displays a computer components.
+     *
+     * @Route("/{type}/{id}/network", name="computer_network")
+     * @Method("GET")
+     */
+    public function networkAction($type, Computer $computer)
+    {
+
+        return $this->render($type . '/network.html.twig', array(
+            'computer' => $computer,
+
+        ));
+    }
+
 }

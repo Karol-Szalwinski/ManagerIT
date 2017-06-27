@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Networkinterfacecards list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Series</th>
+                <th>Brand</th>
+                <th>Standard</th>
+                <th>Interface</th>
+                <th>Ipv4</th>
+                <th>Macaddress</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for networkInterfaceCard in networkInterfaceCards %}
+            <tr>
+                <td><a href="{{ path('networkinterfacecard_show', { 'id': networkInterfaceCard.id }) }}">{{ networkInterfaceCard.id }}</a></td>
+                <td>{{ networkInterfaceCard.name }}</td>
+                <td>{{ networkInterfaceCard.model }}</td>
+                <td>{{ networkInterfaceCard.series }}</td>
+                <td>{{ networkInterfaceCard.brand }}</td>
+                <td>{{ networkInterfaceCard.standard }}</td>
+                <td>{{ networkInterfaceCard.interface }}</td>
+                <td>{{ networkInterfaceCard.ipv4 }}</td>
+                <td>{{ networkInterfaceCard.macAddress }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('networkinterfacecard_show', { 'id': networkInterfaceCard.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('networkinterfacecard_edit', { 'id': networkInterfaceCard.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('networkinterfacecard_new') }}">Create a new networkInterfaceCard</a>
+        </li>
+    </ul>
+{% endblock %}

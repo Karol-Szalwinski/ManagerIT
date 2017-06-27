@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Networkinterfacecard</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ networkInterfaceCard.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ networkInterfaceCard.name }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ networkInterfaceCard.model }}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{ networkInterfaceCard.series }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ networkInterfaceCard.brand }}</td>
+            </tr>
+            <tr>
+                <th>Standard</th>
+                <td>{{ networkInterfaceCard.standard }}</td>
+            </tr>
+            <tr>
+                <th>Interface</th>
+                <td>{{ networkInterfaceCard.interface }}</td>
+            </tr>
+            <tr>
+                <th>Ipv4</th>
+                <td>{{ networkInterfaceCard.ipv4 }}</td>
+            </tr>
+            <tr>
+                <th>Macaddress</th>
+                <td>{{ networkInterfaceCard.macAddress }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('networkinterfacecard_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('networkinterfacecard_edit', { 'id': networkInterfaceCard.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

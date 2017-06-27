@@ -178,6 +178,11 @@ class Computer
      */
     private $screenType;
 
+    /**
+     * @ORM\OneToMany(targetEntity="NetworkInterfaceCard", mappedBy="device")
+     */
+    private $networkInterfaceCards;
+
 
     /**
      * Get id
@@ -886,5 +891,38 @@ class Computer
     public function getIpAddress()
     {
         return $this->ipAddress;
+    }
+
+    /**
+     * Add networkInterfaceCards
+     *
+     * @param \ManagerITBundle\Entity\Feature $networkInterfaceCards
+     * @return Computer
+     */
+    public function addNetworkInterfaceCard(\ManagerITBundle\Entity\Feature $networkInterfaceCards)
+    {
+        $this->networkInterfaceCards[] = $networkInterfaceCards;
+
+        return $this;
+    }
+
+    /**
+     * Remove networkInterfaceCards
+     *
+     * @param \ManagerITBundle\Entity\Feature $networkInterfaceCards
+     */
+    public function removeNetworkInterfaceCard(\ManagerITBundle\Entity\Feature $networkInterfaceCards)
+    {
+        $this->networkInterfaceCards->removeElement($networkInterfaceCards);
+    }
+
+    /**
+     * Get networkInterfaceCards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNetworkInterfaceCards()
+    {
+        return $this->networkInterfaceCards;
     }
 }

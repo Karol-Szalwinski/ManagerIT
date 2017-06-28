@@ -18,7 +18,8 @@ use ManagerITBundle\Entity\OpticalDrive;
 use ManagerITBundle\Entity\NetworkInterfaceCard;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Computer controller.
@@ -71,7 +72,7 @@ class ComputerController extends Controller
     public function newAction(Request $request, $type)
     {
         $computer = new Computer();
-        $typeForm = ($type == 'desktop') ? 'ManagerITBundle\Form\DesktopType': 'ManagerITBundle\Form\LaptopType'  ;
+        $typeForm = ($type == 'desktop') ? 'ManagerITBundle\Form\DesktopType' : 'ManagerITBundle\Form\LaptopType';
         $form = $this->createForm($typeForm, $computer);
         $form->handleRequest($request);
 
@@ -84,7 +85,7 @@ class ComputerController extends Controller
             return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
         }
 
-        return $this->render($type .'/new.html.twig', array(
+        return $this->render($type . '/new.html.twig', array(
             'computer' => $computer,
             'form' => $form->createView(),
             'type' => $type,
@@ -101,7 +102,7 @@ class ComputerController extends Controller
     {
         $deleteForm = $this->createDeleteForm($computer);
 
-        return $this->render($type .'/show.html.twig', array(
+        return $this->render($type . '/show.html.twig', array(
             'computer' => $computer,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -116,17 +117,17 @@ class ComputerController extends Controller
     public function editAction(Request $request, $type, Computer $computer)
     {
         $deleteForm = $this->createDeleteForm($computer);
-        $typeForm = ($type == 'desktop') ? 'ManagerITBundle\Form\DesktopType': 'ManagerITBundle\Form\LaptopType'  ;
+        $typeForm = ($type == 'desktop') ? 'ManagerITBundle\Form\DesktopType' : 'ManagerITBundle\Form\LaptopType';
         $editForm = $this->createForm($typeForm, $computer);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('computer_show', array('type' => $type,'id' => $computer->getId()));
+            return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
         }
 
-        return $this->render($type .'/edit.html.twig', array(
+        return $this->render($type . '/edit.html.twig', array(
             'computer' => $computer,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -165,8 +166,7 @@ class ComputerController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('computer_delete', array('id' => $computer->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
 
@@ -209,7 +209,7 @@ class ComputerController extends Controller
         $computer->setCpu($desktopCpu);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -230,8 +230,9 @@ class ComputerController extends Controller
         $em->persist($ramSlot);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer disconnect ram
      * @Route("/{type}/{id}/computer_remove_ram/{ramslot}", name="computer_remove_ram")
@@ -247,8 +248,9 @@ class ComputerController extends Controller
         $em->remove($ramslot);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      *
      * @Route("/{type}/{id}/computer_connect_gpu/{gpu}", name="computer_connect_gpu")
@@ -267,8 +269,9 @@ class ComputerController extends Controller
         $em->persist($interfacePci);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer remove gpu
      * @Route("/{type}/{id}/computer_remove_gpu/{interfacePci}", name="computer_remove_gpu")
@@ -284,8 +287,9 @@ class ComputerController extends Controller
         $em->remove($interfacePci);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer connect hdd
      * @Route("/{type}/{id}/computer_connect_hdd/{hdd}", name="computer_connect_hdd")
@@ -304,8 +308,9 @@ class ComputerController extends Controller
         $em->persist($storageController);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer remove hdd
      * @Route("/{type}/{id}/computer_remove_hdd/{storageController}", name="computer_remove_hdd")
@@ -321,8 +326,9 @@ class ComputerController extends Controller
         $em->remove($storageController);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer connect ssd
      * @Route("/{type}/{id}/computer_connect_ssd/{ssd}", name="computer_connect_ssd")
@@ -341,8 +347,9 @@ class ComputerController extends Controller
         $em->persist($storageController);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer remove ssd
      * @Route("/{type}/{id}/computer_remove_ssd/{storageController}", name="computer_remove_ssd")
@@ -358,7 +365,7 @@ class ComputerController extends Controller
         $em->remove($storageController);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -379,8 +386,9 @@ class ComputerController extends Controller
         $em->persist($storageController);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
+
     /**
      * Computer remove optical drive
      * @Route("/{type}/{id}/computer_remove_drive/{storageController}", name="computer_remove_drive")
@@ -396,7 +404,7 @@ class ComputerController extends Controller
         $em->remove($storageController);
         $em->flush();
 
-        return $this->redirectToRoute('computer_components', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -478,7 +486,7 @@ class ComputerController extends Controller
     public
     function computerConnectEmployeeAction(Request $request, Computer $computer, Employee $employee)
     {
-        if(!$computer->hasEmployee($employee)) {
+        if (!$computer->hasEmployee($employee)) {
             $computer->addEmployee($employee);
             $employee->addComputer($computer);
             $this->getDoctrine()->getManager()->flush();
@@ -486,7 +494,7 @@ class ComputerController extends Controller
 
         $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_employees', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_employees', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -504,7 +512,7 @@ class ComputerController extends Controller
 
         $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_employees', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_employees', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -541,7 +549,7 @@ class ComputerController extends Controller
 
         $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_licenses', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_licenses', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -559,7 +567,7 @@ class ComputerController extends Controller
 
         $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_licenses', array('type' => $type,'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_licenses', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
@@ -583,7 +591,7 @@ class ComputerController extends Controller
      * @Route("/{type}/{id}/network/new", name="computer_network_new")
      * @Method({"GET", "POST"})
      */
-    public function newNetworkAction(Request $request, $type, Computer $computer )
+    public function newNetworkAction(Request $request, $type, Computer $computer)
     {
         $networkInterfaceCard = new Networkinterfacecard();
         $form = $this->createForm('ManagerITBundle\Form\NetworkInterfaceCardType', $networkInterfaceCard);
@@ -599,7 +607,7 @@ class ComputerController extends Controller
             return $this->redirectToRoute('computer_network', array(
                 'type' => $type,
                 'id' => $computer->getId(),
-                ));
+            ));
         }
 
         return $this->render('networkinterfacecard/new.html.twig', array(
@@ -614,7 +622,7 @@ class ComputerController extends Controller
      * @Route("/{type}/{id}/network/{networkInterfaceCard}/edit", name="computer_network_edit")
      * @Method({"GET", "POST"})
      */
-    public function editNetworkAction(Request $request, $type, Computer $computer, NetworkInterfaceCard $networkInterfaceCard )
+    public function editNetworkAction(Request $request, $type, Computer $computer, NetworkInterfaceCard $networkInterfaceCard)
     {
         $editForm = $this->createForm('ManagerITBundle\Form\NetworkInterfaceCardType', $networkInterfaceCard);
         $editForm->handleRequest($request);
@@ -632,6 +640,24 @@ class ComputerController extends Controller
             'networkInterfaceCard' => $networkInterfaceCard,
             'edit_form' => $editForm->createView(),
             'type' => $type,
+        ));
+    }
+
+    /**
+     * Edit networkInterfaceCard entity connected with computer.
+     *
+     * @Route("/{type}/{id}/network/{networkInterfaceCard}/delete", name="computer_network_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteNetworkAction(Request $request, $type, Computer $computer, NetworkInterfaceCard $networkInterfaceCard)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($networkInterfaceCard);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_network', array(
+            'type' => $type,
+            'id' => $computer->getId(),
         ));
     }
 

@@ -30,7 +30,7 @@
                     <div class="box">
                         <header>
                             <div class="icons"><i class="fa fa-cogs"></i></div>
-                            <h5>Przypisani karty sieciowe</h5>
+                            <h5>Przypisane karty sieciowe</h5>
 
                             <div class="toolbar">
                                 <div class="btn-group">
@@ -56,9 +56,10 @@
                                     <th>Producent</th>
                                     <th>Standard</th>
                                     <th>Interfejs</th>
-                                    <th>Adres IP </th>
+                                    <th>Adres IP</th>
                                     <th>MAC adres</th>
-                                    <th>Edytuj</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -71,12 +72,29 @@
                                         <td>{{ networkInterfaceCard.standard }}</td>
                                         <td>{{ networkInterfaceCard.interface }}</td>
                                         <td>{{ networkInterfaceCard.ipv4 }}</td>
-                                        <td>{{ networkInterfaceCard.macAddress}}</td>
+                                        <td>{{ networkInterfaceCard.macAddress }}</td>
                                         <td>
-                                            <a href="{{ path('networkinterfacecard_edit', { 'id': networkInterfaceCard.id }) }}">edit</a>
+                                            <a href="{{ path('computer_network_edit', {
+                                                'type' : computer.formFactor,
+                                                'id' : computer.id,
+                                                'networkInterfaceCard': networkInterfaceCard.id
+                                            }) }}" class="btn btn-warning btn-grad control-label">
+                                                <i class="fa fa-wrench"></i>
+                                                <span>Edytuj</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('computer_network_delete', {
+                                                'type' : computer.formFactor,
+                                                'id' : computer.id,
+                                                'networkInterfaceCard' : networkInterfaceCard.id
+                                            }) }}"
+                                               class="btn btn-warning btn-grad control-label">
+                                                <i class="fa fa-plus"></i>
+                                                <span>Usuń</span>
+                                            </a>
                                         </td>
                                     </tr>
-
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -85,9 +103,15 @@
                     <!-- /.row -->
                     <!--End Datatables-->
                     {% else %}
+                        <br><br>
                         <span>  Brak zdefiniowanej karty sieciowej </span>
                     {% endif %}
-
+                    <br><br>
+                    <a href="{{ path('computer_network_new', {'type' : computer.formFactor, 'id' : computer.id}) }}"
+                       class="btn btn-warning btn-grad control-label">
+                        <i class="fa fa-plus"></i>
+                        <span>Dodaj nową kartę sieciową</span>
+                    </a>
                 </div>
 
                 <!-- /.col-lg-6 -->

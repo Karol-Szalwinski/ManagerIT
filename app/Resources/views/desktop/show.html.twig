@@ -21,6 +21,11 @@
                 <i class="fa fa-cogs"></i>
                 <span class="link-title">Podzespoły bazowe</span>
             </a>
+            <a href="{{ path('computer_network', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-sitemap"></i>
+                <span class="link-title">Sieć</span>
+            </a>
             <a href="{{ path('computer_photo', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-photo-o"></i>

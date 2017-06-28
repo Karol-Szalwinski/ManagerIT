@@ -102,18 +102,14 @@ class NetworkInterfaceCardController extends Controller
      * Deletes a networkInterfaceCard entity.
      *
      * @Route("/{id}", name="networkinterfacecard_delete")
-     * @Method("DELETE")
+     * @Method({"GET", "POST"})
      */
     public function deleteAction(Request $request, NetworkInterfaceCard $networkInterfaceCard)
     {
-        $form = $this->createDeleteForm($networkInterfaceCard);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($networkInterfaceCard);
             $em->flush($networkInterfaceCard);
-        }
 
         return $this->redirectToRoute('networkinterfacecard_index');
     }

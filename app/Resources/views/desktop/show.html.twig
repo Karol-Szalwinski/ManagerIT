@@ -283,17 +283,26 @@
                                     <tbody>
                                     <tr>
                                         <td>Adres IP</td>
-                                        <td>{{ computer.ipAddress }}</td>
+                                        {% for nic in computer.networkInterfaceCards %}
+                                        <td>{{ nic.ipv4 }}</td>
+                                        {% else %}
+                                        <td> Nie ma stałego adresu IP</td>
+                                        {% endfor %}
                                     </tr>
                                     <tr>
                                         <td>MAC Adres</td>
-                                        <td>{{ computer.macAddress }}</td>
+                                        {% for nic in computer.networkInterfaceCards %}
+                                            <td>{{ nic.macAddress }}</td>
+                                        {% else %}
+                                            <td> Brak karty sieciowej</td>
+                                        {% endfor %}
                                     </tr>
                                     <tr>
                                         <td>Nazwa sieciowa</td>
                                         <td>{{ computer.name }}</td>
                                     </tr>
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

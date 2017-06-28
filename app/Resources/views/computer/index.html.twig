@@ -98,7 +98,15 @@
                                                     {{ employee.departament.name }}<br>
                                                 {% endfor %}
                                             </td>
-                                            <td>{{ computer.ipAddress }}</td>
+
+                                            <td>
+                                                {% for nic in computer.networkInterfaceCards %}
+                                                    {{ nic.ipv4 }}<br>
+                                                {% else %}
+                                                    Nie ma stałego adresu IP
+                                                {% endfor %}
+                                            </td>
+
                                             <td>
                                                 {% if computer.pictures is empty %}
                                                     {% set picture = "default.png" %}

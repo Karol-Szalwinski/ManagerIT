@@ -32,7 +32,7 @@ class License
     /**
      * @var string
      *
-     * @ORM\Column(name="licenseKey", type="string", length=255, unique=true)
+     * @ORM\Column(name="licenseKey", type="string", length=255, unique=true, nullable=true)
      */
     private $licenseKey;
 
@@ -44,11 +44,53 @@ class License
     private $type;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="brand", type="string", length=255, nullable=true)
+     */
+    private $brand;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="format", type="string", length=255)
+     */
+    private $format;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="lifetime", type="boolean")
+     */
+    private $lifetime;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="free", type="boolean")
+     */
+    private $free;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="expireDate", type="datetime", nullable=true)
      */
     private $expireDate;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="numberOfSites", type="integer", nullable=true)
+     */
+    private $numberOfSites;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
+     */
+    private $comment;
 
     /**
      * @var float
@@ -76,15 +118,6 @@ class License
      */
     private $computers;
 
-//    /**
-//     * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="licenses")
-//     */
-//    private $desktops;
-//
-//    /**
-//     * @ORM\ManyToMany(targetEntity="Laptop", mappedBy="licenses")
-//     */
-//    private $laptops;
     
     /**
      * @ORM\ManyToMany(targetEntity="Employee", mappedBy="licenses")
@@ -92,6 +125,17 @@ class License
     private $employees;
     
     
+   
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
+    }
+
     /**
      * Get id
      *
@@ -172,6 +216,98 @@ class License
     }
 
     /**
+     * Set brand
+     *
+     * @param string $brand
+     * @return License
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return string 
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set format
+     *
+     * @param string $format
+     * @return License
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * Get format
+     *
+     * @return string 
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * Set lifetime
+     *
+     * @param boolean $lifetime
+     * @return License
+     */
+    public function setLifetime($lifetime)
+    {
+        $this->lifetime = $lifetime;
+
+        return $this;
+    }
+
+    /**
+     * Get lifetime
+     *
+     * @return boolean 
+     */
+    public function getLifetime()
+    {
+        return $this->lifetime;
+    }
+
+    /**
+     * Set free
+     *
+     * @param boolean $free
+     * @return License
+     */
+    public function setFree($free)
+    {
+        $this->free = $free;
+
+        return $this;
+    }
+
+    /**
+     * Get free
+     *
+     * @return boolean 
+     */
+    public function getFree()
+    {
+        return $this->free;
+    }
+
+    /**
      * Set expireDate
      *
      * @param \DateTime $expireDate
@@ -192,6 +328,52 @@ class License
     public function getExpireDate()
     {
         return $this->expireDate;
+    }
+
+    /**
+     * Set numberOfSites
+     *
+     * @param integer $numberOfSites
+     * @return License
+     */
+    public function setNumberOfSites($numberOfSites)
+    {
+        $this->numberOfSites = $numberOfSites;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfSites
+     *
+     * @return integer 
+     */
+    public function getNumberOfSites()
+    {
+        return $this->numberOfSites;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return License
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     /**
@@ -262,115 +444,6 @@ class License
     {
         return $this->addDate;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-//        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
-//        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->addDate = new \DateTime();
-    }
-
-//    /**
-//     * Add desktops
-//     *
-//     * @param \ManagerITBundle\Entity\Desktop $desktops
-//     * @return License
-//     */
-//    public function addDesktop(\ManagerITBundle\Entity\Desktop $desktops)
-//    {
-//        $this->desktops[] = $desktops;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove desktops
-//     *
-//     * @param \ManagerITBundle\Entity\Desktop $desktops
-//     */
-//    public function removeDesktop(\ManagerITBundle\Entity\Desktop $desktops)
-//    {
-//        $this->desktops->removeElement($desktops);
-//    }
-//
-//    /**
-//     * Get desktops
-//     *
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getDesktops()
-//    {
-//        return $this->desktops;
-//    }
-//
-//    /**
-//     * Add laptops
-//     *
-//     * @param \ManagerITBundle\Entity\Laptop $laptops
-//     * @return License
-//     */
-//    public function addLaptop(\ManagerITBundle\Entity\Laptop $laptops)
-//    {
-//        $this->laptops[] = $laptops;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove laptops
-//     *
-//     * @param \ManagerITBundle\Entity\Laptop $laptops
-//     */
-//    public function removeLaptop(\ManagerITBundle\Entity\Laptop $laptops)
-//    {
-//        $this->laptops->removeElement($laptops);
-//    }
-//
-//    /**
-//     * Get laptops
-//     *
-//     * @return \Doctrine\Common\Collections\Collection
-//     */
-//    public function getLaptops()
-//    {
-//        return $this->laptops;
-//    }
-
-    /**
-     * Add employees
-     *
-     * @param \ManagerITBundle\Entity\Employee $employees
-     * @return License
-     */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
-    {
-        $this->employees[] = $employees;
-
-        return $this;
-    }
-
-    /**
-     * Remove employees
-     *
-     * @param \ManagerITBundle\Entity\Employee $employees
-     */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
-    {
-        $this->employees->removeElement($employees);
-    }
-
-    /**
-     * Get employees
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmployees()
-    {
-        return $this->employees;
-    }
 
     /**
      * Add computers
@@ -403,5 +476,38 @@ class License
     public function getComputers()
     {
         return $this->computers;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return License
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
     }
 }

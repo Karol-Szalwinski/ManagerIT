@@ -893,4 +893,37 @@ class Computer
         return $this->ipAddress;
     }
 
+
+    /**
+     * Add networkInterfaceCards
+     *
+     * @param \ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards
+     * @return Computer
+     */
+    public function addNetworkInterfaceCard(\ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards)
+    {
+        $this->networkInterfaceCards[] = $networkInterfaceCards;
+
+        return $this;
+    }
+
+    /**
+     * Remove networkInterfaceCards
+     *
+     * @param \ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards
+     */
+    public function removeNetworkInterfaceCard(\ManagerITBundle\Entity\NetworkInterfaceCard $networkInterfaceCards)
+    {
+        $this->networkInterfaceCards->removeElement($networkInterfaceCards);
+    }
+
+    /**
+     * Get networkInterfaceCards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNetworkInterfaceCards()
+    {
+        return $this->networkInterfaceCards;
+    }
 }

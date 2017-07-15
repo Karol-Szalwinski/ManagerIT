@@ -35,7 +35,7 @@ class InterfacePci
 
     /**
      * @ORM\ManyToOne(targetEntity="Gpu")
-     * @ORM\JoinColumn(name="$cardGpu_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="cardGpu_id", referencedColumnName="id")
      */
     private $cardGpu;
 
@@ -48,52 +48,6 @@ class InterfacePci
     public function getId()
     {
         return $this->id;
-    }
-
-//    /**
-//     * Set desktop
-//     *
-//     * @param \ManagerITBundle\Entity\Desktop $desktop
-//     * @return InterfacePci
-//     */
-//    public function setDesktop(\ManagerITBundle\Entity\Desktop $desktop = null)
-//    {
-//        $this->desktop = $desktop;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get desktop
-//     *
-//     * @return \ManagerITBundle\Entity\Desktop
-//     */
-//    public function getDesktop()
-//    {
-//        return $this->desktop;
-//    }
-
-    /**
-     * Set cardGpu
-     *
-     * @param \ManagerITBundle\Entity\Gpu $cardGpu
-     * @return InterfacePci
-     */
-    public function setCardGpu(\ManagerITBundle\Entity\Gpu $cardGpu = null)
-    {
-        $this->cardGpu = $cardGpu;
-
-        return $this;
-    }
-
-    /**
-     * Get cardGpu
-     *
-     * @return \ManagerITBundle\Entity\Gpu 
-     */
-    public function getCardGpu()
-    {
-        return $this->cardGpu;
     }
 
     /**
@@ -117,5 +71,28 @@ class InterfacePci
     public function getComputer()
     {
         return $this->computer;
+    }
+
+    /**
+     * Set cardGpu
+     *
+     * @param \ManagerITBundle\Entity\Gpu $cardGpu
+     * @return InterfacePci
+     */
+    public function setCardGpu(\ManagerITBundle\Entity\Gpu $cardGpu = null)
+    {
+        $this->cardGpu = $cardGpu;
+
+        return $this;
+    }
+
+    /**
+     * Get cardGpu
+     *
+     * @return \ManagerITBundle\Entity\Gpu 
+     */
+    public function getCardGpu()
+    {
+        return $this->cardGpu;
     }
 }

@@ -84,16 +84,31 @@
 
                                 <div class="form-group">
                                     {{ form_label(form.free, 'Bezpłatna', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6 my-radio uniform">
-                                        {{ form_widget(form.free, { 'attr': {'class': 'uniform'} }) }}
-
+                                    <div class="col-lg-6 uniform">
+                                        {{ form_widget(form.free, { 'attr': {'class': 'uniform',
+                                            'data-toggle': 'toggle',
+                                            'checked': 'checked',
+                                            'data-size': 'small',
+                                            'data-on':'Tak',
+                                            'data-off':'Nie',
+                                            'data-onstyle': 'success',
+                                            'data-offstyle': 'danger',
+                                        } }) }}
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
                                     {{ form_label(form.lifetime, 'Wygaśnie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6 my-radio uniform">
-                                        {{ form_widget(form.lifetime, { 'attr': {'class': 'uniform'} }) }}
+                                    <div class="col-lg-6 uniform">
+                                        {{ form_widget(form.lifetime, { 'attr': {'class': 'uniform',
+                                            'data-toggle': 'toggle',
+                                            'data-size': 'small',
+                                            'data-on':'Tak',
+                                            'data-off':'Nie',
+                                            'data-onstyle': 'danger',
+                                            'data-offstyle': 'success',
+                                        } }) }}
 
                                     </div>
                                 </div>
@@ -122,12 +137,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.comment, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.comment, 'Uwagi', { 'label_attr': {'for':'autosize', 'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.comment, { 'attr': {'class': 'form-control', 'placeholder': 'Uwagi odnośnie licencji'} }) }}
                                     </div>
                                 </div>
-
 
                                 <input type="submit" value="Dodaj nową licencję"
                                        class="btn btn-primary btn-grad control-label"/>
@@ -136,7 +150,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <!----------------------------------------------------->
                 </div>

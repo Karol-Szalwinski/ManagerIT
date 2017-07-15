@@ -5,6 +5,7 @@ namespace ManagerITBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class LicenseType extends AbstractType
 {
@@ -50,7 +51,10 @@ class LicenseType extends AbstractType
             ->add('free')
             ->add('lifetime')
             ->add('numberOfSites')
-            ->add('comment')
+            ->add('comment', TextareaType::class, array(
+                'attr' => array('id' => 'autosize',
+                    'class' => 'form-control'),
+            ))
             ->add('expireDate', 'date', array(
                 'widget' => 'single_text',
                 'placeholder' => 'Select a value',

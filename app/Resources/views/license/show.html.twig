@@ -60,6 +60,10 @@
                                         <td>{{ license.name }}</td>
                                     </tr>
                                     <tr>
+                                        <td>Licencjodawca</td>
+                                        <td>{{ license.brand }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Klucz produktu</td>
                                         <td>{{ license.licenseKey }}</td>
                                     </tr>
@@ -68,13 +72,15 @@
                                         <td>{{ license.type }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Licencjodawca</td>
-                                        <td>Microsoft</td>
+                                        <td>Nośnik</td>
+                                        <td>{{ license.format}}</td>
                                     </tr>
+                                    {% if license.lifetime == 1 %}
                                     <tr>
                                         <td>Data wygaśnięcia</td>
                                         <td>{{ license.expireDate|date('Y-m-d') }}</td>
                                     </tr>
+                                    {% endif %}
                                     </tbody>
                                 </table>
                             </div>

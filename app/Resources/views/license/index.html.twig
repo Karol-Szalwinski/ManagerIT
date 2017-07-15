@@ -38,24 +38,45 @@
                                        class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Nazwa</th>
-                                        <th>Klucz</th>
+                                        <th>Nazwa programu</th>
                                         <th>Typ licencji</th>
+                                        <th>Nośnik</th>
+                                        <th>Bezpłatna</th>
+                                        <th>Liczba stanowisk</th>
+                                        <th>Wygasa</th>
                                         <th>Data wygaśnięcia</th>
                                         <th>Data zakupu</th>
                                         <th>Sprzęt przypisany</th>
                                         <th>Użytkownik przypisany</th>
-                                        <th>Cena zakupu</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for license in licenses %}
                                         <tr onclick='location.href = "{{ path('license_show', { 'id': license.id }) }}"'>
                                             <td>{{ license.name }}</td>
-                                            <td>{{ license.licenseKey }}</td>
                                             <td>{{ license.type }}</td>
+                                            <td>{{ license.format }}</td>
+                                            <td align="center" >{% if license.free == 1 %}
+                                                    <input type="checkbox" checked onclick="return false;">
+                                                {% else %}
+                                                    <input type="checkbox" onclick="return false;">
+                                                {% endif %}
+                                            </td>
+                                            <td align="center">{{ license.numberOfSites }}</td>
+                                            <td align="center" >{% if license.lifetime == 1 %}
+                                                    <input type="checkbox" checked onclick="return false;">
+                                                {% else %}
+                                                    <input type="checkbox" onclick="return false;">
+                                                {% endif %}
+                                            </td>
+                                            <td>{% if license.lifetime == 1 %}
+                                                    {{ license.expireDate|date('Y-m-d') }}
+                                                {% else %}
+                                                    Dożywotnia
+                                                {% endif %}
+                                            </td>
                                             <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
-                                            <td>{{ license.expireDate|date('Y-m-d') }}</td>
+
                                             <td>
                                                 {% for computer in license.computers %}
                                                     {{ computer.name }}<br>
@@ -66,7 +87,6 @@
                                                     {{ employee.name }} {{ employee.surname }}<br>
                                                 {% endfor %}
                                             </td>
-                                            <td>{{ license.price }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -78,7 +98,6 @@
                 </div>
                 <!-- /.row -->
                 <!--End Datatables-->
-
             </div>
             <!-- /.inner -->
         </div>

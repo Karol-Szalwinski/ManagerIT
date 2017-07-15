@@ -52,8 +52,8 @@ class LicenseType extends AbstractType
             ->add('lifetime')
             ->add('numberOfSites')
             ->add('comment', TextareaType::class, array(
-                'attr' => array('id' => 'autosize',
-                    'class' => 'form-control'),
+                'attr' => array(
+                    'class' => 'form-control')
             ))
             ->add('expireDate', 'date', array(
                 'widget' => 'single_text',
@@ -70,6 +70,9 @@ class LicenseType extends AbstractType
                 'html5' => false,
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
+            ))
+            ->setAttributes(array(
+                'novalidate' => 'novalidate',
             ));
     }
 

@@ -47,28 +47,28 @@
 
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
-                                <div class="form-group" >
+                                <div class="form-group">
                                     {{ form_label(form.name, 'Nazwa komputera', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
+                                <div class="form-group">
                                     {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
-                                    {{ form_label(form.series, 'Seria', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                <div class="form-group">
+                                    {{ form_label(form.series, 'Nr seryjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.series, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź serię'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
+                                <div class="form-group">
                                     {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
@@ -76,58 +76,62 @@
                                 </div>
 
 
-                                <div class="form-group" >
-                                    {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź tym i moc zasilacza'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group" >#}
+                                {#{{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                {#<div class="col-lg-6">#}
+                                {#{{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź tym i moc zasilacza'} }) }}#}
+                                {#</div>#}
+                                {#</div>#}
 
-                                <div class="form-group" >
+                                <div class="form-group">
                                     {{ form_label(form.caseType, 'Rodzaj obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.caseType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ obudowy'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
+                                <div class="form-group">
                                     {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zainstalowany system'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
-                                    {{ form_label(form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group" >#}
+                                {#{{ form_label(form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                {#<div class="col-lg-6">#}
+                                {#{{ form_widget(form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}#}
+                                {#</div>#}
+                                {#</div>#}
 
-                                <div class="form-group" >
-                                    {{ form_label(form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group" >#}
+                                {#{{ form_label(form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                {#<div class="col-lg-6">#}
+                                {#{{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}#}
+                                {#</div>#}
+                                {#</div>#}
 
 
-                                <div class="form-group" >
+
+                                <div class="form-group">
                                     {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź cenę PLN'} }) }}
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control' } , 'type':'number'}) }}
                                     </div>
                                 </div>
+
+
 
                                 <div class="form-group">
                                     {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-6">
                                         {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
                                     </div>
                                 </div>
 
-                                <input type="submit" value="Dodaj nowy komputer" class="btn btn-primary btn-grad control-label" />
+                                <input type="submit" value="Dodaj nowy komputer"
+                                       class="btn btn-primary btn-grad control-label"/>
                                 <br>
                                 {{ form_end(form) }}
                             </div>
@@ -135,7 +139,7 @@
                     </div>
 
 
-                    <!----------------------------------------------------->                    
+                    <!----------------------------------------------------->
                 </div>
                 <!-- /.row -->
             </div>

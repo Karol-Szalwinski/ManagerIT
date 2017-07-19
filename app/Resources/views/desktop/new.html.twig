@@ -22,7 +22,7 @@
                 <!-- /.row -->
                 <div class="row">
                     <!----------------------------------------------------->
-
+                    <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <div class="box dark">
                             <header>
@@ -97,20 +97,6 @@
                                     </div>
                                 </div>
 
-                                {#<div class="form-group" >#}
-                                {#{{ form_label(form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-                                {#<div class="col-lg-6">#}
-                                {#{{ form_widget(form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}#}
-                                {#</div>#}
-                                {#</div>#}
-
-                                {#<div class="form-group" >#}
-                                {#{{ form_label(form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-                                {#<div class="col-lg-6">#}
-                                {#{{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}#}
-                                {#</div>#}
-                                {#</div>#}
-
 
                                 <div class="form-group">
                                     {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
@@ -127,36 +113,29 @@
                                         {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker', 'value': today } }) }}
                                     </div>
                                 </div>
-
-                                <input type="submit" value="Dodaj nowy komputer"
-                                       class="btn btn-primary btn-grad control-label"/>
-                                <br>
-                                {{ form_end(form) }}
+                                <div class="form-group">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-6">
+                                        <input type="submit" value="Dodaj nowy komputer"
+                                               class="btn btn-primary btn-grad control-label"/>
+                                    </div>
+                                </div>
                             </div>
+                            <br>
+                            {{ form_end(form) }}
                         </div>
                     </div>
-
-
-                    <!----------------------------------------------------->
                 </div>
-                <!-- /.row -->
+
+
+                <!----------------------------------------------------->
             </div>
-            <!-- /.inner -->
+            <!-- /.row -->
         </div>
-        <!-- /.outer -->
+        <!-- /.inner -->
+    </div>
+    <!-- /.outer -->
     </div>
     <!-- /#content -->
-    <script>
-        Date.prototype.toDateInputValue = (function () {
-            var local = new Date(this);
-            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-            return local.toJSON().slice(0, 10);
-        });
-
-        $(document).ready(function () {
-            $('.js-datapicker').val(new Date().toDateInputValue())
-        });
-        ​
-    </script>
 
 {% endblock %}

@@ -71,6 +71,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_edit', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -101,7 +106,7 @@
                                     </tr>
                                     <tr>
                                         <td>Nr seryjny</td>
-                                        <td>ERER0-FDSF-DFDF-DF3</td>
+                                        <td>{{ computer.series }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -119,6 +124,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_photo', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -164,6 +174,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable2" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -269,6 +284,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_network', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable3" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -318,6 +338,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable4" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -332,15 +357,15 @@
                                     <tbody>
                                     <tr>
                                         <td>Data zakupu</td>
-                                        <td>{{ computer.purchaseDate |date("m/d/Y") }}</td>
+                                        <td>{{ computer.purchaseDate |date("m-d-Y") }}</td>
                                     </tr>
                                     <tr>
                                         <td>Data wprowadzenia</td>
-                                        <td>{{ computer.addDate |date("m/d/Y") }}</td>
+                                        <td>{{ computer.addDate |date("m-d-Y") }}</td>
                                     </tr>
                                     <tr>
                                         <td>Cena zakupu</td>
-                                        <td>{{ computer.price }}</td>
+                                        <td>{{ computer.price }} PLN</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -386,7 +411,7 @@
                                         <tr>
                                             <td>{{ license.name }}</td>
                                             <td>{{ license.type }}</td>
-                                            <td>{{ license.expireDate|date("m/d/Y") }}</td>
+                                            <td>{{ license.expireDate|date("m-d-Y") }}</td>
                                         </tr>
                                     {% endfor %}
 

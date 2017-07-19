@@ -39,12 +39,11 @@ class DesktopType extends AbstractType
                     'min' => 0,
                     'max' => 50000,
                     'step' => 0.01,
-                    'placeholder' => '0,00'
+                    'placeholder' => '0.00'
                 ),
             ))
             ->add('purchaseDate', 'date', [
                 'widget' => 'single_text',
-                'placeholder' => 'Select a value',
                 // do not render as type="date", to avoid HTML5 date pickers
                 'html5' => false,
             ])

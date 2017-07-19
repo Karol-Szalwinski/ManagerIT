@@ -112,7 +112,6 @@
                                 {#</div>#}
 
 
-
                                 <div class="form-group">
                                     {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-4">
@@ -121,12 +120,11 @@
                                 </div>
 
 
-
                                 <div class="form-group">
                                     {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-
+                                    {% set today =  "now"|date("Y-m-d") %}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker', 'value': today } }) }}
                                     </div>
                                 </div>
 
@@ -148,5 +146,17 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
+    <script>
+        Date.prototype.toDateInputValue = (function () {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0, 10);
+        });
+
+        $(document).ready(function () {
+            $('.js-datapicker').val(new Date().toDateInputValue())
+        });
+        ​
+    </script>
 
 {% endblock %}

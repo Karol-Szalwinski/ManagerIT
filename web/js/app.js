@@ -1002,13 +1002,20 @@
     /*----------- END TABLESORTER CODE -------------------------*/
 
     /*----------- BEGIN datatable CODE -------------------------*/
-    $('#dataTable').dataTable({
+    $('.datatable').dataTable({
       //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
       //         "sPaginationType": "bootstrap",
       //         "oLanguage": {
       //             "sLengthMenu": "Show _MENU_ entries"
       //         }
     });
+      $('#dataTable').dataTable({
+          //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
+          //         "sPaginationType": "bootstrap",
+          //         "oLanguage": {
+          //             "sLengthMenu": "Show _MENU_ entries"
+          //         }
+      });
     /*----------- END datatable CODE -------------------------*/
 
     /*----------- BEGIN action table CODE -------------------------*/

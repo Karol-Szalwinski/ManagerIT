@@ -1008,13 +1008,41 @@
       //         "oLanguage": {
       //             "sLengthMenu": "Show _MENU_ entries"
       //         }
+        "language": {
+            "lengthMenu": "Pokaż _MENU_ wierszy na stronie",
+            "zeroRecords": "Niestety nie znalazłem żadnych pozycji",
+            "info": "Strona _PAGE_ z _PAGES_",
+            "infoEmpty": "Nie ma wpisów do pokazania",
+            "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
+            "search":         "Szukaj:",
+            "paginate": {
+                "first":      "Pierwsza",
+                "last":       "Ostatnia",
+                "next":       "Następna",
+                "previous":   "Poprzednia"
+            },
+        }
     });
       $('#dataTable').dataTable({
           //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
           //         "sPaginationType": "bootstrap",
           //         "oLanguage": {
-          //             "sLengthMenu": "Show _MENU_ entries"
+          //             "sLengthMenu": "Pokaż _MENU_ wpisów"
           //         }
+          "language": {
+              "lengthMenu": "Pokaż _MENU_ wierszy na stronie",
+              "zeroRecords": "Niestety nie znalazłem żadnych pozycji",
+              "info": "Strona _PAGE_ z _PAGES_",
+              "infoEmpty": "Nie ma wpisów do pokazania",
+              "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
+              "search":         "Szukaj:",
+              "paginate": {
+                  "first":      "Pierwsza",
+                  "last":       "Ostatnia",
+                  "next":       "Następna",
+                  "previous":   "Poprzednia"
+              },
+          }
       });
     /*----------- END datatable CODE -------------------------*/
 

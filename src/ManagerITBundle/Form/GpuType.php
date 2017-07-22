@@ -50,9 +50,9 @@ class GpuType extends AbstractType
             ))
             ->add('monitorConnectors', 'choice', array(
                 'choices' => array(
-                    'HDMI ' => 'HDMI ',
-                    'DVI ' => 'DVI ',
-                    'Display Port ' => 'Display Port '
+                    'HDMI' => 'HDMI ',
+                    'DVI' => 'DVI ',
+                    'Display Port' => 'Display Port '
                 ),
                 'expanded' => true,
                 'multiple' => false,

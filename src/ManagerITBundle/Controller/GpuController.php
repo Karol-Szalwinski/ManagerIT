@@ -5,7 +5,8 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Gpu;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Gpu controller.
@@ -34,10 +35,10 @@ class GpuController extends Controller
     /**
      * Creates a new gpu entity.
      *
-     * @Route("/new/desktop", name="gpu_new", defaults={"desktop" = null})
+     * @Route("/new/{computer}", name="gpu_new", defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction($desktop, Request $request)
+    public function newAction($computer, Request $request)
     {
         $gpu = new Gpu();
         $form = $this->createForm('ManagerITBundle\Form\GpuType', $gpu);
@@ -47,16 +48,21 @@ class GpuController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($gpu);
             $em->flush($gpu);
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer));
+                }
+            }
 
-            $route = ($desktop == null) ? $this->redirectToRoute('gpu_show', array('id' => $gpu->getId())) :
-                $this->redirectToRoute('desktop_components', array('id' => $desktop));
-            return $route;
+            return $this->redirectToRoute('gpu_show', array('id' => $gpu->getId()));
         }
 
         return $this->render('gpu/new.html.twig', array(
             'gpu' => $gpu,
             'form' => $form->createView(),
-            'desktop' => $desktop,
+            'computer' => $computer,
         ));
     }
 
@@ -133,7 +139,6 @@ class GpuController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('gpu_delete', array('id' => $gpu->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

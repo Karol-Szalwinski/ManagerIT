@@ -36,10 +36,10 @@ class DesktopCPUController extends Controller
     /**
      * Creates a new desktopCPU entity.
      *
-     * @Route("/new/{desktop}", name="desktopcpu_new", defaults={"desktop" = null})
+     * @Route("/new/{computer}", name="desktopcpu_new", defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction( $desktop, Request $request)
+    public function newAction( $computer, Request $request)
     {
         $desktopCPU = new Desktopcpu();
         $form = $this->createForm('ManagerITBundle\Form\DesktopCPUType', $desktopCPU);
@@ -49,15 +49,21 @@ class DesktopCPUController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($desktopCPU);
             $em->flush($desktopCPU);
-            $route = ($desktop == null) ? $this->redirectToRoute('desktopcpu_show', array('id' => $desktopCPU->getId())) :
-                $this->redirectToRoute('desktop_components', array('id' => $desktop));
-            return $route;
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer));
+                }
+            }
+
+            return $this->redirectToRoute('desktopcpu_show', array('id' => $desktopCPU->getId()));
         }
 
         return $this->render('desktopcpu/new.html.twig', array(
             'desktopCPU' => $desktopCPU,
             'form' => $form->createView(),
-            'desktop' => $desktop,
+            'computer' => $computer,
         ));
     }
 

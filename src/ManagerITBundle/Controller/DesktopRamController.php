@@ -34,10 +34,10 @@ class DesktopRamController extends Controller
     /**
      * Creates a new desktopRam entity.
      *
-     * @Route("/new/{desktop}", name="desktopram_new", defaults={"desktop" = null})
+     * @Route("/new/{computer}", name="desktopram_new", defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction($desktop, Request $request)
+    public function newAction($computer, Request $request)
     {
         $desktopRam = new Desktopram();
         $form = $this->createForm('ManagerITBundle\Form\DesktopRamType', $desktopRam);
@@ -47,16 +47,21 @@ class DesktopRamController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($desktopRam);
             $em->flush($desktopRam);
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer));
+                }
+            }
 
-            $route = ($desktop == null) ? $this->redirectToRoute('desktopram_show', array('id' => $desktopRam->getId())) :
-                $this->redirectToRoute('desktop_components', array('id' => $desktop));
-            return $route;
+            return $this->redirectToRoute('desktopram_show', array('id' => $desktopRam->getId()));
         }
 
         return $this->render('desktopram/new.html.twig', array(
             'desktopRam' => $desktopRam,
             'form' => $form->createView(),
-            'desktop' => $desktop,
+            'computer' => $computer,
         ));
     }
 

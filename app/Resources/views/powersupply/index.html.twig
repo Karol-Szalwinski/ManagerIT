@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Powersupplies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Series</th>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Cooling</th>
+                <th>Powerinwatt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for powerSupply in powerSupplies %}
+            <tr>
+                <td><a href="{{ path('powersupply_show', { 'id': powerSupply.id }) }}">{{ powerSupply.id }}</a></td>
+                <td>{{ powerSupply.name }}</td>
+                <td>{{ powerSupply.model }}</td>
+                <td>{{ powerSupply.series }}</td>
+                <td>{{ powerSupply.brand }}</td>
+                <td>{{ powerSupply.type }}</td>
+                <td>{{ powerSupply.cooling }}</td>
+                <td>{{ powerSupply.powerInWatt }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('powersupply_show', { 'id': powerSupply.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('powersupply_edit', { 'id': powerSupply.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('powersupply_new') }}">Create a new powerSupply</a>
+        </li>
+    </ul>
+{% endblock %}

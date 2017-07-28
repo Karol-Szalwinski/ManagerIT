@@ -81,7 +81,7 @@ class Computer
     /**
      * @var string
      *
-     * @ORM\Column(name="powerSupply", type="string", length=255)
+     * @ORM\Column(name="powerSupply", type="string", length=255, nullable=true)
      */
     private $powerSupply;
 
@@ -102,14 +102,14 @@ class Computer
     /**
      * @var string
      *
-     * @ORM\Column(name="ipAddress", type="string", length=255)
+     * @ORM\Column(name="ipAddress", type="string", length=255, nullable=true)
      */
     private $ipAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="macAddress", type="string", length=255)
+     * @ORM\Column(name="macAddress", type="string", length=255, nullable=true)
      */
     private $macAddress;
 

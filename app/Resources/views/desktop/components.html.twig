@@ -256,6 +256,46 @@
                                         </button>
                                     </th>
                                 </tr>
+                                <tr>
+                                    <th>Zasilacz</th>
+                                    <td>
+                                        {% set empty = 1 %}
+                                        {% for storageController in computer.storageControllers %}
+
+                                            {% if storageController.opticalDrive is not null %}
+                                                <table class="table table-condensed responsive-table">
+                                                    <tbody>
+                                                    {% set empty = 0 %}
+                                                    <tr>
+                                                        <td>
+                                                            {{ storageController.opticalDrive.name }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <a href="{{ path('computer_remove_drive', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
+                                                               class="btn btn-danger btn-grad btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                                <span class="link-title">Wymontuj</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if empty == 1 %}
+                                            Brak napędów
+                                        {% endif %}
+                                    </td>
+                                    <th>
+                                        <!-- Przycisk uruchamiający modal -->
+                                        <button class="btn btn-primary btn-grad btn-sm control-label"
+                                                data-toggle="modal"
+                                                data-target="#drives">
+                                            <i class="fa fa-plus "></i>
+                                            Dodaj
+                                        </button>
+                                    </th>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -263,6 +303,9 @@
                     </div>
                 </div>
                 <!-- /.col-lg-6 -->
+
+
+
 
 
                 <!-- Modal cpus-->

@@ -39,4 +39,60 @@ class InterfacePci
      */
     private $cardGpu;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set computer
+     *
+     * @param \ManagerITBundle\Entity\Computer $computer
+     * @return InterfacePci
+     */
+    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
+    {
+        $this->computer = $computer;
+
+        return $this;
+    }
+
+    /**
+     * Get computer
+     *
+     * @return \ManagerITBundle\Entity\Computer 
+     */
+    public function getComputer()
+    {
+        return $this->computer;
+    }
+
+    /**
+     * Set cardGpu
+     *
+     * @param \ManagerITBundle\Entity\Gpu $cardGpu
+     * @return InterfacePci
+     */
+    public function setCardGpu(\ManagerITBundle\Entity\Gpu $cardGpu = null)
+    {
+        $this->cardGpu = $cardGpu;
+
+        return $this;
+    }
+
+    /**
+     * Get cardGpu
+     *
+     * @return \ManagerITBundle\Entity\Gpu 
+     */
+    public function getCardGpu()
+    {
+        return $this->cardGpu;
+    }
 }

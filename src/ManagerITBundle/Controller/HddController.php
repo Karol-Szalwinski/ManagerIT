@@ -34,10 +34,10 @@ class HddController extends Controller
     /**
      * Creates a new hdd entity.
      *
-     * @Route("/new/{desktop}", name="hdd_new", defaults={"desktop" = null})
+     * @Route("/new/{computer}", name="hdd_new", defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction($desktop, Request $request)
+    public function newAction($computer, Request $request)
     {
         $hdd = new Hdd();
         $form = $this->createForm('ManagerITBundle\Form\HddType', $hdd);
@@ -48,15 +48,20 @@ class HddController extends Controller
             $em->persist($hdd);
             $em->flush($hdd);
 
-            $route = ($desktop == null) ? $this->redirectToRoute('hdd_show', array('id' => $hdd->getId())) :
-                $this->redirectToRoute('desktop_components', array('id' => $desktop));
-            return $route;
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer));
+                }
+            }
+            return $this->redirectToRoute('hdd_show', array('id' => $hdd->getId()));
         }
 
         return $this->render('hdd/new.html.twig', array(
             'hdd' => $hdd,
             'form' => $form->createView(),
-            'desktop' => $desktop,
+            'computer' => $computer,
         ));
     }
 

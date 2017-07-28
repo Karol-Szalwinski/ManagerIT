@@ -47,10 +47,16 @@ class OpticalDriveController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($opticalDrive);
             $em->flush($opticalDrive);
-// testowy wpis do usunięcia
-            $route = ($computer == null) ? $this->redirectToRoute('opticaldrive_show', array('id' => $opticalDrive->getId())) :
-                $this->redirectToRoute('computer_components', array('type' => 'desktop', 'id' => $computer));
-            return $route;
+
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer));
+                }
+            }
+
+            return $this->redirectToRoute('opticaldrive_show', array('id' => $opticalDrive->getId()));
         }
 
         return $this->render('opticaldrive/new.html.twig', array(

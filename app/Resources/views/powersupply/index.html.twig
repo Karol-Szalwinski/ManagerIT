@@ -1,51 +1,95 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Zasilacze{% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('powersupply_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista zasilaczy</span>
+            </a>
+            <a href="{{ path('powersupply_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Powersupplies list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Model</th>
-                <th>Series</th>
-                <th>Brand</th>
-                <th>Type</th>
-                <th>Cooling</th>
-                <th>Powerinwatt</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for powerSupply in powerSupplies %}
-            <tr>
-                <td><a href="{{ path('powersupply_show', { 'id': powerSupply.id }) }}">{{ powerSupply.id }}</a></td>
-                <td>{{ powerSupply.name }}</td>
-                <td>{{ powerSupply.model }}</td>
-                <td>{{ powerSupply.series }}</td>
-                <td>{{ powerSupply.brand }}</td>
-                <td>{{ powerSupply.type }}</td>
-                <td>{{ powerSupply.cooling }}</td>
-                <td>{{ powerSupply.powerInWatt }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('powersupply_show', { 'id': powerSupply.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('powersupply_edit', { 'id': powerSupply.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-file-text"></i></div>
+                                <h5>Lista zasilaczy</h5>
+                            </header>
 
-    <ul>
-        <li>
-            <a href="{{ path('powersupply_new') }}">Create a new powerSupply</a>
-        </li>
-    </ul>
+                            <div id="collapse4" class="body">
+
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Model</th>
+                                        <th>Seria</th>
+                                        <th>Marka</th>
+                                        <th>Typ</th>
+                                        <th>Chłodzenie</th>
+                                        <th>Moc (Wat)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for powerSupply in powerSupplies %}
+                                        <tr onclick='location.href = "{{ path('powersupply_show', { 'id': powerSupply.id }) }}"'>
+                                            <td>{{ powerSupply.name }}</td>
+                                            <td>{{ powerSupply.model }}</td>
+                                            <td>{{ powerSupply.series }}</td>
+                                            <td>{{ powerSupply.brand }}</td>
+                                            <td>
+                                                {% if powerSupply.type == "inside" %}
+                                                    wewnętrzny
+                                                {% elseif powerSupply.type == "outside" %}
+                                                    zewnętrzny
+                                                {% else %}
+                                                    nieokreślony
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if powerSupply.cooling == "none" %}
+                                                    brak
+                                                {% elseif powerSupply.cooling == "active" %}
+                                                    aktywne
+                                                {% elseif powerSupply.cooling == "passive" %}
+                                                    pasywne
+                                                {% else %}
+                                                    nieokreślony
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ powerSupply.powerInWatt }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}

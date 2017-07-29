@@ -34,10 +34,10 @@ class PowerSupplyController extends Controller
     /**
      * Creates a new powerSupply entity.
      *
-     * @Route("/new", name="powersupply_new")
+     * @Route("/new/{computer}", name="powersupply_new", defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($computer, Request $request)
     {
         $powerSupply = new Powersupply();
         $form = $this->createForm('ManagerITBundle\Form\PowerSupplyType', $powerSupply);
@@ -48,12 +48,21 @@ class PowerSupplyController extends Controller
             $em->persist($powerSupply);
             $em->flush($powerSupply);
 
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer));
+                }
+            }
+
             return $this->redirectToRoute('powersupply_show', array('id' => $powerSupply->getId()));
         }
 
         return $this->render('powersupply/new.html.twig', array(
             'powerSupply' => $powerSupply,
             'form' => $form->createView(),
+            'computer' => $computer,
         ));
     }
 

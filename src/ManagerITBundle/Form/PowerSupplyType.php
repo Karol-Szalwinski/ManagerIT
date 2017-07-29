@@ -13,9 +13,33 @@ class PowerSupplyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('model')->add('series')->add('brand')->add('type')->add('cooling')->add('powerInWatt')        ;
+        $builder
+            ->add('name')
+            ->add('model')
+            ->add('series')
+            ->add('brand')
+            ->add('type', 'choice', array(
+                'choices' => array(
+                    'outside' => 'zewnętrzny',
+                    'inside' => 'wewnętrzny',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz typ zasilacza',
+            ))
+            ->add('cooling', 'choice', array(
+                'choices' => array(
+                    'none' => 'brak',
+                    'active' => 'aktywne',
+                    'passive' => 'pasywne',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz typ chłodzenia',
+            ))
+            ->add('powerInWatt');
     }
-    
+
     /**
      * {@inheritdoc}
      */

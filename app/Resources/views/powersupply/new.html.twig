@@ -1,16 +1,117 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Dodaj nowy zasilacz{% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('powersupply_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista zasilaczy</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Powersupply creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowy zasilacz</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('powersupply_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Nazwa zasilacza', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę zasilacza'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.model, 'Model zasilacza', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.series, 'Seria', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.series, { 'attr': {'class': 'form-control', 'placeholder': 'Seria produktu'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Producenta'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.type, 'Typ zasilacza', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz typ'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.cooling, 'Chłodzenie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.cooling, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz sposób chłodzenia'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.powerInWatt, 'Moc zasilacza (Wat)', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.powerInWatt, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź moc w Watach'} }) }}
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Dodaj nowy zasilacz"
+                                       class="btn btn-primary btn-grad control-label"/>
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!----------------------------------------------------->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

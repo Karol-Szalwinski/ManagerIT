@@ -1,56 +1,152 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Powersupply</h1>
+{% block title %} Zasilacz komputerowy {% endblock %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ powerSupply.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ powerSupply.name }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ powerSupply.model }}</td>
-            </tr>
-            <tr>
-                <th>Series</th>
-                <td>{{ powerSupply.series }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ powerSupply.brand }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ powerSupply.type }}</td>
-            </tr>
-            <tr>
-                <th>Cooling</th>
-                <td>{{ powerSupply.cooling }}</td>
-            </tr>
-            <tr>
-                <th>Powerinwatt</th>
-                <td>{{ powerSupply.powerInWatt }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('powersupply_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('powersupply_edit', { 'id': powerSupply.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('powersupply_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista zasilaczy</span>
+            </a>
+            <a href="{{ path('powersupply_edit', { 'id': powerSupply.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-wrench"></i>
+                <span class="link-title">Edytuj</span>
+            </a>
+            <div style="display: inline-block;">
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                            class="fa fa-trash"></i> Usuń
+                </button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+    <!-- /.main-bar -->
 {% endblock %}
+
+
+{% block body %}
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane podstawowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <td>{{ powerSupply.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <td>{{ powerSupply.model }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Seria</th>
+                                        <td>{{ powerSupply.series }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Producent</th>
+                                        <td>{{ powerSupply.brand }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Parametry</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable2" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable2" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Typ zasilacza</th>
+                                        <td>
+                                            {% if powerSupply.type == "inside" %}
+                                                wewnętrzny - montowany w obudowie
+                                            {% elseif powerSupply.type == "outside" %}
+                                                zewnętrzny - laptopowy
+                                            {% else %}
+                                                nieokreślony
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Chłodzenie</th>
+                                        <td>
+                                            {% if powerSupply.cooling == "none" %}
+                                                brak chłodzenia
+                                            {% elseif powerSupply.cooling == "active" %}
+                                                aktywne z wentylatorem
+                                            {% elseif powerSupply.cooling == "passive" %}
+                                                pasywne poprzez radiator
+                                            {% else %}
+                                                nieokreślony
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Moc zasilacza</th>
+                                        <td>{{ powerSupply.powerInWatt }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+{% endblock %}
+
+

@@ -433,7 +433,7 @@ class ComputerController extends Controller
             $em->persist($picture);
             $em->flush();
 
-            return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+            return $this->redirectToRoute('computer_photo', array('type' => $type, 'id' => $computer->getId()));
         }
 
         return $this->render($type . '/photo.html.twig', array(

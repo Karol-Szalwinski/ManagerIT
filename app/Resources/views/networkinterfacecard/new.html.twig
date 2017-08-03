@@ -93,7 +93,7 @@
                                 <div class="form-group" >
                                     {{ form_label(form.ipv4, 'Adres IP', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.ipv4, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres IP  v4'} }) }}
+                                        {{ form_widget(form.ipv4, { 'attr': {'class': 'validate[required,custom[ipv4]] form-control ', 'value': '192.168.2.'} }) }}
                                     </div>
                                 </div>
 
@@ -124,4 +124,9 @@
     </div>
     <!-- /#content -->
 
+    <script>
+        $(function() {
+            Metis.formValidation();
+        });
+    </script>
 {% endblock %}

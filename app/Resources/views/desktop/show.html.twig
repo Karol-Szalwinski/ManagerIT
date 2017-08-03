@@ -265,7 +265,11 @@
                                     </tr>
                                     <tr>
                                         <td>Zasilacz</td>
-                                        <td>{{ computer.powerSupply.name }} - {{ computer.powerSupply.powerInWatt }}&nbspW</td>
+                                        <td>
+                                            {% if computer.powerSupply is not null %}
+                                                {{ computer.powerSupply.name }} - {{ computer.powerSupply.powerInWatt }}&nbspW
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

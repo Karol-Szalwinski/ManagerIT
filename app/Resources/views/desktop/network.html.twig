@@ -89,8 +89,8 @@
                                                 'id' : computer.id,
                                                 'networkInterfaceCard' : networkInterfaceCard.id
                                             }) }}"
-                                               class="btn btn-warning btn-grad control-label">
-                                                <i class="fa fa-plus"></i>
+                                               class="btn btn-danger btn-grad control-label">
+                                                <i class="fa fa-times "></i>
                                                 <span>Usuń</span>
                                             </a>
                                         </td>
@@ -104,14 +104,14 @@
                     <!--End Datatables-->
                     {% else %}
                         <br><br>
-                        <span>  Brak zdefiniowanej karty sieciowej </span>
+                        <h4>&nbsp&nbsp<i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp</i>  Brak zdefiniowanej karty sieciowej </h4>
                     {% endif %}
-                    <br><br>
+                    <br>
                     <a href="{{ path('computer_network_new', {'type' : computer.formFactor, 'id' : computer.id}) }}"
-                       class="btn btn-warning btn-grad control-label">
+                       class="btn btn-success btn-grad control-label">
                         <i class="fa fa-plus"></i>
                         <span>Dodaj nową kartę sieciową</span>
-                    </a>
+                    </a><br>
                 </div>
 
                 <!-- /.col-lg-6 -->

@@ -472,11 +472,19 @@ class ComputerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $employees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+
+        foreach ($allEmployees as $key =>$employee) {
+            foreach ($computer->getEmployees() as $computerEmployee ) {
+                if ($employee == $computerEmployee) {
+                    unset($allEmployees[$key]);
+                }
+            }
+        }
 
         return $this->render($type . '/employees.html.twig', array(
             'computer' => $computer,
-            'employees' => $employees,
+            'employees' => $allEmployees,
         ));
     }
 

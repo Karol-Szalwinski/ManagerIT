@@ -9,6 +9,7 @@ use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\Picture;
+use ManagerITBundle\Entity\PowerSupply;
 use ManagerITBundle\Entity\RamSlot;
 use ManagerITBundle\Entity\Gpu;
 use ManagerITBundle\Entity\StorageController;
@@ -186,6 +187,7 @@ class ComputerController extends Controller
         $hdds = $em->getRepository('ManagerITBundle:Hdd')->findAll();
         $ssds = $em->getRepository('ManagerITBundle:Ssd')->findAll();
         $opticalDrives = $em->getRepository('ManagerITBundle:OpticalDrive')->findAll();
+        $powerSupplies = $em->getRepository('ManagerITBundle:PowerSupply')->findAll();
 
         return $this->render($type . '/components.html.twig', array(
             'computer' => $computer,
@@ -195,6 +197,7 @@ class ComputerController extends Controller
             'hdds' => $hdds,
             'ssds' => $ssds,
             'opticalDrives' => $opticalDrives,
+            'powerSupplies' => $powerSupplies,
         ));
     }
 
@@ -659,6 +662,20 @@ class ComputerController extends Controller
             'type' => $type,
             'id' => $computer->getId(),
         ));
+    }
+
+    /**
+     *
+     * @Route("/{type}/{id}/computer_connect_power_supply/{powerSupply}", name="computer_connect_powersupply")
+     * @Method("GET")
+     */
+    public
+    function computerConnectPowerSupplyAction($type, Computer $computer, PowerSupply $powerSupply)
+    {
+        $computer->setPowerSupply($powerSupply);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
 
 }

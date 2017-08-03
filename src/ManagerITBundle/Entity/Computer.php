@@ -78,10 +78,11 @@ class Computer
      */
     private $storageControllers;
 
+
     /**
-     * @var string
+     * @ORM\ManyToOne(targetEntity="PowerSupply")
      *
-     * @ORM\Column(name="powerSupply", type="string", length=255, nullable=true)
+     * @ORM\JoinColumn(name="power_supply_id", referencedColumnName="id")
      */
     private $powerSupply;
 

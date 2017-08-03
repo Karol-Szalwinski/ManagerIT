@@ -109,7 +109,8 @@
                                                 {% for pciInterface in computer.pciInterfaces %}
                                                     <tr>
                                                         <td>
-                                                            {{ pciInterface.CardGpu.name }} - {{ pciInterface.CardGpu.formFactor }}
+                                                            {{ pciInterface.CardGpu.name }}
+                                                            - {{ pciInterface.CardGpu.formFactor }}
                                                         </td>
                                                         <td class="text-right">
                                                             <a href="{{ path('computer_remove_gpu', {'type' : computer.formFactor, 'id': computer.id , 'interfacePci': pciInterface.id }) }}"
@@ -258,41 +259,19 @@
                                 </tr>
                                 <tr>
                                     <th>Zasilacz</th>
-                                    <td>
-                                        {% set empty = 1 %}
-                                        {% for storageController in computer.storageControllers %}
-
-                                            {% if storageController.opticalDrive is not null %}
-                                                <table class="table table-condensed responsive-table">
-                                                    <tbody>
-                                                    {% set empty = 0 %}
-                                                    <tr>
-                                                        <td>
-                                                            {{ storageController.opticalDrive.name }}
-                                                        </td>
-                                                        <td class="text-right">
-                                                            <a href="{{ path('computer_remove_drive', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
-                                                               class="btn btn-danger btn-grad btn-sm">
-                                                                <i class="fa fa-times "></i>
-                                                                <span class="link-title">Wymontuj</span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            {% endif %}
-                                        {% endfor %}
-                                        {% if empty == 1 %}
-                                            Brak napędów
+                                    <td>{% if computer.powerSupply is not null %}
+                                            {{ computer.powerSupply.name }} {{ computer.powerSupply.powerInWatt }}&nbspW
+                                        {% else %}
+                                            Brak zasilacza
                                         {% endif %}
                                     </td>
                                     <th>
                                         <!-- Przycisk uruchamiający modal -->
                                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                                 data-toggle="modal"
-                                                data-target="#drives">
-                                            <i class="fa fa-plus "></i>
-                                            Dodaj
+                                                data-target="#powersupply">
+                                            <i class="fa fa-retweet "></i>
+                                            Zmień
                                         </button>
                                     </th>
                                 </tr>
@@ -303,9 +282,6 @@
                     </div>
                 </div>
                 <!-- /.col-lg-6 -->
-
-
-
 
 
                 <!-- Modal cpus-->
@@ -714,6 +690,97 @@
                                 </div>
                                 <div class="modal-footer">
                                     <a href="{{ path('opticaldrive_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal power supply-->
+                <div class="modal fade" id="powersupply" tabindex="-1" role="dialog"
+                     aria-labelledby="powersupplyModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+
+                                <h5 class="modal-title" id="powersupplyModalLabel">Wybierz zasilacz z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <div id="collapse4" class="body">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nazwa</th>
+                                                            <th>Model</th>
+                                                            <th>Seria</th>
+                                                            <th>Marka</th>
+                                                            <th>Typ</th>
+                                                            <th>Chłodzenie</th>
+                                                            <th>Moc (Wat)</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for powerSupply in powerSupplies %}
+                                                            <tr onclick='location.href = "{{ path('computer_connect_powersupply', { 'type' : computer.formFactor, 'id': computer.id,  'powerSupply': powerSupply.id }) }}"'>
+                                                                <td>{{ powerSupply.name }}</td>
+                                                                <td>{{ powerSupply.model }}</td>
+                                                                <td>{{ powerSupply.series }}</td>
+                                                                <td>{{ powerSupply.brand }}</td>
+                                                                <td>
+                                                                    {% if powerSupply.type == "inside" %}
+                                                                        wewnętrzny
+                                                                    {% elseif powerSupply.type == "outside" %}
+                                                                        zewnętrzny
+                                                                    {% else %}
+                                                                        nieokreślony
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    {% if powerSupply.cooling == "none" %}
+                                                                        brak
+                                                                    {% elseif powerSupply.cooling == "active" %}
+                                                                        aktywne
+                                                                    {% elseif powerSupply.cooling == "passive" %}
+                                                                        pasywne
+                                                                    {% else %}
+                                                                        nieokreślony
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>{{ powerSupply.powerInWatt }}&nbspWat</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('powersupply_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>

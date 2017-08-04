@@ -100,8 +100,11 @@
                     <!-- /.row -->
                     <!--End Datatables-->
                     {% else %}
-                        <span>Brak przypisanych licencji do tego sprzętu </span>
+                        <br><br>
+                        <h4>&nbsp&nbsp<i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp</i> Brak
+                            przypisanych licencji do tego sprzętu </h4>
                     {% endif %}
+                    <br>
                     <div>
                         <!-- Przycisk uruchamiający modal -->
                         <button class="btn btn-primary btn-grad btn-sm control-label"
@@ -151,13 +154,14 @@
                                                             <th>Data wygaśnięcia</th>
                                                             <th>Sprzęt przypisany</th>
                                                             <th>Użytkownik przypisany</th>
-                                                            <th>Cena zakupu</th>
                                                             <th>Data zakupu</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         {% for license in licenses %}
-                                                            <tr onclick='location.href = "{{ path('computer_connect_license', { 'computer': computer.id,  'license': license.id }) }}"'>
+                                                            <tr data-placement="top" data-toggle="tooltip"
+                                                                data-original-title="Kliknij aby przypisać wybraną licencję do tego sprzętu."
+                                                                onclick='location.href = "{{ path('computer_connect_license', { 'computer': computer.id,  'license': license.id }) }}"'>
                                                                 <td>{{ license.name }}</td>
                                                                 <td>{{ license.licenseKey }}</td>
                                                                 <td>{{ license.type }}</td>
@@ -172,7 +176,6 @@
                                                                         {{ employee.name }} {{ employee.surname }}<br>
                                                                     {% endfor %}
                                                                 </td>
-                                                                <td>{{ license.price }}</td>
                                                                 <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
                                                             </tr>
                                                         {% endfor %}

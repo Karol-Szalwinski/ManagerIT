@@ -831,6 +831,11 @@ class Computer
         return $this;
     }
 
+    public function hasLicense(License $license)
+    {
+        return $this->employees->contains($license);
+    }
+
     /**
      * Remove licenses
      *

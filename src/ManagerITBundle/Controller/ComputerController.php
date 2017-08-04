@@ -474,11 +474,9 @@ class ComputerController extends Controller
 
         $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
 
-        foreach ($allEmployees as $key =>$employee) {
-            foreach ($computer->getEmployees() as $computerEmployee ) {
-                if ($employee == $computerEmployee) {
-                    unset($allEmployees[$key]);
-                }
+        foreach ($allEmployees as $key => $employee) {
+            if ($computer->hasEmployee($employee)) {
+                unset($allEmployees[$key]);
             }
         }
 
@@ -536,11 +534,17 @@ class ComputerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $licenses = $em->getRepository('ManagerITBundle:License')->findAll();
+        $allLicenses = $em->getRepository('ManagerITBundle:License')->findAll();
+
+        foreach ($allLicenses as $key => $license) {
+            if ($computer->hasLicense($license)) {
+                unset($allLicenses[$key]);
+            }
+        }
 
         return $this->render($type . '/licenses.html.twig', array(
             'computer' => $computer,
-            'licenses' => $licenses,
+            'licenses' => $allLicenses,
         ));
     }
 
@@ -553,10 +557,12 @@ class ComputerController extends Controller
     public
     function computerConnectLicenseAction(Request $request, Computer $computer, License $license)
     {
-
-        $computer->addLicense($license);
-        $license->addComputer($computer);
-        $this->getDoctrine()->getManager()->flush();
+        if (!$computer->hasLicense($license)) {
+            $computer->addLicense($license);
+            $license->addComputer($computer);
+            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush();
+        };
 
         $type = $computer->getFormFactor();
 

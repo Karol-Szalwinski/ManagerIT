@@ -154,7 +154,9 @@
                                                         </thead>
                                                         <tbody>
                                                         {% for employee in employees %}
-                                                            <tr data-placement="top" data-toggle="tooltip" data-original-title="Kliknij aby przypisać wybranego pracownika do tego sprzętu." onclick='location.href = "{{ path('computer_connect_employee', { 'computer': computer.id,  'employee': employee.id }) }}"'>
+                                                            <tr data-placement="top" data-toggle="tooltip"
+                                                                data-original-title="Kliknij aby przypisać wybranego pracownika do tego sprzętu."
+                                                                onclick='location.href = "{{ path('computer_connect_employee', { 'computer': computer.id,  'employee': employee.id }) }}"'>
                                                                 <td>{{ employee.name }}</td>
                                                                 <td>{{ employee.surname }}</td>
                                                                 <td>{{ employee.job }}</td>

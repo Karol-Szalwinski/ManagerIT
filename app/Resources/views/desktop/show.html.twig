@@ -43,7 +43,7 @@
             </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline delete-confirm"><i
                             class="fa fa-trash"></i> Usuń
                 </button>
                 {{ form_end(delete_form) }}
@@ -484,5 +484,9 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
-
+    <script>
+        $('.delete-confirm').click(function () {
+            return confirm('Na pewno chcesz usunąć ten komputer z systemu?')
+        });
+    </script>
 {% endblock %}

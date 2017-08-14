@@ -183,6 +183,13 @@ class Computer
      */
     private $networkInterfaceCards;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="computer", cascade={"remove"})
+     */
+    private $documents;
+
+
+
 
     /**
      * Get id
@@ -930,5 +937,38 @@ class Computer
     public function getNetworkInterfaceCards()
     {
         return $this->networkInterfaceCards;
+    }
+
+    /**
+     * Add documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     * @return Computer
+     */
+    public function addDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents[] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Remove documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     */
+    public function removeDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

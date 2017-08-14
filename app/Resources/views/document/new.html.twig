@@ -1,0 +1,119 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Nowy dokument {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista desktopów</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
+
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowy dokument</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
+
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group" >
+                                    {{ form_label(form.type, 'Rodzaj dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź rodzaj'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.number, 'Numer dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.number, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer z dokumentu'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.sellerName, 'Sprzedający', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.sellerName, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dane sprzedawcy'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    {{ form_label(form.sellerPhoneNumber, 'Telefon sprzedającego', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.sellerPhoneNumber, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer telefonu przedawcy'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-4">
+                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control' } , 'type':'number'}) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.purchaseDate, 'Data wygaśnięcia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                    <div class="col-lg-3">
+                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <input type="submit" value="Dodaj nowy dokument" class="btn btn-primary btn-grad control-label" />
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!----------------------------------------------------->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+    <script>
+        $(function() {
+            Metis.formValidation();
+        });
+    </script>
+{% endblock %}

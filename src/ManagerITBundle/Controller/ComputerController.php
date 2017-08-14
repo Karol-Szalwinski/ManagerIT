@@ -17,6 +17,8 @@ use ManagerITBundle\Entity\Hdd;
 use ManagerITBundle\Entity\Ssd;
 use ManagerITBundle\Entity\OpticalDrive;
 use ManagerITBundle\Entity\NetworkInterfaceCard;
+use ManagerITBundle\Entity\Document;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -702,17 +704,88 @@ class ComputerController extends Controller
     {
 //        $em = $this->getDoctrine()->getManager();
 //
-//        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
-//
-//        foreach ($allEmployees as $key => $employee) {
-//            if ($computer->hasEmployee($employee)) {
-//                unset($allEmployees[$key]);
-//            }
-//        }
+//        $documents = $em->getRepository('ManagerITBundle:Document')->findAll($computer);
+
 
         return $this->render($type . '/finances.html.twig', array(
             'computer' => $computer,
-//            'employees' => $allEmployees,
+//            'documents' => $documents,
+        ));
+    }
+
+    /**
+     * Creates a new document entity connected with computer.
+     *
+     * @Route("/{type}/{id}/document/new", name="computer_document_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newDocumentAction(Request $request, $type, Computer $computer)
+    {
+        $document = new Document();
+        $form = $this->createForm('ManagerITBundle\Form\DocumentType', $document);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $document->setComputer($computer);
+            $computer->addDocument($document);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($document);
+            $em->flush($document);
+
+            return $this->redirectToRoute('computer_finances', array(
+                'type' => $type,
+                'id' => $computer->getId(),
+            ));
+        }
+
+        return $this->render('document/new.html.twig', array(
+            'document' => $document,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Edit networkInterfaceCard entity connected with computer.
+     *
+     * @Route("/{type}/{id}/document/{document}/edit", name="computer_document_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editDocumentAction(Request $request, $type, Computer $computer, Document $document)
+    {
+        $editForm = $this->createForm('ManagerITBundle\Form\DocumentType', $document);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('computer_finances', array(
+                'type' => $type,
+                'id' => $computer->getId(),
+            ));
+        }
+
+        return $this->render('document/edit.html.twig', array(
+            'document' => $document,
+            'edit_form' => $editForm->createView(),
+            'type' => $type,
+        ));
+    }
+
+    /**
+     * Edit networkInterfaceCard entity connected with computer.
+     *
+     * @Route("/{type}/{id}/document/{document}/delete", name="computer_document_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteDocumentAction(Request $request, $type, Computer $computer, Document $document)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($document);
+        $em->flush();
+
+        return $this->redirectToRoute('computer_finances', array(
+            'type' => $type,
+            'id' => $computer->getId(),
         ));
     }
 }

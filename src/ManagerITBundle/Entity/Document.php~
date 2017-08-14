@@ -73,7 +73,7 @@ class Document
     /**
      * @var string
      *
-     * @ORM\Column(name="pdfScans", type="string", length=255, nullable=true)
+     * @ORM\Column(name="pdfScans", type="string", length=255)
      */
     private $pdfScans;
 

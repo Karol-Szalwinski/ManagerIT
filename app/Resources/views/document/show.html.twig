@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Document</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ document.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ document.type }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ document.number }}</td>
+            </tr>
+            <tr>
+                <th>Sellername</th>
+                <td>{{ document.sellerName }}</td>
+            </tr>
+            <tr>
+                <th>Sellerphonenumber</th>
+                <td>{{ document.sellerPhoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ document.price }}</td>
+            </tr>
+            <tr>
+                <th>Purchasedate</th>
+                <td>{{ document.purchaseDate }}</td>
+            </tr>
+            <tr>
+                <th>Adddate</th>
+                <td>{% if document.addDate %}{{ document.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Pdfscans</th>
+                <td>{{ document.pdfScans }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('document_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('document_edit', { 'id': document.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

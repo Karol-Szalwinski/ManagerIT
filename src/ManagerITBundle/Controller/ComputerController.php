@@ -692,4 +692,27 @@ class ComputerController extends Controller
         return $this->redirectToRoute('computer_components', array('type' => $type, 'id' => $computer->getId()));
     }
 
+    /**
+     * Finds and displays a computer finances.
+     *
+     * @Route("/{type}/{id}/finances", name="computer_finances")
+     * @Method("GET")
+     */
+    public function financesAction($type, Computer $computer)
+    {
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+//
+//        foreach ($allEmployees as $key => $employee) {
+//            if ($computer->hasEmployee($employee)) {
+//                unset($allEmployees[$key]);
+//            }
+//        }
+
+        return $this->render($type . '/finances.html.twig', array(
+            'computer' => $computer,
+//            'employees' => $allEmployees,
+        ));
+    }
 }

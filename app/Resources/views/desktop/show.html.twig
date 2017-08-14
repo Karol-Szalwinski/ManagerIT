@@ -41,6 +41,11 @@
                 <i class="fa fa-file-text"></i>
                 <span class="link-title">Licencje</span>
             </a>
+            <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-money"></i>
+                <span class="link-title">Finanse</span>
+            </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
                 <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline delete-confirm"><i

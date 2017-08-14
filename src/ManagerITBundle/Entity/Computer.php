@@ -64,25 +64,24 @@ class Computer
     private $cpu;
 
     /**
-     * @ORM\OneToMany(targetEntity="RamSlot", mappedBy="computer")
+     * @ORM\OneToMany(targetEntity="RamSlot", mappedBy="computer", cascade={"remove"})
      */
     private $ramslots;
 
     /**
-     * @ORM\OneToMany(targetEntity="InterfacePci", mappedBy="computer")
+     * @ORM\OneToMany(targetEntity="InterfacePci", mappedBy="computer", cascade={"remove"})
      */
     private $pciInterfaces;
 
     /**
-     * @ORM\OneToMany(targetEntity="StorageController", mappedBy="computer")
+     * @ORM\OneToMany(targetEntity="StorageController", mappedBy="computer", cascade={"remove"})
      */
     private $storageControllers;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="PowerSupply")
+     * @var string
      *
-     * @ORM\JoinColumn(name="power_supply_id", referencedColumnName="id")
+     * @ORM\Column(name="powerSupply", type="string", length=255, nullable=true)
      */
     private $powerSupply;
 
@@ -180,7 +179,7 @@ class Computer
     private $screenType;
 
     /**
-     * @ORM\OneToMany(targetEntity="NetworkInterfaceCard", mappedBy="device")
+     * @ORM\OneToMany(targetEntity="NetworkInterfaceCard", mappedBy="device", cascade={"remove"})
      */
     private $networkInterfaceCards;
 
@@ -833,7 +832,7 @@ class Computer
 
     public function hasLicense(License $license)
     {
-        return $this->employees->contains($license);
+        return $this->licenses->contains($license);
     }
 
     /**

@@ -71,11 +71,13 @@ class Document
     private $addDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pdfScans", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="Pdf")
+     * @ORM\JoinTable(name="documents_pdfs",
+     *      joinColumns={@ORM\JoinColumn(name="document_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="pdf_id", referencedColumnName="id")}
+     *      )
      */
-    private $pdfScans;
+    private $pdfs;
 
     /**
      * @ORM\ManyToOne(targetEntity="Computer", inversedBy="documents")
@@ -307,5 +309,38 @@ class Document
     public function getComputer()
     {
         return $this->computer;
+    }
+
+    /**
+     * Add pdfs
+     *
+     * @param \ManagerITBundle\Entity\Pdf $pdfs
+     * @return Document
+     */
+    public function addPdf(\ManagerITBundle\Entity\Pdf $pdfs)
+    {
+        $this->pdfs[] = $pdfs;
+
+        return $this;
+    }
+
+    /**
+     * Remove pdfs
+     *
+     * @param \ManagerITBundle\Entity\Pdf $pdfs
+     */
+    public function removePdf(\ManagerITBundle\Entity\Pdf $pdfs)
+    {
+        $this->pdfs->removeElement($pdfs);
+    }
+
+    /**
+     * Get pdfs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPdfs()
+    {
+        return $this->pdfs;
     }
 }

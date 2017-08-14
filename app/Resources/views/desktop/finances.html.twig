@@ -63,7 +63,7 @@
                                 </thead>
                                 <tbody>
                                 {% for document in computer.documents %}
-                                    <tr>
+                                    <tr onclick='location.href="{{ path('computer_show_document', {'type' : computer.formFactor, 'id': computer.id, 'document': document.id}) }}"'>
                                         <td>
                                             <a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a>
                                         </td>

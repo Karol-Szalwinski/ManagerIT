@@ -10,9 +10,14 @@ services:
 
 parameters:
     pictures_directory: '%kernel.root_dir%/../web/pictures'
+    pdf_directory: '%kernel.root_dir%/../web/pdf'
 
 services:
     # ...
     app.picture_uploader:
         class: ManagerITBundle\FileUploader
         arguments: ['%pictures_directory%']
+
+    app.pdf_uploader:
+        class: ManagerITBundle\FileUploader
+        arguments: ['%pdf_directory%']

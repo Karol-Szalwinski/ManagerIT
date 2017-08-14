@@ -702,16 +702,35 @@ class ComputerController extends Controller
      */
     public function financesAction($type, Computer $computer)
     {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $documents = $em->getRepository('ManagerITBundle:Document')->findAll($computer);
-
 
         return $this->render($type . '/finances.html.twig', array(
             'computer' => $computer,
-//            'documents' => $documents,
         ));
     }
+    /**
+     * Display one of computers document.
+     *
+     * @Route("/{type}/{id}/finances/{document}", name="computer_show_document")
+     * @Method("GET")
+     */
+    public function showDocumentAction($type, Computer $computer, Document $document)
+    {
+
+//        return $this->render($type . '/finances.html.twig', array(
+//            'computer' => $computer,
+//        ));
+
+        $deleteForm = $this->createDeleteForm($computer);
+
+        return $this->render('document/show.html.twig', array(
+            'computer' => $computer,
+            'document' => $document,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
+
 
     /**
      * Creates a new document entity connected with computer.
@@ -745,7 +764,7 @@ class ComputerController extends Controller
     }
 
     /**
-     * Edit networkInterfaceCard entity connected with computer.
+     * Edit document entity connected with computer.
      *
      * @Route("/{type}/{id}/document/{document}/edit", name="computer_document_edit")
      * @Method({"GET", "POST"})
@@ -772,7 +791,7 @@ class ComputerController extends Controller
     }
 
     /**
-     * Edit networkInterfaceCard entity connected with computer.
+     * Delete document entity connected with computer.
      *
      * @Route("/{type}/{id}/document/{document}/delete", name="computer_document_delete")
      * @Method({"GET", "POST"})
@@ -788,4 +807,6 @@ class ComputerController extends Controller
             'id' => $computer->getId(),
         ));
     }
+
+
 }

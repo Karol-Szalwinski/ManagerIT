@@ -3,9 +3,11 @@
 namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Document;
+use ManagerITBundle\Entity\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Document controller.
@@ -133,4 +135,56 @@ class DocumentController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Displays a form to add pdf in existing document entity.
+     *
+     * @Route("/document/{id}/pdf", name="document_pdf")
+     * @Method({"GET", "POST"})
+     */
+    public function pdfAction($type, Request $request, Document $document)
+    {
+        $pdf = new Pdf();
+        $pdfForm = $this->createForm('ManagerITBundle\Form\PdfeType', $pdf);
+        $pdfForm->handleRequest($request);
+
+        if ($pdfForm->isSubmitted() && $pdfForm->isValid()) {
+
+            $file = $pdf->getFile();
+            $fileName = $this->get('app.pdf_uploader')->upload($file);
+
+            $pdf->setFile($fileName);
+            $document->addPdf($pdf);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($pdf);
+            $em->flush();
+
+            return $this->redirectToRoute('document_pdf', array( 'id' => $document->getId()));
+        }
+
+        return $this->render($type . '/photo.html.twig', array(
+            'document' => $document,
+            'pdf_form' => $pdfForm->createView(),
+        ));
+
+    }
+
+//    /**
+//     * Action to disconnect and delete photo
+//     *
+//     * @Route("/{type}/{id}/deletepdf/{pdf}", name="computer_delete_pdf")
+//     * @Method({"GET"})
+//     */
+//    public
+//    function deletePdfAction($type, Computer $computer, Pdf $pdf)
+//    {
+//        $computer->removePdf($pdf);
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $em->flush($computer);
+//        $em->remove($pdf);
+//        $em->flush($pdf);
+//
+//        return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+//    }
 }

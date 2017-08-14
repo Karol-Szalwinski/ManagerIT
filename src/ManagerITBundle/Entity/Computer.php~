@@ -184,7 +184,7 @@ class Computer
     private $networkInterfaceCards;
 
     /**
-     * @ORM\OneToMany(targetEntity="Document", mappedBy="device", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="computer", cascade={"remove"})
      */
     private $documents;
 

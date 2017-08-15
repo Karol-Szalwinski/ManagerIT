@@ -49,9 +49,9 @@
                                 <tr>
                                     {% for pdf in document.pdfs %}
                                         <td>
-                                            <a href="{{ asset('pdf/' ~ pdf.file) }}">
-                                                <img src="{{ asset('pdf/' ~ pdf.file) }}" alt="Desktop"
-                                                     height="200" width="200">
+                                            <a href="{{ asset('pdf/' ~ pdf.file) }}" style="display: block; z-index: 1;">
+                                                <object data="{{ asset('pdf/' ~ pdf.file) }}"
+                                                        height="310" width="210" style="z-index: -1; pointer-events: none;" ></object>
                                             </a>&nbsp
                                             {#<a href="{{ path('computer_delete_picture', {'type' : computer.formFactor,'id': computer.id , 'picture': picture.id }) }}"#}
                                                {#class="btn btn-danger btn-grad btn-rect btn-sm">#}
@@ -61,13 +61,13 @@
                                             {#</a>#}
                                         </td>
                                     {% else %}
-                                        {% set picture = "default.png" %}
-                                        {#<td>#}
-                                            {#<a href="{{ asset('pdf/' ~ pdf) }}">#}
-                                                {#<img src="{{ asset('pdf/' ~ pdf) }}" alt="PDF dokument"#}
-                                                     {#height="200" width="200">#}
-                                            {#</a>#}
-                                        {#</td>#}
+                                        {% set picture = "defaultpdf.png" %}
+                                        <td>
+                                            <a href="{{ asset('pdf/' ~ picture) }}">
+                                                <img src="{{ asset('pdf/' ~ picture) }}" alt="PDF dokument"
+                                                     height="200" width="200">
+                                            </a>
+                                        </td>
                                     {% endfor %}
 
                                     Kliknij aby powiększyć
@@ -100,7 +100,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span
                                 aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
-                    <h5 class="modal-title" id="myModalLabel">Wgraj zdjęcie z dysku</h5>
+                    <h5 class="modal-title" id="myModalLabel">Wgraj PDF z dysku</h5>
                 </div>
                 <div class="modal-body">
                     <div id="div-1" class="body">
@@ -112,14 +112,14 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" value="Wgraj zdjęcie"
+                            <input type="submit" value="Wgraj skan dokumentu w formacie pdf"
                                    class="btn btn-primary btn-grad control-label"/>
                             <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">
                                 Zamknij
                             </button>
                         </div>
 
-                        {{ form_end(picture_form) }}
+                        {{ form_end(pdf_form) }}
 
                     </div>
                 </div>

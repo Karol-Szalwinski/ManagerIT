@@ -18,6 +18,7 @@ use ManagerITBundle\Entity\Ssd;
 use ManagerITBundle\Entity\OpticalDrive;
 use ManagerITBundle\Entity\NetworkInterfaceCard;
 use ManagerITBundle\Entity\Document;
+use ManagerITBundle\Entity\Pdf;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -707,29 +708,41 @@ class ComputerController extends Controller
             'computer' => $computer,
         ));
     }
+
     /**
      * Display one of computers document.
      *
-     * @Route("/{type}/{id}/finances/{document}", name="computer_show_document")
-     * @Method("GET")
+     * @Route("/{type}/{id}/document/{document}", name="computer_document_show", requirements={"document"="\d+"})
+     * @Method({"GET", "POST"})
      */
-    public function showDocumentAction($type, Computer $computer, Document $document)
+    public function showDocumentAction(Request $request, $type, Computer $computer, Document $document)
     {
 
-//        return $this->render($type . '/finances.html.twig', array(
-//            'computer' => $computer,
-//        ));
+        $pdf = new Pdf();
+        $pdfForm = $this->createForm('ManagerITBundle\Form\PdfType', $pdf);
+        $pdfForm->handleRequest($request);
 
-        $deleteForm = $this->createDeleteForm($computer);
+        if ($pdfForm->isSubmitted() && $pdfForm->isValid()) {
 
+            $file = $pdf->getFile();
+            $fileName = $this->get('app.pdf_uploader')->upload($file);
+
+            $pdf->setFile($fileName);
+            $document->addPdf($pdf);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($pdf);
+            $em->flush();
+
+            return $this->redirectToRoute('computer_document_show', array('type' => $type, 'id' => $computer->getId(), 'document' => $document->getId()));
+
+        }
         return $this->render('document/show.html.twig', array(
             'computer' => $computer,
             'document' => $document,
-            'delete_form' => $deleteForm->createView(),
+            'pdf_form' => $pdfForm->createView(),
+            'type' => $type,
         ));
     }
-
-
 
 
     /**

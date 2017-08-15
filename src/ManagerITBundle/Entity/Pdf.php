@@ -29,16 +29,19 @@ class Pdf
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "image/*" })
+     * @Assert\File(
+     *     maxSize = "3072k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Plik, który próbujesz wgrać ma niepoprawne rozszerzenie ({{ type }}). Dozwolone typy rozszerzeń to {{ types }}."
+     * )
      */
     private $file;
-
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,7 +64,7 @@ class Pdf
     /**
      * Get file
      *
-     * @return string 
+     * @return string
      */
     public function getFile()
     {

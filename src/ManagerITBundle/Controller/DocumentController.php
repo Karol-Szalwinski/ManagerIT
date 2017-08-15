@@ -172,19 +172,19 @@ class DocumentController extends Controller
 //    /**
 //     * Action to disconnect and delete photo
 //     *
-//     * @Route("/{type}/{id}/deletepdf/{pdf}", name="computer_delete_pdf")
+//     * @Route("/{computer}/{document}/deletepdf/{pdf}", name="document_delete_pdf")
 //     * @Method({"GET"})
 //     */
 //    public
-//    function deletePdfAction($type, Computer $computer, Pdf $pdf)
+//    function deletePdfAction(Computer $computer, Document $document, Pdf $pdf)
 //    {
-//        $computer->removePdf($pdf);
+//        $document->removePdf($pdf);
 //
 //        $em = $this->getDoctrine()->getManager();
-//        $em->flush($computer);
+//        $em->flush($document);
 //        $em->remove($pdf);
 //        $em->flush($pdf);
 //
-//        return $this->redirectToRoute('computer_show', array('type' => $type, 'id' => $computer->getId()));
+//        return $this->redirectToRoute('computer_document_show', array('type' => $computer->getFormFactor(), 'id' => $computer->getId(), 'document' => $document->getId()));
 //    }
 }

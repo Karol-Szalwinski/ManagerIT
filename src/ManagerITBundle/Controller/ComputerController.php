@@ -744,6 +744,24 @@ class ComputerController extends Controller
         ));
     }
 
+    /**
+     * Action to disconnect and delete pdf
+     *
+     * @Route("/{type}/{computer}/document/{document}/deletepdf/{pdf}", name="document_delete_pdf")
+     * @Method({"GET"})
+     */
+    public
+    function deletePdfAction($type, Computer $computer, Document $document, Pdf $pdf)
+    {
+        $document->removePdf($pdf);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush($document);
+        $em->remove($pdf);
+        $em->flush($pdf);
+
+        return $this->redirectToRoute('computer_document_show', array('type' => $type, 'id' => $computer->getId(), 'document' => $document->getId()));
+    }
 
     /**
      * Creates a new document entity connected with computer.

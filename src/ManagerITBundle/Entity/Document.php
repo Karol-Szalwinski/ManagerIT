@@ -59,14 +59,14 @@ class Document
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="purchaseDate", type="datetimetz")
+     * @ORM\Column(name="purchaseDate", type="datetime")
      */
     private $purchaseDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="addDate", type="datetime", nullable=true)
+     * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
 
@@ -85,12 +85,13 @@ class Document
      */
     private $computer;
 
-
+    
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->pdfs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -266,52 +267,6 @@ class Document
     }
 
     /**
-     * Set pdfScans
-     *
-     * @param string $pdfScans
-     * @return Document
-     */
-    public function setPdfScans($pdfScans)
-    {
-        $this->pdfScans = $pdfScans;
-
-        return $this;
-    }
-
-    /**
-     * Get pdfScans
-     *
-     * @return string 
-     */
-    public function getPdfScans()
-    {
-        return $this->pdfScans;
-    }
-
-    /**
-     * Set computer
-     *
-     * @param \ManagerITBundle\Entity\Computer $computer
-     * @return Document
-     */
-    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
-    {
-        $this->computer = $computer;
-
-        return $this;
-    }
-
-    /**
-     * Get computer
-     *
-     * @return \ManagerITBundle\Entity\Computer 
-     */
-    public function getComputer()
-    {
-        return $this->computer;
-    }
-
-    /**
      * Add pdfs
      *
      * @param \ManagerITBundle\Entity\Pdf $pdfs
@@ -342,5 +297,28 @@ class Document
     public function getPdfs()
     {
         return $this->pdfs;
+    }
+
+    /**
+     * Set computer
+     *
+     * @param \ManagerITBundle\Entity\Computer $computer
+     * @return Document
+     */
+    public function setComputer(\ManagerITBundle\Entity\Computer $computer = null)
+    {
+        $this->computer = $computer;
+
+        return $this;
+    }
+
+    /**
+     * Get computer
+     *
+     * @return \ManagerITBundle\Entity\Computer 
+     */
+    public function getComputer()
+    {
+        return $this->computer;
     }
 }

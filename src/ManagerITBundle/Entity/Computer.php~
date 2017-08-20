@@ -79,9 +79,9 @@ class Computer
     private $storageControllers;
 
     /**
-     * @var string
+     * @ORM\ManyToOne(targetEntity="PowerSupply")
      *
-     * @ORM\Column(name="powerSupply", type="string", length=255, nullable=true)
+     * @ORM\JoinColumn(name="powersupply_id", referencedColumnName="id")
      */
     private $powerSupply;
 
@@ -407,29 +407,7 @@ class Computer
     {
         return $this->storageControllers;
     }
-
-    /**
-     * Set powerSupply
-     *
-     * @param string $powerSupply
-     * @return Computer
-     */
-    public function setPowerSupply($powerSupply)
-    {
-        $this->powerSupply = $powerSupply;
-
-        return $this;
-    }
-
-    /**
-     * Get powerSupply
-     *
-     * @return string
-     */
-    public function getPowerSupply()
-    {
-        return $this->powerSupply;
-    }
+    
 
     /**
      * Set caseType

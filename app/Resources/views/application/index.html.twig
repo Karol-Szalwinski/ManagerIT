@@ -1,51 +1,75 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Licencje {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('application_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista aplikacji</span>
+            </a>
+            <a href="{{ path('application_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Applications list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Licensetype</th>
-                <th>Developer</th>
-                <th>Webpage</th>
-                <th>Description</th>
-                <th>Adddate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for application in applications %}
-            <tr>
-                <td><a href="{{ path('application_show', { 'id': application.id }) }}">{{ application.id }}</a></td>
-                <td>{{ application.name }}</td>
-                <td>{{ application.type }}</td>
-                <td>{{ application.licenseType }}</td>
-                <td>{{ application.developer }}</td>
-                <td>{{ application.webpage }}</td>
-                <td>{{ application.description }}</td>
-                <td>{% if application.addDate %}{{ application.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('application_show', { 'id': application.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('application_edit', { 'id': application.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-file-text"></i></div>
+                                <h5>Lista aplikacji</h5>
+                            </header>
 
-    <ul>
-        <li>
-            <a href="{{ path('application_new') }}">Create a new application</a>
-        </li>
-    </ul>
+                            <div id="collapse4" class="body">
+
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa Programu</th>
+                                        <th>Rodzaj</th>
+                                        <th>Typ licencjonowania</th>
+                                        <th>Autor</th>
+                                        <th>Strona domowa</th>
+                                        <th>Data dodania</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for application in applications %}
+                                        <tr onclick='location.href = "{{ path('application_show', { 'id': application.id }) }}"'>
+                                            <td>{{ application.name }}</td>
+                                            <td>{{ application.type }}</td>
+                                            <td>{{ application.licenseType }}</td>
+                                            <td>{{ application.developer }}</td>
+                                            <td>{{ application.webpage }}</td>
+                                            <td>{% if application.addDate %}{{ application.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}

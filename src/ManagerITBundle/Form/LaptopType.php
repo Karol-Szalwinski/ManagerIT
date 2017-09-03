@@ -32,7 +32,6 @@ class LaptopType extends AbstractType
                     17 => '17 cali ',
                     18 => '18 cali ',
                     19 => '19 cali ',
-
                 ),
                 'expanded' => false,
                 'multiple' => false,
@@ -46,24 +45,13 @@ class LaptopType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
             ))
-            ->add('powerSupply')
             ->add('battery')
             ->add('os', EntityType::class, [
                 'class' => 'ManagerITBundle:Os',
                 'choice_label' => 'name',
                 'multiple' => false,
-            ])
-            ->add('ipAddress', 'text', [
-                'required' => false,
-            ])
-            ->add('macAddress')
-            ->add('price')
-            ->add('purchaseDate', 'date', [
-                'widget' => 'single_text',
-                'placeholder' => 'Select a value',
-                // do not render as type="date", to avoid HTML5 date pickers
-                'html5' => false,
             ]);
+
     }
 
     /**

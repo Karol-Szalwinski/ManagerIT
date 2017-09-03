@@ -949,4 +949,27 @@ class Computer
     {
         return $this->documents;
     }
+
+    /**
+     * Set powerSupply
+     *
+     * @param \ManagerITBundle\Entity\PowerSupply $powerSupply
+     * @return Computer
+     */
+    public function setPowerSupply(\ManagerITBundle\Entity\PowerSupply $powerSupply = null)
+    {
+        $this->powerSupply = $powerSupply;
+
+        return $this;
+    }
+
+    /**
+     * Get powerSupply
+     *
+     * @return \ManagerITBundle\Entity\PowerSupply 
+     */
+    public function getPowerSupply()
+    {
+        return $this->powerSupply;
+    }
 }

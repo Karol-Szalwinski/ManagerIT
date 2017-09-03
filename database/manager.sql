@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 15 Sie 2017, 11:40
+-- Czas wygenerowania: 03 Wrz 2017, 19:52
 -- Wersja serwera: 5.5.55-0ubuntu0.14.04.1
 -- Wersja PHP: 5.5.9-1ubuntu4.21
 
@@ -23,6 +23,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `application`
+--
+
+CREATE TABLE IF NOT EXISTS `application` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `licenseType` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `developer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `webpage` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8_unicode_ci,
+  `addDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Zrzut danych tabeli `application`
+--
+
+INSERT INTO `application` (`id`, `name`, `type`, `licenseType`, `developer`, `webpage`, `description`, `addDate`) VALUES
+(1, 'Chrome', 'webbrowser', 'free', 'Google', 'chrome.pl', 'Przeglądarka na wypasie', '2017-09-03 00:00:00'),
+(2, 'Opera', 'webbrowser', 'free', 'Opera', 'opera.pl', 'Przeglądarka na wypasie też', '2017-09-03 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `computer`
 --
 
@@ -36,7 +62,6 @@ CREATE TABLE IF NOT EXISTS `computer` (
   `formFactor` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `brand` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `series` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `powerSupply` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ipAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `macAddress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` double NOT NULL,
@@ -45,25 +70,27 @@ CREATE TABLE IF NOT EXISTS `computer` (
   `battery` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `screenSize` double DEFAULT NULL,
   `screenType` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `powersupply_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_A298A7A6ACDB8124` (`computercpu_id`),
   KEY `IDX_A298A7A6529427D2` (`computerformfactor_id`),
-  KEY `IDX_A298A7A67D207878` (`computeros_id`)
+  KEY `IDX_A298A7A67D207878` (`computeros_id`),
+  KEY `IDX_A298A7A6889B163B` (`powersupply_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Zrzut danych tabeli `computer`
 --
 
-INSERT INTO `computer` (`id`, `computercpu_id`, `computerformfactor_id`, `computeros_id`, `name`, `model`, `formFactor`, `brand`, `series`, `powerSupply`, `ipAddress`, `macAddress`, `price`, `purchaseDate`, `addDate`, `battery`, `screenSize`, `screenType`) VALUES
-(1, 2, 2, 2, 'Komp testowy 3', 'dell optiplex', 'desktop', 'dell', 'optiplex', NULL, '192.168.2.3', 'aa:aa:aa:aa:ff:ac', 2000.34, '2017-06-20 00:00:00', '2017-06-22 00:00:00', NULL, NULL, NULL),
-(2, 5, 3, 2, 'Komp testowy 1', 'dell optiplex', 'desktop', 'dell', 'optiplex', NULL, '192.168.2.3', 'aa:aa:aa:aa:ff:ac', 2000.34, '2017-06-20 00:00:00', '2017-06-22 00:00:00', NULL, NULL, NULL),
-(3, 2, 3, 2, 'Komp testowy', 'dell optiplex', 'laptop', 'dell', 'optiplex', NULL, '192.168.2.3', 'aa:aa:aa:aa:ff:ac', 2000.34, '2017-06-20 00:00:00', '2017-06-22 00:00:00', NULL, NULL, NULL),
-(4, 3, 4, 2, 'Komp testowy 2', 'model s', 'desktop', 'dell', 'seria a', NULL, '192.122.212.122', 'aa:bb:23:32:23:33', 1000, '2017-06-19 00:00:00', '2017-06-13 23:28:16', NULL, NULL, NULL),
-(7, NULL, 2, 1, 'OPTIPLEX 7030', 'OPTIPLEX', 'desktop', 'dell', '7030', NULL, '192.168.4.3', 'aa:bb:23:32:23:33', 2500, '2017-06-26 00:00:00', '2017-06-16 20:12:27', NULL, NULL, NULL),
-(8, NULL, 2, 1, 'Komputer 133', 'Optiplex', 'desktop', 'DELL', '7030', NULL, '192.122.212.123', 'aa:bb:23:32:23:33', 1223, '2017-06-12 00:00:00', '2017-06-16 23:14:47', NULL, NULL, NULL),
-(9, 1, 2, 1, 'Z_SR_BIURO', 'OPTIPLEX', 'desktop', 'DELL', '9010', NULL, '192.122.212.122', 'aa:bb:23:32:23:33', 123789, '2017-06-20 00:00:00', '2017-06-17 18:56:35', NULL, NULL, NULL),
-(10, 3, NULL, 1, 'LAP-OFFICE', 'INTERNOS', 'laptop', 'DELL', '344', NULL, '192.168.3.4', 'ee:ss:ss:dd:sd:cc', 1400, '2017-06-18 00:00:00', '2017-06-18 16:13:04', 'ROAD34', 19, 'led');
+INSERT INTO `computer` (`id`, `computercpu_id`, `computerformfactor_id`, `computeros_id`, `name`, `model`, `formFactor`, `brand`, `series`, `ipAddress`, `macAddress`, `price`, `purchaseDate`, `addDate`, `battery`, `screenSize`, `screenType`, `powersupply_id`) VALUES
+(1, 2, 2, 2, 'Komp testowy 3', 'dell optiplex', 'desktop', 'dell', 'optiplex', '192.168.2.3', 'aa:aa:aa:aa:ff:ac', 2000.34, '2017-06-20 00:00:00', '2017-06-22 00:00:00', NULL, NULL, NULL, NULL),
+(2, 5, 3, 2, 'Komp testowy 1', 'dell optiplex', 'desktop', 'dell', 'optiplex', '192.168.2.3', 'aa:aa:aa:aa:ff:ac', 2000.34, '2017-06-20 00:00:00', '2017-06-22 00:00:00', NULL, NULL, NULL, NULL),
+(3, 2, 3, 2, 'Komp testowy', 'dell optiplex', 'laptop', 'dell', 'optiplex', '192.168.2.3', 'aa:aa:aa:aa:ff:ac', 2000.34, '2017-06-20 00:00:00', '2017-06-22 00:00:00', NULL, NULL, NULL, NULL),
+(4, 3, 4, 2, 'Komp testowy 2', 'model s', 'desktop', 'dell', 'seria a', '192.122.212.122', 'aa:bb:23:32:23:33', 1000, '2017-06-19 00:00:00', '2017-06-13 23:28:16', NULL, NULL, NULL, NULL),
+(7, NULL, 2, 1, 'OPTIPLEX 7030', 'OPTIPLEX', 'desktop', 'dell', '7030', '192.168.4.3', 'aa:bb:23:32:23:33', 2500, '2017-06-26 00:00:00', '2017-06-16 20:12:27', NULL, NULL, NULL, NULL),
+(8, NULL, 2, 1, 'Komputer 133', 'Optiplex', 'desktop', 'DELL', '7030', '192.122.212.123', 'aa:bb:23:32:23:33', 1223, '2017-06-12 00:00:00', '2017-06-16 23:14:47', NULL, NULL, NULL, NULL),
+(9, 1, 2, 1, 'Z_SR_BIURO', 'OPTIPLEX', 'desktop', 'DELL', '9010', '192.122.212.122', 'aa:bb:23:32:23:33', 123789, '2017-06-20 00:00:00', '2017-06-17 18:56:35', NULL, NULL, NULL, NULL),
+(10, 3, NULL, 1, 'LAP-OFFICE', 'INTERNOS', 'laptop', 'DELL', '344', '192.168.3.4', 'ee:ss:ss:dd:sd:cc', 1400, '2017-06-18 00:00:00', '2017-06-18 16:13:04', 'ROAD34', 19, 'led', NULL);
 
 -- --------------------------------------------------------
 
@@ -538,7 +565,7 @@ CREATE TABLE IF NOT EXISTS `fos_user` (
 --
 
 INSERT INTO `fos_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`) VALUES
-(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-08-15 08:33:50', NULL, NULL, 'a:0:{}'),
+(1, 'admin', 'admin', 'admin@admin.pl', 'admin@admin.pl', 1, NULL, '$2y$13$cXhKqC9AwgFN1SYnyIG.Luhe55ujkyL/YzXQf8E.5rwJnvtjUhqJ6', '2017-09-03 19:06:27', NULL, NULL, 'a:0:{}'),
 (2, 'Janek', 'janek', 'jam@jam.pl', 'jam@jam.pl', 0, NULL, '$2y$13$otms8EkVthxQyxGZ2HD7EeqNB9e6wuBmQz/LaqA.KYMMEm4RVPwy6', NULL, NULL, NULL, 'a:0:{}');
 
 -- --------------------------------------------------------
@@ -599,6 +626,22 @@ INSERT INTO `hdd` (`id`, `name`, `model`, `series`, `brand`, `capacity`, `formFa
 (1, 'Seagate IronWolf 1TB', 'ST1000VN002', 'IronWolf', 'Seagate', 1000, '3.5', 'SATA III', 7200, 64),
 (2, 'Seagate IronWolf 1TB', 'ST1000VN002', 'IronWolf', 'Seagate', 2048, '3,5"', 'SATA III', 7200, 64),
 (3, 'Western Digital WD Red 1 TB WD10JFCX', 'WD10JFCX', 'Red', 'WD', 1024, '3,5"', 'SATA III', 7200, 16);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `installed_application`
+--
+
+CREATE TABLE IF NOT EXISTS `installed_application` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `application` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `license` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `computer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `installationDate` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `version` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1039,6 +1082,7 @@ INSERT INTO `storage_controller` (`id`, `computer_id`, `hdd_id`, `ssd_id`, `opti
 -- Ograniczenia dla tabeli `computer`
 --
 ALTER TABLE `computer`
+  ADD CONSTRAINT `FK_A298A7A6889B163B` FOREIGN KEY (`powersupply_id`) REFERENCES `power_supply` (`id`),
   ADD CONSTRAINT `FK_A298A7A6529427D2` FOREIGN KEY (`computerformfactor_id`) REFERENCES `computer_form_factor` (`id`),
   ADD CONSTRAINT `FK_A298A7A67D207878` FOREIGN KEY (`computeros_id`) REFERENCES `os` (`id`),
   ADD CONSTRAINT `FK_A298A7A6ACDB8124` FOREIGN KEY (`computercpu_id`) REFERENCES `desktop_c_p_u` (`id`);

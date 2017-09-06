@@ -13,7 +13,14 @@ class ApplicationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('type')->add('licenseType')->add('developer')->add('webpage')->add('description')->add('addDate')        ;
+        $builder
+            ->add('name')
+            ->add('type')
+            ->add('licenseType')
+            ->add('developer')
+            ->add('webpage')
+            ->add('description')
+        ;
     }
     
     /**

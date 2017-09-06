@@ -76,11 +76,6 @@
                                         <th>Strona domowa</th>
                                         <td>{{ application.webpage }}</td>
                                     </tr>
-
-                                    <tr>
-                                        <th>Adddate</th>
-                                        <td>{% if application.addDate %}{{ application.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -111,7 +106,7 @@
 
                                     <tbody>
                                     <tr>
-                                        <td>{{ application.description }}</td>
+                                        <td>{{ application.description |nl2br }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

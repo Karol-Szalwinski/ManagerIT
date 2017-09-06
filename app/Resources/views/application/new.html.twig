@@ -1,16 +1,111 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Nowa aplikacja {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('application_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-fast-backward"></i>
+                <span class="link-title">Lista aplikacji</span>
+            </a>
+            
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Application creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj aplikację</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('application_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
+
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Nazwa programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.type, 'Rodzaj aplikacji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz rodzaj aplikacji'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.licenseType, 'Typ licencj', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.licenseType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.developer, 'Dystrybutor programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.developer, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazę firmy'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.webpage, 'Strona domowa programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.webpage, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadż stronę www'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.description, 'Opis programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowad stron www'} }) }}
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Dodaj nową aplikację"
+                                       class="btn btn-primary btn-grad control-label"/>
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!----------------------------------------------------->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

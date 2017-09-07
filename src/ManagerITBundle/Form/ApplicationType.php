@@ -15,7 +15,20 @@ class ApplicationType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('type')
+            ->add('type', 'choice', array(
+                'choices' => array(
+                    'os' => 'System operacyjny',
+                    'antivirus' => 'Antywirus',
+                    'office' => 'Biurowe',
+                    'special' => 'Specjalne',
+                    'database' => 'Bazy danych',
+                    'graphic' => 'Graficzny',
+                    'other' => 'Inny',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz rodzaj programu',
+            ))
             ->add('licenseType')
             ->add('developer')
             ->add('webpage')

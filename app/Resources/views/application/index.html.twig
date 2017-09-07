@@ -50,7 +50,25 @@
                                     {% for application in applications %}
                                         <tr onclick='location.href = "{{ path('application_show', { 'id': application.id }) }}"'>
                                             <td>{{ application.name }}</td>
-                                            <td>{{ application.type }}</td>
+                                            <td>
+                                                {% if application.type == "os" %}
+                                                    System operacyjny
+                                                {% elseif application.type == "antivirus" %}
+                                                    Program antywirusowy
+                                                {% elseif application.type ==  "office" %}
+                                                    Biurowy
+                                                {% elseif application.type == "special" %}
+                                                    Specjalny
+                                                {% elseif application.type == "database" %}
+                                                    Baza danych
+                                                {% elseif application.type == "graphic" %}
+                                                    Graficzny
+                                                {% elseif application.type == "other" %}
+                                                    Inny
+                                                {% else %}
+                                                    {{ application.type }}
+                                                {% endif %}
+                                            </td>
                                             <td>{{ application.licenseType }}</td>
                                             <td>{{ application.developer }}</td>
                                             <td>{{ application.webpage }}</td>

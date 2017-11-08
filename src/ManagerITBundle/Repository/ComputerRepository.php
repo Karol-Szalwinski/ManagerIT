@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ComputerRepository extends EntityRepository
 {
+
+    public function CountAllByCurrentMonth()
+    {
+        $currentMonthYear = date('Y-m') . '%';
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $countedInvoices = $qb
+            ->select('COUNT(c)')
+            ->from('ManagerITBundle:Computer', 'c')
+            ->where('c.addDate LIKE :month')
+            ->setParameter('month', $currentMonthYear)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $countedInvoices;
+    }
 }

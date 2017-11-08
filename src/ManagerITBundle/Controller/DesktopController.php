@@ -42,8 +42,10 @@ class DesktopController extends Controller
 
         $desktops = $em->getRepository('ManagerITBundle:Computer')->findAll();
 
+
         return $this->render('desktop/index.html.twig', array(
             'desktops' => $desktops,
+
         ));
     }
 

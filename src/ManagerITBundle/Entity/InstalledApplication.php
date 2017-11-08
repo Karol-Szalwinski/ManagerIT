@@ -22,9 +22,9 @@ class InstalledApplication
     private $id;
 
     /**
-     * @var string
+     * @ORM\ManyToOne(targetEntity="Application")
      *
-     * @ORM\Column(name="application", type="string", length=255)
+     * @ORM\JoinColumn(name="application_id", referencedColumnName="id", nullable=true)
      */
     private $application;
 

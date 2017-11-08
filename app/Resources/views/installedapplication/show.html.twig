@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Installedapplication</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ installedApplication.id }}</td>
+            </tr>
+            <tr>
+                <th>Application</th>
+                <td>{{ installedApplication.application }}</td>
+            </tr>
+            <tr>
+                <th>License</th>
+                <td>{{ installedApplication.license }}</td>
+            </tr>
+            <tr>
+                <th>Computer</th>
+                <td>{{ installedApplication.computer }}</td>
+            </tr>
+            <tr>
+                <th>Installationdate</th>
+                <td>{{ installedApplication.installationDate }}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ installedApplication.version }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('install_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('install_edit', { 'id': installedApplication.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

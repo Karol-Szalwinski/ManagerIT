@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Installedapplications list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Application</th>
+                <th>License</th>
+                <th>Computer</th>
+                <th>Installationdate</th>
+                <th>Version</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for installedApplication in installedApplications %}
+            <tr>
+                <td><a href="{{ path('install_show', { 'id': installedApplication.id }) }}">{{ installedApplication.id }}</a></td>
+                <td>{{ installedApplication.application }}</td>
+                <td>{{ installedApplication.license }}</td>
+                <td>{{ installedApplication.computer }}</td>
+                <td>{{ installedApplication.installationDate }}</td>
+                <td>{{ installedApplication.version }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('install_show', { 'id': installedApplication.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('install_edit', { 'id': installedApplication.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('install_new') }}">Create a new installedApplication</a>
+        </li>
+    </ul>
+{% endblock %}

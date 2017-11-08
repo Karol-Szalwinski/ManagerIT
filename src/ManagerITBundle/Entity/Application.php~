@@ -70,6 +70,14 @@ class Application
      */
     private $addDate;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+
+        $this->addDate = new \DateTime();
+    }
 
     /**
      * Get id

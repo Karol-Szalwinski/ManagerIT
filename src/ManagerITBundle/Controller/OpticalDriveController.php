@@ -34,7 +34,7 @@ class OpticalDriveController extends Controller
     /**
      * Creates a new opticalDrive entity.
      *
-     * @Route("/new/{computer}", name="opticaldrive_new")
+     * @Route("/new/{computer}", name="opticaldrive_new",  defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
     public function newAction($computer, Request $request)

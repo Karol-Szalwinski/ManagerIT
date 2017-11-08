@@ -47,9 +47,7 @@
                                         <th>Producent</th>
                                         <th>Procesor</th>
                                         <th>RAM</th>
-                                        <th>System</th>
                                         <th>Użytkownicy</th>
-                                        <th>Licencje</th>
                                         <th>Dział</th>
                                         <th>Adres IP</th>
                                         <th>Zdjęcie</th>
@@ -79,18 +77,8 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {% if computer.os is not null %}
-                                                    {{ computer.os.name }}
-                                                {% endif %}
-                                            </td>
-                                            <td>
                                                 {% for employee in computer.employees %}
                                                     {{ employee.name }} {{ employee.surname }}<br>
-                                                {% endfor %}
-                                            </td>
-                                            <td>
-                                                {% for license in computer.licenses %}
-                                                    {{ license.name }}<br>
                                                 {% endfor %}
                                             </td>
                                             <td>

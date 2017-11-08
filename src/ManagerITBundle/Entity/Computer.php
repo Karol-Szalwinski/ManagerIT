@@ -189,6 +189,13 @@ class Computer
     private $documents;
 
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="InstalledApplication", mappedBy="computer")
+     */
+    private $installedApplications;
+
+
 
 
     /**
@@ -697,6 +704,7 @@ class Computer
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -971,5 +979,38 @@ class Computer
     public function getPowerSupply()
     {
         return $this->powerSupply;
+    }
+
+    /**
+     * Add installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     * @return Computer
+     */
+    public function addInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications[] = $installedApplications;
+
+        return $this;
+    }
+
+    /**
+     * Remove installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     */
+    public function removeInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications->removeElement($installedApplications);
+    }
+
+    /**
+     * Get installedApplications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInstalledApplications()
+    {
+        return $this->installedApplications;
     }
 }

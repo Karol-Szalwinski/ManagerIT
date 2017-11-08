@@ -36,9 +36,9 @@ class InstalledApplication
     private $license;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="computer", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Computer", inversedBy="installedApplications")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
      */
     private $computer;
 

@@ -994,6 +994,12 @@ class Computer
         return $this;
     }
 
+    public function hasInstalledApplication(InstalledApplication $installedApplication)
+    {
+        return $this->installedApplications->contains($installedApplication);
+    }
+
+
     /**
      * Remove installedApplications
      *

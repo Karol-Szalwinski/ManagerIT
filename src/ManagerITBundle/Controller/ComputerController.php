@@ -6,7 +6,9 @@ use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\DesktopRam;
 use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\InstalledApplication;
 use ManagerITBundle\Entity\License;
+use ManagerITBundle\Entity\Application;
 use ManagerITBundle\Entity\InterfacePci;
 use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\PowerSupply;
@@ -588,6 +590,78 @@ class ComputerController extends Controller
         $type = $computer->getFormFactor();
 
         return $this->redirectToRoute('computer_licenses', array('type' => $type, 'id' => $computer->getId()));
+    }
+
+    /**
+     * Finds and displays a computer licenses.
+     *
+     * @Route("/{type}/{id}/applications", name="computer_applications")
+     * @Method("GET")
+     */
+    public function applicationsAction($type, Computer $computer)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $allInstalledApplications = $em->getRepository('ManagerITBundle:InstalledApplication')->findAll();
+        $allApplications = $em->getRepository('ManagerITBundle:Application')->findAll();
+
+        foreach ($allInstalledApplications as $key => $installedApplication) {
+            if ($computer->hasInstalledApplication($installedApplication)) {
+                unset($allInstalledApplications[$key]);
+            }
+        }
+
+        return $this->render($type . '/applications.html.twig', array(
+            'computer' => $computer,
+            'installedAplications' => $allInstalledApplications,
+            'applications' => $allApplications
+        ));
+    }
+
+    /**
+     * Action to install application
+     *
+     * @Route("/{computer}/installaplication/{application}", name="computer_install_application")
+     * @Method("GET")
+     */
+    public
+    function computerInstallApplicationAction(Request $request, Computer $computer, Application $application)
+    {
+        $installedApplication = New InstalledApplication();
+        $installedApplication->setApplication($application);
+        $installedApplication->setComputer($computer);
+
+        $computer->addInstalledApplication($installedApplication);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($installedApplication);
+        $em->flush($installedApplication);
+
+
+        $type = $computer->getFormFactor();
+
+        return $this->redirectToRoute('computer_applications', array('type' => $type, 'id' => $computer->getId()));
+    }
+
+    /**
+     * Computer uninstall application
+     * @Route("/{computer}/uninstall/{installedApplication}", name="computer_uninstall_application")
+     * @Method("GET")
+     */
+    public
+    function computerUninstallApplicationAction(Computer $computer, InstalledApplication $installedApplication)
+    {
+
+        $computer->removeInstalledApplication($installedApplication);
+        $installedApplication->removeComputer($computer);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($installedApplication);
+
+        $em->flush();
+
+        $type = $computer->getFormFactor();
+
+        return $this->redirectToRoute('computer_applications', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**

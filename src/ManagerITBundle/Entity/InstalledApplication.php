@@ -38,14 +38,14 @@ class InstalledApplication
     /**
      *
      * @ORM\ManyToOne(targetEntity="Computer", inversedBy="installedApplications")
-     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id", nullable=true)
      */
     private $computer;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="installationDate", type="string", length=255, nullable=true)
+     * @ORM\Column(name="addDate", type="datetime", nullable=true)
      */
     private $installationDate;
 
@@ -134,6 +134,12 @@ class InstalledApplication
     public function getComputer()
     {
         return $this->computer;
+    }
+
+    public function removeComputer()
+    {
+        $this->computer = null;
+
     }
 
     /**

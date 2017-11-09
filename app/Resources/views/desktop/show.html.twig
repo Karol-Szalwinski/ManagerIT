@@ -389,7 +389,7 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
-                                <h5>Licencje</h5>
+                                <h5>Zainstalowane oprogramowanie</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">
@@ -411,17 +411,17 @@
                                 <table class="table table-condensed responsive-table">
                                     <thead>
                                     <tr>
-                                        <th>Program</th>
-                                        <th>Typ licencji</th>
-                                        <th>Wygasa</th>
+                                        <th>Aplikacja</th>
+                                        <th>Wersja</th>
+                                        <th>Licencja</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for license in computer.licenses %}
+                                    {% for installedApplication in computer.installedApplications %}
                                         <tr>
-                                            <td>{{ license.name }}</td>
-                                            <td>{{ license.type }}</td>
-                                            <td>{{ license.expireDate|date("m-d-Y") }}</td>
+                                            <td>{{ installedApplication.application.name }}</td>
+                                            <td>{{ installedApplication.version }}</td>
+                                            <td>{{ installedApplication.license }}</td>
                                         </tr>
                                     {% endfor %}
 
@@ -461,7 +461,7 @@
                                         <th>Imię</th>
                                         <th>Nazwisko</th>
                                         <th>Stanowisko</th>
-                                        <th>Dział
+                                        <th>Dział</th>
                                     </tr>
                                     </thead>
                                     <tbody>

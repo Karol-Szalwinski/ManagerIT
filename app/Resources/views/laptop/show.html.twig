@@ -358,11 +358,11 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
-                                <h5>Licencje</h5>
+                                <h5>Zainstalowane oprogramowanie</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                        <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
@@ -380,17 +380,17 @@
                                 <table class="table table-condensed responsive-table">
                                     <thead>
                                     <tr>
-                                        <th>Program</th>
-                                        <th>Typ licencji</th>
-                                        <th>Wygasa</th>
+                                        <th>Aplikacja</th>
+                                        <th>Wersja</th>
+                                        <th>Licencja</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for license in computer.licenses %}
+                                    {% for installedApplication in computer.installedApplications %}
                                         <tr>
-                                            <td>{{ license.name }}</td>
-                                            <td>{{ license.type }}</td>
-                                            <td>{{ license.expireDate|date("m/d/Y") }}</td>
+                                            <td>{{ installedApplication.application.name }}</td>
+                                            <td>{{ installedApplication.version }}</td>
+                                            <td>{{ installedApplication.license }}</td>
                                         </tr>
                                     {% endfor %}
 

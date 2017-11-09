@@ -381,16 +381,16 @@
                                     <thead>
                                     <tr>
                                         <th>Aplikacja</th>
-                                        <th>Wersja</th>
-                                        <th>Licencja</th>
+                                        <th>Deweloper</th>
+                                        <th>Typ aplikacji</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for installedApplication in computer.installedApplications %}
                                         <tr>
                                             <td>{{ installedApplication.application.name }}</td>
-                                            <td>{{ installedApplication.version }}</td>
-                                            <td>{{ installedApplication.license }}</td>
+                                            <td>{{ installedApplication.application.developer }}</td>
+                                            <td>{{ installedApplication.application.type }}</td>
                                         </tr>
                                     {% endfor %}
 

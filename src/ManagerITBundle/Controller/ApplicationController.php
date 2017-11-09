@@ -34,10 +34,10 @@ class ApplicationController extends Controller
     /**
      * Creates a new application entity.
      *
-     * @Route("/new", name="application_new")
+     * @Route("/new/{computer}", name="application_new", defaults={"computer" = null})
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction($computer, Request $request)
     {
         $application = new Application();
         $form = $this->createForm('ManagerITBundle\Form\ApplicationType', $application);
@@ -48,12 +48,21 @@ class ApplicationController extends Controller
             $em->persist($application);
             $em->flush($application);
 
+            if ($computer != null) {
+                $computerToReturn = $em->getRepository('ManagerITBundle:Computer')->findOneById($computer);
+                if ($computerToReturn) {
+                    $type = $computerToReturn->getFormFactor();
+                    return $this->redirectToRoute('computer_applications', array('type' => $type, 'id' => $computer));
+                }
+            }
+
             return $this->redirectToRoute('application_show', array('id' => $application->getId()));
         }
 
         return $this->render('application/new.html.twig', array(
             'application' => $application,
             'form' => $form->createView(),
+            'computer' => $computer,
         ));
     }
 

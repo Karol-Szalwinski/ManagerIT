@@ -6,7 +6,7 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('computer_type_index', { 'type' : 'desktop'}) }}"
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor}) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista desktopów</span>
@@ -36,10 +36,10 @@
                 <i class="fa fa-user"></i>
                 <span class="link-title">Pracownicy</span>
             </a>
-            <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+            <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-text"></i>
-                <span class="link-title">Licencje</span>
+                <span class="link-title">Aplikacje</span>
             </a>
             <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
@@ -317,8 +317,8 @@
                                     </tbody>
                                     <tbody>
                                     <tr>
-                                        <th>Adresy IP</th>
                                         <th>MAC Adresy</th>
+                                        <th>Adresy IP</th>
                                     </tr>
                                     {% for nic in computer.networkInterfaceCards %}
                                         <tr>
@@ -332,7 +332,6 @@
                                     {% endfor %}
 
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -393,7 +392,7 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                        <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
@@ -412,16 +411,16 @@
                                     <thead>
                                     <tr>
                                         <th>Aplikacja</th>
-                                        <th>Wersja</th>
-                                        <th>Licencja</th>
+                                        <th>Deweloper</th>
+                                        <th>Typ aplikacj</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for installedApplication in computer.installedApplications %}
                                         <tr>
                                             <td>{{ installedApplication.application.name }}</td>
-                                            <td>{{ installedApplication.version }}</td>
-                                            <td>{{ installedApplication.license }}</td>
+                                            <td>{{ installedApplication.application.developer }}</td>
+                                            <td>{{ installedApplication.application.type }}</td>
                                         </tr>
                                     {% endfor %}
 
@@ -461,7 +460,7 @@
                                         <th>Imię</th>
                                         <th>Nazwisko</th>
                                         <th>Stanowisko</th>
-                                        <th>Dział</th>
+                                        <th>Dział
                                     </tr>
                                     </thead>
                                     <tbody>

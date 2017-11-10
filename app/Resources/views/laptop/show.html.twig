@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Desktop {% endblock %}
+{% block title %} Laptop {% endblock %}
 
 
 {% block mainbar %}
@@ -36,14 +36,19 @@
                 <i class="fa fa-user"></i>
                 <span class="link-title">Pracownicy</span>
             </a>
-            <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+            <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-text"></i>
-                <span class="link-title">Licencje</span>
+                <span class="link-title">Aplikacje</span>
+            </a>
+            <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-money"></i>
+                <span class="link-title">Finanse</span>
             </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline delete-confirm"><i
                             class="fa fa-trash"></i> Usuń
                 </button>
                 {{ form_end(delete_form) }}
@@ -71,6 +76,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_edit', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -124,6 +134,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_photo', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -169,6 +184,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable2" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -182,7 +202,7 @@
 
                                     <tbody>
                                     <tr>
-                                        <td><span class="fa fa-microchip"></span> Procesor</td>
+                                        <td>Procesor</td>
                                         <td>{% if computer.cpu is not null %}
                                                 {{ computer.cpu.name }}
                                             {% endif %}
@@ -255,7 +275,11 @@
                                     </tr>
                                     <tr>
                                         <td>Zasilacz</td>
-                                        <td>{{ computer.powerSupply }}</td>
+                                        <td>
+                                            {% if computer.powerSupply is not null %}
+                                                {{ computer.powerSupply.name }} - {{ computer.powerSupply.powerInWatt }}&nbspW
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -274,6 +298,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_network', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable3" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -284,28 +313,29 @@
                             </header>
                             <div id="condensedTable3" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
-
                                     <tbody>
-                                    <tr>
-                                        <td>Adres IP</td>
-                                        {% for nic in computer.networkInterfaceCards %}
-                                            <td>{{ nic.ipv4 }}</td>
-                                        {% else %}
-                                            <td> Nie ma stałego adresu IP</td>
-                                        {% endfor %}
-                                    </tr>
-                                    <tr>
-                                        <td>MAC Adres</td>
-                                        {% for nic in computer.networkInterfaceCards %}
-                                            <td>{{ nic.macAddress }}</td>
-                                        {% else %}
-                                            <td> Brak karty sieciowej</td>
-                                        {% endfor %}
-                                    </tr>
                                     <tr>
                                         <td>Nazwa sieciowa</td>
                                         <td>{{ computer.name }}</td>
+                                        <td></td>
                                     </tr>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <th>MAC Adresy</th>
+                                        <th>Adresy IP</th>
+                                    </tr>
+                                    {% for nic in computer.networkInterfaceCards %}
+                                        <tr>
+                                            <td>{{ nic.macAddress }}</td>
+                                            <td>{{ nic.ipv4 }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="2">Brak zdefiniowanej karty sieciowej</td>
+                                        </tr>
+                                    {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -322,6 +352,11 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
                                         <a href="#condensedTable4" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -336,15 +371,15 @@
                                     <tbody>
                                     <tr>
                                         <td>Data zakupu</td>
-                                        <td>{{ computer.purchaseDate |date("m/d/Y") }}</td>
+                                        <td>{{ computer.purchaseDate |date("m-d-Y") }}</td>
                                     </tr>
                                     <tr>
                                         <td>Data wprowadzenia</td>
-                                        <td>{{ computer.addDate |date("m/d/Y") }}</td>
+                                        <td>{{ computer.addDate |date("m-d-Y") }}</td>
                                     </tr>
                                     <tr>
                                         <td>Cena zakupu</td>
-                                        <td>{{ computer.price }}</td>
+                                        <td>{{ computer.price }} PLN</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -382,7 +417,7 @@
                                     <tr>
                                         <th>Aplikacja</th>
                                         <th>Deweloper</th>
-                                        <th>Typ aplikacji</th>
+                                        <th>Typ aplikacj</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -458,5 +493,9 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
-
+    <script>
+        $('.delete-confirm').click(function () {
+            return confirm('Na pewno chcesz usunąć ten komputer z systemu?')
+        });
+    </script>
 {% endblock %}

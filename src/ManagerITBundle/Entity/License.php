@@ -123,7 +123,12 @@ class License
      * @ORM\ManyToMany(targetEntity="Employee", mappedBy="licenses")
      */
     private $employees;
-    
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="InstalledApplication", mappedBy="license")
+     */
+    private $installedApplications;
     
    
     /**
@@ -133,6 +138,7 @@ class License
     {
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -509,5 +515,38 @@ class License
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Add installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     * @return License
+     */
+    public function addInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications[] = $installedApplications;
+
+        return $this;
+    }
+
+    /**
+     * Remove installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     */
+    public function removeInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications->removeElement($installedApplications);
+    }
+
+    /**
+     * Get installedApplications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInstalledApplications()
+    {
+        return $this->installedApplications;
     }
 }

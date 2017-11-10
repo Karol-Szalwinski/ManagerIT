@@ -29,23 +29,23 @@ class InstalledApplication
     private $application;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="license", type="string", length=255, nullable=true)
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="License", inversedBy="installedApplications")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
      */
     private $license;
 
     /**
      *
      * @ORM\ManyToOne(targetEntity="Computer", inversedBy="installedApplications")
-     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="computer_id", referencedColumnName="id", nullable=true)
      */
     private $computer;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="installationDate", type="string", length=255, nullable=true)
+     * @ORM\Column(name="addDate", type="datetime", nullable=true)
      */
     private $installationDate;
 
@@ -134,6 +134,12 @@ class InstalledApplication
     public function getComputer()
     {
         return $this->computer;
+    }
+
+    public function removeComputer()
+    {
+        $this->computer = null;
+
     }
 
     /**

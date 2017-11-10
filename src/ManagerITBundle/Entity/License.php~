@@ -123,7 +123,12 @@ class License
      * @ORM\ManyToMany(targetEntity="Employee", mappedBy="licenses")
      */
     private $employees;
-    
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="InstalledApplication", mappedBy="license")
+     */
+    private $installedApplications;
     
    
     /**
@@ -133,6 +138,7 @@ class License
     {
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 

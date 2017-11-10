@@ -980,4 +980,43 @@ class Computer
     {
         return $this->powerSupply;
     }
+
+    /**
+     * Add installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     * @return Computer
+     */
+    public function addInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications[] = $installedApplications;
+
+        return $this;
+    }
+
+    public function hasInstalledApplication(InstalledApplication $installedApplication)
+    {
+        return $this->installedApplications->contains($installedApplication);
+    }
+
+
+    /**
+     * Remove installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     */
+    public function removeInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications->removeElement($installedApplications);
+    }
+
+    /**
+     * Get installedApplications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInstalledApplications()
+    {
+        return $this->installedApplications;
+    }
 }

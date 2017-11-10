@@ -29,9 +29,9 @@ class InstalledApplication
     private $application;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="license", type="string", length=255, nullable=true)
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="License", inversedBy="installedApplications")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
      */
     private $license;
 

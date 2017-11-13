@@ -5,7 +5,8 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Picture;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Picture controller.
@@ -130,7 +131,6 @@ class PictureController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('picture_delete', array('id' => $picture->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

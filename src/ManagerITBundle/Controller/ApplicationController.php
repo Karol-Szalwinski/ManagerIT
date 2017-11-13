@@ -5,7 +5,8 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Application;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Application controller.
@@ -139,7 +140,6 @@ class ApplicationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('application_delete', array('id' => $application->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

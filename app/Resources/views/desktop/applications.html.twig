@@ -42,6 +42,7 @@
                                 </div>
                             </div>
                         </header>
+                        {% set installId = '' %}
 
                         {% if computer.installedApplications is not empty %}
 
@@ -59,25 +60,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% set installId = '' %}
+
 
                                 {% for installedApplication in computer.installedApplications %}
                                     <tr>
                                         <td>{{ installedApplication.application.name }}</td>
                                         <td>{{ installedApplication.application.developer }}</td>
                                         <td>{{ installedApplication.application.type }}</td>
-                                        <td onclick = {% set installId = installedApplication.id %}>
+                                        <td>
                                             {% if installedApplication.license is not null %}
                                                 {{ cinstalledApplication.license.type }}
                                             {% else %}
-                                                <button class="btn btn-primary btn-grad btn-sm control-label"
-
-                                                        data-toggle="modal"
-                                                        data-target="#license">
-                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                                    Dodaj licencję
-
-                                                </button>
+                                                <a href="{{ path('computer_applications', { 'type': computer.formFactor, 'id': computer.id, 'installed': installedApplication.id }) }}"
+                                                   class="btn btn-primary btn-grad btn-sm">
+                                                    <i class="fa fa-plus-circl"></i>
+                                                    <span class="link-title">Dodaj licencje</span>
+                                                </a>
 
                                             {% endif %}
 
@@ -179,8 +177,6 @@
                                         <span>Dodaj nowy program</span>
                                     </a>
 
-                                    {{ installId }}
-
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>
@@ -204,8 +200,8 @@
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
 
-                                <h5 class="modal-title" id="employeesModalLabel">Wybierz licencję z listy</h5>
-                                {{ installId }}
+                                <h5 class="modal-title" id="licensesModal">Wybierz licencję z listy</h5>
+
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -215,24 +211,50 @@
                                             <div class="box">
                                                 <header>
                                                     <div class="icons"><i class="fa fa-id-card"></i></div>
-                                                    <h5>Lista aplikacji</h5>
+                                                    <h5>Lista licencji</h5>
                                                 </header>
                                                 <div id="collapse4" class="body">
                                                     <table id="dataTable"
                                                            class="table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
-                                                            <th>Nazwa</th>
-                                                            <th>Dostawca</th>
-                                                            <th>Typ aplikacji</th>
+                                                            <th>Nazwa programu</th>
+                                                            <th>Typ licencji</th>
+                                                            <th>Nośnik</th>
+                                                            <th>Bezpłatna</th>
+                                                            <th>Liczba stanowisk</th>
+                                                            <th>Wygasa</th>
+                                                            <th>Data wygaśnięcia</th>
+                                                            <th>Data zakupu</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        {% for application in applications %}
-                                                            <tr onclick='location.href = "{{ path('computer_install_application', { 'computer': computer.id,  'application': application.id }) }}"'>
-                                                                <td>{{ application.name }}</td>
-                                                                <td>{{ application.developer }}</td>
-                                                                <td>{{ application.type }}</td>
+                                                        {% for license in licenses %}
+                                                            <tr>
+                                                            {#<tr onclick='location.href = "{{ path('istalledApplicationAddLicense', { 'installedApplication': computer.id,  'application': license.id }) }}"'>#}
+                                                                <td>{{ license.name }}</td>
+                                                                <td>{{ license.type }}</td>
+                                                                <td>{{ license.format }}</td>
+                                                                <td align="center" >{% if license.free == 1 %}
+                                                                        <input type="checkbox" checked onclick="return false;">
+                                                                    {% else %}
+                                                                        <input type="checkbox" onclick="return false;">
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td align="center">{{ license.numberOfSites }}</td>
+                                                                <td align="center" >{% if license.lifetime == 1 %}
+                                                                        <input type="checkbox" checked onclick="return false;">
+                                                                    {% else %}
+                                                                        <input type="checkbox" onclick="return false;">
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>{% if license.lifetime == 1 %}
+                                                                        {{ license.expireDate|date('Y-m-d') }}
+                                                                    {% else %}
+                                                                        Dożywotnia
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
                                                             </tr>
                                                         {% endfor %}
                                                         </tbody>
@@ -248,7 +270,7 @@
                                     <a href="{{ path('application_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
-                                        <span>Dodaj nowy program</span>
+                                        <span>Dodaj nową licencję</span>
                                     </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
@@ -265,4 +287,10 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#license").modal('{{ modalStatus }}');
+        });
+    </script>
 {% endblock %}

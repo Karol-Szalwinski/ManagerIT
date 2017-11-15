@@ -593,12 +593,12 @@ class ComputerController extends Controller
     }
 
     /**
-     * Finds and displays a computer licenses.
+     * Finds and displays a computer installed aplication.
      *
-     * @Route("/{type}/{id}/applications", name="computer_applications")
+     * @Route("/{type}/{id}/applications/{installed}", name="computer_applications", defaults={"installed" = null})
      * @Method("GET")
      */
-    public function applicationsAction($type, Computer $computer)
+    public function applicationsAction($type, Computer $computer, $installed)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -611,10 +611,28 @@ class ComputerController extends Controller
             }
         }
 
+        $matchedLicenses =  null;
+        $modalStatus = 'hide';
+        if($installed != null) {
+            $installedApplication = $em->getRepository('ManagerITBundle:InstalledApplication')->findOneById($installed);
+            if($installedApplication instanceof InstalledApplication) {
+                $application = $installedApplication->getApplication();
+                if($application instanceof Application) {
+                    $matchedLicenses = $application->getLicenses();
+                    $modalStatus = 'show';
+                }
+            }
+        }
+
+
         return $this->render($type . '/applications.html.twig', array(
             'computer' => $computer,
-            'installedAplications' => $allInstalledApplications,
-            'applications' => $allApplications
+            'installedApplications' => $allInstalledApplications,
+            'applications' => $allApplications,
+            'licenses' => $matchedLicenses,
+            'installed' => $installed,
+            'modalStatus' => $modalStatus
+
         ));
     }
 

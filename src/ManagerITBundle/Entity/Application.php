@@ -3,6 +3,7 @@
 namespace ManagerITBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Application
@@ -43,6 +44,12 @@ class Application
     private $licenseType;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="License", mappedBy="application")
+     */
+    private $licenses;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="developer", type="string", length=255)
@@ -55,6 +62,12 @@ class Application
      * @ORM\Column(name="webpage", type="string", length=255)
      */
     private $webpage;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="InstalledApplication", mappedBy="application")
+     */
+    private $installedApplications;
 
     /**
      * @var string
@@ -75,7 +88,7 @@ class Application
      */
     public function __construct()
     {
-
+        $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -248,5 +261,71 @@ class Application
     public function getAddDate()
     {
         return $this->addDate;
+    }
+
+    /**
+     * Add installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     * @return Application
+     */
+    public function addInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications[] = $installedApplications;
+
+        return $this;
+    }
+
+    /**
+     * Remove installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     */
+    public function removeInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications->removeElement($installedApplications);
+    }
+
+    /**
+     * Get installedApplications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInstalledApplications()
+    {
+        return $this->installedApplications;
+    }
+
+    /**
+     * Add licenses
+     *
+     * @param \ManagerITBundle\Entity\License $licenses
+     * @return Application
+     */
+    public function addLicense(\ManagerITBundle\Entity\License $licenses)
+    {
+        $this->licenses[] = $licenses;
+
+        return $this;
+    }
+
+    /**
+     * Remove licenses
+     *
+     * @param \ManagerITBundle\Entity\License $licenses
+     */
+    public function removeLicense(\ManagerITBundle\Entity\License $licenses)
+    {
+        $this->licenses->removeElement($licenses);
+    }
+
+    /**
+     * Get licenses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLicenses()
+    {
+        return $this->licenses;
     }
 }

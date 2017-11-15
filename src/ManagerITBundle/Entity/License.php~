@@ -129,6 +129,12 @@ class License
      * @ORM\OneToMany(targetEntity="InstalledApplication", mappedBy="license")
      */
     private $installedApplications;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application", inversedBy="licenses")
+     * @ORM\JoinColumn(name="application_id", referencedColumnName="id")
+     */
+    private $application;
     
    
     /**
@@ -515,5 +521,38 @@ class License
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Add installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     * @return License
+     */
+    public function addInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications[] = $installedApplications;
+
+        return $this;
+    }
+
+    /**
+     * Remove installedApplications
+     *
+     * @param \ManagerITBundle\Entity\InstalledApplication $installedApplications
+     */
+    public function removeInstalledApplication(\ManagerITBundle\Entity\InstalledApplication $installedApplications)
+    {
+        $this->installedApplications->removeElement($installedApplications);
+    }
+
+    /**
+     * Get installedApplications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInstalledApplications()
+    {
+        return $this->installedApplications;
     }
 }

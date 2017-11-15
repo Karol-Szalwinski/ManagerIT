@@ -22,9 +22,8 @@ class InstalledApplication
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application")
-     *
-     * @ORM\JoinColumn(name="application_id", referencedColumnName="id", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Application", inversedBy="installedApplications")
+     * @ORM\JoinColumn(name="application_id", referencedColumnName="id")
      */
     private $application;
 

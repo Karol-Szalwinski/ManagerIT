@@ -53,21 +53,40 @@
                                     <th>Nazwa</th>
                                     <th>Autor</th>
                                     <th>Typ</th>
+                                    <th>Licencja</th>
                                     <th>Data instalacji</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {% set installId = '' %}
+
                                 {% for installedApplication in computer.installedApplications %}
                                     <tr>
                                         <td>{{ installedApplication.application.name }}</td>
                                         <td>{{ installedApplication.application.developer }}</td>
                                         <td>{{ installedApplication.application.type }}</td>
+                                        <td onclick = {% set installId = installedApplication.id %}>
+                                            {% if installedApplication.license is not null %}
+                                                {{ cinstalledApplication.license.type }}
+                                            {% else %}
+                                                <button class="btn btn-primary btn-grad btn-sm control-label"
+
+                                                        data-toggle="modal"
+                                                        data-target="#license">
+                                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                                    Dodaj licencję
+
+                                                </button>
+
+                                            {% endif %}
+
+                                        </td>
                                         <td>{{ installedApplication.installationDate|date('Y-m-d') }}</td>
                                         <td>
                                             <a href="{{ path('computer_uninstall_application', { 'computer': computer.id, 'installedApplication': installedApplication.id }) }}"
                                                class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                <i class="fa fa-trash" ></i>
+                                                <i class="fa fa-trash"></i>
                                                 <span class="link-title">Odinstaluj</span>
                                             </a>
                                         </td>
@@ -103,7 +122,8 @@
 
 
                 <!-- Modal employees-->
-                <div class="modal fade" id="application" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel"
+                <div class="modal fade" id="application" tabindex="-1" role="dialog"
+                     aria-labelledby="applicationModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -114,6 +134,78 @@
                                 </button>
 
                                 <h5 class="modal-title" id="employeesModalLabel">Wybierz aplikację z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <header>
+                                                    <div class="icons"><i class="fa fa-id-card"></i></div>
+                                                    <h5>Lista aplikacji</h5>
+                                                </header>
+                                                <div id="collapse4" class="body">
+                                                    <table id="dataTable"
+                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nazwa</th>
+                                                            <th>Dostawca</th>
+                                                            <th>Typ aplikacji</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for application in applications %}
+                                                            <tr onclick='location.href = "{{ path('computer_install_application', { 'computer': computer.id,  'application': application.id }) }}"'>
+                                                                <td>{{ application.name }}</td>
+                                                                <td>{{ application.developer }}</td>
+                                                                <td>{{ application.type }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('application_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy program</span>
+                                    </a>
+
+                                    {{ installId }}
+
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal licensees-->
+                <div class="modal fade" id="license" tabindex="-1" role="dialog"
+                     aria-labelledby="applicationModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+
+                                <h5 class="modal-title" id="employeesModalLabel">Wybierz licencję z listy</h5>
+                                {{ installId }}
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">

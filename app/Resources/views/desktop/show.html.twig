@@ -39,7 +39,7 @@
             <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-text"></i>
-                <span class="link-title">Aplikacje</span>
+                <span class="link-title">Programy i aplikacje</span>
             </a>
             <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
@@ -94,7 +94,7 @@
 
                                     <tbody>
                                     <tr>
-                                        <td>Nazwa</td>
+                                        <td>Nazwa firmowa</td>
                                         <td>{{ computer.name }}</td>
                                     </tr>
                                     <tr>
@@ -106,7 +106,7 @@
                                         <td>{{ computer.brand }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Obudowa</td>
+                                        <td>Typ obudowy</td>
                                         <td>{{ computer.caseType.name }}</td>
                                     </tr>
                                     <tr>

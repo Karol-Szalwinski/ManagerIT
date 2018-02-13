@@ -73,7 +73,7 @@ class Tablet
     /**
      * @var string
      *
-     * @ORM\Column(name="modem", type="string", length=255)
+     * @ORM\Column(name="modem", type="string", length=255, nullable=true)
      */
     private $modem;
 
@@ -94,14 +94,14 @@ class Tablet
     /**
      * @var string
      *
-     * @ORM\Column(name="pin", type="string", length=255)
+     * @ORM\Column(name="pin", type="string", length=255, nullable=true)
      */
     private $pin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pinScreen", type="string", length=255)
+     * @ORM\Column(name="pinScreen", type="string", length=255, nullable=true)
      */
     private $pinScreen;
 
@@ -122,24 +122,29 @@ class Tablet
     /**
      * @var string
      *
-     * @ORM\Column(name="sim", type="string", length=255)
+     * @ORM\Column(name="sim", type="string", length=255, nullable=true)
      */
     private $sim;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="employee", type="string", length=255)
+     * @ORM\Column(name="employee", type="string", length=255, nullable=true)
      */
     private $employee;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="addDate", type="string", length=255)
+     * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
 
+    public function __construct()
+    {
+
+        $this->addDate = new \DateTime();
+    }
 
     /**
      * Get id

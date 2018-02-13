@@ -1,71 +1,83 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Tablety {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('tablet_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista tabletów</span>
+            </a>
+            <a href="{{ path('tablet_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Tablets list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Serial</th>
-                <th>Cpu</th>
-                <th>Ram</th>
-                <th>Rom</th>
-                <th>Modem</th>
-                <th>Screensize</th>
-                <th>Os</th>
-                <th>Pin</th>
-                <th>Pinscreen</th>
-                <th>Color</th>
-                <th>Description</th>
-                <th>Sim</th>
-                <th>Employee</th>
-                <th>Adddate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tablet in tablets %}
-            <tr>
-                <td><a href="{{ path('tablet_show', { 'id': tablet.id }) }}">{{ tablet.id }}</a></td>
-                <td>{{ tablet.name }}</td>
-                <td>{{ tablet.brand }}</td>
-                <td>{{ tablet.model }}</td>
-                <td>{{ tablet.serial }}</td>
-                <td>{{ tablet.cpu }}</td>
-                <td>{{ tablet.ram }}</td>
-                <td>{{ tablet.rom }}</td>
-                <td>{{ tablet.modem }}</td>
-                <td>{{ tablet.screenSize }}</td>
-                <td>{{ tablet.os }}</td>
-                <td>{{ tablet.pin }}</td>
-                <td>{{ tablet.pinScreen }}</td>
-                <td>{{ tablet.color }}</td>
-                <td>{{ tablet.description }}</td>
-                <td>{{ tablet.sim }}</td>
-                <td>{{ tablet.employee }}</td>
-                <td>{{ tablet.addDate }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tablet_show', { 'id': tablet.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tablet_edit', { 'id': tablet.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-file-text"></i></div>
+                                <h5>Lista tabletów</h5>
+                            </header>
 
-    <ul>
-        <li>
-            <a href="{{ path('tablet_new') }}">Create a new tablet</a>
-        </li>
-    </ul>
+                            <div id="collapse4" class="body">
+
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Marka</th>
+                                        <th>Model</th>
+                                        <th>S/N</th>
+                                        <th>Modem</th>
+                                        <th>Przekątna ekranu</th>
+                                        <th>Kolor</th>
+                                        <th>Opis</th>
+                                        <th>Sim</th>
+                                        <th>Użytkownik</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for tablet in tablets %}
+                                        <tr onclick='location.href = "{{ path('tablet_show', { 'id': tablet.id }) }}"'>
+                                            <td>{{ tablet.name }}</td>
+                                            <td>{{ tablet.brand }}</td>
+                                            <td>{{ tablet.model }}</td>
+                                            <td>{{ tablet.serial }}</td>
+                                            <td>{{ tablet.modem }}</td>
+                                            <td>{{ tablet.screenSize }}</td>
+                                            <td>{{ tablet.color }}</td>
+                                            <td>{{ tablet.description }}</td>
+                                            <td>{{ tablet.sim }}</td>
+                                            <td>{{ tablet.employee }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
 {% endblock %}

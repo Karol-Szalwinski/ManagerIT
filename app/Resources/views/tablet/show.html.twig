@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tablet</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tablet.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ tablet.name }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ tablet.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ tablet.model }}</td>
+            </tr>
+            <tr>
+                <th>Serial</th>
+                <td>{{ tablet.serial }}</td>
+            </tr>
+            <tr>
+                <th>Cpu</th>
+                <td>{{ tablet.cpu }}</td>
+            </tr>
+            <tr>
+                <th>Ram</th>
+                <td>{{ tablet.ram }}</td>
+            </tr>
+            <tr>
+                <th>Rom</th>
+                <td>{{ tablet.rom }}</td>
+            </tr>
+            <tr>
+                <th>Modem</th>
+                <td>{{ tablet.modem }}</td>
+            </tr>
+            <tr>
+                <th>Screensize</th>
+                <td>{{ tablet.screenSize }}</td>
+            </tr>
+            <tr>
+                <th>Os</th>
+                <td>{{ tablet.os }}</td>
+            </tr>
+            <tr>
+                <th>Pin</th>
+                <td>{{ tablet.pin }}</td>
+            </tr>
+            <tr>
+                <th>Pinscreen</th>
+                <td>{{ tablet.pinScreen }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ tablet.color }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ tablet.description }}</td>
+            </tr>
+            <tr>
+                <th>Sim</th>
+                <td>{{ tablet.sim }}</td>
+            </tr>
+            <tr>
+                <th>Employee</th>
+                <td>{{ tablet.employee }}</td>
+            </tr>
+            <tr>
+                <th>Adddate</th>
+                <td>{{ tablet.addDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tablet_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('tablet_edit', { 'id': tablet.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

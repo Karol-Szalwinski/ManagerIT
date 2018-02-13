@@ -1,17 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Edycja licencji {% endblock %}
+{% block title %} Dodaj licencję {% endblock %}
 
 {% block mainbar %}
     <div class="main-bar">
         <div>
             <a href="{{ path('license_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
-                <i class="fa fa-fast-backward"></i>
-                <span class="link-title">Lista licencji</span>
-            </a>
-            <a href="{{ path('license_show', { 'id': license.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Pokaż licencję</span>
+                <span class="link-title">Lista licencji</span>
             </a>
         </div>
     </div>
@@ -49,48 +45,49 @@
                             </header>
                             <div id="div-1" class="body">
 
-                                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.application, 'Nazwa programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.name, 'Nazwa programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.application, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.name, 'Nazwa licencji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.brand, 'Licencjonodawca', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę licencji (opcjonalnie)'} }) }}
+                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź autora oprogramowania'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.licenseKey, 'Klucz licencji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.licenseKey, 'Klucz licencji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.licenseKey, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź klucz'} }) }}
+                                        {{ form_widget(form.licenseKey, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź klucz'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.type, 'Typ licencji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.type, 'Typ licencji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.format, 'Nośnik', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.format, 'Nośnik', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.format, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz nośnik'} }) }}
+                                        {{ form_widget(form.format, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz nośnik'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.free, 'Bezpłatna', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.free, 'Bezpłatna', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6 uniform">
-                                        {{ form_widget(edit_form.free, { 'attr': {'class': 'uniform',
+                                        {{ form_widget(form.free, { 'attr': {'class': 'uniform',
                                             'data-toggle': 'toggle',
+                                            'checked': 'checked',
                                             'data-size': 'small',
                                             'data-on':'Tak',
                                             'data-off':'Nie',
@@ -102,9 +99,9 @@
 
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.lifetime, 'Wygaśnie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.lifetime, 'Wygaśnie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6 uniform">
-                                        {{ form_widget(edit_form.lifetime, { 'attr': {'class': 'uniform',
+                                        {{ form_widget(form.lifetime, { 'attr': {'class': 'uniform',
                                             'data-toggle': 'toggle',
                                             'data-size': 'small',
                                             'data-on':'Tak',
@@ -117,45 +114,44 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.expireDate, 'Data wygaśnięcia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.expireDate, 'Data wygaśnięcia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
                                     <div class="col-lg-3">
-                                        {{ form_widget(edit_form.expireDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                        {{ form_widget(form.expireDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.numberOfSites, 'Liczba stanowisk', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.numberOfSites, 'Liczba stanowisk', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.numberOfSites, { 'attr': {'class': 'form-control', 'placeholder': 0} }) }}
+                                        {{ form_widget(form.numberOfSites, { 'attr': {'class': 'form-control', 'placeholder': 0} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
 
                                     <div class="col-lg-3">
-                                        {{ form_widget(edit_form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(edit_form.comment, 'Uwagi', { 'label_attr': {'for':'autosize', 'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.comment, 'Uwagi', { 'label_attr': {'for':'autosize', 'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(edit_form.comment, { 'attr': {'class': 'form-control', 'placeholder': 'Uwagi odnośnie licencji'} }) }}
+                                        {{ form_widget(form.comment, { 'attr': {'class': 'form-control', 'placeholder': 'Uwagi odnośnie licencji'} }) }}
                                     </div>
                                 </div>
 
-
-                                <input type="submit" value="Zapisz zmiany" class="btn btn-primary btn-grad control-label" />
+                                <input type="submit" value="Dodaj nową licencję"
+                                       class="btn btn-primary btn-grad control-label"/>
                                 <br>
-                                {{ form_end(edit_form) }}
+                                {{ form_end(form) }}
                             </div>
                         </div>
                     </div>
 
-
-                    <!----------------------------------------------------->                    
+                    <!----------------------------------------------------->
                 </div>
                 <!-- /.row -->
             </div>

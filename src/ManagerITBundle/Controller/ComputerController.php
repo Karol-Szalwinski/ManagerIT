@@ -2,6 +2,7 @@
 
 namespace ManagerITBundle\Controller;
 
+use Doctrine\DBAL\Types\StringType;
 use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\DesktopRam;
@@ -25,6 +26,8 @@ use ManagerITBundle\Entity\Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -674,6 +677,30 @@ class ComputerController extends Controller
         $installedApplication->removeComputer($computer);
         $em = $this->getDoctrine()->getManager();
         $em->remove($installedApplication);
+
+        $em->flush();
+
+        $type = $computer->getFormFactor();
+
+        return $this->redirectToRoute('computer_applications', array('type' => $type, 'id' => $computer->getId()));
+    }
+
+    /**
+     * Action to install application
+     *
+     * @Route("/{computer}/application/{installed}/connect/{license}", name="computer_installed_application_connect_license")
+     * @Method("GET")
+     */
+    public
+    function computerInstalledApplicationConnectLicenseAction(Request $request, Computer $computer, $installed, License $license)
+    {
+//        var_export($installed); die();
+        $em = $this->getDoctrine()->getManager();
+
+        $installedApplication =  $em->getRepository('ManagerITBundle:InstalledApplication')->findOneById($installed);
+
+        $installedApplication->setLicense($license);
+        $license->addInstalledApplication($installedApplication);
 
         $em->flush();
 

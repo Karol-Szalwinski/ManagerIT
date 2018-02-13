@@ -25,7 +25,7 @@ class License
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
@@ -42,13 +42,6 @@ class License
      * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="brand", type="string", length=255, nullable=true)
-     */
-    private $brand;
 
     /**
      * @var string
@@ -225,29 +218,6 @@ class License
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set brand
-     *
-     * @param string $brand
-     * @return License
-     */
-    public function setBrand($brand)
-    {
-        $this->brand = $brand;
-
-        return $this;
-    }
-
-    /**
-     * Get brand
-     *
-     * @return string 
-     */
-    public function getBrand()
-    {
-        return $this->brand;
     }
 
     /**

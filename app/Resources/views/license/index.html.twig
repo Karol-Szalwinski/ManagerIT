@@ -39,6 +39,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nazwa programu</th>
+                                         <th>Nazwa licencji</th>
                                         <th>Typ licencji</th>
                                         <th>Nośnik</th>
                                         <th>Bezpłatna</th>
@@ -46,13 +47,14 @@
                                         <th>Wygasa</th>
                                         <th>Data wygaśnięcia</th>
                                         <th>Data zakupu</th>
-                                        <th>Sprzęt przypisany</th>
-                                        <th>Użytkownik przypisany</th>
+                                        <th>Liczba instalacji</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for license in licenses %}
                                         <tr onclick='location.href = "{{ path('license_show', { 'id': license.id }) }}"'>
+                                            <td>{{ license.application.name }}</td>
                                             <td>{{ license.name }}</td>
                                             <td>{{ license.type }}</td>
                                             <td>{{ license.format }}</td>
@@ -78,14 +80,8 @@
                                             <td>{{ license.purchaseDate|date('Y-m-d') }}</td>
 
                                             <td>
-                                                {% for computer in license.computers %}
-                                                    {{ computer.name }}<br>
-                                                {% endfor %}
-                                            </td>
-                                            <td>
-                                                {% for employee in license.employees %}
-                                                    {{ employee.name }} {{ employee.surname }}<br>
-                                                {% endfor %}
+                                                {{ license.installedApplications|length }}
+
                                             </td>
                                         </tr>
                                     {% endfor %}

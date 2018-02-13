@@ -48,16 +48,16 @@
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'} }) }}
 
                                 <div class="form-group">
-                                    {{ form_label(form.name, 'Nazwa programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.application, 'Nazwa programu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                        {{ form_widget(form.application, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.brand, 'Licencjonodawca', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.name, 'Nazwa licencji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź autora oprogramowania'} }) }}
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę licencji (opcjonalnie)'} }) }}
                                     </div>
                                 </div>
 

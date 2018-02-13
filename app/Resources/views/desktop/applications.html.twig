@@ -69,7 +69,7 @@
                                         <td>{{ installedApplication.application.type }}</td>
                                         <td>
                                             {% if installedApplication.license is not null %}
-                                                {{ cinstalledApplication.license.type }}
+                                                {{ installedApplication.license.name }}
                                             {% else %}
                                                 <a href="{{ path('computer_applications', { 'type': computer.formFactor, 'id': computer.id, 'installed': installedApplication.id }) }}"
                                                    class="btn btn-primary btn-grad btn-sm">
@@ -231,7 +231,7 @@
                                                         <tbody>
                                                         {% for license in licenses %}
                                                             <tr>
-                                                            {#<tr onclick='location.href = "{{ path('istalledApplicationAddLicense', { 'installedApplication': computer.id,  'application': license.id }) }}"'>#}
+                                                            <tr onclick='location.href = "{{ path('computer_installed_application_connect_license', { 'computer': computer.id,  'installed': installed, 'license': license.id }) }}"'>
                                                                 <td>{{ license.name }}</td>
                                                                 <td>{{ license.type }}</td>
                                                                 <td>{{ license.format }}</td>
@@ -267,7 +267,7 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('application_new', {'computer' : computer.id}) }}"
+                                    <a href="{{ path('license_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nową licencję</span>

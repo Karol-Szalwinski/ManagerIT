@@ -57,11 +57,11 @@
                                     <tbody>
                                     <tr>
                                         <td>Nazwa aplikacji</td>
-                                        <td>{{ license.name }}</td>
+                                        <td>{{ license.application.name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Licencjodawca</td>
-                                        <td>{{ license.brand }}</td>
+                                        <td>Nazwa licencji</td>
+                                        <td>{{ license.name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Klucz produktu</td>
@@ -133,12 +133,13 @@
                     </div>
                     <!-- /.col-lg-6 -->
 
+
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
-                                <h5>Przypisany sprzęt</h5>
+                                <h5>Wykorzystane licencje</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">
@@ -154,17 +155,17 @@
                                 <table class="table table-condensed responsive-table">
                                     <thead>
                                     <tr>
-                                        <th>Nazwa</th>
-                                        <th>Seria</th>
-                                        <th>Model</th>
+                                        <th>Nazwa komputera</th>
+                                        <th>Aplikacja</th>
+                                        <th>Data instalacji</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for computer in license.computers %}
+                                    {% for installedApplication in license.installedApplications %}
                                         <tr>
-                                            <td>{{ computer.name }}</td>
-                                            <td>{{ computer.series }}</td>
-                                            <td>{{ computer.model }}</td>
+                                            <td>{{ installedApplication.computer.name }}  </td>
+                                            <td>{{ installedApplication.application.name }}  </td>
+                                            <td>{% if installedApplication.installationDate %}{{ installedApplication.installationDate|date('Y-m-d') }}{% endif %}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

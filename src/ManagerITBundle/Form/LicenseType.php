@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class LicenseType extends AbstractType
 {
@@ -15,7 +16,13 @@ class LicenseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
+        $builder
+            ->add('application', EntityType::class, [
+                'class' => 'ManagerITBundle:Application',
+                'choice_label' => 'name',
+                'multiple' => false,
+            ])
+            ->add('name')
             ->add('licenseKey')
             ->add('type', 'choice', array(
                 'choices' => array(
@@ -33,7 +40,6 @@ class LicenseType extends AbstractType
                 'multiple' => false,
                 'placeholder' => 'Wybierz rodzaj licencji',
             ))
-            ->add('brand')
             ->add('format', 'choice', array(
                 'choices' => array(
                     'box' => 'Pudełko - BOX',

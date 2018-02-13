@@ -44,7 +44,7 @@ class InstalledApplication
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="addDate", type="datetime", nullable=true)
+     * @ORM\Column(name="installation_date", type="datetime", nullable=true)
      */
     private $installationDate;
 
@@ -55,6 +55,10 @@ class InstalledApplication
      */
     private $version;
 
+    public function __construct()
+    {
+        $this->installationDate = new \DateTime();
+    }
 
     /**
      * Get id

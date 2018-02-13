@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Phone</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ phone.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ phone.name }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ phone.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ phone.model }}</td>
+            </tr>
+            <tr>
+                <th>Serial</th>
+                <td>{{ phone.serial }}</td>
+            </tr>
+            <tr>
+                <th>Cpu</th>
+                <td>{{ phone.cpu }}</td>
+            </tr>
+            <tr>
+                <th>Ram</th>
+                <td>{{ phone.ram }}</td>
+            </tr>
+            <tr>
+                <th>Rom</th>
+                <td>{{ phone.rom }}</td>
+            </tr>
+            <tr>
+                <th>Modem</th>
+                <td>{{ phone.modem }}</td>
+            </tr>
+            <tr>
+                <th>Screensize</th>
+                <td>{{ phone.screenSize }}</td>
+            </tr>
+            <tr>
+                <th>Os</th>
+                <td>{{ phone.os }}</td>
+            </tr>
+            <tr>
+                <th>Pin</th>
+                <td>{{ phone.pin }}</td>
+            </tr>
+            <tr>
+                <th>Pinscreen</th>
+                <td>{{ phone.pinScreen }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ phone.color }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ phone.description }}</td>
+            </tr>
+            <tr>
+                <th>Sim</th>
+                <td>{{ phone.sim }}</td>
+            </tr>
+            <tr>
+                <th>Employee</th>
+                <td>{{ phone.employee }}</td>
+            </tr>
+            <tr>
+                <th>Adddate</th>
+                <td>{{ phone.addDate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('phone_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('phone_edit', { 'id': phone.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

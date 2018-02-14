@@ -5,6 +5,7 @@ namespace ManagerITBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class TabletType extends AbstractType
 {
@@ -37,11 +38,9 @@ class TabletType extends AbstractType
             ->add('description')
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
-            ));
-
-        ;
+            ));;
     }
-    
+
     /**
      * {@inheritdoc}
      */

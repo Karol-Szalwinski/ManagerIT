@@ -150,12 +150,19 @@ class Phone
     private $pictures;
 
     /**
-     * @ORM\OneToMany(targetEntity="Document", mappedBy="tablet", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="phone", cascade={"remove"})
      */
     private $documents;
 
+    /**
+     * One Phone has Many Sims.
+     * @ORM\OneToMany(targetEntity="Sim", mappedBy="phone")
+     */
+    private $sims;
+
     public function __construct()
     {
+        $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
@@ -643,5 +650,38 @@ class Phone
     public function getDocuments()
     {
         return $this->documents;
+    }
+
+    /**
+     * Add sims
+     *
+     * @param \ManagerITBundle\Entity\Sim $sims
+     * @return Phone
+     */
+    public function addSim(\ManagerITBundle\Entity\Sim $sims)
+    {
+        $this->sims[] = $sims;
+
+        return $this;
+    }
+
+    /**
+     * Remove sims
+     *
+     * @param \ManagerITBundle\Entity\Sim $sims
+     */
+    public function removeSim(\ManagerITBundle\Entity\Sim $sims)
+    {
+        $this->sims->removeElement($sims);
+    }
+
+    /**
+     * Get sims
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSims()
+    {
+        return $this->sims;
     }
 }

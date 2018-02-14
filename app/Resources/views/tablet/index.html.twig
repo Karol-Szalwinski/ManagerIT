@@ -44,7 +44,7 @@
                                         <th>Modem</th>
                                         <th>Przekątna ekranu</th>
                                         <th>Kolor</th>
-                                        <th>Sim</th>
+                                        <th>Numer SIM</th>
                                         <th>Użytkownik</th>
                                         <th>Zdjęcie</th>
                                     </tr>
@@ -58,7 +58,11 @@
                                             <td>{{ tablet.modem }}</td>
                                             <td>{{ tablet.screenSize }}</td>
                                             <td>{{ tablet.color }}</td>
-                                            <td>{{ tablet.sim }}</td>
+                                            <td>
+                                                {% for sim in tablet.sims %}
+                                                    {{ sim.number }}<br>
+                                                {% endfor %}
+                                            </td>
                                             <td>
                                                 {% for employee in tablet.employees %}
                                                     {{ employee.name }} {{ employee.surname }}<br>

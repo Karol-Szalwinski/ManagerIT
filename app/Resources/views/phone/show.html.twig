@@ -326,6 +326,7 @@
                                     <thead>
                                     <tr>
                                         <th>Typ dokumentu</th>
+                                        <th>Podmiot</th>
                                         <th>Numer</th>
                                         <th>Sprzedawca</th>
                                         <th>Cena</th>
@@ -333,15 +334,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        {% for document in phone.documents %}
+
+                                    {% for document in phone.documents %}
+                                        <tr>
                                             <td>{{ document.type }}</td>
+                                            <td>{{ document.subject }}</td>
                                             <td>{{ document.number }}</td>
                                             <td>{{ document.sellerName }}</td>
                                             <td>{{ document.price }}</td>
                                             <td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>
-                                        {% endfor %}
-                                    </tr>
+                                        </tr>
+                                    {% endfor %}
+
                                     </tbody>
                                 </table>
                             </div>

@@ -1,14 +1,13 @@
-
 {% extends 'base.html.twig' %}
 
-{% block title %} Nowy dokument {% endblock %}
+{% block title %} Dodaj nową kartę SIM {% endblock %}
 
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('sim_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista desktopów</span>
+                <span class="link-title">Lista kart SIM</span>
             </a>
         </div>
     </div>
@@ -28,7 +27,7 @@
                         <div class="box dark">
                             <header>
                                 <div class="icons"><i class="fa fa-edit"></i></div>
-                                <h5>Dodaj nowy dokument</h5>
+                                <h5>Dodaj nową kartę SIM</h5>
                                 <!-- .toolbar -->
                                 <div class="toolbar">
                                     <nav style="padding: 8px;">
@@ -48,65 +47,56 @@
 
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
-                                <div class="form-group" >
-                                    {{ form_label(form.type, 'Rodzaj dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control'} }) }}
-                                    </div>
-                                </div>
-                                <div class="form-group" >
-                                    {{ form_label(form.subject, 'Przedmiot dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.subject, { 'attr': {'class': 'form-control'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.number, 'Numer dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.number, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer z dokumentu'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.sellerName, 'Sprzedający', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.sellerName, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dane sprzedawcy'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
-                                    {{ form_label(form.sellerPhoneNumber, 'Telefon sprzedającego', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.sellerPhoneNumber, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer telefonu przedawcy'} }) }}
-                                    </div>
-                                </div>
-
-
                                 <div class="form-group">
-                                    {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-4">
-                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control' } , 'type':'number'}) }}
+                                    {{ form_label(form.number, 'Numer telefonu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.number, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź naumer'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.pin, 'PIN', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.pin, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
 
-                                    <div class="col-lg-3">
-                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
+                                <div class="form-group">
+                                    {{ form_label(form.puk, 'PUK', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.puk, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.pin2, 'PIN2', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.pin2, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.puk2, 'PUK2', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.puk2, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.operator, 'Operator', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.operator, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź operatora sieci'} }) }}
                                     </div>
                                 </div>
 
 
-                                <input type="submit" value="Dodaj nowy dokument" class="btn btn-primary btn-grad control-label" />
+                                <input type="submit" value="Dodaj kartę SIM"
+                                       class="btn btn-primary btn-grad control-label"/>
                                 <br>
                                 {{ form_end(form) }}
                             </div>
                         </div>
                     </div>
-
-
                     <!----------------------------------------------------->
                 </div>
                 <!-- /.row -->
@@ -117,9 +107,4 @@
     </div>
     <!-- /#content -->
 
-    <script>
-        $(function() {
-            Metis.formValidation();
-        });
-    </script>
 {% endblock %}

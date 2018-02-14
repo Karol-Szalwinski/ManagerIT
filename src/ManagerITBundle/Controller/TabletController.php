@@ -301,11 +301,11 @@ class TabletController extends Controller
     /**
      * Action to disconnect and delete pdf
      *
-     * @Route("/{tablet}/document/{document}/deletepdf/{pdf}", name="document_delete_pdf")
+     * @Route("/{tablet}/document/{document}/deletepdf/{pdf}", name="document_delete_pdf_tablet")
      * @Method({"GET"})
      */
     public
-    function deletePdfAction(Tablet $tablet, Document $document, Pdf $pdf)
+    function deletePdfActionTablet(Tablet $tablet, Document $document, Pdf $pdf)
     {
         $document->removePdf($pdf);
 

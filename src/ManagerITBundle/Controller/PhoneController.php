@@ -301,11 +301,11 @@ class PhoneController extends Controller
     /**
      * Action to disconnect and delete pdf
      *
-     * @Route("/{phone}/document/{document}/deletepdf/{pdf}", name="document_delete_pdf")
+     * @Route("/{phone}/document/{document}/deletepdf/{pdf}", name="document_delete_pdf_phone")
      * @Method({"GET"})
      */
     public
-    function deletePdfAction(Phone $phone, Document $document, Pdf $pdf)
+    function deletePdfActionPhone(Phone $phone, Document $document, Pdf $pdf)
     {
         $document->removePdf($pdf);
 

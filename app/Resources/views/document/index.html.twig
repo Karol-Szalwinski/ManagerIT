@@ -6,7 +6,6 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Type</th>
                 <th>Number</th>
                 <th>Sellername</th>
@@ -21,7 +20,6 @@
         <tbody>
         {% for document in documents %}
             <tr>
-                <td><a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a></td>
                 <td>{{ document.type }}</td>
                 <td>{{ document.number }}</td>
                 <td>{{ document.sellerName }}</td>

@@ -5,17 +5,17 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}"
+            <a href="{{ path('phone_index') }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista desktopów</span>
+                <span class="link-title">Lista telefonów</span>
             </a>
-            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}"
+            <a href="{{ path('phone_show', {'id': phone.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Pokaż destkop</span>
+                <span class="link-title">Pokaż telefon</span>
             </a>
-            <a href="{{ path('computer_finances', { 'type' : computer.formFactor, 'id': computer.id }) }}"
+            <a href="{{ path('phone_finances', {'id': phone.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista dokumentów</span>
@@ -126,7 +126,7 @@
                                                         height="310" width="210"
                                                         style="z-index: -1; pointer-events: none;"></object>
                                             </a>&nbsp
-                                            <a href="{{ path('document_delete_pdf', {'type': computer.formFactor,'computer': computer.id, 'document': document.id, 'pdf': pdf.id }) }}"
+                                            <a href="{{ path('document_delete_pdf_phone', {'phone': phone.id, 'document': document.id, 'pdf': pdf.id }) }}"
                                                class="btn btn-danger btn-grad btn-rect btn-sm">
                                                 <i class="fa fa-arrow-up "></i>
                                                 <i class="fa fa-trash-o "></i>

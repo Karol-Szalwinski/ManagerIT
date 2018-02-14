@@ -97,6 +97,13 @@ class Document
      */
     private $phone;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=500)
+     */
+    private $subject;
+
     
     /**
      * Constructor
@@ -378,5 +385,28 @@ class Document
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set subject
+     *
+     * @param string $subject
+     * @return Document
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string 
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 }

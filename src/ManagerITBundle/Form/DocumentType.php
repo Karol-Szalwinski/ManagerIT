@@ -15,7 +15,27 @@ class DocumentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type')
+            ->add('type', 'choice', array(
+                'choices' => array(
+                    'Faktura' => 'Faktura',
+                    'Paragon' => 'Paragon',
+                    'Inny' => 'Inny',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz rodzaj dokumentu',
+            ))
+            ->add('subject', 'choice', array(
+                'choices' => array(
+                    'Zakup' => 'Zakup',
+                    'Naprawa' => 'Naprawa',
+                    'Upgrate' => 'Upgrade',
+                    'Inny' => 'Inny',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz przedmiot dokumentu',
+            ))
             ->add('number')
             ->add('sellerName')
             ->add('sellerPhoneNumber')

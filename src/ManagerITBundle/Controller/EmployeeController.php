@@ -5,6 +5,8 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\License;
+use ManagerITBundle\Entity\Phone;
+use ManagerITBundle\Entity\Tablet;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -158,8 +160,26 @@ class EmployeeController extends Controller {
      *  @Method({"GET"})
      */
     public function removeTabletAction(Employee $employee, Tablet $tablet) {
-        $employee->removeComputer($tablet);
+        $employee->removeTablet($tablet);
         $tablet->removeEmployee($employee);
+        $this->getDoctrine()->getManager()->flush();
+
+        $deleteForm = $this->createDeleteForm($employee);
+
+        return $this->render('employee/show.html.twig', array(
+                    'employee' => $employee,
+                    'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    /**
+     * Action to disconnect employee with phone
+     *
+     *  @Route("/{employee}/remove_phone/{phone}", name="employee_remove_phone")
+     *  @Method({"GET"})
+     */
+    public function removePhoneAction(Employee $employee, Phone $phone) {
+        $employee->removePhone($phone);
+        $phone->removeEmployee($employee);
         $this->getDoctrine()->getManager()->flush();
 
         $deleteForm = $this->createDeleteForm($employee);

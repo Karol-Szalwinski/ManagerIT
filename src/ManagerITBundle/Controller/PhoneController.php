@@ -11,6 +11,7 @@ use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\Document;
 use ManagerITBundle\Entity\Pdf;
+use ManagerITBundle\Entity\Sim;
 
 /**
  * Phone controller.
@@ -388,4 +389,64 @@ class PhoneController extends Controller
             'id' => $phone->getId(),
         ));
     }
+
+    /**
+     * Finds and displays a phone sims.
+     *
+     * @Route("/{id}/sims", name="phone_sims")
+     * @Method("GET")
+     */
+    public function simAction(Phone $phone)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $allSims = $em->getRepository('ManagerITBundle:Sim')->findAll();
+
+        foreach ($allSims as $key => $sim) {
+            if ($phone->hasSim($sim)) {
+                unset($allSims[$key]);
+            }
+        }
+
+        return $this->render('phone/sims.html.twig', array(
+            'phone' => $phone,
+            'sims' => $allSims,
+        ));
+    }
+
+    /**
+     * Action to connect phone to sim
+     *
+     * @Route("/{phone}/connectsim/{sim}", name="phone_connect_sim")
+     * @Method("GET")
+     */
+    public
+    function phoneConnectSimAction(Request $request, Phone $phone, Sim $sim)
+    {
+        if (!$phone->hasSim($sim)) {
+            $phone->addSim($sim);
+            $sim->setPhone($phone);
+            $this->getDoctrine()->getManager()->flush();
+        };
+
+
+        return $this->redirectToRoute('phonesims', array('id' => $phone->getId()));
+    }
+
+    /**
+     * Phone disconnect Sim
+     * @Route("/{phone}/removesim/{sim}", name="phone_remove_sim")
+     * @Method("GET")
+     */
+    public
+    function phoneRemoveSimAction(Phone $phone, Sim $sim)
+    {
+
+        $phone->removeSim($sim);
+        $sim->setPhone(null);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('phone_sims', array('id' => $phone->getId()));
+    }
+
 }

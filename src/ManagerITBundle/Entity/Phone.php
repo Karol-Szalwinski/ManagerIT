@@ -119,12 +119,6 @@ class Phone
      */
     private $description;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="sim", type="string", length=255, nullable=true)
-     */
-    private $sim;
 
     /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="phones")
@@ -502,35 +496,6 @@ class Phone
     }
 
     /**
-     * Set sim
-     *
-     * @param string $sim
-     * @return Phone
-     */
-    public function setSim($sim)
-    {
-        $this->sim = $sim;
-
-        return $this;
-    }
-
-    /**
-     * Get sim
-     *
-     * @return string 
-     */
-    public function getSim()
-    {
-        return $this->sim;
-    }
-
-
-    public function hasEmployee(Employee $employee)
-    {
-        return $this->employees->contains($employee);
-    }
-
-    /**
      * Set addDate
      *
      * @param string $addDate
@@ -584,6 +549,11 @@ class Phone
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    public function hasEmployee(Employee $employee)
+    {
+        return $this->employees->contains($employee);
     }
 
     /**
@@ -683,5 +653,10 @@ class Phone
     public function getSims()
     {
         return $this->sims;
+    }
+
+    public function hasSim(Sim $sim)
+    {
+        return $this->sims->contains($sim);
     }
 }

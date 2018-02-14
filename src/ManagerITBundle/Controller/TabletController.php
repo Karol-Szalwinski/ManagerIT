@@ -11,6 +11,7 @@ use ManagerITBundle\Entity\Picture;
 use ManagerITBundle\Entity\Employee;
 use ManagerITBundle\Entity\Document;
 use ManagerITBundle\Entity\Pdf;
+use ManagerITBundle\Entity\Sim;
 
 /**
  * Tablet controller.
@@ -93,7 +94,7 @@ class TabletController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('tablet_edit', array('id' => $tablet->getId()));
+            return $this->redirectToRoute('tablet_show', array('id' => $tablet->getId()));
         }
 
         return $this->render('tablet/edit.html.twig', array(
@@ -388,4 +389,64 @@ class TabletController extends Controller
             'id' => $tablet->getId(),
         ));
     }
+
+    /**
+     * Finds and displays a tablet sims.
+     *
+     * @Route("/{id}/sims", name="tablet_sims")
+     * @Method("GET")
+     */
+    public function simAction(Tablet $tablet)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $allSims = $em->getRepository('ManagerITBundle:Sim')->findAll();
+
+        foreach ($allSims as $key => $sim) {
+            if ($tablet->hasSim($sim)) {
+                unset($allSims[$key]);
+            }
+        }
+
+        return $this->render('tablet/sims.html.twig', array(
+            'tablet' => $tablet,
+            'sims' => $allSims,
+        ));
+    }
+
+    /**
+     * Action to connect tablet to sim
+     *
+     * @Route("/{tablet}/connectsim/{sim}", name="tablet_connect_sim")
+     * @Method("GET")
+     */
+    public
+    function tabletConnectSimAction(Request $request, Tablet $tablet, Sim $sim)
+    {
+        if (!$tablet->hasSim($sim)) {
+            $tablet->addSim($sim);
+            $sim->setTablet($tablet);
+            $this->getDoctrine()->getManager()->flush();
+        };
+
+
+        return $this->redirectToRoute('tablet_sims', array('id' => $tablet->getId()));
+    }
+
+    /**
+     * Tablet disconnect Sim
+     * @Route("/{tablet}/removesim/{sim}", name="tablet_remove_sim")
+     * @Method("GET")
+     */
+    public
+    function tabletRemoveSimAction(Tablet $tablet, Sim $sim)
+    {
+
+        $tablet->removeSim($sim);
+        $sim->setTablet(null);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('tablet_sims', array('id' => $tablet->getId()));
+    }
+
 }

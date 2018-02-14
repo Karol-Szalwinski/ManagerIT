@@ -163,7 +163,6 @@ class Tablet
         $this->addDate = new \DateTime();
     }
 
-
     /**
      * Get id
      *
@@ -552,6 +551,11 @@ class Tablet
         return $this->employees;
     }
 
+    public function hasEmployee(Employee $employee)
+    {
+        return $this->employees->contains($employee);
+    }
+
     /**
      * Add pictures
      *
@@ -649,5 +653,10 @@ class Tablet
     public function getSims()
     {
         return $this->sims;
+    }
+
+    public function hasSim(Sim $sim)
+    {
+        return $this->sims->contains($sim);
     }
 }

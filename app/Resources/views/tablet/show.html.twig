@@ -29,6 +29,11 @@
                 <i class="fa fa-money"></i>
                 <span class="link-title">Finanse</span>
             </a>
+            <a href="{{ path('tablet_sims', {'id': tablet.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-save"></i>
+                <span class="link-title">Karty SIM</span>
+            </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
                 <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i

@@ -1,0 +1,201 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Pracownicy przypisani do telefonu {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('phone_index') }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista telefonóww</span>
+            </a>
+            <a href="{{ path('phone_show', {'id': phone.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż telefon</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+
+                <!-- .col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-cogs"></i></div>
+                            <h5>Przypisani pracownicy</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable2" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+
+                        {% if phone.employees is not empty %}
+
+                        <div id="collapse4" class="body">
+                            <table id="dataTable"
+                                   class="table table-bordered table-condensed table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Imię</th>
+                                    <th>Nazwisko</th>
+                                    <th>Stanowisko</th>
+                                    <th>Dział</th>
+                                    <th>Płeć</th>
+                                    <th>Telefon</th>
+                                    <th>Email</th>
+                                    <th>Sprzęt</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for employee in phone.employees %}
+                                    <tr>
+                                        <td>{{ employee.name }}</td>
+                                        <td>{{ employee.surname }}</td>
+                                        <td>{{ employee.job }}</td>
+                                        <td>{{ employee.departament.name }}</td>
+                                        <td>{{ employee.sex }}</td>
+                                        <td>{{ employee.phone }}</td>
+                                        <td>{{ employee.email }}</td>
+                                        <td>
+                                            {% for phone in employee.phones %}
+                                                {{ phone.name }}<br>
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('phone_remove_employee', { 'phone': phone.id, 'employee': employee.id }) }}"
+                                               class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                <i class="fa fa-unlink"></i>
+                                                <span class="link-title">Odłącz</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <!--End Datatables-->
+                    {% else %}
+                        <br><br>
+                        <h4>&nbsp&nbsp<i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp</i> Brak
+                            przypisanych pracowników do tego sprzętu </h4>
+                    {% endif %}
+                    <br>
+                    <div>
+                        <!-- Przycisk uruchamiający modal -->
+                        &nbsp
+                        <button class="btn btn-primary btn-grad btn-sm control-label"
+                                data-toggle="modal"
+                                data-target="#employees">
+                            Przypisz nowego pracownika
+                        </button>
+                    </div>
+                    </br>
+
+                </div>
+
+                <!-- /.col-lg-6 -->
+
+
+                <!-- Modal employees-->
+                <div class="modal fade" id="employees" tabindex="-1" role="dialog" aria-labelledby="employeesModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+
+                                <h5 class="modal-title" id="employeesModalLabel">Wybierz pracownika z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <header>
+                                                    <div class="icons"><i class="fa fa-id-card"></i></div>
+                                                    <h5>Lista pracowników</h5>
+                                                </header>
+                                                <div id="collapse4" class="body">
+                                                    <table id="dataTable"
+                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Imię</th>
+                                                            <th>Nazwisko</th>
+                                                            <th>Stanowisko</th>
+                                                            <th>Dział</th>
+                                                            <th>Sprzęt</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for employee in employees %}
+                                                            <tr data-placement="top" data-toggle="tooltip"
+                                                                data-original-title="Kliknij aby przypisać wybranego pracownika do tego sprzętu."
+                                                                onclick='location.href = "{{ path('phone_connect_employee', { 'phone': phone.id,  'employee': employee.id }) }}"'>
+                                                                <td>{{ employee.name }}</td>
+                                                                <td>{{ employee.surname }}</td>
+                                                                <td>{{ employee.job }}</td>
+                                                                <td>{{ employee.departament.name }}</td>
+                                                                <td>
+                                                                    {% for phone in employee.phones %}
+                                                                        {{ phone.name }}<br>
+                                                                    {% endfor %}
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    {#<a href="{{ path('desktopcpu_new', {'phone' : phone.id}) }}"#}
+                                       {#class="btn btn-warning btn-grad control-label">#}
+                                        {#<i class="fa fa-plus"></i>#}
+                                        {#<span>Dodaj nowy</span>#}
+                                    {#</a>#}
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

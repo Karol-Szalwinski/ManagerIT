@@ -84,11 +84,18 @@ class Document
      * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
      */
     private $computer;
+
     /**
      * @ORM\ManyToOne(targetEntity="Tablet", inversedBy="documents")
      * @ORM\JoinColumn(name="tablet_id", referencedColumnName="id")
      */
     private $tablet;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Phone", inversedBy="documents")
+     * @ORM\JoinColumn(name="phone_id", referencedColumnName="id")
+     */
+    private $phone;
 
     
     /**
@@ -348,5 +355,28 @@ class Document
     public function getTablet()
     {
         return $this->tablet;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param \ManagerITBundle\Entity\Phone $phone
+     * @return Document
+     */
+    public function setPhone(\ManagerITBundle\Entity\Phone $phone = null)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return \ManagerITBundle\Entity\Phone 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }

@@ -126,7 +126,6 @@ class Tablet
      */
     private $sim;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="tablets")
      *
@@ -140,6 +139,7 @@ class Tablet
      * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
+
     /**
      * @ORM\ManyToMany(targetEntity="Picture")
      * @ORM\JoinTable(name="tablets_pictures",

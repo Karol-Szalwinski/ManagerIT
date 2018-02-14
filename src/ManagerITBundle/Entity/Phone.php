@@ -57,30 +57,30 @@ class Phone
     private $cpu;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="ram", type="string", length=255)
+     * @ORM\Column(name="ram", type="integer", nullable=true)
      */
     private $ram;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="rom", type="string", length=255)
+     * @ORM\Column(name="rom", type="integer", nullable=true)
      */
     private $rom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="modem", type="string", length=255)
+     * @ORM\Column(name="modem", type="string", length=255, nullable=true)
      */
     private $modem;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="screenSize", type="string", length=255)
+     * @ORM\Column(name="screenSize", type="integer", nullable=true)
      */
     private $screenSize;
 
@@ -94,14 +94,14 @@ class Phone
     /**
      * @var string
      *
-     * @ORM\Column(name="pin", type="string", length=255)
+     * @ORM\Column(name="pin", type="string", length=255, nullable=true)
      */
     private $pin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pinScreen", type="string", length=255)
+     * @ORM\Column(name="pinScreen", type="string", length=255, nullable=true)
      */
     private $pinScreen;
 
@@ -115,36 +115,57 @@ class Phone
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sim", type="string", length=255)
+     * @ORM\Column(name="sim", type="string", length=255, nullable=true)
      */
     private $sim;
 
     /**
-     * @var string
+     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="phones")
      *
-     * @ORM\Column(name="employee", type="string", length=255)
+     * @ORM\JoinTable(name="employees_phones")
      */
-    private $employee;
+    private $employees;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="addDate", type="string", length=255)
+     * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\JoinTable(name="phones_pictures",
+     *      joinColumns={@ORM\JoinColumn(name="phone_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="tablet", cascade={"remove"})
+     */
+    private $documents;
+
+    public function __construct()
+    {
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -167,7 +188,7 @@ class Phone
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -496,27 +517,10 @@ class Phone
         return $this->sim;
     }
 
-    /**
-     * Set employee
-     *
-     * @param string $employee
-     * @return Phone
-     */
-    public function setEmployee($employee)
-    {
-        $this->employee = $employee;
 
-        return $this;
-    }
-
-    /**
-     * Get employee
-     *
-     * @return string 
-     */
-    public function getEmployee()
+    public function hasEmployee(Employee $employee)
     {
-        return $this->employee;
+        return $this->employees->contains($employee);
     }
 
     /**
@@ -540,5 +544,104 @@ class Phone
     public function getAddDate()
     {
         return $this->addDate;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Phone
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     * @return Phone
+     */
+    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     * @return Phone
+     */
+    public function addDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents[] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Remove documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     */
+    public function removeDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

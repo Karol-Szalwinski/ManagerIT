@@ -13,7 +13,33 @@ class PhoneType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('brand')->add('model')->add('serial')->add('cpu')->add('ram')->add('rom')->add('modem')->add('screenSize')->add('os')->add('pin')->add('pinScreen')->add('color')->add('description')->add('sim')->add('employee')->add('addDate')        ;
+        $builder
+            ->add('name')
+            ->add('brand')
+            ->add('model')
+            ->add('serial')
+            ->add('cpu')
+            ->add('ram')
+            ->add('rom')
+            ->add('modem')
+            ->add('screenSize')
+            ->add('os', 'choice', array(
+                'choices' => array(
+                    'Android' => 'Android',
+                    'Windows' => 'Windows',
+                    'other' => 'inna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz system operacyjny',
+            ))
+            ->add('color')
+            ->add('description')
+            ->setAttributes(array(
+                'novalidate' => 'novalidate',
+            ));
+
+        ;
     }
     
     /**

@@ -1,96 +1,361 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Telefon {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('phone_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista telefonów</span>
+            </a>
+            <a href="{{ path('phone_edit', { 'id': phone.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-wrench"></i>
+                <span class="link-title">Edytuj</span>
+            </a>
+            <a href="{{ path('phone_photo', {'id': phone.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-file-photo-o"></i>
+                <span class="link-title">Zdjęcie</span>
+            </a>
+            <a href="{{ path('phone_employees', {'id': phone.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-user"></i>
+                <span class="link-title">Pracownicy</span>
+            </a>
+            <a href="{{ path('phone_finances', {'id': phone.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-money"></i>
+                <span class="link-title">Finanse</span>
+            </a>
+            <div style="display: inline-block;">
+                {{ form_start(delete_form) }}
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                            class="fa fa-trash"></i> Usuń
+                </button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Phone</h1>
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ phone.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ phone.name }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ phone.brand }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ phone.model }}</td>
-            </tr>
-            <tr>
-                <th>Serial</th>
-                <td>{{ phone.serial }}</td>
-            </tr>
-            <tr>
-                <th>Cpu</th>
-                <td>{{ phone.cpu }}</td>
-            </tr>
-            <tr>
-                <th>Ram</th>
-                <td>{{ phone.ram }}</td>
-            </tr>
-            <tr>
-                <th>Rom</th>
-                <td>{{ phone.rom }}</td>
-            </tr>
-            <tr>
-                <th>Modem</th>
-                <td>{{ phone.modem }}</td>
-            </tr>
-            <tr>
-                <th>Screensize</th>
-                <td>{{ phone.screenSize }}</td>
-            </tr>
-            <tr>
-                <th>Os</th>
-                <td>{{ phone.os }}</td>
-            </tr>
-            <tr>
-                <th>Pin</th>
-                <td>{{ phone.pin }}</td>
-            </tr>
-            <tr>
-                <th>Pinscreen</th>
-                <td>{{ phone.pinScreen }}</td>
-            </tr>
-            <tr>
-                <th>Color</th>
-                <td>{{ phone.color }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ phone.description }}</td>
-            </tr>
-            <tr>
-                <th>Sim</th>
-                <td>{{ phone.sim }}</td>
-            </tr>
-            <tr>
-                <th>Employee</th>
-                <td>{{ phone.employee }}</td>
-            </tr>
-            <tr>
-                <th>Adddate</th>
-                <td>{{ phone.addDate }}</td>
-            </tr>
-        </tbody>
-    </table>
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane podstawowe</h5>
 
-    <ul>
-        <li>
-            <a href="{{ path('phone_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('phone_edit', { 'id': phone.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <td>{{ phone.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Producent</th>
+                                        <td>{{ phone.brand }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <td>{{ phone.model }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>System Operacyjny</th>
+                                        <td>{{ phone.os }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <td>{{ phone.serial }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-photo"></i></div>
+                                <h5>Zdjęcia</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="{{ path('phone_photo', {'id': phone.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {% for picture in phone.pictures %}
+                                                <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Tablet"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% else %}
+                                                {% set picture = "default.png" %}
+                                                <a href="{{ asset('pictures/' ~ picture) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Tablet"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% endfor %}
+                                        </td>
+                                        Kliknij aby powiększyć
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+
+
+                <!-- /.row -->
+                <div class="row">
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Parametry</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable2" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable2" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Procesor</th>
+                                        <td>{{ phone.cpu }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ram</th>
+                                        <td>{{ phone.ram }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pamięć wewnętrzna</th>
+                                        <td>{{ phone.rom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Modem</th>
+                                        <td>{{ phone.modem }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Przekątna ekranu (cale)</th>
+                                        <td>{{ phone.screenSize }}</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Opis</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable2" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable2" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+
+                                    <tr>
+                                        <th>Kolor</th>
+                                        <td>{{ phone.color }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pin do phoneu</th>
+                                        <td>{{ phone.pin }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pin do ekranu</th>
+                                        <td>{{ phone.pinScreen }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Uwagi</th>
+                                        <td>{{ phone.description |nl2br }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Pracownicy</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="{{ path('phone_employees', {'id': phone.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <a href="#condensedTable6" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable6" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Imię</th>
+                                        <th>Nazwisko</th>
+                                        <th>Stanowisko</th>
+                                        <th>Dział</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for employee in phone.employees %}
+                                        <tr>
+                                            <td>{{ employee.name }}</td>
+                                            <td>{{ employee.surname }}</td>
+                                            <td>{{ employee.job }}</td>
+                                            <td>{{ employee.departament.name }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane finansowe</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="{{ path('phone_finances', { 'id': phone.id }) }}"
+                                           class="btn btn-sm btn-info">
+                                            <span class="link-title">Zmień</span>
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <a href="#condensedTable4" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable6" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Typ dokumentu</th>
+                                        <th>Numer</th>
+                                        <th>Sprzedawca</th>
+                                        <th>Cena</th>
+                                        <th>Data</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        {% for document in phone.documents %}
+                                            <td>{{ document.type }}</td>
+                                            <td>{{ document.number }}</td>
+                                            <td>{{ document.sellerName }}</td>
+                                            <td>{{ document.price }}</td>
+                                            <td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>
+                                        {% endfor %}
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

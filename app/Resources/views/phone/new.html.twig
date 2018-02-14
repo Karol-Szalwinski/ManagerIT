@@ -1,16 +1,158 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Dodaj nowy phone {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('phone_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista telefonów</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
 {% block body %}
-    <h1>Phone creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowy telefon</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('phone_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Nazwa ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Producenta'} }) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź kod modelowy'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.serial, 'S/N', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.serial, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer seryjny'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    {{ form_label(form.cpu, 'Procesor', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.cpu, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź procesor'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.ram, 'Pamięć RAM', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.ram, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź pamięć w GB'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.rom, 'Pamięć urządzenia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.rom, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź pamięć w GB'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.modem, 'Modem', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.modem, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź obsługiwane technologie'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.screenSize, 'Przekątna ekranu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.screenSize, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź przekątną ekranu w calach'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź system operacyjny'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.color, 'Kolor obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.color, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dominujący kolor'} }) }}
+                                    </div>
+                                </div>
+
+                                {#<div class="form-group">#}
+                                    {#{{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                    {#<div class="col-lg-6">#}
+                                        {#{{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dodatkowe uwagi'} }) }}#}
+                                    {#</div>#}
+                                {#</div>#}
+
+                                <div class="form-group">
+                                    {{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control autosize'} }) }}
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Dodaj nowy telefon"
+                                       class="btn btn-primary btn-grad control-label"/>
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------------------------->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

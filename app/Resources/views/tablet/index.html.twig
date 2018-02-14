@@ -41,13 +41,12 @@
                                         <th>Nazwa</th>
                                         <th>Marka</th>
                                         <th>Model</th>
-                                        <th>S/N</th>
                                         <th>Modem</th>
                                         <th>Przekątna ekranu</th>
                                         <th>Kolor</th>
-                                        <th>Opis</th>
                                         <th>Sim</th>
                                         <th>Użytkownik</th>
+                                        <th>Zdjęcie</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -56,13 +55,30 @@
                                             <td>{{ tablet.name }}</td>
                                             <td>{{ tablet.brand }}</td>
                                             <td>{{ tablet.model }}</td>
-                                            <td>{{ tablet.serial }}</td>
                                             <td>{{ tablet.modem }}</td>
                                             <td>{{ tablet.screenSize }}</td>
                                             <td>{{ tablet.color }}</td>
-                                            <td>{{ tablet.description }}</td>
                                             <td>{{ tablet.sim }}</td>
-                                            <td>{{ tablet.employee }}</td>
+                                            <td>
+                                                {% for employee in tablet.employees %}
+                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {% if tablet.pictures is empty %}
+                                                    {% set picture = "default.png" %}
+                                                    <a href="{{ asset('pictures/' ~ picture) }}">
+                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
+                                                {% else %}
+                                                    <a href="{{ asset('pictures/' ~ tablet.pictures|first.file) }}">
+                                                        <img src="{{ asset('pictures/' ~ tablet.pictures|first.file) }}"
+                                                             alt="Desktop"
+                                                             height="40" width="40">
+                                                    </a>
+                                                {% endif %}
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

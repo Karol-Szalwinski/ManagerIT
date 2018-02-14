@@ -94,6 +94,12 @@ class Employee
      */
     private $computers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Tablet", mappedBy="employees")
+     *
+     */
+    private $tablets;
+
 
    
     /**
@@ -105,6 +111,8 @@ class Employee
 //        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
 //        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tablets = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
@@ -408,5 +416,38 @@ class Employee
     public function getComputers()
     {
         return $this->computers;
+    }
+
+    /**
+     * Add tablets
+     *
+     * @param \ManagerITBundle\Entity\Tablet $tablets
+     * @return Employee
+     */
+    public function addTablet(\ManagerITBundle\Entity\Tablet $tablets)
+    {
+        $this->tablets[] = $tablets;
+
+        return $this;
+    }
+
+    /**
+     * Remove tablets
+     *
+     * @param \ManagerITBundle\Entity\Tablet $tablets
+     */
+    public function removeTablet(\ManagerITBundle\Entity\Tablet $tablets)
+    {
+        $this->tablets->removeElement($tablets);
+    }
+
+    /**
+     * Get tablets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTablets()
+    {
+        return $this->tablets;
     }
 }

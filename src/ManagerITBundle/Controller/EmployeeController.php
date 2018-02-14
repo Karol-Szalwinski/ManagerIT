@@ -151,6 +151,25 @@ class EmployeeController extends Controller {
         ));
     }
 
+    /**
+     * Action to disconnect employee with tablet
+     *
+     *  @Route("/{employee}/remove_tablet/{tablet}", name="employee_remove_tablet")
+     *  @Method({"GET"})
+     */
+    public function removeTabletAction(Employee $employee, Tablet $tablet) {
+        $employee->removeComputer($tablet);
+        $tablet->removeEmployee($employee);
+        $this->getDoctrine()->getManager()->flush();
+
+        $deleteForm = $this->createDeleteForm($employee);
+
+        return $this->render('employee/show.html.twig', array(
+                    'employee' => $employee,
+                    'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
 
     /**
      * Action to disconnect employee with license

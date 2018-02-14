@@ -57,16 +57,16 @@ class Tablet
     private $cpu;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="ram", type="string", length=255)
+     * @ORM\Column(name="ram", type="integer", nullable=true)
      */
     private $ram;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="rom", type="string", length=255)
+     * @ORM\Column(name="rom", type="integer", nullable=true)
      */
     private $rom;
 
@@ -78,9 +78,9 @@ class Tablet
     private $modem;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="screenSize", type="string", length=255)
+     * @ORM\Column(name="screenSize", type="integer", nullable=true)
      */
     private $screenSize;
 
@@ -115,7 +115,7 @@ class Tablet
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -126,12 +126,13 @@ class Tablet
      */
     private $sim;
 
+
     /**
-     * @var string
+     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="tablets")
      *
-     * @ORM\Column(name="employee", type="string", length=255, nullable=true)
+     * @ORM\JoinTable(name="employees_tablets")
      */
-    private $employee;
+    private $employees;
 
     /**
      * @var \DateTime
@@ -139,17 +140,32 @@ class Tablet
      * @ORM\Column(name="addDate", type="datetime")
      */
     private $addDate;
+    /**
+     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\JoinTable(name="tablets_pictures",
+     *      joinColumns={@ORM\JoinColumn(name="tablet_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="tablet", cascade={"remove"})
+     */
+    private $documents;
 
     public function __construct()
     {
-
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -172,7 +188,7 @@ class Tablet
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -195,7 +211,7 @@ class Tablet
     /**
      * Get brand
      *
-     * @return string 
+     * @return string
      */
     public function getBrand()
     {
@@ -218,7 +234,7 @@ class Tablet
     /**
      * Get model
      *
-     * @return string 
+     * @return string
      */
     public function getModel()
     {
@@ -241,7 +257,7 @@ class Tablet
     /**
      * Get serial
      *
-     * @return string 
+     * @return string
      */
     public function getSerial()
     {
@@ -264,7 +280,7 @@ class Tablet
     /**
      * Get cpu
      *
-     * @return string 
+     * @return string
      */
     public function getCpu()
     {
@@ -287,7 +303,7 @@ class Tablet
     /**
      * Get ram
      *
-     * @return string 
+     * @return string
      */
     public function getRam()
     {
@@ -310,7 +326,7 @@ class Tablet
     /**
      * Get rom
      *
-     * @return string 
+     * @return string
      */
     public function getRom()
     {
@@ -333,7 +349,7 @@ class Tablet
     /**
      * Get modem
      *
-     * @return string 
+     * @return string
      */
     public function getModem()
     {
@@ -356,7 +372,7 @@ class Tablet
     /**
      * Get screenSize
      *
-     * @return string 
+     * @return string
      */
     public function getScreenSize()
     {
@@ -379,7 +395,7 @@ class Tablet
     /**
      * Get os
      *
-     * @return string 
+     * @return string
      */
     public function getOs()
     {
@@ -402,7 +418,7 @@ class Tablet
     /**
      * Get pin
      *
-     * @return string 
+     * @return string
      */
     public function getPin()
     {
@@ -425,7 +441,7 @@ class Tablet
     /**
      * Get pinScreen
      *
-     * @return string 
+     * @return string
      */
     public function getPinScreen()
     {
@@ -448,7 +464,7 @@ class Tablet
     /**
      * Get color
      *
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -471,7 +487,7 @@ class Tablet
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -494,37 +510,14 @@ class Tablet
     /**
      * Get sim
      *
-     * @return string 
+     * @return string
      */
     public function getSim()
     {
         return $this->sim;
     }
 
-    /**
-     * Set employee
-     *
-     * @param string $employee
-     * @return Tablet
-     */
-    public function setEmployee($employee)
-    {
-        $this->employee = $employee;
-
-        return $this;
-    }
-
-    /**
-     * Get employee
-     *
-     * @return string 
-     */
-    public function getEmployee()
-    {
-        return $this->employee;
-    }
-
-    /**
+        /**
      * Set addDate
      *
      * @param string $addDate
@@ -540,10 +533,116 @@ class Tablet
     /**
      * Get addDate
      *
-     * @return string 
+     * @return string
      */
     public function getAddDate()
     {
         return $this->addDate;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     * @return Tablet
+     */
+    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Tablet
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
+
+
+    public function hasEmployee(Employee $employee)
+    {
+        return $this->employees->contains($employee);
+    }
+
+
+    /**
+     * Add documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     * @return Tablet
+     */
+    public function addDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents[] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Remove documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     */
+    public function removeDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

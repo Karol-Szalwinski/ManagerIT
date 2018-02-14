@@ -124,6 +124,19 @@
                                                 </td>
                                             </tr>       
                                         {% endfor %}
+                                        {% for tablet in employee.tablets %}
+                                            <tr>
+                                                <td>{{ tablet.name }}</td>
+                                                <td>{{ tablet.brand }}</td>
+                                                <td>{{ tablet.model }}</td>
+                                                <td>
+                                                    <a href="{{ path('employee_remove_tablet', { 'tablet': tablet.id, 'employee': employee.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                        <i class="fa fa-unlink"></i>
+                                                        <span class="link-title">odłącz</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
 
                                     </tbody>                </table>
                             </div>

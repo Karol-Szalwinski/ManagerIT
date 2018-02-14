@@ -84,6 +84,11 @@ class Document
      * @ORM\JoinColumn(name="computer_id", referencedColumnName="id")
      */
     private $computer;
+    /**
+     * @ORM\ManyToOne(targetEntity="Tablet", inversedBy="documents")
+     * @ORM\JoinColumn(name="tablet_id", referencedColumnName="id")
+     */
+    private $tablet;
 
     
     /**

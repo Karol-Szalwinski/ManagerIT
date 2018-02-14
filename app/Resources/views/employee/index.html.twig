@@ -65,7 +65,10 @@
                                             <td>{{ employee.email }}</td>
                                             <td>
                                                 {% for computer in employee.computers %}
-                                                    {{ computer.name }}<br>
+                                                    {{ computer.name }} &nbsp {{ computer.model }}<br>
+                                                {% endfor %}
+                                                {% for tablet in employee.tablets %}
+                                                    {{ tablet.name }} &nbsp {{ tablet.model }}<br>
                                                 {% endfor %}
                                             </td>
                                             <td>

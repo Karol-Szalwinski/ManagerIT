@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {{ form_label(form.model, 'Model dysku', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź kod modelowy'} }) }}
                                     </div>
@@ -124,10 +124,17 @@
                                     </div>
                                 </div>
 
+                                {#<div class="form-group">#}
+                                    {#{{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                    {#<div class="col-lg-6">#}
+                                        {#{{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dodatkowe uwagi'} }) }}#}
+                                    {#</div>#}
+                                {#</div>#}
+
                                 <div class="form-group">
                                     {{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dodatkowe uwagi'} }) }}
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control autosize'} }) }}
                                     </div>
                                 </div>
 

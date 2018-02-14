@@ -347,7 +347,7 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                        <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
@@ -360,21 +360,26 @@
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable4" class="body collapse in">
+                            <<div id="condensedTable6" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
-
+                                    <thead>
+                                    <tr>
+                                        <th>Typ dokumentu</th>
+                                        <th>Numer</th>
+                                        <th>Sprzedawca</th>
+                                        <th>Cena</th>
+                                        <th>Data</th>
+                                    </tr>
+                                    </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Data zakupu</td>
-                                        <td>{{ computer.purchaseDate |date("m-d-Y") }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Data wprowadzenia</td>
-                                        <td>{{ computer.addDate |date("m-d-Y") }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cena zakupu</td>
-                                        <td>{{ computer.price }} PLN</td>
+                                        {% for document in computer.documents %}
+                                            <td>{{ document.type }}</td>
+                                            <td>{{ document.number }}</td>
+                                            <td>{{ document.sellerName }}</td>
+                                            <td>{{ document.price }}</td>
+                                            <td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>
+                                        {% endfor %}
                                     </tr>
                                     </tbody>
                                 </table>

@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Dokumenty {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('tablet_index') }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista tabletów</span>
+            </a>
+            <a href="{{ path('tablet_show', {'id': tablet.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż tablet</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- .col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-cogs"></i></div>
+                            <h5>Dokumenty powiązane</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable2" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+
+                        {% if tablet.documents is not empty %}
+
+                        <div id="collapse4" class="body">
+                            <table id="dataTable"
+                                   class="table table-bordered table-condensed table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Typ dokumentu</th>
+                                    <th>Numer</th>
+                                    <th>Sprzedawca</th>
+                                    <th>Telefon</th>
+                                    <th>Cena</th>
+                                    <th>Data zakupu</th>
+                                    <th>Actions</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for document in tablet.documents %}
+                                    <tr onclick='location.href="{{ path('tablet_document_show', {'id': tablet.id, 'document': document.id}) }}"'>
+                                        <td>
+                                            <a href="{{ path('document_show', { 'id': document.id }) }}">{{ document.id }}</a>
+                                        </td>
+                                        <td>{{ document.type }}</td>
+                                        <td>{{ document.number }}</td>
+                                        <td>{{ document.sellerName }}</td>
+                                        <td>{{ document.sellerPhoneNumber }}</td>
+                                        <td>{{ document.price }}</td>
+                                        <td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>
+                                        <td>
+                                            <a href="{{ path('tablet_document_edit', {
+                                                'id' : tablet.id,
+                                                'document': document.id
+                                            }) }}" class="btn btn-warning btn-grad control-label">
+                                                <i class="fa fa-wrench"></i>
+                                                <span>Edytuj</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('tablet_document_delete', {
+                                                'id' : tablet.id,
+                                                'document' : document.id
+                                            }) }}"
+                                               class="btn btn-danger btn-grad control-label">
+                                                <i class="fa fa-times "></i>
+                                                <span>Usuń</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <!-- /.row -->
+                    <!--End Datatables-->
+                    {% else %}
+                        <br><br>
+                        <h4>&nbsp&nbsp<i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp</i> Brak
+                            przypisanych dokumentów do tego sprzętu </h4>
+                    {% endif %}
+
+                    <br>
+                    <a href="{{ path('tablet_document_new', {'id' : tablet.id}) }}"
+                       class="btn btn-success btn-grad control-label">
+                        <i class="fa fa-plus"></i>
+                        <span>Dodaj nowy dokument</span>
+                    </a><br>
+                </div>
+
+                <!-- /.col-lg-6 -->
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -76,6 +76,22 @@ class DocumentController extends Controller
     }
 
     /**
+     * Finds and displays a document entity.
+     *
+     * @Route("/{id}", name="document_show_tablet")
+     * @Method("GET")
+     */
+    public function showTabletAction(Document $document)
+    {
+        $deleteForm = $this->createDeleteForm($document);
+
+        return $this->render('document/show_tablet.html.twig', array(
+            'document' => $document,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
      * Displays a form to edit an existing document entity.
      *
      * @Route("/{id}/edit", name="document_edit")

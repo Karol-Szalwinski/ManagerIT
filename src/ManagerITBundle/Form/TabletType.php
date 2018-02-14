@@ -23,9 +23,21 @@ class TabletType extends AbstractType
             ->add('rom')
             ->add('modem')
             ->add('screenSize')
-            ->add('os')
+            ->add('os', 'choice', array(
+                'choices' => array(
+                    'Android' => 'Android',
+                    'Windows' => 'Windows',
+                    'other' => 'inna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz system operacyjny',
+            ))
             ->add('color')
             ->add('description')
+            ->setAttributes(array(
+                'novalidate' => 'novalidate',
+            ));
 
         ;
     }

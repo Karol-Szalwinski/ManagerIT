@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Dodaj drukarkę{% endblock %}
+{% block title %} Dodaj nową drukarkę {% endblock %}
 
 {% block mainbar %}
     <div class="main-bar">
@@ -13,17 +13,125 @@
     </div>
     <!-- /.main-bar -->
 {% endblock %}
+
 {% block body %}
-    <h1>Printer creation</h1>
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nową drukarkę</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
 
-    <ul>
-        <li>
-            <a href="{{ path('printer_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Nazwa ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.type, 'Typ wydruku', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Producenta'} }) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.factor, 'Rodzaj drukarki', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.factor, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź rodzaj'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.series, 'S/N', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.series, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer seryjny'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zasilacz'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.macAddress, 'MAC', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres MAC'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.ipAddress, 'Adres IP', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź przydzielony adres IP'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control autosize'} }) }}
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Dodaj nową drukarke"
+                                       class="btn btn-primary btn-grad control-label"/>
+                                <br>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------------------------->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
 {% endblock %}

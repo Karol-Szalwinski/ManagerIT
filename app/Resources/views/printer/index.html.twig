@@ -18,66 +18,6 @@
     <!-- /.main-bar -->
 {% endblock %}
 
-{# block body 
-    <h1>Printers list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Model</th>
-                <th>Type</th>
-                <th>Manufacturer</th>
-                <th>Powersupply</th>
-                <th>Price</th>
-                <th>Adddate</th>
-                <th>Purchasedate</th>
-                <th>Macaddress</th>
-                <th>Ipaddress</th>
-                <th>Picture</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for printer in printers %}
-                <tr>
-                    <td><a href="{{ path('printer_show', { 'id': printer.id }) }}">{{ printer.id }}</a></td>
-                    <td>{{ printer.name }}</td>
-                    <td>{{ printer.model }}</td>
-                    <td>{{ printer.type }}</td>
-                    <td>{{ printer.manufacturer }}</td>
-                    <td>{{ printer.powerSupply }}</td>
-                    <td>{{ printer.price }}</td>
-                    <td>{% if printer.addDate %}{{ printer.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{% if printer.purchaseDate %}{{ printer.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{{ printer.macAddress }}</td>
-                    <td>{{ printer.ipAddress }}</td>
-                    <td>{{ printer.picture }}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('printer_show', { 'id': printer.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('printer_edit', { 'id': printer.id }) }}">edit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('printer_new') }}">Create a new printer</a>
-        </li>
-    </ul>
- endblock #}
-
-
-
 {% block body %}
 
     <div id="content">
@@ -91,45 +31,37 @@
                                 <div class="icons"><i class="fa fa-file-text"></i></div>
                                 <h5>Lista drukarek</h5>
                             </header>
-
-
                             <div id="collapse4" class="body">
 
-
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Nazwa</th>
-                                            <th>Model</th>
-                                            <th>Typ</th>
-                                            <th>Producent</th>
-                                            <th>Zasilanie</th>
-                                            <th>Cena zakupu</th>
-                                            <th>Data dodania</th>
-                                            <th>Data zakupu</th>
-                                            <th>MAC adres</th>
-                                            <th>Adres IP</th>
-                                                                     
-                                        </tr>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Typ</th>
+                                        <th>Rodzaj</th>
+                                        <th>Model</th>
+                                        <th>Producent</th>
+                                        <th>S/N</th>
+                                        <th>MAC adres</th>
+                                        <th>Adres IP</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {% for printer in printers %}
-                                            <tr onclick='location.href = "{{ path('printer_show', { 'id': printer.id }) }}"'>
-                                                <td><a href="{{ path('printer_show', { 'id': printer.id }) }}">{{ printer.id }}</a></td>
-                                                <td>{{ printer.name }}</td>
-                                                <td>{{ printer.model }}</td>
-                                                <td>{{ printer.type }}</td>
-                                                <td>{{ printer.manufacturer }}</td>
-                                                <td>{{ printer.powerSupply }}</td>
-                                                <td>{{ printer.price }}</td>
-                                                <td>{% if printer.addDate %}{{ printer.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                                <td>{% if printer.purchaseDate %}{{ printer.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                                <td>{{ printer.macAddress }}</td>
-                                                <td>{{ printer.ipAddress }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>                </table>
+                                    {% for printer in printers %}
+                                        <tr onclick='location.href = "{{ path('printer_show', { 'id': printer.id }) }}"'>
+                                            <td>{{ printer.name }}</td>
+                                            <td>{{ printer.type }}</td>
+                                            <td>{{ printer.factor }}</td>
+                                            <td>{{ printer.model }}</td>
+                                            <td>{{ printer.brand }}</td>
+                                            <td>{{ printer.series }}</td>
+                                            <td>{{ printer.macAddress }}</td>
+                                            <td>{{ printer.ipAddress }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>

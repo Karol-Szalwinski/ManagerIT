@@ -96,6 +96,11 @@ class Document
      * @ORM\JoinColumn(name="phone_id", referencedColumnName="id")
      */
     private $phone;
+    /**
+     * @ORM\ManyToOne(targetEntity="Printer", inversedBy="documents")
+     * @ORM\JoinColumn(name="printer_id", referencedColumnName="id")
+     */
+    private $printer;
 
     /**
      * @var string

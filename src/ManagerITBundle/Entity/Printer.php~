@@ -45,23 +45,30 @@ class Printer
     /**
      * @var string
      *
-     * @ORM\Column(name="manufacturer", type="string", length=255)
+     * @ORM\Column(name="factor", type="string", length=255)
      */
-    private $manufacturer;
+    private $factor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="powerSupply", type="string", length=255)
+     * @ORM\Column(name="brand", type="string", length=255)
+     */
+    private $brand;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="series", type="string", length=255)
+     */
+    private $series;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="powerSupply", type="string", length=255, nullable=true)
      */
     private $powerSupply;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="price", type="string", length=255)
-     */
-    private $price;
 
     /**
      * @var \DateTime
@@ -71,33 +78,55 @@ class Printer
     private $addDate;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="purchaseDate", type="datetime")
-     */
-    private $purchaseDate;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="macAddress", type="string", length=255)
+     * @ORM\Column(name="macAddress", type="string", length=255, nullable=true)
      */
     private $macAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ipAddress", type="string", length=255)
+     * @ORM\Column(name="ipAddress", type="string", length=255, nullable=true)
      */
     private $ipAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="description", type="text", nullable=true, nullable=true)
      */
-    private $picture;
+    private $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\JoinTable(name="printers_pictures",
+     *      joinColumns={@ORM\JoinColumn(name="printer_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="printer", cascade={"remove"})
+     */
+    private $documents;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Employee", inversedBy="printers")
+     *
+     * @ORM\JoinTable(name="employees_printers")
+     */
+    private $employees;
+
+    public function __construct()
+    {
+//        $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->addDate = new \DateTime();
+    }
 
     /**
      * Get id
@@ -179,26 +208,72 @@ class Printer
     }
 
     /**
-     * Set manufacturer
+     * Set factor
      *
-     * @param string $manufacturer
+     * @param string $factor
      * @return Printer
      */
-    public function setManufacturer($manufacturer)
+    public function setFactor($factor)
     {
-        $this->manufacturer = $manufacturer;
+        $this->factor = $factor;
 
         return $this;
     }
 
     /**
-     * Get manufacturer
+     * Get factor
      *
      * @return string 
      */
-    public function getManufacturer()
+    public function getFactor()
     {
-        return $this->manufacturer;
+        return $this->factor;
+    }
+
+    /**
+     * Set brand
+     *
+     * @param string $brand
+     * @return Printer
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get brand
+     *
+     * @return string 
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set series
+     *
+     * @param string $series
+     * @return Printer
+     */
+    public function setSeries($series)
+    {
+        $this->series = $series;
+
+        return $this;
+    }
+
+    /**
+     * Get series
+     *
+     * @return string 
+     */
+    public function getSeries()
+    {
+        return $this->series;
     }
 
     /**
@@ -225,29 +300,6 @@ class Printer
     }
 
     /**
-     * Set price
-     *
-     * @param string $price
-     * @return Printer
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return string 
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
      * Set addDate
      *
      * @param \DateTime $addDate
@@ -268,29 +320,6 @@ class Printer
     public function getAddDate()
     {
         return $this->addDate;
-    }
-
-    /**
-     * Set purchaseDate
-     *
-     * @param \DateTime $purchaseDate
-     * @return Printer
-     */
-    public function setPurchaseDate($purchaseDate)
-    {
-        $this->purchaseDate = $purchaseDate;
-
-        return $this;
-    }
-
-    /**
-     * Get purchaseDate
-     *
-     * @return \DateTime 
-     */
-    public function getPurchaseDate()
-    {
-        return $this->purchaseDate;
     }
 
     /**
@@ -361,4 +390,132 @@ class Printer
     {
         return $this->picture;
     }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Printer
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     * @return Printer
+     */
+    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     * @return Printer
+     */
+    public function addDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents[] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Remove documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     */
+    public function removeDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Printer
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
+    }
+
+    public function hasEmployee(Employee $employee)
+    {
+        return $this->employees->contains($employee);
+    }
+
 }

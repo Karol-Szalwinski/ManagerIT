@@ -5,6 +5,7 @@ namespace ManagerITBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PrinterType extends AbstractType
 {
@@ -13,7 +14,54 @@ class PrinterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('model')->add('type')->add('manufacturer')->add('powerSupply')->add('price')->add('addDate')->add('purchaseDate')->add('macAddress')->add('ipAddress')->add('picture')        ;
+        $builder
+            ->add('name')
+            ->add('type', ChoiceType::class, array(
+                'choices' => array(
+                    'Laserowa' => 'Laserowa',
+                    'Atramentowa' => 'Atramentowa',
+                    'Termotransferowa' => 'Termotransferowa',
+                    'Igłowa' => 'Igłowa',
+                    'Inna' => 'Inna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz rodzaj wydruku',
+            ))
+            ->add('factor', ChoiceType::class, array(
+                'choices' => array(
+                    'Sieciowa' => 'Sieciowa',
+                    'Mobilna' => 'Mobilna',
+                    'Wielofunkcyjny kombajn' => 'Wielofunkcyjny kombajn',
+                    'Wielofunkcyjna' => 'Wielofunkcyjna',
+                    'Jednostanowiskowa' => 'Jednostanowiskowa',
+                    'Inna' => 'Inna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz typ drukarki',
+            ))
+            ->add('brand', ChoiceType::class, array(
+                'choices' => array(
+                    'HP' => 'HP',
+                    'Brother' => 'Brother',
+                    'Ricoh' => 'Ricoh',
+                    'Canon' => 'Canon',
+                    'Lexmark' => 'Lexmark',
+                    'Oki' => 'Oki',
+                    'Inna' => 'Inna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz producenta',
+            ))
+            ->add('model')
+            ->add('series')
+            ->add('powerSupply')
+            ->add('macAddress')
+            ->add('ipAddress')
+            ->add('description')
+        ;
     }
     
     /**

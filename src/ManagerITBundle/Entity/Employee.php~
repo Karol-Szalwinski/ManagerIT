@@ -105,6 +105,11 @@ class Employee
      *
      */
     private $phones;
+    /**
+     * @ORM\ManyToMany(targetEntity="Printer", mappedBy="employees")
+     *
+     */
+    private $printers;
 
 
    
@@ -114,6 +119,7 @@ class Employee
     public function __construct()
     {
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->printers = new \Doctrine\Common\Collections\ArrayCollection();
 //        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
 //        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();

@@ -96,6 +96,11 @@ class Document
      * @ORM\JoinColumn(name="phone_id", referencedColumnName="id")
      */
     private $phone;
+    /**
+     * @ORM\ManyToOne(targetEntity="Printer", inversedBy="documents")
+     * @ORM\JoinColumn(name="printer_id", referencedColumnName="id")
+     */
+    private $printer;
 
     /**
      * @var string
@@ -408,5 +413,28 @@ class Document
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    /**
+     * Set printer
+     *
+     * @param \ManagerITBundle\Entity\Printer $printer
+     * @return Document
+     */
+    public function setPrinter(\ManagerITBundle\Entity\Printer $printer = null)
+    {
+        $this->printer = $printer;
+
+        return $this;
+    }
+
+    /**
+     * Get printer
+     *
+     * @return \ManagerITBundle\Entity\Printer 
+     */
+    public function getPrinter()
+    {
+        return $this->printer;
     }
 }

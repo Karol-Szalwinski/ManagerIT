@@ -113,12 +113,31 @@
                                 <table class="table table-condensed responsive-table">
                                     <tbody>
                                     <tr>
-                                        <th>Phone</th>
-                                        <td>{{ sim.phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tablet</th>
-                                        <td>{{ sim.tablet }}</td>
+                                        <td>
+                                            {% if sim.phone is not null %}
+                                                {{ sim.phone.name }}<br>
+                                            {% endif %}
+                                            {% if sim.tablet is not null %}
+                                                {{ sim.tablet.name }}<br>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sim.phone is not null %}
+                                                {{ sim.phone.brand }}<br>
+                                            {% endif %}
+                                            {% if sim.tablet is not null %}
+                                                {{ sim.tablet.brand }}<br>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sim.phone is not null %}
+                                                {{ sim.phone.model }}<br>
+                                            {% endif %}
+                                            {% if sim.tablet is not null %}
+                                                {{ sim.tablet.model }}<br>
+                                            {% endif %}
+                                        </td>
+
                                     </tr>
                                     </tbody>
                                 </table>

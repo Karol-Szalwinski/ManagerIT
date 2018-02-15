@@ -105,6 +105,11 @@ class Employee
      *
      */
     private $phones;
+    /**
+     * @ORM\ManyToMany(targetEntity="Printer", mappedBy="employees")
+     *
+     */
+    private $printers;
 
 
    
@@ -114,6 +119,7 @@ class Employee
     public function __construct()
     {
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->printers = new \Doctrine\Common\Collections\ArrayCollection();
 //        $this->desktops = new \Doctrine\Common\Collections\ArrayCollection();
 //        $this->laptops = new \Doctrine\Common\Collections\ArrayCollection();
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
@@ -489,5 +495,38 @@ class Employee
     public function getPhones()
     {
         return $this->phones;
+    }
+
+    /**
+     * Add printers
+     *
+     * @param \ManagerITBundle\Entity\Printer $printers
+     * @return Employee
+     */
+    public function addPrinter(\ManagerITBundle\Entity\Printer $printers)
+    {
+        $this->printers[] = $printers;
+
+        return $this;
+    }
+
+    /**
+     * Remove printers
+     *
+     * @param \ManagerITBundle\Entity\Printer $printers
+     */
+    public function removePrinter(\ManagerITBundle\Entity\Printer $printers)
+    {
+        $this->printers->removeElement($printers);
+    }
+
+    /**
+     * Get printers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrinters()
+    {
+        return $this->printers;
     }
 }

@@ -39,7 +39,7 @@
             <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-file-text"></i>
-                <span class="link-title">Aplikacje</span>
+                <span class="link-title">Programy i aplikacje</span>
             </a>
             <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-lg">
@@ -64,7 +64,6 @@
         <div class="outer">
             <div class="inner bg-light lter">
                 <!-- /.row -->
-
                 <div class="row">
 
                     <!-- .col-lg-6 -->
@@ -173,7 +172,11 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
 
+                <!-- /.row -->
+                <div class="row">
 
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
@@ -215,7 +218,7 @@
                                                 Brak
                                             {% else %}
                                                 {% for ramslot in computer.ramslots %}
-                                                    {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}</br>
+                                                    {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}<br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
@@ -227,7 +230,7 @@
                                                 Brak
                                             {% else %}
                                                 {% for pciInterface in computer.pciInterfaces %}
-                                                    {{ pciInterface.cardGpu.name }}</br>
+                                                    {{ pciInterface.cardGpu.name }}<br>
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
@@ -240,7 +243,7 @@
                                                 {% if storageController.hdd is not null %}
                                                     {% set message = '' %}
                                                     {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
-                                                    </br>
+                                                    <br>
                                                 {% endif %}
                                             {% endfor %}
                                             {{ message }}
@@ -267,7 +270,7 @@
                                             {% for storageController in computer.storageControllers %}
                                                 {% if storageController.opticalDrive is not null %}
                                                     {% set message = '' %}
-                                                    {{ storageController.opticalDrive.name }}</br>
+                                                    {{ storageController.opticalDrive.name }}<br>
                                                 {% endif %}
                                             {% endfor %}
                                             {{ message }}
@@ -343,6 +346,12 @@
                     </div>
                     <!-- /.col-lg-6 -->
 
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
+
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="box">
@@ -352,12 +361,12 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="{{ path('computer_licenses', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                        <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
-                                        <a href="#condensedTable4" data-toggle="collapse"
+                                        <a href="#condensedTable6" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
@@ -365,21 +374,28 @@
                                     </div>
                                 </div>
                             </header>
-                            <div id="condensedTable4" class="body collapse in">
+                            <div id="condensedTable6" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
-
+                                    <thead>
+                                    <tr>
+                                        <th>Typ dokumentu</th>
+                                        <th>Podstawa</th>
+                                        <th>Numer</th>
+                                        <th>Sprzedawca</th>
+                                        <th>Cena</th>
+                                        <th>Data</th>
+                                    </tr>
+                                    </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Data zakupu</td>
-                                        <td>{{ computer.purchaseDate |date("m-d-Y") }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Data wprowadzenia</td>
-                                        <td>{{ computer.addDate |date("m-d-Y") }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cena zakupu</td>
-                                        <td>{{ computer.price }} PLN</td>
+                                        {% for document in computer.documents %}
+                                            <td>{{ document.type }}</td>
+                                            <td>{{ document.subject }}</td>
+                                            <td>{{ document.number }}</td>
+                                            <td>{{ document.sellerName }}</td>
+                                            <td>{{ document.price }}</td>
+                                            <td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>
+                                        {% endfor %}
                                     </tr>
                                     </tbody>
                                 </table>
@@ -435,6 +451,12 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
 
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">

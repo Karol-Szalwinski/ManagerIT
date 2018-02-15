@@ -35,32 +35,43 @@
 
                             <div id="collapse4" class="body">
 
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Nazwa działu</th>
-                                            <th>Ilość pracowników</th>
-                                            <th>Ilość komputerów</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Nazwa działu</th>
+                                        <th>Ilość pracowników</th>
+                                        <th>Ilość komputerów</th>
+                                        <th>Ilość tabletów</th>
+                                        <th>Ilość telefonów</th>
+                                        <th>Ilość drukarek</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {% for departament in departaments %}
-                                            <tr onclick='location.href = "{{ path('departament_show', { 'id': departament.id }) }}"'>
-                                                <td><a href="{{ path('user_show', { 'id': departament.id }) }}">{{ departament.id }}</a></td>
-                                                <td>{{ departament.name }}</td>
-                                                <td>{{ departament.employees |length }}</td>
-                                                <td>
-                                                    {% set computersCounter = 0 %}
-                                                    {% for employee in departament.employees %}
-                                                        {% set computersCounter = computersCounter + employee.computers|length %}
-                                                    {% endfor %}
-                                                    {{ computersCounter }}
-                                                </td>
-
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>                </table>
+                                    {% for departament in departaments %}
+                                        <tr onclick='location.href = "{{ path('departament_show', { 'id': departament.id }) }}"'>
+                                            <td>{{ departament.name }}</td>
+                                            <td>{{ departament.employees |length }}</td>
+                                            <td>
+                                                {% set computersCounter = 0 %}
+                                                {% set tabletsCounter = 0 %}
+                                                {% set phonesCounter = 0 %}
+                                                {% set printersCounter = 0 %}
+                                                {% for employee in departament.employees %}
+                                                    {% set computersCounter = computersCounter + employee.computers|length %}
+                                                    {% set tabletsCounter = tabletsCounter + employee.tablets|length %}
+                                                    {% set phonesCounter = phonesCounter + employee.phones|length %}
+                                                    {% set printersCounter = printersCounter + employee.printers|length %}
+                                                {% endfor %}
+                                                {{ computersCounter }}
+                                            </td>
+                                            <td>{{ tabletsCounter }} </td>
+                                            <td>{{ phonesCounter }}</td>
+                                            <td>{{ printersCounter }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>

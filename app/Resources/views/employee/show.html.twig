@@ -13,6 +13,7 @@
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
+
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
                 <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i class="fa fa-trash"></i> Usuń</button>
@@ -104,17 +105,19 @@
                                 <table class="table table-condensed responsive-table">
                                     <thead>
                                         <tr>
+                                            <th>Rodzaj</th>
                                             <th>Nazwa</th>
-                                            <th>Seria</th>
+                                            <th>Marka</th>
                                             <th>Model</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for computer in employee.computers %}
-                                            <tr>                                                    
+                                            <tr>
+                                                <td>Komputer</td>
                                                 <td>{{ computer.name }}</td>
-                                                <td>{{ computer.series }}</td>
+                                                <td>{{ computer.brand }}</td>
                                                 <td>{{ computer.model }}</td>
                                                 <td>
                                                     <a href="{{ path('employee_remove_computer', { 'computer': computer.id, 'employee': employee.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
@@ -126,6 +129,7 @@
                                         {% endfor %}
                                         {% for tablet in employee.tablets %}
                                             <tr>
+                                                <td>Tablet</td>
                                                 <td>{{ tablet.name }}</td>
                                                 <td>{{ tablet.brand }}</td>
                                                 <td>{{ tablet.model }}</td>
@@ -139,11 +143,26 @@
                                         {% endfor %}
                                         {% for phone in employee.phones %}
                                             <tr>
+                                                <td>Telefon</td>
                                                 <td>{{ phone.name }}</td>
                                                 <td>{{ phone.brand }}</td>
                                                 <td>{{ phone.model }}</td>
                                                 <td>
                                                     <a href="{{ path('employee_remove_phone', { 'phone': phone.id, 'employee': employee.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                        <i class="fa fa-unlink"></i>
+                                                        <span class="link-title">odłącz</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        {% for printer in employee.printers %}
+                                            <tr>
+                                                <td>Drukarka</td>
+                                                <td>{{ printer.name }}</td>
+                                                <td>{{ printer.brand }}</td>
+                                                <td>{{ printer.model }}</td>
+                                                <td>
+                                                    <a href="{{ path('employee_remove_printer', { 'printer': printer.id, 'employee': employee.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
                                                         <i class="fa fa-unlink"></i>
                                                         <span class="link-title">odłącz</span>
                                                     </a>

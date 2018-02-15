@@ -5,7 +5,8 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista laptopów</span>
             </a>
@@ -23,8 +24,8 @@
     <div id="content">
         <div class="outer">
             <div class="inner bg-light lter">
-                <!-- .col-lg-6 -->
-                <div class="col-lg-6">
+                <!-- .col-lg-10 -->
+                <div>
                     <div class="box">
                         <header>
                             <div class="icons"><i class="fa fa-photo"></i></div>
@@ -45,26 +46,31 @@
 
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        {% for picture in computer.pictures %}
+                                    {% for picture in computer.pictures %}
+                                        <td>
                                             <a href="{{ asset('pictures/' ~ picture.file) }}">
                                                 <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
                                                      height="200" width="200">
-                                            </a>
-                                            <a href="{{ path('computer_delete_picture', {'type' : computer.formFactor,'id': computer.id , 'picture': picture.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
+                                            </a>&nbsp
+                                            <a href="{{ path('computer_delete_picture', {'type' : computer.formFactor,'id': computer.id , 'picture': picture.id }) }}"
+                                               class="btn btn-danger btn-grad btn-rect btn-sm">
                                                 <i class="fa fa-arrow-left "></i>
                                                 <i class="fa fa-trash-o "></i>
-                                                <span class="link-title">Usuń zdjęcie</span>
+                                                <span class="link-title">Usuń</span>
                                             </a>
-                                        {% else %}
-                                            {% set picture = "default.png" %}
+                                        </td>
+                                    {% else %}
+                                        {% set picture = "default.png" %}
+                                        <td>
                                             <a href="{{ asset('pictures/' ~ picture) }}">
                                                 <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
                                                      height="200" width="200">
                                             </a>
-                                        {% endfor %}
-                                    </td>
+                                        </td>
+                                    {% endfor %}
+
                                     Kliknij aby powiększyć
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -107,7 +113,8 @@
                         <div class="modal-footer">
                             <input type="submit" value="Wgraj zdjęcie"
                                    class="btn btn-primary btn-grad control-label"/>
-                            <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">Zamknij
+                            <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">
+                                Zamknij
                             </button>
                         </div>
 

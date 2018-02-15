@@ -42,7 +42,6 @@
                                 </div>
                             </div>
                         </header>
-                        {% set installId = '' %}
 
                         {% if computer.installedApplications is not empty %}
 
@@ -60,8 +59,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
-
                                 {% for installedApplication in computer.installedApplications %}
                                     <tr>
                                         <td>{{ installedApplication.application.name }}</td>
@@ -176,7 +173,6 @@
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy program</span>
                                     </a>
-
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>

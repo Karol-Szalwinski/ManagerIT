@@ -96,16 +96,21 @@
                     <!-- /.row -->
                     <!--End Datatables-->
                     {% else %}
-                        <span>Brak przypisanych pracowników do tego sprzętu </span>
+                        <br><br>
+                        <h4>&nbsp&nbsp<i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp</i> Brak
+                            przypisanych pracowników do tego sprzętu </h4>
                     {% endif %}
+                    <br>
                     <div>
                         <!-- Przycisk uruchamiający modal -->
+                        &nbsp
                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                 data-toggle="modal"
                                 data-target="#employees">
                             Przypisz nowego pracownika
                         </button>
-                    </div></br>
+                    </div>
+                    </br>
 
                 </div>
 
@@ -144,28 +149,23 @@
                                                             <th>Nazwisko</th>
                                                             <th>Stanowisko</th>
                                                             <th>Dział</th>
-                                                            <th>Płeć</th>
-                                                            <th>Telefon</th>
-                                                            <th>Email</th>
                                                             <th>Sprzęt</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         {% for employee in employees %}
-                                                            <tr onclick='location.href = "{{ path('computer_connect_employee', { 'computer': computer.id,  'employee': employee.id }) }}"'>
+                                                            <tr data-placement="top" data-toggle="tooltip"
+                                                                data-original-title="Kliknij aby przypisać wybranego pracownika do tego sprzętu."
+                                                                onclick='location.href = "{{ path('computer_connect_employee', { 'computer': computer.id,  'employee': employee.id }) }}"'>
                                                                 <td>{{ employee.name }}</td>
                                                                 <td>{{ employee.surname }}</td>
                                                                 <td>{{ employee.job }}</td>
                                                                 <td>{{ employee.departament.name }}</td>
-                                                                <td>{{ employee.sex }}</td>
-                                                                <td>{{ employee.phone }}</td>
-                                                                <td>{{ employee.email }}</td>
                                                                 <td>
                                                                     {% for computer in employee.computers %}
                                                                         {{ computer.name }}<br>
                                                                     {% endfor %}
                                                                 </td>
-
                                                             </tr>
                                                         {% endfor %}
                                                         </tbody>

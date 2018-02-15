@@ -38,45 +38,36 @@
                                        class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Id</th>
                                         <th>Imię</th>
                                         <th>Nazwisko</th>
                                         <th>Stanowisko</th>
                                         <th>Dział</th>
-                                        <th>Płeć</th>
                                         <th>Telefon</th>
                                         <th>Email</th>
                                         <th>Sprzęt</th>
-                                        <th>Licencje</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for employee in employees %}
                                         <tr onclick='location.href="{{ path('employee_show', { 'id': employee.id }) }}"'>
-                                            <td>
-                                                <a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a>
-                                            </td>
                                             <td>{{ employee.name }}</td>
                                             <td>{{ employee.surname }}</td>
                                             <td>{{ employee.job }}</td>
                                             <td>{{ employee.departament.name }}</td>
-                                            <td>{{ employee.sex }}</td>
                                             <td>{{ employee.phone }}</td>
                                             <td>{{ employee.email }}</td>
                                             <td>
                                                 {% for computer in employee.computers %}
-                                                    {{ computer.name }} -{{ computer.model }}<br>
+                                                    Komputer | {{ computer.name }} -{{ computer.model }}<br>
                                                 {% endfor %}
                                                 {% for tablet in employee.tablets %}
-                                                    {{ tablet.name }} - {{ tablet.model }}<br>
+                                                    Tablet | {{ tablet.name }} - {{ tablet.model }}<br>
                                                 {% endfor %}
                                                 {% for phone in employee.phones %}
-                                                    {{ phone.name }} - {{ phone.model }}<br>
+                                                    Telefon | {{ phone.name }} - {{ phone.model }}<br>
                                                 {% endfor %}
-                                            </td>
-                                            <td>
-                                                {% for license in employee.licenses %}
-                                                    {{ license.name }}<br>
+                                                {% for printer in employee.printers %}
+                                                    Drukarka| {{ printer.name }} - {{ printer.model }}<br>
                                                 {% endfor %}
                                             </td>
                                         </tr>

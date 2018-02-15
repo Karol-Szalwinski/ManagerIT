@@ -7,6 +7,7 @@ use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Phone;
 use ManagerITBundle\Entity\Tablet;
+use ManagerITBundle\Entity\Printer;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -180,6 +181,24 @@ class EmployeeController extends Controller {
     public function removePhoneAction(Employee $employee, Phone $phone) {
         $employee->removePhone($phone);
         $phone->removeEmployee($employee);
+        $this->getDoctrine()->getManager()->flush();
+
+        $deleteForm = $this->createDeleteForm($employee);
+
+        return $this->render('employee/show.html.twig', array(
+                    'employee' => $employee,
+                    'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    /**
+     * Action to disconnect employee with printer
+     *
+     *  @Route("/{employee}/remove_printer/{printer}", name="employee_remove_printer")
+     *  @Method({"GET"})
+     */
+    public function removePrinterAction(Employee $employee, Printer $printer) {
+        $employee->removePrinter($printer);
+        $printer->removeEmployee($employee);
         $this->getDoctrine()->getManager()->flush();
 
         $deleteForm = $this->createDeleteForm($employee);

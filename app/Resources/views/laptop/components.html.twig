@@ -26,6 +26,7 @@
         <div class="outer">
             <div class="inner bg-light lter">
                 <!-- .col-lg-6 -->
+                <div class="col-lg-2"></div>
                 <div class="col-lg-8">
                     <div class="box">
                         <header>
@@ -47,9 +48,9 @@
 
                                 <tbody>
                                 <tr>
-                                    <td><span class="fa fa-microchip"></span> Procesor</td>
+                                    <th>Procesor</th>
                                     <td>{% if computer.cpu is not null %}
-                                            {{ computer.cpu.name }}
+                                            {{ computer.cpu.name }} {{ computer.cpu.baseFrequency }} GHz {{ computer.cpu.sockets }}
                                         {% endif %}
                                     </td>
                                     <td>
@@ -57,50 +58,71 @@
                                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                                 data-toggle="modal"
                                                 data-target="#cpus">
+                                            <i class="fa fa-retweet "></i>
                                             Zmień
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Ram</td>
+                                    <th>Ram</th>
 
                                     <td>
                                         {% if computer.ramslots is empty %}
                                             Brak
                                         {% else %}
-                                            {% for ramslot in computer.ramslots %}
-                                                {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}
-                                                <a href="{{ path('computer_remove_ram', {'type' : computer.formFactor, 'id': computer.id , 'ramslot': ramslot.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-times "></i>
-                                                    <span class="link-title">Wymontuj</span>
-                                                </a><br>
-                                            {% endfor %}
+                                            <table class="table table-condensed responsive-table">
+                                                {% for ramslot in computer.ramslots %}
+                                                    <tr>
+                                                        <td>
+                                                            {{ ramslot.ram.capacity }} GB - {{ ramslot.ram.name }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <a href="{{ path('computer_remove_ram', {'type' : computer.formFactor, 'id': computer.id , 'ramslot': ramslot.id }) }}"
+                                                               class="btn btn-danger btn-grad btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                                <span class="link-title">Wymontuj</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </table>
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <th>
                                         <!-- Przycisk uruchamiający modal -->
-                                        <button class="btn btn-primary btn-grad btn-sm control-label"
+                                        <button class="btn btn-primary btn-grad btn-sm"
                                                 data-toggle="modal"
                                                 data-target="#rams">
-                                            Zmień
+                                            <i class="fa fa-plus "></i>
+                                            Dodaj
                                         </button>
-                                    </td>
+                                    </th>
                                 </tr>
                                 <tr>
-                                    <td>GPU</td>
+                                    <th>GPU</th>
                                     <td>
                                         {% if computer.pciInterfaces is empty %}
                                             Brak
                                         {% else %}
-                                            {% for pciInterface in computer.pciInterfaces %}
-                                                {{ pciInterface.CardGpu.name }}
-                                                <a href="{{ path('computer_remove_gpu', {'type' : computer.formFactor, 'id': computer.id , 'interfacePci': pciInterface.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-times "></i>
-                                                    <span class="link-title">Wymontuj</span>
-                                                </a><br>
-                                            {% endfor %}
+                                            <table class="table table-condensed responsive-table">
+                                                <tbody>
+                                                {% for pciInterface in computer.pciInterfaces %}
+                                                    <tr>
+                                                        <td>
+                                                            {{ pciInterface.CardGpu.name }}
+                                                            - {{ pciInterface.CardGpu.formFactor }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <a href="{{ path('computer_remove_gpu', {'type' : computer.formFactor, 'id': computer.id , 'interfacePci': pciInterface.id }) }}"
+                                                               class="btn btn-danger btn-grad btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                                <span class="link-title">Wymontuj</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
                                         {% endif %}
                                     </td>
                                     <td>
@@ -108,23 +130,35 @@
                                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                                 data-toggle="modal"
                                                 data-target="#gpus">
-                                            Zmień
+                                            <i class="fa fa-plus "></i>
+                                            Dodaj
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>HDD</td>
+                                    <th>HDD</th>
                                     <td>
                                         {% set empty = 1 %}
                                         {% for storageController in computer.storageControllers %}
                                             {% if storageController.hdd is not null %}
-                                                {% set empty = 0 %}
-                                                {{ storageController.hdd.capacity }} GB - {{ storageController.hdd.name }}
-                                                <a href="{{ path('computer_remove_hdd', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-times "></i>
-                                                    <span class="link-title">Wymontuj</span>
-                                                </a></br>
+                                                <table class="table table-condensed">
+                                                    <tbody>
+                                                    {% set empty = 0 %}
+                                                    <tr>
+                                                        <td>
+                                                            {{ storageController.hdd.capacity }} GB
+                                                            - {{ storageController.hdd.name }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <a href="{{ path('computer_remove_hdd', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
+                                                               class="btn btn-danger btn-grad btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                                <span class="link-title">Wymontuj</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             {% endif %}
                                         {% endfor %}
                                         {% if empty == 1 %}
@@ -136,24 +170,36 @@
                                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                                 data-toggle="modal"
                                                 data-target="#hdds">
-                                            Zmień
+                                            <i class="fa fa-plus "></i>
+                                            Dodaj
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>SSD</td>
+                                    <th>SSD</th>
                                     <td>
                                         {% set empty = 1 %}
                                         {% for storageController in computer.storageControllers %}
 
                                             {% if storageController.ssd is not null %}
-                                                {% set empty = 0 %}
-                                                {{ storageController.ssd.capacity }} GB - {{ storageController.ssd.name }}
-                                                <a href="{{ path('computer_remove_ssd', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-times "></i>
-                                                    <span class="link-title">Wymontuj</span>
-                                                </a></br>
+                                                <table class="table table-condensed responsive-table">
+                                                    <tbody>
+                                                    {% set empty = 0 %}
+                                                    <tr>
+                                                        <td>
+                                                            {{ storageController.ssd.capacity }} GB
+                                                            - {{ storageController.ssd.name }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <a href="{{ path('computer_remove_ssd', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
+                                                               class="btn btn-danger btn-grad btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                                <span class="link-title">Wymontuj</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             {% endif %}
                                         {% endfor %}
                                         {% if empty == 1 %}
@@ -166,38 +212,68 @@
                                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                                 data-toggle="modal"
                                                 data-target="#ssds">
-                                            Zmień
+                                            <i class="fa fa-plus "></i>
+                                            Dodaj
                                         </button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Napęd</td>
+                                    <th>Napęd</th>
                                     <td>
                                         {% set empty = 1 %}
                                         {% for storageController in computer.storageControllers %}
 
                                             {% if storageController.opticalDrive is not null %}
-                                                {% set empty = 0 %}
-                                                {{ storageController.opticalDrive.name }}
-                                                <a href="{{ path('computer_remove_drive', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
-                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                    <i class="fa fa-times "></i>
-                                                    <span class="link-title">Wymontuj</span>
-                                                </a></br>
+                                                <table class="table table-condensed responsive-table">
+                                                    <tbody>
+                                                    {% set empty = 0 %}
+                                                    <tr>
+                                                        <td>
+                                                            {{ storageController.opticalDrive.name }}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <a href="{{ path('computer_remove_drive', {'type' : computer.formFactor, 'id': computer.id , 'storageController': storageController.id }) }}"
+                                                               class="btn btn-danger btn-grad btn-sm">
+                                                                <i class="fa fa-times "></i>
+                                                                <span class="link-title">Wymontuj</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             {% endif %}
                                         {% endfor %}
                                         {% if empty == 1 %}
                                             Brak napędów
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <th>
                                         <!-- Przycisk uruchamiający modal -->
                                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                                 data-toggle="modal"
                                                 data-target="#drives">
+                                            <i class="fa fa-plus "></i>
+                                            Dodaj
+                                        </button>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Zasilacz</th>
+                                    <td>{% if computer.powerSupply is not null %}
+                                            {{ computer.powerSupply.name }} {{ computer.powerSupply.powerInWatt }}&nbspW
+                                        {% else %}
+                                            Brak zasilacza
+                                        {% endif %}
+                                    </td>
+                                    <th>
+                                        <!-- Przycisk uruchamiający modal -->
+                                        <button class="btn btn-primary btn-grad btn-sm control-label"
+                                                data-toggle="modal"
+                                                data-target="#powersupply">
+                                            <i class="fa fa-retweet "></i>
                                             Zmień
                                         </button>
-                                    </td>
+                                    </th>
                                 </tr>
                                 </tbody>
                             </table>
@@ -214,6 +290,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
+
 
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
@@ -233,9 +310,8 @@
 
                                                 </header>
                                                 <div id="collapse4" class="body">
-
-                                                    <table id="dataTable"
-                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>Id</th>
@@ -296,7 +372,7 @@
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
-                                <h5 class="modal-title" id="ramsModalLabel">Wybierz procesor z listy</h5>
+                                <h5 class="modal-title" id="ramsModalLabel">Wybierz pamięć ram z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -304,13 +380,9 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="box">
-                                                <header>
-                                                    <div class="icons"><i class="fa fa-laptop"></i></div>
-                                                    <h5>Lista procesorów</h5>
-                                                </header>
-                                                <div id="collapse4" class="body">
-                                                    <table id="dataTable"
-                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                <div id="collapse5" class="body">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>Nazwa</th>
@@ -369,7 +441,7 @@
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
-                                <h5 class="modal-title" id="gpusModalLabel">Wybierz gpu z listy</h5>
+                                <h5 class="modal-title" id="gpusModalLabel">Wybierz kartę graficzną z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -382,8 +454,8 @@
                                                     <h5>Lista kart graficznych</h5>
                                                 </header>
                                                 <div id="collapse4" class="body">
-                                                    <table id="dataTable"
-                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>Nazwa</th>
@@ -443,7 +515,7 @@
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
-                                <h5 class="modal-title" id="hddsModalLabel">Wybierz hdd z listy</h5>
+                                <h5 class="modal-title" id="hddsModalLabel">Wybierz dysk hdd z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -456,8 +528,8 @@
                                                     <h5>Lista dysków ssd</h5>
                                                 </header>
                                                 <div id="collapse4" class="body">
-                                                    <table id="dataTable"
-                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>Nazwa</th>
@@ -519,7 +591,7 @@
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
-                                <h5 class="modal-title" id="ssdsModalLabel">Wybierz hdd z listy</h5>
+                                <h5 class="modal-title" id="ssdsModalLabel">Wybierz dysk SSD z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -532,8 +604,8 @@
                                                     <h5>Lista dysków ssd</h5>
                                                 </header>
                                                 <div id="collapse4" class="body">
-                                                    <table id="dataTable"
-                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>Nazwa</th>
@@ -591,7 +663,7 @@
                                 <button type="button" class="close" data-dismiss="modal"><span
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
-                                <h5 class="modal-title" id="drivesModalLabel">Wybierz napęd z listy</h5>
+                                <h5 class="modal-title" id="drivesModalLabel">Wybierz napęd optyczny z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -604,8 +676,8 @@
                                                     <h5>Lista napędów optycznych</h5>
                                                 </header>
                                                 <div id="collapse4" class="body">
-                                                    <table id="dataTable"
-                                                           class="table table-bordered table-condensed table-hover table-striped">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>Nazwa</th>
@@ -639,6 +711,97 @@
                                 </div>
                                 <div class="modal-footer">
                                     <a href="{{ path('opticaldrive_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
+                                    <button type="button" class="btn btn-primary btn-grad control-label"
+                                            data-dismiss="modal">Zamknij
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal power supply-->
+                <div class="modal fade" id="powersupply" tabindex="-1" role="dialog"
+                     aria-labelledby="powersupplyModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
+                                </button>
+
+                                <h5 class="modal-title" id="powersupplyModalLabel">Wybierz zasilacz z listy</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div id="div-1" class="body">
+                                    <!--Begin Datatables-->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="box">
+                                                <div id="collapse4" class="body">
+                                                    <table
+                                                            class="datatable table table-bordered table-condensed table-hover table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Nazwa</th>
+                                                            <th>Model</th>
+                                                            <th>Seria</th>
+                                                            <th>Marka</th>
+                                                            <th>Typ</th>
+                                                            <th>Chłodzenie</th>
+                                                            <th>Moc (Wat)</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for powerSupply in powerSupplies %}
+                                                            <tr onclick='location.href = "{{ path('computer_connect_powersupply', { 'type' : computer.formFactor, 'id': computer.id,  'powerSupply': powerSupply.id }) }}"'>
+                                                                <td>{{ powerSupply.name }}</td>
+                                                                <td>{{ powerSupply.model }}</td>
+                                                                <td>{{ powerSupply.series }}</td>
+                                                                <td>{{ powerSupply.brand }}</td>
+                                                                <td>
+                                                                    {% if powerSupply.type == "inside" %}
+                                                                        wewnętrzny
+                                                                    {% elseif powerSupply.type == "outside" %}
+                                                                        zewnętrzny
+                                                                    {% else %}
+                                                                        nieokreślony
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    {% if powerSupply.cooling == "none" %}
+                                                                        brak
+                                                                    {% elseif powerSupply.cooling == "active" %}
+                                                                        aktywne
+                                                                    {% elseif powerSupply.cooling == "passive" %}
+                                                                        pasywne
+                                                                    {% else %}
+                                                                        nieokreślony
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>{{ powerSupply.powerInWatt }}&nbspWat</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <!--End Datatables-->
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('powersupply_new', {'computer' : computer.id}) }}"
                                        class="btn btn-warning btn-grad control-label">
                                         <i class="fa fa-plus"></i>
                                         <span>Dodaj nowy</span>

@@ -5,19 +5,24 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('departament_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista działów</span>
             </a>
-            <a href="{{ path('departament_edit', { 'id': departament.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
-                <i class="fa fa-wrench"></i>
-                <span class="link-title">Edytuj</span>
-            </a>
-            <div style="display: inline-block;">
-                {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i class="fa fa-trash"></i> Usuń</button>
-                {{ form_end(delete_form) }}
-            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('departament_edit', { 'id': departament.id }) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-wrench"></i>
+                    <span class="link-title">Edytuj</span>
+                </a>
+                <div style="display: inline-block;">
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
+                                class="fa fa-trash"></i> Usuń
+                    </button>
+                    {{ form_end(delete_form) }}
+                </div>
+            {% endif %}
         </div>
     </div>
     <!-- /.main-bar -->
@@ -42,7 +47,8 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
@@ -52,38 +58,39 @@
                             <div id="condensedTable" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Nazwa</td>
-                                            <td>{{ departament.name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Liczba pracowników</td>
-                                            <td>{{ departament.employees |length }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Liczba komputerów</td>
-                                            <td>{% set desktopsCounter = 0 %}
-                                                {% for employee in departament.employees %}
-                                                    {% set desktopsCounter = desktopsCounter + employee.desktops|length %}
-                                                {% endfor %}
-                                                {{ desktopsCounter }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Liczba licencji</td>
-                                            <td>{% set laptopsCounter = 0 %}
-                                                    {% for employee in departament.employees %}
-                                                        {% set laptopsCounter = laptopsCounter + employee.laptops|length %}
-                                                    {% endfor %}
-                                                    {{ laptopsCounter }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td>Nazwa</td>
+                                        <td>{{ departament.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Liczba pracowników</td>
+                                        <td>{{ departament.employees |length }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Liczba komputerów</td>
+                                        <td>{% set computersCounter = 0 %}
+                                            {% for employee in departament.employees %}
+                                                {% set computersCounter = computersCounter + employee.computers|length %}
+                                            {% endfor %}
+                                            {{ computersCounter }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Liczba licencji</td>
+                                        <td>{% set licensesCounter = 0 %}
+                                            {% for employee in departament.employees %}
+                                                {% set licensesCounter = licensesCounter + employee.licenses|length %}
+                                            {% endfor %}
+                                            {{ licensesCounter }}</td>
+                                    </tr>
 
-                                    </tbody>                </table>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

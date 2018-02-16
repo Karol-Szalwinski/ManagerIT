@@ -5,19 +5,19 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('sim_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('sim_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista kart SIM</span>
             </a>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_USER') %}
                 <a href="{{ path('sim_edit', { 'id': sim.id }) }}"
-                   class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
                     <i class="fa fa-wrench"></i>
                     <span class="link-title">Edytuj</span>
                 </a>
                 <div style="display: inline-block;">
                     {{ form_start(delete_form) }}
-                    <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                    <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
                                 class="fa fa-trash"></i> Usuń
                     </button>
                     {{ form_end(delete_form) }}
@@ -96,11 +96,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_USER') %}
                                         <a href="{{ path('sim_show', {'id': sim.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>

@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: 26844444_manger
+    database_user: 26844444_manger
+    database_password: CodersLab#2018
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: admin
+    mailer_password: admin
+    secret: ThisTokenIsNotSoSecretChangeIt

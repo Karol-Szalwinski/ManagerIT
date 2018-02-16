@@ -7,52 +7,54 @@
     <div class="main-bar">
         <div>
             <a href="{{ path('computer_type_index', { 'type' : computer.formFactor}) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista laptopów</span>
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('computer_edit', { 'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
             <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-cogs"></i>
                 <span class="link-title">Podzespoły bazowe</span>
             </a>
             <a href="{{ path('computer_network', { 'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-sitemap"></i>
                 <span class="link-title">Sieć</span>
             </a>
             <a href="{{ path('computer_photo', {'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
             </a>
             <a href="{{ path('computer_employees', {'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-user"></i>
                 <span class="link-title">Pracownicy</span>
             </a>
             <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-file-text"></i>
                 <span class="link-title">Programy i aplikacje</span>
             </a>
             <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-money"></i>
                 <span class="link-title">Finanse</span>
             </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline delete-confirm"><i
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline delete-confirm"><i
                             class="fa fa-trash"></i> Usuń
                 </button>
                 {{ form_end(delete_form) }}
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- /.main-bar -->
@@ -75,11 +77,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_edit', { 'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -133,11 +137,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_photo', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -187,11 +193,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_components', { 'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable2" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -301,11 +309,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_network', { 'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable3" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -361,11 +371,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_finances', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable6" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -413,11 +425,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_applications', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable5" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -467,11 +481,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('computer_employees', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable6" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>

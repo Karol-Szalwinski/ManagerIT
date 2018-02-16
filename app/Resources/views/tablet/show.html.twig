@@ -5,42 +5,44 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('tablet_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('tablet_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista tabletów</span>
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('tablet_edit', { 'id': tablet.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
             <a href="{{ path('tablet_photo', {'id': tablet.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
             </a>
             <a href="{{ path('tablet_employees', {'id': tablet.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-user"></i>
                 <span class="link-title">Pracownicy</span>
             </a>
             <a href="{{ path('tablet_finances', {'id': tablet.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-money"></i>
                 <span class="link-title">Finanse</span>
             </a>
             <a href="{{ path('tablet_sims', {'id': tablet.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-save"></i>
                 <span class="link-title">Karty SIM</span>
             </a>
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
                             class="fa fa-trash"></i> Usuń
                 </button>
                 {{ form_end(delete_form) }}
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- /.main-bar -->
@@ -110,11 +112,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('tablet_photo', {'id': tablet.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -264,11 +268,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('tablet_employees', {'id': tablet.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable6" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
@@ -313,11 +319,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('tablet_finances', { 'id': tablet.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
                                         </a>
+                                        {% endif %}
                                         <a href="#condensedTable4" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>

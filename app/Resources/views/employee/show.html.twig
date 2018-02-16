@@ -5,20 +5,22 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('employee_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('employee_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista pracowników</span>
             </a>
-            <a href="{{ path('employee_edit', { 'id': employee.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('employee_edit', { 'id': employee.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
 
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-lg inline"><i class="fa fa-trash"></i> Usuń</button>
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i class="fa fa-trash"></i> Usuń</button>
                 {{ form_end(delete_form) }}
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- /.main-bar -->

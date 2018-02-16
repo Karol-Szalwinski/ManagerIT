@@ -5,14 +5,16 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('phone_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('phone_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista telefonów</span>
             </a>
-            <a href="{{ path('phone_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('phone_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-plus"></i>
                 <span class="link-title">Dodaj</span>
             </a>
+            {% endif %}
         </div>
     </div>
     <!-- /.main-bar -->

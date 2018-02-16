@@ -5,13 +5,15 @@
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('tablet_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            <a href="{{ path('tablet_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista tabletów</span>
             </a>
-            <a href="{{ path('tablet_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-lg">
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('tablet_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-plus"></i>
                 <span class="link-title">Dodaj</span>
+            {% endif %}
             </a>
         </div>
     </div>

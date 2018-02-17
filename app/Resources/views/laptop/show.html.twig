@@ -159,13 +159,13 @@
                                     <tr>
                                         <td>
                                             {% for picture in computer.pictures %}
-                                                <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                <a href="{{ asset('pictures/' ~ picture.file) }}" target="_blank">
                                                     <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
                                                          height="200" width="200">
                                                 </a>
                                             {% else %}
                                                 {% set picture = "default.png" %}
-                                                <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <a href="{{ asset('pictures/' ~ picture) }}" target="_blank">
                                                     <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
                                                          height="200" width="200">
                                                 </a>

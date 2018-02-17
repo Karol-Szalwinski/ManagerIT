@@ -10,10 +10,10 @@
                 <span class="link-title">Lista kart SIM</span>
             </a>
             {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('sim_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj</span>
-            </a>
+                <a href="{{ path('sim_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-plus"></i>
+                    <span class="link-title">Dodaj</span>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -44,6 +44,7 @@
                                           <th>Puk</th>
                                           <th>Operator</th>
                                           <th>Urządzenie</th>
+                                          <th>Użytkownik</th>
 
                                       </thead>
                                       <tbody>
@@ -60,6 +61,30 @@
                                                   {% if sim.tablet is not null %}
                                                       {{ sim.tablet.name }}<br>
                                                   {% endif %}
+                                              </td>
+                                              <td>
+                                                  {% if sim.phone is not null %}
+                                                      {% for employee in sim.phone.employees %}
+                                                          {% if employee is not null %}
+                                                              {{ employee.name }} {{ employee.surname }}<br>
+                                                          {% else %}
+                                                              brak użytkownika<br>
+                                                          {% endif %}
+
+                                                      {% endfor %}
+                                                  {% endif %}
+
+                                                  {% if sim.tablet is not null %}
+                                                      {% for employee in sim.tablet.employees %}
+                                                          {% if employee is not null %}
+                                                              {{ employee.name }} {{ employee.surname }}<br>
+                                                          {% else %}
+                                                              brak użytkownika<br>
+                                                          {% endif %}
+
+                                                      {% endfor %}
+                                                  {% endif %}
+
                                               </td>
                                           </tr>
                                       {% endfor %}

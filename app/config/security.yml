@@ -27,10 +27,9 @@ security:
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: ROLE_ADMIN }
-        - { path: ^/resetting, role: ROLE_ADMIN }
+        - { path: ^/register, role: ROLE_SUPER_ADMIN }
+        - { path: ^/resetting, role: ROLE_SUPER_ADMIN }
         - { path: ^/user, role: ROLE_ADMIN }
-        - { path: ^/application/./, role: ROLE_ADMIN }
         - { path: ^/computer/laptop/\d*/, role: ROLE_ADMIN }
         - { path: ^/computer/laptop/\D, role: ROLE_ADMIN }
         - { path: ^/computer/desktop/\d*/, role: ROLE_ADMIN }

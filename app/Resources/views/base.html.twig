@@ -118,24 +118,27 @@
                             <i class="glyphicon glyphicon-fullscreen"></i>
                         </a>
                     </div>
-                    <div class="btn-group">
-                        <a data-placement="bottom" data-original-title="E-mail" data-toggle="tooltip"
-                           class="btn btn-default btn-sm">
+                    <div class="btn-group visible-lg-inline" >
+                        <a data-placement="bottom" data-original-title="E-mail" data-toggle="modal"
+                           class="btn btn-default btn-sm"
+                            href="#helpModal">
                             <i class="fa fa-envelope"></i>
                             <span class="label label-warning">5</span>
                         </a>
-                        <a data-placement="bottom" data-original-title="Messages" href="#" data-toggle="tooltip"
-                           class="btn btn-default btn-sm">
+                        <a data-placement="bottom" data-original-title="Messages" href="#helpModal" data-toggle="modal"
+                           class="btn btn-default btn-sm"
+                            >
                             <i class="fa fa-comments"></i>
                             <span class="label label-danger">4</span>
                         </a>
+
+                    </div>
+                    <div class="btn-group">
                         <a data-toggle="modal" data-original-title="Help" data-placement="bottom"
                            class="btn btn-default btn-sm"
                            href="#helpModal">
                             <i class="fa fa-question"></i>
                         </a>
-                    </div>
-                    <div class="btn-group">
                         <a href="{{ path('fos_user_security_logout') }}" data-toggle="tooltip"
                            data-original-title="Logout" data-placement="bottom"
                            class="btn btn-metis-1 btn-sm">
@@ -158,7 +161,46 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                     <!-- .nav -->
-
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{{ path('managerit_default_index') }}">Główna</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">Komputery</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">Laptopy</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('phone_index') }}">Telefony</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tablet_index') }}">Tablety</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sim_index') }}">SIM</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('printer_index') }}">Drukarki</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('employee_index') }}">Pracownicy</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('departament_index') }}">Działy</a>
+                        </li>
+                        {#<li class='dropdown'>#}
+                        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+                        {#Form Elements <b class="caret"></b>#}
+                        {#</a>#}
+                        {#<ul class="dropdown-menu">#}
+                        {#<li><a href="form-general.html">General</a></li>#}
+                        {#<li><a href="form-validation.html">Validation</a></li>#}
+                        {#<li><a href="form-wysiwyg.html">WYSIWYG</a></li>#}
+                        {#<li><a href="form-wizard.html">Wizard &amp; File Upload</a></li>#}
+                        {#</ul>#}
+                        {#</li>#}
+                    </ul>
                     <!-- /.nav -->
                 </div>
             </div>
@@ -445,7 +487,7 @@
 </div>
 <!-- /#wrap -->
 <footer class="Footer bg-dark dker">
-    <p>2017 &copy; Manager IT by Karol Szałwiński powered by Coders Lab</p>
+    <p>2018 &copy; Manager IT by Karol Szałwiński powered by Coders Lab</p>
 </footer>
 <!-- /#footer -->
 <!-- #helpModal -->
@@ -454,14 +496,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Manager IT</h4>
             </div>
             <div class="modal-body">
-                <p>
+                <p>Autor programu: Karol Szałwiński</p>
+                <p>Rok: 2018</p>
+                <p>Social Media:
+                <a href="https://pl.linkedin.com/in/karol-szalwinski">
+                    <i class="fa fa-linkedin"></i>
+                    <span class=" link-title">Linkedin</span>
+                </a>
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
             </div>
         </div>
         <!-- /.modal-content -->

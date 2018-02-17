@@ -78,7 +78,10 @@
                                     </tr>
                                     <tr>
                                         <th>Operator komórkowy</th>
-                                        <td>{{ sim.operator }}</td>
+                                        <td>
+                                            <img src="{{ asset('img/mobile/' ~ sim.operator ~'.png') }}" alt="Tablet"
+                                                 height="220" width="220">
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -97,11 +100,11 @@
                                 <div class="toolbar">
                                     <div class="btn-group">
                                         {% if is_granted('ROLE_USER') %}
-                                        <a href="{{ path('sim_show', {'id': sim.id }) }}"
-                                           class="btn btn-sm btn-info">
-                                            <span class="link-title">Zmień</span>
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
+                                            <a href="{{ path('sim_show', {'id': sim.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
                                         {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
@@ -139,7 +142,29 @@
                                                 {{ sim.tablet.model }}<br>
                                             {% endif %}
                                         </td>
+                                        <td>
+                                            {% if sim.phone is not null %}
+                                                {% for employee in sim.phone.employees %}
+                                                    {% if employee is not null %}
+                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                    {% else %}
+                                                        brak użytkownika<br>
+                                                    {% endif %}
 
+                                                {% endfor %}
+                                            {% endif %}
+
+                                            {% if sim.tablet is not null %}
+                                                {% for employee in sim.tablet.employees %}
+                                                    {% if employee is not null %}
+                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                    {% else %}
+                                                        brak użytkownika<br>
+                                                    {% endif %}
+
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -7,99 +7,107 @@
 "use strict";
 
 ;(function ($, Metis) {
-  "use strict";
+    "use strict";
 
-  var d2 = [[0, 3], [1, 8], [2, 5], [3, 13], [4, 1]],
-      d3 = [[0, 12], [2, 2], [3, 9], [4, 4]],
-      parabola = [],
-      parabola2 = [],
-      circle = [],
-      heartA = [],
-      bernoulliA = [],
-      human = $("#human"),
-      eye = $("#eye"),
-      bar = $("#bar"),
-      heart = $("#heart"),
-      bernoilli = $("#bernoilli");
+    var d2 = [[0, 3], [1, 8], [2, 5], [3, 13], [4, 1]],
+        d3 = [[0, 12], [2, 2], [3, 9], [4, 4]],
+        parabola = [],
+        parabola2 = [],
+        circle = [],
+        heartA = [],
+        bernoulliA = [],
+        human = $("#human"),
+        eye = $("#eye"),
+        bar = $("#bar"),
+        heart = $("#heart"),
+        bernoilli = $("#bernoilli");
 
-  function lemniscatex(i) {
-    return Math.sqrt(2) * Math.cos(i) / (Math.pow(Math.sin(i), 2) + 1);
-  }
-
-  function lemniscatey(i) {
-    return Math.sqrt(2) * Math.cos(i) * Math.sin(i) / (Math.pow(Math.sin(i), 2) + 1);
-  }
-  Metis.MetisChart = function () {
-    // Plugin check
-    if (!$().plot) {
-      throw new Error('flot plugin require form MetisChart');
-    }
-    // Human charts
-    $.plot(human, [{ data: d2, label: 'MAN' }, { data: d3, label: 'WOMAN' }], {
-      clickable: true,
-      hoverable: true,
-      series: {
-        lines: {
-          show: true,
-          fill: true,
-          fillColor: {
-            colors: [{ opacity: 0.5 }, { opacity: 0.15 }]
-          }
-        },
-        points: { show: true }
-      }
-    });
-
-    // BAR charts
-    $.plot(bar, [{
-      data: d2,
-      label: 'BAR'
-    }], {
-      clickable: true,
-      hoverable: true,
-      series: {
-        bars: { show: true, barWidth: 0.6 },
-        points: { show: true }
-      }
-    });
-
-    // EYE charts
-    for (var i = -5; i <= 5; i += 0.5) {
-      parabola.push([i, Math.pow(i, 2) - 25]);
-      parabola2.push([i, -Math.pow(i, 2) + 25]);
+    function lemniscatex(i) {
+        return Math.sqrt(2) * Math.cos(i) / (Math.pow(Math.sin(i), 2) + 1);
     }
 
-    for (var c = -2; c <= 2.1; c += 0.1) {
-      circle.push([c, Math.sqrt(400 - c * c * 100)]);
-      circle.push([c, -Math.sqrt(400 - c * c * 100)]);
+    function lemniscatey(i) {
+        return Math.sqrt(2) * Math.cos(i) * Math.sin(i) / (Math.pow(Math.sin(i), 2) + 1);
     }
 
-    $.plot(eye, [{ data: parabola2, lines: { show: true, fill: true } }, { data: parabola, lines: { show: true, fill: true } }, { data: circle, lines: { show: true } }]);
+    Metis.MetisChart = function () {
+        // Plugin check
+        if (!$().plot) {
+            throw new Error('flot plugin require form MetisChart');
+        }
+        // Human charts
+        $.plot(human, [{data: d2, label: 'MAN'}, {data: d3, label: 'WOMAN'}], {
+            clickable: true,
+            hoverable: true,
+            series: {
+                lines: {
+                    show: true,
+                    fill: true,
+                    fillColor: {
+                        colors: [{opacity: 0.5}, {opacity: 0.15}]
+                    }
+                },
+                points: {show: true}
+            }
+        });
 
-    // HEART charts
-    for (i = -2; i <= 5; i += 0.01) {
-      heartA.push([16 * Math.pow(Math.sin(i), 3), 13 * Math.cos(i) - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i)]);
-    }
-    $.plot($("#heart"), [{ data: heartA, label: '<i class="fa fa-heart"></i>', color: '#9A004D' }], {
-      series: {
-        lines: { show: true, fill: true },
-        points: { show: false }
-      },
-      yaxis: { show: true },
-      xaxis: { show: true }
-    });
-    $('#heart .legendLabel').addClass('animated pulse');
-    setInterval(function () {
-      $('#heart .legendLabel .fa.fa-heart').toggleClass('fa-2x');
-    }, 400);
+        // BAR charts
+        $.plot(bar, [{
+            data: d2,
+            label: 'BAR'
+        }], {
+            clickable: true,
+            hoverable: true,
+            series: {
+                bars: {show: true, barWidth: 0.6},
+                points: {show: true}
+            }
+        });
 
-    // BERNOILLI charts
-    for (var k = 0; k <= 2 * Math.PI; k += 0.01) {
-      bernoulliA.push([lemniscatex(k), lemniscatey(k)]);
-    }
-    $.plot($("#bernoilli"), [{ data: bernoulliA, label: 'Lemniscate of Bernoulli', lines: { show: true, fill: true } }]);
-  };
-  return Metis;
+        // EYE charts
+        for (var i = -5; i <= 5; i += 0.5) {
+            parabola.push([i, Math.pow(i, 2) - 25]);
+            parabola2.push([i, -Math.pow(i, 2) + 25]);
+        }
+
+        for (var c = -2; c <= 2.1; c += 0.1) {
+            circle.push([c, Math.sqrt(400 - c * c * 100)]);
+            circle.push([c, -Math.sqrt(400 - c * c * 100)]);
+        }
+
+        $.plot(eye, [{data: parabola2, lines: {show: true, fill: true}}, {
+            data: parabola,
+            lines: {show: true, fill: true}
+        }, {data: circle, lines: {show: true}}]);
+
+        // HEART charts
+        for (i = -2; i <= 5; i += 0.01) {
+            heartA.push([16 * Math.pow(Math.sin(i), 3), 13 * Math.cos(i) - 5 * Math.cos(2 * i) - 2 * Math.cos(3 * i) - Math.cos(4 * i)]);
+        }
+        $.plot($("#heart"), [{data: heartA, label: '<i class="fa fa-heart"></i>', color: '#9A004D'}], {
+            series: {
+                lines: {show: true, fill: true},
+                points: {show: false}
+            },
+            yaxis: {show: true},
+            xaxis: {show: true}
+        });
+        $('#heart .legendLabel').addClass('animated pulse');
+        setInterval(function () {
+            $('#heart .legendLabel .fa.fa-heart').toggleClass('fa-2x');
+        }, 400);
+
+        // BERNOILLI charts
+        for (var k = 0; k <= 2 * Math.PI; k += 0.01) {
+            bernoulliA.push([lemniscatex(k), lemniscatey(k)]);
+        }
+        $.plot($("#bernoilli"), [{
+            data: bernoulliA,
+            label: 'Lemniscate of Bernoulli',
+            lines: {show: true, fill: true}
+        }]);
+    };
+    return Metis;
 })(jQuery, Metis || {});
 'use strict';
 
@@ -121,11 +129,11 @@
         $('.dynamicsparkline').sparkline(myvalues);
 
         /* The second argument gives options such as chart type */
-        $('.dynamicbar').sparkline(myvalues, { type: 'bar', barColor: 'green' });
+        $('.dynamicbar').sparkline(myvalues, {type: 'bar', barColor: 'green'});
 
         /* Use 'html' instead of an array of values to pass options
          to a sparkline with data in the tag */
-        $('.inlinebar').sparkline('html', { type: 'bar', barColor: 'red' });
+        $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'});
 
         $(".sparkline.bar_week").sparkline([5, 6, 7, 2, 0, -4, -2, 4], {
             type: 'bar',
@@ -176,11 +184,11 @@
                 var title = prompt('Event Title:');
                 if (title) {
                     calendar.fullCalendar('renderEvent', {
-                        title: title,
-                        start: start,
-                        end: end,
-                        allDay: allDay
-                    }, true // make the event "stick"
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        }, true // make the event "stick"
                     );
                 }
                 calendar.fullCalendar('unselect');
@@ -743,9 +751,9 @@
         var hdr = {};
 
         if ($(window).width() <= 767) {
-            hdr = { left: 'title', center: 'month,agendaWeek,agendaDay', right: 'prev,today,next' };
+            hdr = {left: 'title', center: 'month,agendaWeek,agendaDay', right: 'prev,today,next'};
         } else {
-            hdr = { left: '', center: 'title', right: 'prev,today,month,agendaWeek,agendaDay,next' };
+            hdr = {left: '', center: 'title', right: 'prev,today,month,agendaWeek,agendaDay,next'};
         }
 
         var initDrag = function initDrag(e) {
@@ -832,18 +840,18 @@
 'use strict';
 
 ;(function ($) {
-  "use strict";
+    "use strict";
 
-  Metis.MetisFile = function () {
+    Metis.MetisFile = function () {
 
-    /*----------- BEGIN elfinder CODE -------------------------*/
-    var elf = $('#elfinder').elfinder({
-      url: 'assets/elfinder-2.0-rc1/php/connector.php' // connector URL (REQUIRED)
-      // lang: 'de',             // language (OPTIONAL)
-    }).elfinder('instance');
-    /*----------- END elfinder CODE -------------------------*/
-  };
-  return Metis;
+        /*----------- BEGIN elfinder CODE -------------------------*/
+        var elf = $('#elfinder').elfinder({
+            url: 'assets/elfinder-2.0-rc1/php/connector.php' // connector URL (REQUIRED)
+            // lang: 'de',             // language (OPTIONAL)
+        }).elfinder('instance');
+        /*----------- END elfinder CODE -------------------------*/
+    };
+    return Metis;
 })(jQuery);
 'use strict';
 
@@ -977,103 +985,105 @@
 })(jQuery);
 "use strict";
 
-;(function ($, Metis) {
-  if (!$().sortable) {
-    return;
-  }
-  var $sortable = $('.inner [class*=col-]');
-  Metis.metisSortable = function () {
-    $sortable.sortable({
-      placeholder: "ui-state-highlight"
-    }).disableSelection();
-  };
-  return Metis;
-})(jQuery, Metis || {});
-"use strict";
+;
+// Zakomentowana funkcja do mieszania tabelami
+// (function ($, Metis) {
+//     if (!$().sortable) {
+//         return;
+//     }
+//     var $sortable = $('.inner [class*=col-]');
+//     Metis.metisSortable = function () {
+//         $sortable.sortable({
+//             placeholder: "ui-state-highlight"
+//         }).disableSelection();
+//     };
+//     return Metis;
+// })(jQuery, Metis || {});
+// "use strict";
 
 ;(function ($) {
-  "use strict";
+    "use strict";
 
-  Metis.MetisTable = function () {
+    Metis.MetisTable = function () {
 
-    /*----------- BEGIN TABLESORTER CODE -------------------------*/
-    /* required jquery.tablesorter.min.js*/
-    $(".sortableTable").tablesorter();
-    /*----------- END TABLESORTER CODE -------------------------*/
+        /*----------- BEGIN TABLESORTER CODE -------------------------*/
+        /* required jquery.tablesorter.min.js*/
+        $(".sortableTable").tablesorter();
+        /*----------- END TABLESORTER CODE -------------------------*/
 
-    /*----------- BEGIN datatable CODE -------------------------*/
-    $('.datatable').dataTable({
-      //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
-      //         "sPaginationType": "bootstrap",
-      //         "oLanguage": {
-      //             "sLengthMenu": "Show _MENU_ entries"
-      //         }
-        "language": {
-            "lengthMenu": "Pokaż _MENU_ wierszy na stronie",
-            "zeroRecords": "Niestety nie znalazłem żadnych pozycji",
-            "info": "Strona _PAGE_ z _PAGES_",
-            "infoEmpty": "Nie ma wpisów do pokazania",
-            "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
-            "search":         "Szukaj:",
-            "paginate": {
-                "first":      "Pierwsza",
-                "last":       "Ostatnia",
-                "next":       "Następna",
-                "previous":   "Poprzednia"
-            },
-        }
-    });
-      $('#dataTable').dataTable({
-          //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
-          //         "sPaginationType": "bootstrap",
-          //         "oLanguage": {
-          //             "sLengthMenu": "Pokaż _MENU_ wpisów"
-          //         }
-          "language": {
-              "lengthMenu": "Pokaż _MENU_ wierszy na stronie",
-              "zeroRecords": "Niestety nie znalazłem żadnych pozycji",
-              "info": "Strona _PAGE_ z _PAGES_",
-              "infoEmpty": "Nie ma wpisów do pokazania",
-              "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
-              "search":         "Szukaj:",
-              "paginate": {
-                  "first":      "Pierwsza",
-                  "last":       "Ostatnia",
-                  "next":       "Następna",
-                  "previous":   "Poprzednia"
-              },
-          }
-      });
-    /*----------- END datatable CODE -------------------------*/
+        /*----------- BEGIN datatable CODE -------------------------*/
+        $('.datatable').dataTable({
+            //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
+            //         "sPaginationType": "bootstrap",
+            //         "oLanguage": {
+            //             "sLengthMenu": "Show _MENU_ entries"
+            //         }
+            "language": {
+                "lengthMenu": "Pokaż _MENU_ wierszy na stronie",
+                "zeroRecords": "Niestety nie znalazłem żadnych pozycji",
+                "info": "Strona _PAGE_ z _PAGES_",
+                "infoEmpty": "Nie ma wpisów do pokazania",
+                "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
+                "search": "Szukaj:",
+                "paginate": {
+                    "first": "Pierwsza",
+                    "last": "Ostatnia",
+                    "next": "Następna",
+                    "previous": "Poprzednia"
+                },
+            }
+        });
+        $('#dataTable').dataTable({
+            //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
+            //         "sPaginationType": "bootstrap",
+            //         "oLanguage": {
+            //             "sLengthMenu": "Pokaż _MENU_ wpisów"
+            //         }
+            "language": {
+                "lengthMenu": "Pokaż _MENU_ wierszy na stronie",
+                "zeroRecords": "Niestety nie znalazłem żadnych pozycji",
+                "info": "Strona _PAGE_ z _PAGES_",
+                "infoEmpty": "Nie ma wpisów do pokazania",
+                "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
+                "search": "Szukaj:",
+                "paginate": {
+                    "first": "Pierwsza",
+                    "last": "Ostatnia",
+                    "next": "Następna",
+                    "previous": "Poprzednia"
+                },
+            }
+        });
+        /*----------- END datatable CODE -------------------------*/
 
-    /*----------- BEGIN action table CODE -------------------------*/
-    // DEPRECATED
-    //     $('#actionTable button.remove').on('click', function() {
-    //         $(this).closest('tr').remove();
-    //     });
-    //     $('#actionTable button.edit').on('click', function() {
-    //         $('#editModal').modal({
-    //             show: true
-    //         });
-    //         var val1 = $(this).closest('tr').children('td').eq(1),
-    //                 val2 = $(this).closest('tr').children('td').eq(2),
-    //                 val3 = $(this).closest('tr').children('td').eq(3);
-    //         $('#editModal #fName').val(val1.html());
-    //         $('#editModal #lName').val(val2.html());
-    //         $('#editModal #uName').val(val3.html());
-    // 
-    // 
-    //         $('#editModal #sbmtBtn').on('click', function() {
-    //             val1.html($('#editModal #fName').val());
-    //             val2.html($('#editModal #lName').val());
-    //             val3.html($('#editModal #uName').val());
-    //         });
-    // 
-    //     });
-    /*----------- END action table CODE -------------------------*/
-  };
+        /*----------- BEGIN action table CODE -------------------------*/
+        // DEPRECATED
+        //     $('#actionTable button.remove').on('click', function() {
+        //         $(this).closest('tr').remove();
+        //     });
+        //     $('#actionTable button.edit').on('click', function() {
+        //         $('#editModal').modal({
+        //             show: true
+        //         });
+        //         var val1 = $(this).closest('tr').children('td').eq(1),
+        //                 val2 = $(this).closest('tr').children('td').eq(2),
+        //                 val3 = $(this).closest('tr').children('td').eq(3);
+        //         $('#editModal #fName').val(val1.html());
+        //         $('#editModal #lName').val(val2.html());
+        //         $('#editModal #uName').val(val3.html());
+        //
+        //
+        //         $('#editModal #sbmtBtn').on('click', function() {
+        //             val1.html($('#editModal #fName').val());
+        //             val2.html($('#editModal #lName').val());
+        //             val3.html($('#editModal #uName').val());
+        //         });
+        //
+        //     });
+        /*----------- END action table CODE -------------------------*/
+    };
 
-  return Metis;
+    return Metis;
 })(jQuery);
 "use strict";
 
@@ -1102,20 +1112,20 @@
 'use strict';
 
 ;(function ($, Metis) {
-  Metis.MetisProgress = function () {
-    var $bar = $('.progress .progress-bar');
-    $.each($bar, function () {
+    Metis.MetisProgress = function () {
+        var $bar = $('.progress .progress-bar');
+        $.each($bar, function () {
 
-      var $this = $(this);
+            var $this = $(this);
 
-      $this.animate({
-        width: $(this).attr('aria-valuenow') + '%'
-      }).popover({
-        placement: 'bottom',
-        title: 'Source',
-        content: this.outerHTML
-      });
-    });
-  };
-  return Metis;
+            $this.animate({
+                width: $(this).attr('aria-valuenow') + '%'
+            }).popover({
+                placement: 'bottom',
+                title: 'Source',
+                content: this.outerHTML
+            });
+        });
+    };
+    return Metis;
 })(jQuery, Metis);

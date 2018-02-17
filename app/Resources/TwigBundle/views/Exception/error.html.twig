@@ -1,78 +1,40 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <!--IE Compatibility modes-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--Mobile first-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>404</title>
-
-    <meta name="description" content="Free Admin Template Based On Twitter Bootstrap 3.x">
-    <meta name="author" content="">
-
-    <meta name="msapplication-TileColor" content="#5bc0de" />
-    <meta name="msapplication-TileImage" content="assets/img/metis-tile.png" />
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
-
-    <!-- Metis core stylesheet -->
-    <link rel="stylesheet" href="assets/css/main.css">
-
-    <!-- metisMenu stylesheet -->
-    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
-
-    <!-- animate.css stylesheet -->
-    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <title>Błąd nawigacji</title>
+    <link href="{{ asset('css/error.style.css') }}" rel='stylesheet' type='text/css'/>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Ravi+Prakash" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Custom Error Page Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-
-<body class="error">
-<div class="container">
-    <div class="col-lg-8 col-lg-offset-2 text-center">
-        <div class="logo">
-            <h1>404</h1>
-        </div>
-        <p class="lead text-muted">Nope, not here.</p>
-        <div class="clearfix"></div>
-        <div class="col-lg-6 col-lg-offset-3">
-            <form action="index.html">
-                <div class="input-group">
-                    <input type="text" placeholder="search ..." class="form-control">
-                    <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
-                </div>
-            </form>
-        </div>
-        <div class="clearfix"></div>
-        <div class="sr-only">
-            &nbsp;
-        </div>
-        <br>
-        <div class="col-lg-6 col-lg-offset-3">
-            <div class="btn-group btn-group-justified">
-                <a href="dashboard.html" class="btn btn-info">Return Dashboard</a>
-                <a href="index.html" class="btn btn-warning">Return Website</a>
-            </div>
-        </div>
+<body>
+<div class="top-bar-agile">
+    <div class="logo-agileits">
+        <a href="{{ path('managerit_default_index') }}"><img src="{{ asset('img/logo.png') }}" alt="Metis Logo"></a>
     </div>
-    <!-- /.col-lg-8 col-offset-2 -->
+    <div class="nav-agileinfo">
+        <ul>
+            <li><a href="{{ path('managerit_default_index') }}">Powrót na stronę główną</a></li>
+
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="content-w3">
+    <h1>Błąd</h1>
+    <h2>Coś poszło wyraźnie nie tak</h2>
+    <p>Strona której szukasz, nie istnieje. Mogłeś też popsuć internety więc lepiej wróc na stronę główną.</p>
+</div>
+<div class="footer-w3ls">
+    <p> &copy; 2016 Custom Error Page. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 </div>
 </body>
-
-</html>

@@ -430,7 +430,7 @@ class PhoneController extends Controller
         };
 
 
-        return $this->redirectToRoute('phonesims', array('id' => $phone->getId()));
+        return $this->redirectToRoute('phone_sims', array('id' => $phone->getId()));
     }
 
     /**

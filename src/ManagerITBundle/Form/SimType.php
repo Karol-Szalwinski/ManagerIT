@@ -19,7 +19,18 @@ class SimType extends AbstractType
             ->add('pin2')
             ->add('puk')
             ->add('puk2')
-            ->add('operator')
+            ->add('operator', 'choice', array(
+                'choices' => array(
+                    'Orange' => 'Orange',
+                    'Plus' => 'Plus GSM',
+                    'T-mobile' => 'T-mobile',
+                    'Play' => 'Play',
+                    'Inna' => 'Inna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz sieć',
+            ))
 
         ;
     }

@@ -97,7 +97,7 @@ class OpticalDriveController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('opticaldrive_edit', array('id' => $opticalDrive->getId()));
+            return $this->redirectToRoute('opticaldrive_show', array('id' => $opticalDrive->getId()));
         }
 
         return $this->render('opticaldrive/edit.html.twig', array(

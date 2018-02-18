@@ -45,6 +45,13 @@ class Printer
     /**
      * @var string
      *
+     * @ORM\Column(name="color", type="string", length=255)
+     */
+    private $color;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="factor", type="string", length=255)
      */
     private $factor;
@@ -518,4 +525,27 @@ class Printer
         return $this->employees->contains($employee);
     }
 
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Printer
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
 }

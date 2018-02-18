@@ -496,4 +496,37 @@ class Employee
     {
         return $this->phones;
     }
+
+    /**
+     * Add printers
+     *
+     * @param \ManagerITBundle\Entity\Printer $printers
+     * @return Employee
+     */
+    public function addPrinter(\ManagerITBundle\Entity\Printer $printers)
+    {
+        $this->printers[] = $printers;
+
+        return $this;
+    }
+
+    /**
+     * Remove printers
+     *
+     * @param \ManagerITBundle\Entity\Printer $printers
+     */
+    public function removePrinter(\ManagerITBundle\Entity\Printer $printers)
+    {
+        $this->printers->removeElement($printers);
+    }
+
+    /**
+     * Get printers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrinters()
+    {
+        return $this->printers;
+    }
 }

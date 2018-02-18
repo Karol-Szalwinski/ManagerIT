@@ -106,7 +106,7 @@ class DocumentController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('document_edit', array('id' => $document->getId()));
+            return $this->redirectToRoute('document_show', array('id' => $document->getId()));
         }
 
         return $this->render('document/edit.html.twig', array(

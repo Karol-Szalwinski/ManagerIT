@@ -7,7 +7,7 @@
         <div>
             <a href="{{ path('desktopcpu_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista procesorów desktopowych</span>
+                <span class="link-title">Lista procesorów</span>
             </a>
             <a href="{{ path('desktopcpu_show', { 'id': desktopCPU.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
@@ -31,7 +31,7 @@
                         <div class="box dark">
                             <header>
                                 <div class="icons"><i class="fa fa-edit"></i></div>
-                                <h5>Dodaj nowy procesor desktopowy</h5>
+                                <h5>Edytuj procesor</h5>
                                 <!-- .toolbar -->
                                 <div class="toolbar">
                                     <nav style="padding: 8px;">
@@ -145,7 +145,7 @@
                                 </div>
 
 
-                                <input type="submit" value="Dodaj nowy procesor" class="btn btn-primary btn-grad control-label" />
+                                <input type="submit" value="Zapisz zmiany" class="btn btn-primary btn-grad control-label" />
                                 <br>
                                 {{ form_end(edit_form) }}
                             </div>

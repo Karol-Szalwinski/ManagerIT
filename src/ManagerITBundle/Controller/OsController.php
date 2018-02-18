@@ -88,7 +88,7 @@ class OsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('os_edit', array('id' => $o->getId()));
+            return $this->redirectToRoute('os_show', array('id' => $o->getId()));
         }
 
         return $this->render('os/edit.html.twig', array(

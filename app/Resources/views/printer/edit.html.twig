@@ -73,6 +73,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    {{ form_label(edit_form.color, 'Kolor wydruku', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.color, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz kolor'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     {{ form_label(edit_form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(edit_form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}

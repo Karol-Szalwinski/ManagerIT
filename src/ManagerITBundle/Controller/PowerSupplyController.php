@@ -97,7 +97,7 @@ class PowerSupplyController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('powersupply_edit', array('id' => $powerSupply->getId()));
+            return $this->redirectToRoute('powersupply_show', array('id' => $powerSupply->getId()));
         }
 
         return $this->render('powersupply/edit.html.twig', array(

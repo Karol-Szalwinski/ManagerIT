@@ -42,10 +42,11 @@
                                         <th>Nazwa</th>
                                         <th>Typ</th>
                                         <th>Rodzaj</th>
+                                        <th>Kolor</th>
                                         <th>Model</th>
                                         <th>Producent</th>
                                         <th>S/N</th>
-                                        <th>MAC adres</th>
+
                                         <th>Adres IP</th>
                                     </tr>
                                     </thead>
@@ -55,10 +56,10 @@
                                             <td>{{ printer.name }}</td>
                                             <td>{{ printer.type }}</td>
                                             <td>{{ printer.factor }}</td>
+                                            <td>{{ printer.color }}</td>
                                             <td>{{ printer.model }}</td>
                                             <td>{{ printer.brand }}</td>
                                             <td>{{ printer.series }}</td>
-                                            <td>{{ printer.macAddress }}</td>
                                             <td>{{ printer.ipAddress }}</td>
                                         </tr>
                                     {% endfor %}

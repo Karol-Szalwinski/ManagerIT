@@ -91,7 +91,7 @@ class EmployeeController extends Controller {
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('employee_edit', array('id' => $employee->getId()));
+            return $this->redirectToRoute('employee_show', array('id' => $employee->getId()));
         }
 
         return $this->render('employee/edit.html.twig', array(

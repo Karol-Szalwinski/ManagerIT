@@ -7,7 +7,7 @@
         <div>
             <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista desktopów</span>
+                <span class="link-title">Lista laptopów</span>
             </a>
             <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
@@ -101,47 +101,40 @@
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(edit_form.powerSupply, 'Zasilacz', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(edit_form.powerSupply, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ i moc zasilacza'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group" >
                                     {{ form_label(edit_form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(edit_form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zainstalowany system'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group" >
-                                    {{ form_label(edit_form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(edit_form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group" >#}
+                                    {#{{ form_label(edit_form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                    {#<div class="col-lg-6">#}
+                                        {#{{ form_widget(edit_form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}#}
+                                    {#</div>#}
+                                {#</div>#}
 
-                                <div class="form-group" >
-                                    {{ form_label(edit_form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(edit_form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group" >#}
+                                    {#{{ form_label(edit_form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                    {#<div class="col-lg-6">#}
+                                        {#{{ form_widget(edit_form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}#}
+                                    {#</div>#}
+                                {#</div>#}
 
-                                <div class="form-group" >
-                                    {{ form_label(edit_form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(edit_form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group" >#}
+                                    {#{{ form_label(edit_form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                    {#<div class="col-lg-6">#}
+                                        {#{{ form_widget(edit_form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}#}
+                                    {#</div>#}
+                                {#</div>#}
 
-                                <div class="form-group">
-                                    {{ form_label(edit_form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                {#<div class="form-group">#}
+                                    {#{{ form_label(edit_form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
 
-                                    <div class="col-lg-3">
-                                        {{ form_widget(edit_form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
-                                    </div>
-                                </div>
+                                    {#<div class="col-lg-3">#}
+                                        {#{{ form_widget(edit_form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}#}
+                                    {#</div>#}
+                                {#</div>#}
 
                                 <input type="submit" value="Zapisz zmiany" class="btn btn-primary btn-grad control-label" />
                                 <br>

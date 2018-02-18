@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 16 Lut 2018, 16:24
+-- Czas wygenerowania: 18 Lut 2018, 14:25
 -- Wersja serwera: 5.5.55-0ubuntu0.14.04.1
 -- Wersja PHP: 5.5.9-1ubuntu4.21
 

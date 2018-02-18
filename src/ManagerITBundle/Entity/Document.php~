@@ -414,4 +414,27 @@ class Document
     {
         return $this->subject;
     }
+
+    /**
+     * Set printer
+     *
+     * @param \ManagerITBundle\Entity\Printer $printer
+     * @return Document
+     */
+    public function setPrinter(\ManagerITBundle\Entity\Printer $printer = null)
+    {
+        $this->printer = $printer;
+
+        return $this;
+    }
+
+    /**
+     * Get printer
+     *
+     * @return \ManagerITBundle\Entity\Printer 
+     */
+    public function getPrinter()
+    {
+        return $this->printer;
+    }
 }

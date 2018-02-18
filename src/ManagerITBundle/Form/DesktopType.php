@@ -32,21 +32,6 @@ class DesktopType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
             ])
-            ->add('price', NumberType::class, array (
-                'required' => true,
-                'scale' => 2,
-                'attr' => array(
-                    'min' => 0,
-                    'max' => 50000,
-                    'step' => 0.01,
-                    'placeholder' => '0.00'
-                ),
-            ))
-            ->add('purchaseDate', 'date', [
-                'widget' => 'single_text',
-                // do not render as type="date", to avoid HTML5 date pickers
-                'html5' => false,
-            ])
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
             ));

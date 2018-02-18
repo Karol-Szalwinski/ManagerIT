@@ -45,6 +45,13 @@ class Printer
     /**
      * @var string
      *
+     * @ORM\Column(name="color", type="string", length=255)
+     */
+    private $color;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="factor", type="string", length=255)
      */
     private $factor;

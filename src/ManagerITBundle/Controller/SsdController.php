@@ -98,7 +98,7 @@ class SsdController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('ssd_edit', array('id' => $ssd->getId()));
+            return $this->redirectToRoute('ssd_show', array('id' => $ssd->getId()));
         }
 
         return $this->render('ssd/edit.html.twig', array(

@@ -98,7 +98,7 @@ class DesktopCPUController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('desktopcpu_edit', array('id' => $desktopCPU->getId()));
+            return $this->redirectToRoute('desktopcpu_show', array('id' => $desktopCPU->getId()));
         }
 
         return $this->render('desktopcpu/edit.html.twig', array(

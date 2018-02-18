@@ -41,6 +41,15 @@ class PrinterType extends AbstractType
                 'multiple' => false,
                 'placeholder' => 'Wybierz typ drukarki',
             ))
+            ->add('color', ChoiceType::class, array(
+                'choices' => array(
+                    'Kolorowa' => 'Kolorowa',
+                    'Monochromatyczna' => 'Monochromatyczna',
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz możliwosci kolorowego wydruku',
+            ))
             ->add('brand', ChoiceType::class, array(
                 'choices' => array(
                     'HP' => 'HP',

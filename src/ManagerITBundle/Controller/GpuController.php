@@ -97,7 +97,7 @@ class GpuController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('gpu_edit', array('id' => $gpu->getId()));
+            return $this->redirectToRoute('gpu_show', array('id' => $gpu->getId()));
         }
 
         return $this->render('gpu/edit.html.twig', array(

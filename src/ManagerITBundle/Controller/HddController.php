@@ -96,7 +96,7 @@ class HddController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('hdd_edit', array('id' => $hdd->getId()));
+            return $this->redirectToRoute('hdd_show', array('id' => $hdd->getId()));
         }
 
         return $this->render('hdd/edit.html.twig', array(

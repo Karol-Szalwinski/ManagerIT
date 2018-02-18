@@ -98,7 +98,7 @@ class ApplicationController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('application_edit', array('id' => $application->getId()));
+            return $this->redirectToRoute('application_show', array('id' => $application->getId()));
         }
 
         return $this->render('application/edit.html.twig', array(

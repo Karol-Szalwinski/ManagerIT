@@ -94,7 +94,7 @@ class PhoneController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('phone_edit', array('id' => $phone->getId()));
+            return $this->redirectToRoute('phone_show', array('id' => $phone->getId()));
         }
 
         return $this->render('phone/edit.html.twig', array(

@@ -88,7 +88,7 @@ class NetworkInterfaceCardController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('networkinterfacecard_edit', array('id' => $networkInterfaceCard->getId()));
+            return $this->redirectToRoute('networkinterfacecard_show', array('id' => $networkInterfaceCard->getId()));
         }
 
         return $this->render('networkinterfacecard/edit.html.twig', array(

@@ -96,7 +96,7 @@ class DesktopRamController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('desktopram_edit', array('id' => $desktopRam->getId()));
+            return $this->redirectToRoute('desktopram_show', array('id' => $desktopRam->getId()));
         }
 
         return $this->render('desktopram/edit.html.twig', array(

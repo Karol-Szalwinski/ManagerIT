@@ -52,6 +52,13 @@ class Phone
     /**
      * @var string
      *
+     * @ORM\Column(name="imei", type="string", length=255)
+     */
+    private $imei;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="cpu", type="string", length=255)
      */
     private $cpu;

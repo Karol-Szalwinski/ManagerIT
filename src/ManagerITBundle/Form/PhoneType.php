@@ -18,6 +18,7 @@ class PhoneType extends AbstractType
             ->add('brand')
             ->add('model')
             ->add('serial')
+            ->add('imei')
             ->add('cpu')
             ->add('ram')
             ->add('rom')

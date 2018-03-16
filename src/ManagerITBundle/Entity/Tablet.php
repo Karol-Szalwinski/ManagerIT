@@ -52,6 +52,13 @@ class Tablet
     /**
      * @var string
      *
+     * @ORM\Column(name="imei", type="string", length=255)
+     */
+    private $imei;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="cpu", type="string", length=255)
      */
     private $cpu;
@@ -658,5 +665,28 @@ class Tablet
     public function hasSim(Sim $sim)
     {
         return $this->sims->contains($sim);
+    }
+
+    /**
+     * Set imei
+     *
+     * @param string $imei
+     * @return Tablet
+     */
+    public function setImei($imei)
+    {
+        $this->imei = $imei;
+
+        return $this;
+    }
+
+    /**
+     * Get imei
+     *
+     * @return string 
+     */
+    public function getImei()
+    {
+        return $this->imei;
     }
 }

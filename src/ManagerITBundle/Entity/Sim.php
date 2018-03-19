@@ -29,30 +29,30 @@ class Sim
     private $number;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="pin", type="integer", nullable=true)
+     * @ORM\Column(name="pin", type="string", length=10, nullable=true)
      */
     private $pin;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="pin2", type="integer", nullable=true)
+     * @ORM\Column(name="pin2", type="string", length=10, nullable=true)
      */
     private $pin2;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="puk", type="integer", nullable=true)
+     * @ORM\Column(name="puk", type="string", length=10, nullable=true)
      */
     private $puk;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="puk2", type="integer", nullable=true)
+     * @ORM\Column(name="puk2", type="string", length=10, nullable=true)
      */
     private $puk2;
 

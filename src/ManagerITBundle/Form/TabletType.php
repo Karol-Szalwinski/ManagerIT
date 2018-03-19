@@ -5,7 +5,7 @@ namespace ManagerITBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+//use ManagerITBundle\Form\FloatType;
 
 class TabletType extends AbstractType
 {
@@ -24,7 +24,13 @@ class TabletType extends AbstractType
             ->add('ram')
             ->add('rom')
             ->add('modem')
-            ->add('screenSize')
+            ->add('screenSize',FloatType::class, [
+                'attr' => [
+                    'min'  => 5,
+                    'max'  => 20,
+                    'step' => 0.05
+                ]
+            ])
             ->add('os', 'choice', array(
                 'choices' => array(
                     'Android' => 'Android',
@@ -39,7 +45,7 @@ class TabletType extends AbstractType
             ->add('description')
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
-            ));;
+            ));
     }
 
     /**

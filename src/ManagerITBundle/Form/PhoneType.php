@@ -23,7 +23,13 @@ class PhoneType extends AbstractType
             ->add('ram')
             ->add('rom')
             ->add('modem')
-            ->add('screenSize')
+            ->add('screenSize',FloatType::class, [
+                'attr' => [
+                    'min'  => 3,
+                    'max'  => 8,
+                    'step' => 0.05
+                ]
+            ])
             ->add('os', 'choice', array(
                 'choices' => array(
                     'Android' => 'Android',

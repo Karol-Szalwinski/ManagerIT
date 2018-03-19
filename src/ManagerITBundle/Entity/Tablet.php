@@ -87,7 +87,7 @@ class Tablet
     /**
      * @var int
      *
-     * @ORM\Column(name="screenSize", type="integer", nullable=true)
+     * @ORM\Column(name="screenSize", type="decimal", scale=2)
      */
     private $screenSize;
 

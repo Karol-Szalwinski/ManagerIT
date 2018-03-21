@@ -106,7 +106,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="{{ path('managerit_default_index') }}" class="navbar-brand"><img src="{{ asset('img/logo.png') }}" alt=""></a>
+                    <a href="{{ path('managerit_default_index') }}" class="navbar-brand"><img
+                                src="{{ asset('img/logo.png') }}" alt=""></a>
 
                 </header>
 
@@ -118,16 +119,16 @@
                             <i class="glyphicon glyphicon-fullscreen"></i>
                         </a>
                     </div>
-                    <div class="btn-group visible-lg-inline" >
+                    <div class="btn-group visible-lg-inline">
                         <a data-placement="bottom" data-original-title="E-mail" data-toggle="modal"
                            class="btn btn-default btn-sm"
-                            href="#helpModal">
+                           href="#helpModal">
                             <i class="fa fa-envelope"></i>
                             <span class="label label-warning">5</span>
                         </a>
                         <a data-placement="bottom" data-original-title="Messages" href="#helpModal" data-toggle="modal"
                            class="btn btn-default btn-sm"
-                            >
+                        >
                             <i class="fa fa-comments"></i>
                             <span class="label label-danger">4</span>
                         </a>
@@ -256,6 +257,7 @@
                                 <small><i class="fa fa-calendar"></i>&nbsp;{{ app.user.lastLogin |date("m-d-Y H:i:s") }}
                                 </small>
                             </li>
+                            <li>Twoje IP: {{ app.request.server.get("REMOTE_ADDR") }}</li>
                         </ul>
                     </div>
                 </div>
@@ -502,10 +504,10 @@
                 <p>Autor programu: Karol Szałwiński</p>
                 <p>Rok: 2018</p>
                 <p>Social Media:
-                <a href="https://pl.linkedin.com/in/karol-szalwinski">
-                    <i class="fa fa-linkedin"></i>
-                    <span class=" link-title">Linkedin</span>
-                </a>
+                    <a href="https://pl.linkedin.com/in/karol-szalwinski">
+                        <i class="fa fa-linkedin"></i>
+                        <span class=" link-title">Linkedin</span>
+                    </a>
                 </p>
             </div>
             <div class="modal-footer">

@@ -240,8 +240,20 @@
                                         <td>{{ tablet.color }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Karta SIM</th>
+                                        <td>
+                                            {% for sim in tablet.sims %}
+                                                {{ sim.number }}<br>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>Pin do tabletu</th>
-                                        <td>{{ tablet.pin }}</td>
+                                        <td>
+                                            {% for sim in tablet.sims %}
+                                                {{ sim.pin }}<br>
+                                            {% endfor %}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Pin do ekranu</th>

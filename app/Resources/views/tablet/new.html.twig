@@ -130,12 +130,12 @@
                                     </div>
                                 </div>
 
-                                {#<div class="form-group">#}
-                                    {#{{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-                                    {#<div class="col-lg-6">#}
-                                        {#{{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dodatkowe uwagi'} }) }}#}
-                                    {#</div>#}
-                                {#</div>#}
+                                <div class="form-group">
+                                    {{ form_label(form.pinScreen, 'Pin do ekranu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.pinScreen, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź kod oo odblokowania ekranu'} }) }}
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     {{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}

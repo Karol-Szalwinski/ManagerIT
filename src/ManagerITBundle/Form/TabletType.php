@@ -42,6 +42,7 @@ class TabletType extends AbstractType
                 'placeholder' => 'Wybierz system operacyjny',
             ))
             ->add('color')
+            ->add('pinScreen')
             ->add('description')
             ->setAttributes(array(
                 'novalidate' => 'novalidate',

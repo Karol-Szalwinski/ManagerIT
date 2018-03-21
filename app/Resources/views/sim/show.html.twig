@@ -99,13 +99,13 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        {% if is_granted('ROLE_USER') %}
-                                            <a href="{{ path('sim_show', {'id': sim.id }) }}"
-                                               class="btn btn-sm btn-info">
-                                                <span class="link-title">Zmień</span>
-                                                <i class="fa fa-wrench"></i>
-                                            </a>
-                                        {% endif %}
+                                        {#{% if is_granted('ROLE_USER') %}#}
+                                            {#<a href="{{ path('sim_show', {'id': sim.id }) }}"#}
+                                               {#class="btn btn-sm btn-info">#}
+                                                {#<span class="link-title">Zmień</span>#}
+                                                {#<i class="fa fa-wrench"></i>#}
+                                            {#</a>#}
+                                        {#{% endif %}#}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>

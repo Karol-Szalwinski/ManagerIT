@@ -87,7 +87,7 @@ class Phone
     /**
      * @var int
      *
-     * @ORM\Column(name="screenSize", type="integer", nullable=true)
+     * @ORM\Column(name="screenSize",  type="decimal", scale=2)
      */
     private $screenSize;
 
@@ -665,5 +665,28 @@ class Phone
     public function hasSim(Sim $sim)
     {
         return $this->sims->contains($sim);
+    }
+
+    /**
+     * Set imei
+     *
+     * @param string $imei
+     * @return Phone
+     */
+    public function setImei($imei)
+    {
+        $this->imei = $imei;
+
+        return $this;
+    }
+
+    /**
+     * Get imei
+     *
+     * @return string 
+     */
+    public function getImei()
+    {
+        return $this->imei;
     }
 }

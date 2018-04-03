@@ -25,7 +25,7 @@ class PhoneType extends AbstractType
             ->add('modem')
             ->add('screenSize',FloatType::class, [
                 'attr' => [
-                    'min'  => 3,
+                    'min'  => 1,
                     'max'  => 8,
                     'step' => 0.05
                 ]

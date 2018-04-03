@@ -143,7 +143,7 @@
                                                             <th>PUK</th>
                                                             <th>PIN2</th>
                                                             <th>PUK2</th>
-                                                            <th></th>
+                                                            <th>Użytkownik</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -157,6 +157,30 @@
                                                                 <td>{{ sim.puk}}</td>
                                                                 <td>{{ sim.pin2 }}</td>
                                                                 <td>{{ sim.puk2 }}</td>
+                                                                <td>
+                                                                    {% if sim.phone is not null %}
+                                                                        {% for employee in sim.phone.employees %}
+                                                                            {% if employee is not null %}
+                                                                                {{ employee.name }} {{ employee.surname }}<br>
+                                                                            {% else %}
+                                                                                brak użytkownika<br>
+                                                                            {% endif %}
+
+                                                                        {% endfor %}
+                                                                    {% endif %}
+
+                                                                    {% if sim.tablet is not null %}
+                                                                        {% for employee in sim.tablet.employees %}
+                                                                            {% if employee is not null %}
+                                                                                {{ employee.name }} {{ employee.surname }}<br>
+                                                                            {% else %}
+                                                                                brak użytkownika<br>
+                                                                            {% endif %}
+
+                                                                        {% endfor %}
+                                                                    {% endif %}
+
+                                                                </td>
                                                             </tr>
                                                         {% endfor %}
                                                         </tbody>

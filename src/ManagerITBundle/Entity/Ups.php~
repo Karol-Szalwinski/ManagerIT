@@ -87,7 +87,7 @@ class Ups
     private $pictures;
 
     /**
-     * @ORM\OneToMany(targetEntity="Document", mappedBy="tablet", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="ups", cascade={"remove"})
      */
     private $documents;
 
@@ -324,5 +324,38 @@ class Ups
     public function getPictures()
     {
         return $this->pictures;
+    }
+
+    /**
+     * Add documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     * @return Ups
+     */
+    public function addDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents[] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Remove documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     */
+    public function removeDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

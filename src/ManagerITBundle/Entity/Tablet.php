@@ -101,6 +101,13 @@ class Tablet
     /**
      * @var string
      *
+     * @ORM\Column(name="versionOs", type="string", length=255, nullable=true)
+     */
+    private $versionOs;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="pin", type="string", length=255, nullable=true)
      */
     private $pin;
@@ -688,5 +695,28 @@ class Tablet
     public function getImei()
     {
         return $this->imei;
+    }
+
+    /**
+     * Set versionOs
+     *
+     * @param string $versionOs
+     * @return Tablet
+     */
+    public function setVersionOs($versionOs)
+    {
+        $this->versionOs = $versionOs;
+
+        return $this;
+    }
+
+    /**
+     * Get versionOs
+     *
+     * @return string 
+     */
+    public function getVersionOs()
+    {
+        return $this->versionOs;
     }
 }

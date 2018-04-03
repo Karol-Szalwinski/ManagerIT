@@ -10,10 +10,10 @@
                 <span class="link-title">Lista drukarek</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('printer_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj</span>
-            </a>
+                <a href="{{ path('printer_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-plus"></i>
+                    <span class="link-title">Dodaj</span>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -46,7 +46,7 @@
                                         <th>Model</th>
                                         <th>Producent</th>
                                         <th>S/N</th>
-
+                                        <th>Użytkownik</th>
                                         <th>Adres IP</th>
                                     </tr>
                                     </thead>
@@ -60,6 +60,11 @@
                                             <td>{{ printer.model }}</td>
                                             <td>{{ printer.brand }}</td>
                                             <td>{{ printer.series }}</td>
+                                            <td>
+                                                {% for employee in printer.employees %}
+                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% endfor %}
+                                            </td>
                                             <td>{{ printer.ipAddress }}</td>
                                         </tr>
                                     {% endfor %}

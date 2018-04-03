@@ -41,6 +41,7 @@ class TabletType extends AbstractType
                 'multiple' => false,
                 'placeholder' => 'Wybierz system operacyjny',
             ))
+            ->add('versionOs')
             ->add('color')
             ->add('pinScreen')
             ->add('description')

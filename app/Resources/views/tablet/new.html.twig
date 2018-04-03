@@ -122,6 +122,12 @@
                                         {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź system operacyjny'} }) }}
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    {{ form_label(form.versionOs, 'Wersja systemu operacyjnego', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.versionOs, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź wersję'} }) }}
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     {{ form_label(form.color, 'Kolor obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}

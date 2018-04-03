@@ -241,12 +241,20 @@
                                         <td>{{ phone.color }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Pin do phoneu</th>
-                                        <td>{{ phone.pin }}</td>
+                                        <th>Karta SIM</th>
+                                        <td>
+                                            {% for sim in phone.sims %}
+                                                {{ sim.number }}<br>
+                                            {% endfor %}
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <th>Pin do ekranu</th>
-                                        <td>{{ phone.pinScreen }}</td>
+                                        <th>Pin do karty sim</th>
+                                        <td>
+                                            {% for sim in phone.sims %}
+                                                {{ sim.pin }}<br>
+                                            {% endfor %}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Uwagi</th>

@@ -49,7 +49,7 @@
                                     </thead>
                                     <tbody>
                                     {% for up in ups %}
-                                        <tr onclick='location.href = "{{ path('up_show', { 'id': up.id }) }}"'>
+                                        <tr onclick='location.href = "{{ path('ups_show', { 'id': up.id }) }}"'>
                                             <td>{{ up.name }}</td>
                                             <td>{{ up.brand }}</td>
                                             <td>{{ up.model }}</td>

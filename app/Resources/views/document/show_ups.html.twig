@@ -1,0 +1,206 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Dokument {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('ups_index') }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista zasilaczy UPS</span>
+            </a>
+            <a href="{{ path('ups_show', {'id': up.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Pokaż zasilacz UPS</span>
+            </a>
+            <a href="{{ path('ups_finances', {'id': up.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista dokumentów</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane dokumentu</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i
+                                                    class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Typ dokumentu</th>
+                                        <td>{{ document.type }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Przedmiot</th>
+                                        <td>{{ document.subject }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Numer</th>
+                                        <td>{{ document.number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Sprzedawca</th>
+                                        <td>{{ document.sellerName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telefon sprzedawcy</th>
+                                        <td>{{ document.sellerPhoneNumber }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cena zakupu</th>
+                                        <td>{{ document.price }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Data zakupu</th>
+                                        <td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+
+                </div>
+                <!-- /.row -->
+
+
+                <!-- .col-lg-10 -->
+                <div>
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-photo"></i></div>
+                            <h5>Skany PDF</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable1" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+                        <div id="condensedTable1" class="body collapse in">
+                            <table class="table table-condensed responsive-table">
+
+                                <tbody>
+                                <tr>
+                                    {% for pdf in document.pdfs %}
+                                        <td>
+                                            <a href="{{ asset('pdf/' ~ pdf.file) }}"
+                                               style="display: block; z-index: 1;">
+                                                <object data="{{ asset('pdf/' ~ pdf.file) }}"
+                                                        height="310" width="210"
+                                                        style="z-index: -1; pointer-events: none;"></object>
+                                            </a>&nbsp
+                                            <a href="{{ path('document_delete_pdf_ups', {'ups': up.id, 'document': document.id, 'pdf': pdf.id }) }}"
+                                               class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                <i class="fa fa-arrow-up "></i>
+                                                <i class="fa fa-trash-o "></i>
+                                                <span class="link-title">Usuń</span>
+                                            </a>
+                                        </td>
+                                    {% else %}
+                                        {% set picture = "defaultpdf.png" %}
+                                        <td>
+                                            <a href="{{ asset('pdf/' ~ picture) }}">
+                                                <img src="{{ asset('pdf/' ~ picture) }}" alt="PDF dokument"
+                                                     height="200" width="200">
+                                            </a>
+                                        </td>
+                                    {% endfor %}
+
+                                    Kliknij aby powiększyć
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Przycisk uruchamiający modal -->
+                        <button class="btn btn-primary btn-grad control-label" data-toggle="modal"
+                                data-target="#myModal">
+                            Dodaj nowy skan dokumentu w PDF
+                        </button>
+                    </div>
+                </div>
+                <!-- /.col-lg-6 -->
+
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Wgraj PDF z dysku</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="div-1" class="body">
+                        {{ form_start(pdf_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                        <div class="form-group">
+                            {{ form_label(pdf_form.file, 'Zdjęcie', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                            <div class="col-lg-8">
+                                {{ form_row(pdf_form.file, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Wgraj skan dokumentu w formacie pdf"
+                                   class="btn btn-primary btn-grad control-label"/>
+                            <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">
+                                Zamknij
+                            </button>
+                        </div>
+
+                        {{ form_end(pdf_form) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

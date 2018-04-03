@@ -103,6 +103,12 @@ class Document
     private $printer;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Ups", inversedBy="documents")
+     * @ORM\JoinColumn(name="ups_id", referencedColumnName="id")
+     */
+    private $ups;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=500)
@@ -436,5 +442,28 @@ class Document
     public function getPrinter()
     {
         return $this->printer;
+    }
+
+    /**
+     * Set ups
+     *
+     * @param \ManagerITBundle\Entity\Ups $ups
+     * @return Document
+     */
+    public function setUps(\ManagerITBundle\Entity\Ups $ups = null)
+    {
+        $this->ups = $ups;
+
+        return $this;
+    }
+
+    /**
+     * Get ups
+     *
+     * @return \ManagerITBundle\Entity\Ups 
+     */
+    public function getUps()
+    {
+        return $this->ups;
     }
 }

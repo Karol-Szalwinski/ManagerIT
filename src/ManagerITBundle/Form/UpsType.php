@@ -5,6 +5,7 @@ namespace ManagerITBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class UpsType extends AbstractType
 {
@@ -20,7 +21,14 @@ class UpsType extends AbstractType
             ->add('serial')
             ->add('capacity')
             ->add('estimatedWorkingTime')
-            ->add('updateBatteryDate')
+            ->add('updateBatteryDate', DateType::class, array(
+                'widget' => 'single_text',
+                'placeholder' => 'Select a value',
+                // do not render as type="date", to avoid HTML5 date pickers
+                'html5' => false,
+                // add a class that can be selected in JavaScript
+                'attr' => ['class' => 'js-datepicker'],
+            ))
         ;
     }
     

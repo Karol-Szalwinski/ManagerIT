@@ -77,6 +77,20 @@ class Ups
      */
     private $addDate;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\JoinTable(name="ups_pictures",
+     *      joinColumns={@ORM\JoinColumn(name="ups_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="picture_id", referencedColumnName="id")}
+     *      )
+     */
+    private $pictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="ups", cascade={"remove"})
+     */
+    private $documents;
+
 
     /**
      * Get id
@@ -270,5 +284,78 @@ class Ups
     public function getAddDate()
     {
         return $this->addDate;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     * @return Ups
+     */
+    public function addPicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures[] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Remove pictures
+     *
+     * @param \ManagerITBundle\Entity\Picture $pictures
+     */
+    public function removePicture(\ManagerITBundle\Entity\Picture $pictures)
+    {
+        $this->pictures->removeElement($pictures);
+    }
+
+    /**
+     * Get pictures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Add documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     * @return Ups
+     */
+    public function addDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents[] = $documents;
+
+        return $this;
+    }
+
+    /**
+     * Remove documents
+     *
+     * @param \ManagerITBundle\Entity\Document $documents
+     */
+    public function removeDocument(\ManagerITBundle\Entity\Document $documents)
+    {
+        $this->documents->removeElement($documents);
+    }
+
+    /**
+     * Get documents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
     }
 }

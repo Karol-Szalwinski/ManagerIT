@@ -696,4 +696,27 @@ class Tablet
     {
         return $this->imei;
     }
+
+    /**
+     * Set versionOs
+     *
+     * @param string $versionOs
+     * @return Tablet
+     */
+    public function setVersionOs($versionOs)
+    {
+        $this->versionOs = $versionOs;
+
+        return $this;
+    }
+
+    /**
+     * Get versionOs
+     *
+     * @return string 
+     */
+    public function getVersionOs()
+    {
+        return $this->versionOs;
+    }
 }

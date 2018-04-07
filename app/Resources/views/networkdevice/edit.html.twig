@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Edytuj urządzenie sieciowe {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('networkdevice_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista urządzeń sieciowych</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
+
+                    <div class="col-lg-8">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Edytuj urzadzenie sieciowe</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
+
+                                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.name, 'Nazwa ', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź Producenta'} }) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(edit_form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź kod modelowy'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.serial, 'S/N', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.serial, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer seryjny'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.type, 'Typ urządzenia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ urządzenia'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.location, 'Lokalizacja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.location, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź lokalizację'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.ip, 'IP', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.ip, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź IP w sieci lokalnej'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.mac, 'Adres MAC', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.mac, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC głównego interfejsu'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(edit_form.description, 'Zastosowanie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź opis'} }) }}
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Zapisz zmiany"
+                                       class="btn btn-primary btn-grad control-label"/>
+                                <br>
+                                {{ form_end(edit_form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <!----------------------------------------------------->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+{% endblock %}

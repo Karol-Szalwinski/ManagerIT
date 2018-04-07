@@ -3,6 +3,8 @@
 namespace ManagerITBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * Password
@@ -31,9 +33,15 @@ class Password
     /**
      * @var string
      *
-     * @ORM\Column(name="object", type="string", length=255)
+     * @ORM\Column(name="object", type="string", length=255, nullable=true)
      */
     private $object;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="NetworkDevice", inversedBy="passwords")
+     * @ORM\JoinColumn(name="network_device_id", referencedColumnName="id")
+     */
+    private $networkDevice;
 
     /**
      * @var string
@@ -240,5 +248,28 @@ class Password
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set networkDevice
+     *
+     * @param \ManagerITBundle\Entity\NetworkDevice $networkDevice
+     * @return Password
+     */
+    public function setNetworkDevice(\ManagerITBundle\Entity\NetworkDevice $networkDevice = null)
+    {
+        $this->networkDevice = $networkDevice;
+
+        return $this;
+    }
+
+    /**
+     * Get networkDevice
+     *
+     * @return \ManagerITBundle\Entity\NetworkDevice 
+     */
+    public function getNetworkDevice()
+    {
+        return $this->networkDevice;
     }
 }

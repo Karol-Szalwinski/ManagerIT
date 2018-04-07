@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use ManagerITBundle\Entity\Picture;
+use ManagerITBundle\Entity\Password;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Networkdevice controller.
@@ -187,4 +189,136 @@ class NetworkDeviceController extends Controller
 
         return $this->redirectToRoute('networkdevice_show', array('id' => $networkDevice->getId()));
     }
+
+    /**
+     * Finds and displays a network device passwords.
+     *
+     * @Route("/{id}/passwords", name="network_device_password")
+     * @Method("GET")
+     */
+    public function passwordsAction(NetworkDevice $networkDevice)
+    {
+
+        return $this->render('networkdevice/passwords.html.twig', array(
+            'networkDevice' => $networkDevice,
+        ));
+    }
+
+    /**
+     * Display one of network device password.
+     *
+     * @Route("/{id}/passwords/{password}", name="network_device_password_show", requirements={"password"="\d+"})
+     * @Method({"GET", "POST"})
+     */
+    public function showPasswordAction(Request $request, NetworkDevice $networkDevice, Password $password)
+    {
+
+//        $pdf = new Pdf();
+//        $pdfForm = $this->createForm('ManagerITBundle\Form\PdfType', $pdf);
+//        $pdfForm->handleRequest($request);
+//
+//        if ($pdfForm->isSubmitted() && $pdfForm->isValid()) {
+//
+//            $file = $pdf->getFile();
+//            $fileName = $this->get('app.pdf_uploader')->upload($file);
+//
+//            $pdf->setFile($fileName);
+//            $document->addPdf($pdf);
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($pdf);
+//            $em->flush();
+//
+//            return $this->redirectToRoute('tablet_document_show', array('id' => $tablet->getId(), 'document' => $document->getId()));
+//
+//        }
+        return $this->render('password/show_network_device.html.twig', array(
+            'networkDevice' => $networkDevice,
+            'password' => $password
+//            'pdf_form' => $pdfForm->createView()
+        ));
+    }
+
+
+
+    /**
+     * Creates a new password entity connected with network device.
+     *
+     * @Route("/{id}/password/new", name="network_device_password_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newPasswordAction(Request $request, NetworkDevice $networkDevice)
+    {
+        $password = new Password();
+        $form = $this->createForm('ManagerITBundle\Form\PassType', $password);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $plainPassword = $password->getPassword();
+            $encodedPassword = str_rot13(base64_encode($plainPassword));
+
+            $password->setPassword($encodedPassword);
+
+
+            $password->setNetworkDevice($networkDevice);
+            $networkDevice->addPassword($password);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($password);
+            $em->flush($password);
+
+            return $this->redirectToRoute('network_device_password', array(
+                'id' => $networkDevice->getId(),
+            ));
+        }
+
+        return $this->render('password/new.html.twig', array(
+            'password' => $networkDevice,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Edit password entity connected with network device.
+     *
+     * @Route("/{id}/password/{password}/edit", name="network_device_password_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editPasswordAction(Request $request, NetworkDevice $networkDevice, Password $password)
+    {
+        $editForm = $this->createForm('ManagerITBundle\Form\PassType', $password);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('network_device_password', array(
+                'id' => $networkDevice->getId(),
+            ));
+        }
+
+        return $this->render('password/edit.html.twig', array(
+            'password' => $password,
+            'edit_form' => $editForm->createView(),
+        ));
+    }
+
+    /**
+     * Delete password entity connected with network device.
+     *
+     * @Route("/{id}/password/{password}/delete", name="network_device_password_delete")
+     * @Method({"GET", "POST"})
+     */
+    public function deletePasswordAction(Request $request, NetworkDevice $networkDevice, Password $password)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($password);
+        $em->flush();
+
+        return $this->redirectToRoute('network_device_password', array(
+            'id' => $networkDevice->getId(),
+        ));
+    }
+
+
+
 }

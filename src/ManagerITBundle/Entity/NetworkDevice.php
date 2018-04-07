@@ -84,12 +84,6 @@ class NetworkDevice
      */
     private $description;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="passwords", type="string", length=255, nullable=true)
-     */
-    private $passwords;
 
     /**
      * @ORM\ManyToMany(targetEntity="Picture")
@@ -99,6 +93,11 @@ class NetworkDevice
      *      )
      */
     private $pictures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Password", mappedBy="networkDevice", cascade={"remove"})
+     */
+    private $passwords;
 
 
     /**
@@ -379,5 +378,28 @@ class NetworkDevice
     public function getPictures()
     {
         return $this->pictures;
+    }
+
+    /**
+     * Add passwords
+     *
+     * @param \ManagerITBundle\Entity\Password $passwords
+     * @return NetworkDevice
+     */
+    public function addPassword(\ManagerITBundle\Entity\Password $passwords)
+    {
+        $this->passwords[] = $passwords;
+
+        return $this;
+    }
+
+    /**
+     * Remove passwords
+     *
+     * @param \ManagerITBundle\Entity\Password $passwords
+     */
+    public function removePassword(\ManagerITBundle\Entity\Password $passwords)
+    {
+        $this->passwords->removeElement($passwords);
     }
 }

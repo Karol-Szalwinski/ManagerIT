@@ -1,16 +1,16 @@
 
 {% extends 'base.html.twig' %}
 
-{% block title %} Nowy dokument {% endblock %}
+{% block title %} Nowe hasło {% endblock %}
 
 {% block mainbar %}
     <div class="main-bar">
-        {#<div>#}
-            {#<a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">#}
-                {#<i class="fa fa-arrow-left"></i>#}
-                {#<span class="link-title">Lista desktopów</span>#}
-            {#</a>#}
-        {#</div>#}
+        <div>
+            <a href="{{ path('computer_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Główna</span>
+            </a>
+        </div>
     </div>
     <!-- /.main-bar -->
 {% endblock %}
@@ -28,7 +28,7 @@
                         <div class="box dark">
                             <header>
                                 <div class="icons"><i class="fa fa-edit"></i></div>
-                                <h5>Dodaj nowy dokument</h5>
+                                <h5>Dodaj nowe hasło t</h5>
                                 <!-- .toolbar -->
                                 <div class="toolbar">
                                     <nav style="padding: 8px;">
@@ -49,57 +49,53 @@
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
                                 <div class="form-group" >
-                                    {{ form_label(form.type, 'Rodzaj dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.name, 'Nazwa', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    {{ form_label(form.type, 'Rodzaj dostępu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.type, { 'attr': {'class': 'form-control'} }) }}
                                     </div>
                                 </div>
-                                <div class="form-group" >
-                                    {{ form_label(form.subject, 'Podstawa', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.subject, { 'attr': {'class': 'form-control'} }) }}
-                                    </div>
-                                </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.number, 'Numer dokumentu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.address, 'Adres dostępu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.number, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer z dokumentu'} }) }}
+                                        {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres dostępu'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.sellerName, 'Sprzedający', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.description, 'Opis', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.sellerName, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź dane sprzedawcy'} }) }}
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź opis'} }) }}
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    {{ form_label(form.login, 'Login', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.login, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź login'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
-                                    {{ form_label(form.sellerPhoneNumber, 'Telefon sprzedającego', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.password.first, 'Hasło', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.sellerPhoneNumber, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź numer telefonu przedawcy'} }) }}
+                                        {{ form_widget(form.password.first, { 'attr': {'class': 'form-control', 'placeholder': 'hasło'} }) }}
                                     </div>
                                 </div>
 
-
-                                <div class="form-group">
-                                    {{ form_label(form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-4">
-                                        {{ form_widget(form.price, { 'attr': {'class': 'form-control' } , 'type':'number'}) }}
+                                <div class="form-group" >
+                                    {{ form_label(form.password.second, 'Powtórz hasło', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.password.second, { 'attr': {'class': 'form-control', 'placeholder': 'hasło'} }) }}
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    {{ form_label(form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-
-                                    <div class="col-lg-3">
-                                        {{ form_widget(form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
-                                    </div>
-                                </div>
-
-
-                                <input type="submit" value="Dodaj nowy dokument" class="btn btn-primary btn-grad control-label" />
+                                <input type="submit" value="Dodaj nowe hasło" class="btn btn-primary btn-grad control-label" />
                                 <br>
                                 {{ form_end(form) }}
                             </div>

@@ -21,3 +21,9 @@ services:
     app.pdf_uploader:
         class: ManagerITBundle\FileUploader
         arguments: ['%pdf_directory%']
+
+    app.twig_extension:
+        class: ManagerITBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

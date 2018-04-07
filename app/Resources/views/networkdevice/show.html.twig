@@ -17,9 +17,9 @@
                 </a>
 
                 {#<a href="{{ path('networkdevice_finances', {'id': networkDevice.id }) }}"#}
-                   {#class="btn btn-metis-5 btn-grad btn-rect btn-md">#}
-                    {#<i class="fa fa-money"></i>#}
-                    {#<span class="link-title">Finanse</span>#}
+                {#class="btn btn-metis-5 btn-grad btn-rect btn-md">#}
+                {#<i class="fa fa-money"></i>#}
+                {#<span class="link-title">Finanse</span>#}
                 {#</a>#}
 
                 <div style="display: inline-block;">
@@ -192,60 +192,117 @@
                     </div>
                     <!-- /.col-lg-6 -->
 
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Dane logowania</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('network_device_password', { 'id': networkDevice.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
+                                        {% endif %}
+                                        <a href="#condensedTable4" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable6" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Dostęp</th>
+                                        <th>Adres</th>
+                                        <th>Dane logowania</th>
+                                        <th>Opis</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for password in networkDevice.passwords %}
+                                        <tr>
+                                            <td>{{ password.name }}</td>
+                                            <td>{{ password.type }}</td>
+                                            <td>{{ password.address }}</td>
+                                            <td>
+                                                <a tabindex="0" class="btn btn-sm btn-danger" role="button" data-target="#"
+                                                   data-toggle="popover" data-placement="right" data-animation="true"  data-trigger="focus"
+                                                   data-delay = '{ "show": 500, "hide": 100 }'
+                                                   data-content="Login: {{ password.login }} Hasło:{{ password.password | base64_decode }}">Pokaż</a>
+                                            </td>
+                                            <td>{{ password.description }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
 
                     {#<!-- .col-lg-6 -->#}
                     {#<div class="col-lg-6">#}
-                        {#<div class="box">#}
-                            {#<header>#}
-                                {#<div class="icons"><i class="fa fa-list"></i></div>#}
-                                {#<h5>Dane finansowe</h5>#}
+                    {#<div class="box">#}
+                    {#<header>#}
+                    {#<div class="icons"><i class="fa fa-list"></i></div>#}
+                    {#<h5>Dane finansowe</h5>#}
 
-                                {#<div class="toolbar">#}
-                                    {#<div class="btn-group">#}
-                                        {#{% if is_granted('ROLE_ADMIN') %}#}
-                                            {#<a href="{{ path('networkdevice_finances', { 'id': networkDevice.id }) }}"#}
-                                               {#class="btn btn-sm btn-info">#}
-                                                {#<span class="link-title">Zmień</span>#}
-                                                {#<i class="fa fa-wrench"></i>#}
-                                            {#</a>#}
-                                        {#{% endif %}#}
-                                        {#<a href="#condensedTable4" data-toggle="collapse"#}
-                                           {#class="btn btn-default btn-sm minimize-box">#}
-                                            {#<i class="fa fa-angle-up"></i>#}
-                                        {#</a>#}
-                                        {#<a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</header>#}
-                            {#<div id="condensedTable6" class="body collapse in">#}
-                                {#<table class="table table-condensed responsive-table">#}
-                                    {#<thead>#}
-                                    {#<tr>#}
-                                        {#<th>Typ dokumentu</th>#}
-                                        {#<th>Podmiot</th>#}
-                                        {#<th>Numer</th>#}
-                                        {#<th>Sprzedawca</th>#}
-                                        {#<th>Cena</th>#}
-                                        {#<th>Data</th>#}
-                                    {#</tr>#}
-                                    {#</thead>#}
-                                    {#<tbody>#}
+                    {#<div class="toolbar">#}
+                    {#<div class="btn-group">#}
+                    {#{% if is_granted('ROLE_ADMIN') %}#}
+                    {#<a href="{{ path('networkdevice_finances', { 'id': networkDevice.id }) }}"#}
+                    {#class="btn btn-sm btn-info">#}
+                    {#<span class="link-title">Zmień</span>#}
+                    {#<i class="fa fa-wrench"></i>#}
+                    {#</a>#}
+                    {#{% endif %}#}
+                    {#<a href="#condensedTable4" data-toggle="collapse"#}
+                    {#class="btn btn-default btn-sm minimize-box">#}
+                    {#<i class="fa fa-angle-up"></i>#}
+                    {#</a>#}
+                    {#<a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#</header>#}
+                    {#<div id="condensedTable6" class="body collapse in">#}
+                    {#<table class="table table-condensed responsive-table">#}
+                    {#<thead>#}
+                    {#<tr>#}
+                    {#<th>Typ dokumentu</th>#}
+                    {#<th>Podmiot</th>#}
+                    {#<th>Numer</th>#}
+                    {#<th>Sprzedawca</th>#}
+                    {#<th>Cena</th>#}
+                    {#<th>Data</th>#}
+                    {#</tr>#}
+                    {#</thead>#}
+                    {#<tbody>#}
 
-                                    {#{% for document in networkDevice.documents %}#}
-                                        {#<tr>#}
-                                            {#<td>{{ document.type }}</td>#}
-                                            {#<td>{{ document.subject }}</td>#}
-                                            {#<td>{{ document.number }}</td>#}
-                                            {#<td>{{ document.sellerName }}</td>#}
-                                            {#<td>{{ document.price }}</td>#}
-                                            {#<td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>#}
-                                        {#</tr>#}
-                                    {#{% endfor %}#}
+                    {#{% for document in networkDevice.documents %}#}
+                    {#<tr>#}
+                    {#<td>{{ document.type }}</td>#}
+                    {#<td>{{ document.subject }}</td>#}
+                    {#<td>{{ document.number }}</td>#}
+                    {#<td>{{ document.sellerName }}</td>#}
+                    {#<td>{{ document.price }}</td>#}
+                    {#<td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>#}
+                    {#</tr>#}
+                    {#{% endfor %}#}
 
-                                    {#</tbody>#}
-                                {#</table>#}
-                            {#</div>#}
-                        {#</div>#}
+                    {#</tbody>#}
+                    {#</table>#}
+                    {#</div>#}
+                    {#</div>#}
                     {#</div>#}
                     {#<!-- /.col-lg-6 -->#}
 
@@ -257,5 +314,18 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover(
+            );
+        });
+
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
+
+
+    </script>
 
 {% endblock %}

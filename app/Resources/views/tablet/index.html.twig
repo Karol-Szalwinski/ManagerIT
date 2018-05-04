@@ -74,13 +74,14 @@
                                                 {% if tablet.pictures is empty %}
                                                     {% set picture = "default.png" %}
                                                     <a href="{{ asset('pictures/' ~ picture) }}">
-                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Tablet"
                                                              height="40" width="40">
                                                     </a>
                                                 {% else %}
+                                                    {%  set thumb40 = tablet.pictures|first.file|replace({'.': "thumb40."}) %}
                                                     <a href="{{ asset('pictures/' ~ tablet.pictures|first.file) }}">
-                                                        <img src="{{ asset('pictures/' ~ tablet.pictures|first.file) }}"
-                                                             alt="Desktop"
+                                                        <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
+                                                             alt="Tablet"
                                                              height="40" width="40">
                                                     </a>
                                                 {% endif %}

@@ -140,13 +140,14 @@
                                         <td>
                                             {% for picture in phone.pictures %}
                                                 <a href="{{ asset('pictures/' ~ picture.file) }}" target="_blank">
-                                                    <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Tablet"
+                                                    {%  set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                    <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}" alt="Telefon"
                                                          height="200" width="200">
                                                 </a>
                                             {% else %}
                                                 {% set picture = "default.png" %}
                                                 <a href="{{ asset('pictures/' ~ picture) }}" target="_blank">
-                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Tablet"
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Telefon"
                                                          height="200" width="200">
                                                 </a>
                                             {% endfor %}

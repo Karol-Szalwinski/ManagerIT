@@ -105,8 +105,9 @@
                                                              height="40" width="40">
                                                     </a>
                                                 {% else %}
+                                                    {%  set thumb40 = computer.pictures|first.file|replace({'.': "thumb40."}) %}
                                                     <a href="{{ asset('pictures/' ~ computer.pictures|first.file) }}">
-                                                        <img src="{{ asset('pictures/' ~ computer.pictures|first.file) }}"
+                                                        <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
                                                              alt="Desktop"
                                                              height="40" width="40">
                                                     </a>

@@ -10,10 +10,10 @@
                 <span class="link-title">Lista telefonów</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('phone_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj</span>
-            </a>
+                <a href="{{ path('phone_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-plus"></i>
+                    <span class="link-title">Dodaj</span>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -74,13 +74,14 @@
                                                 {% if phone.pictures is empty %}
                                                     {% set picture = "default.png" %}
                                                     <a href="{{ asset('pictures/' ~ picture) }}">
-                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Telefon"
                                                              height="40" width="40">
                                                     </a>
                                                 {% else %}
+                                                    {% set thumb40 = phone.pictures|first.file|replace({'.': "thumb40."}) %}
                                                     <a href="{{ asset('pictures/' ~ phone.pictures|first.file) }}">
-                                                        <img src="{{ asset('pictures/' ~ phone.pictures|first.file) }}"
-                                                             alt="Desktop"
+                                                        <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
+                                                             alt="Telefon"
                                                              height="40" width="40">
                                                     </a>
                                                 {% endif %}

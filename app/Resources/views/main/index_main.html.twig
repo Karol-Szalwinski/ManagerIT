@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Manager IT {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+
+{% block body %}
+
+    <div id="content">
+        <div class="btn-group">
+
+            <a  class="btn btn-grad btn-metis-5 " href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">
+
+                <span class="fa-stack fa-8x ">
+                    <i class="fa fa-desktop fa-inverse"></i>
+
+                </span>
+                <p>Komputery </p>
+
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+                <p>Laptopy</p>
+            </a>
+            <a  class="btn btn-grad btn-metis-5" href="{{ path('phone_index') }}">
+                <span class="fa-stack fa-8x">
+                    <i class="fa fa-mobile-phone fa-inverse"></i>
+                </span>
+                <p>Telefony</p>
+            </a>
+            <a  class="btn btn-grad btn-metis-5" href="{{ path('tablet_index') }}">
+                <span class="fa-stack fa-8x">
+                    <i class="fa fa-tablet fa-inverse"></i>
+                </span>
+                <p>Tablety</p>
+            </a>
+            <a  class="btn btn-grad btn-metis-5" href="{{ path('sim_index') }}">
+                <span class="fa-stack fa-8x">
+                    <i class="fa fa-save fa-inverse"></i>
+                </span>
+                <p>SIM</p>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('license_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-file-text fa-stack-1x fa-inverse"></i>
+                </span>
+                <p>Licencje</p>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('employee_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                </span>
+                <p>Pracownicy</p>
+            </a>
+            <a class="btn btn-grad btn-metis-5" href="{{ path('departament_index') }}">
+                <span class="fa-stack fa-8x">
+
+                    <i class="fa fa-building fa-stack-1x fa-inverse"></i>
+                </span>
+                <p>Działy Firmy</p>
+            </a>
+
+        </div>
+    </div>
+    <!-- /#content -->
+{% endblock %}

@@ -28,7 +28,7 @@ class Picture
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\NotBlank(message="Proszę wgrać plik z poprawnym rozszerzeniem.")
      * @Assert\File(mimeTypes={ "image/*" })
      */
     private $file;

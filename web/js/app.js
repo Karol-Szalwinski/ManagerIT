@@ -688,7 +688,7 @@
     Metis.formWysiwyg = function () {
 
         /*----------- BEGIN wysihtml5 CODE -------------------------*/
-        $('#wysihtml5').wysihtml5();
+        $('#manageritbundle_ticket_description').wysihtml5();
         /*----------- END wysihtml5 CODE -------------------------*/
 
         /*----------- BEGIN Markdown.Editor CODE -------------------------*/

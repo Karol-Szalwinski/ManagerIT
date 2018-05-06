@@ -1,0 +1,96 @@
+{% extends 'base_ticket.html.twig' %}
+
+{% block title %} Tickety {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('ticket_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-down"></i>
+                <span class="link-title">Lista zgłoszeń</span>
+            </a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('ticket_category') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-plus"></i>
+                <span class="link-title">Dodaj nowe zgłoszenie</span>
+                {% endif %}
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!--Begin Datatables-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-file-text"></i></div>
+                                <h5>Lista ticketów</h5>
+                            </header>
+
+                            <div id="collapse456" class="body">
+
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Tytuł</th>
+
+                                        <th>Data Zgłoszenia</th>
+                                        <th>Priorytet</th>
+                                        {#<th>Enddate</th>#}
+                                        <th>Status</th>
+                                        <th>Kategoria</th>
+                                        {#<th>Application</th>#}
+                                        {#<th>Device</th>#}
+                                        {#<th>Activities</th>#}
+                                        {#<th>Documents</th>#}
+                                        <th>Zgłaszający</th>
+                                        <th>Technik Przyjmujący</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for ticket in tickets %}
+                                        <tr onclick='location.href = "{{ path('ticket_show', { 'id': ticket.id }) }}"'>
+                                            <td>
+                                                <a href="{{ path('ticket_show', { 'id': ticket.id }) }}">{{ ticket.id }}</a>
+                                            </td>
+                                            <td>{{ ticket.title }}</td>
+                                            <td>{% if ticket.addDate %}{{ ticket.addDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>Wysoki</td>
+                                            {#<td>{% if ticket.endDate %}{{ ticket.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                                            <td>{{ ticket.status.name }}</td>
+                                            <td>{%  if ticket.category is not null %}{{ ticket.category.name }} {%  endif %}</td>
+                                            {#<td>{{ ticket.application }}</td>#}
+                                            {#<td>{{ ticket.device }}</td>#}
+                                            {#<td>{{ ticket.activities }}</td>#}
+                                            {#<td>{{ ticket.documents }}</td>#}
+                                            <td>{{ ticket.requester }}</td>
+                                            <td>{{ ticket.assignedTechnican }}</td>
+                                            <td>{{ ticket.description |nl2br }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!--End Datatables-->
+            </div>
+            <!-- /.inner -->
+        </div>
+        <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base_ticket.html.twig' %}
+
+{% block title %} Nowe zgłoszenie {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            <a href="{{ path('ticket_index') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                <i class="fa fa-arrow-left"></i>
+                <span class="link-title">Lista zgłoszeń</span>
+            </a>
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#left -->
+    <div id="content">
+        <div class="outer">
+            <div class="inner bg-light lter">
+                <!-- /.row -->
+                <div class="row">
+                    <!----------------------------------------------------->
+
+                    <div class="col-lg-10">
+                        <div class="box dark">
+                            <header>
+                                <div class="icons"><i class="fa fa-edit"></i></div>
+                                <h5>Dodaj nowe zgłoszenie</h5>
+                                <!-- .toolbar -->
+                                <div class="toolbar">
+                                    <nav style="padding: 8px;">
+                                        <a href="javascript:;" class="btn btn-default btn-xs collapse-box">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-default btn-xs full-box">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs close-box">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </nav>
+                                </div>            <!-- /.toolbar -->
+                            </header>
+                            <div id="div-1" class="body">
+                                <div class="form-group">
+                                    <h5>Zgłoszenie w kategorii: {% if category.parent is not null and category.parent.parent is not null %}
+                                            {{ category.parent.parent.name }}  >> {%  endif %}{% if category.parent is not null %}
+                                            {{ category.parent.name }}  >> {%  endif %}{{ category.name }} </h5>
+                                </div>
+
+                                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+
+                                <div class="form-group">
+                                    {{ form_label(form.requester, 'Zgłaszający', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.requester, { 'attr': {'class': 'form-control', 'placeholder': 'Zgłaszający'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.device, 'Urządzenie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.device, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz urządzenie'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.application, 'Aplikacja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.application, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz aplikację'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.title, 'Tytuł', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.title, { 'attr': {'class': 'form-control', 'placeholder': 'Podaj tytuł zgłoszenia'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.description, 'Opis', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Opisz problem, który zgłaszasz'} }) }}
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <input type="submit" value="Wyślij zgłoszenie"
+                                   class="btn btn-primary btn-grad control-label"/>
+                            <br>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+                <!----------------------------------------------------->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.inner -->
+    </div>
+    <!-- /.outer -->
+    </div>
+    <!-- /#content -->
+
+
+    <script>
+
+                $(document).on('input', 'textarea', function () {
+                    $(this).outerHeight(10).outerHeight(this.scrollHeight); // 38 or '1em' -min-height
+                });
+
+
+
+    </script>
+
+{% endblock %}

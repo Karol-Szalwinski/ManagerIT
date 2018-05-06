@@ -1,0 +1,91 @@
+{% extends 'base_ticket.html.twig' %}
+
+{% block title %} Wybór kategorii {% endblock %}
+
+{% block mainbar %}
+    <div class="main-bar">
+        <div>
+            {#<a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}"#}
+            {#class="btn btn-metis-5 btn-grad btn-rect btn-md">#}
+            {#<i class="fa fa-arrow-left"></i>#}
+            {#<span class="link-title">Lista desktopów</span>#}
+            {#</a>#}
+            {#<a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}"#}
+            {#class="btn btn-metis-5 btn-grad btn-rect btn-md">#}
+            {#<i class="fa fa-arrow-left"></i>#}
+            {#<span class="link-title">Pokaż destkop</span>#}
+            {#</a>#}
+        </div>
+    </div>
+    <!-- /.main-bar -->
+{% endblock %}
+
+{% block body %}
+    <!-- /#content -->
+    <div id="content">
+
+        <!-- Modal -->
+        <div id="myModal" class="modal show" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href="{{ path('ticket_index') }}" type="button" class="close"
+                           data-dismiss="modal">&times;</a>
+
+                        <h4 class="modal-title">Wybierz kategorię zgłoszenia</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+
+
+                            <p> {% if category is not null and category.parent is not null %}{{ category.parent.name }} >> {% endif %}
+                                {% if category is not null %}{{ category.name }} {% endif %}</p>
+
+
+                            {% for category in categories %}
+                                {% if category.parent is null %}
+                                    <a class="btn btn-grad btn-metis-5 m-md"
+                                       href="{{ path('ticket_category', { 'id': category.id }) }}">
+                                <span class="fa-stack fa-4x ">
+                                    <i class="{{ category.icon }}"></i>
+                                </span>
+                                        <p>{{ category.name }}</p>
+                                    </a>
+                                {% else %}
+                                    <a class="text-left"
+                                       href="{{ path('ticket_category', { 'id': category.id }) }}">
+                                        <p>{{ category.name }}</p>
+                                    </a>
+
+
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {% if category is not null and category.parent is not null %}
+
+                            <a class="btn btn-default"
+                               href="{{ path('ticket_category', { 'id': category.parent.id }) }}">Poprzednia
+                                kategoria</a>
+                        {% elseif category is not null %}
+                            <a class="btn btn-default" href="{{ path('ticket_category', { 'id': null }) }}">Poprzednia
+                                kategoria</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /#content -->
+
+
+
+{% endblock %}

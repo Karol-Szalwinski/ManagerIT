@@ -4,6 +4,7 @@ namespace ManagerITBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -18,9 +19,24 @@ class User extends BaseUser {
      */
     protected $id;
 
+    /**
+     * One User has Many Tickets.
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="requester")
+     */
+    private $tickets;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Ticket", inversedBy="assignedTechnicans")
+     *
+     * @ORM\JoinTable(name="assignedTechnicans_tickets")
+     */
+    private $ticketsToDo;
+
     public function __construct() {
 
         parent::__construct();
+        $this->tickets = new ArrayCollection();
+        $this->enabled = 1;
     }
 
     /**
@@ -38,5 +54,6 @@ class User extends BaseUser {
 
         return $this;
     }
+
 
 }

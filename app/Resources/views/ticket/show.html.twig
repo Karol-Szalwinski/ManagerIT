@@ -63,7 +63,17 @@
                                     </tr>
                                     <tr>
                                         <th>Technik przyjmujący zgłosszenie</th>
-                                        <td>{{ ticket.assignedTechnican }}</td>
+                                        <td>
+                                            {%  for assignedTechnican in ticket.assignedTechnicans %}
+                                              {{ assignedTechnican.username }}&nbsp
+                                                {%  else %}
+                                                    <a href="{{ path('ticket_connect_technican', {'ticket' : ticket.id, 'user': app.user.id }) }}"
+                                                       class="btn btn-sm btn-info">
+                                                        <span class="link-title">Przyjmuję do realizacji</span>
+                                                        <i class="fa fa-wrench"></i>
+                                                    </a>
+                                            {% endfor %}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Status</th>
@@ -174,7 +184,7 @@
                                     </tr>
                                     <tr>
                                         <th>Opis zgłoszenia</th>
-                                        <td>{{ ticket.description }}</td>
+                                        <td>{{ ticket.description|nl2br }}</td>
                                     </tr>
 
 

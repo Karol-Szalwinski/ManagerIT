@@ -93,25 +93,27 @@ class Ticket
     private $documents;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="requester", type="string", length=255)
+     * Many Ticket have One Requester.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tickets")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $requester;
 
     /**
-     * @var string
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="ticketsToDo")
      *
-     * @ORM\Column(name="assignedTechnican", type="string", length=255, nullable=true)
      */
-    private $assignedTechnican;
+    private $assignedTechnicans;
 
     public function __construct()
     {
 
         $this->addDate = new \DateTime();
+        $this->assignedTechnicans = new \Doctrine\Common\Collections\ArrayCollection();
       
     }
+
+
 
 
 
@@ -218,29 +220,6 @@ class Ticket
     }
 
     /**
-     * Set category
-     *
-     * @param string $category
-     * @return Ticket
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set application
      *
      * @param string $application
@@ -333,52 +312,6 @@ class Ticket
     }
 
     /**
-     * Set requester
-     *
-     * @param string $requester
-     * @return Ticket
-     */
-    public function setRequester($requester)
-    {
-        $this->requester = $requester;
-
-        return $this;
-    }
-
-    /**
-     * Get requester
-     *
-     * @return string 
-     */
-    public function getRequester()
-    {
-        return $this->requester;
-    }
-
-    /**
-     * Set assignedTechnican
-     *
-     * @param string $assignedTechnican
-     * @return Ticket
-     */
-    public function setAssignedTechnican($assignedTechnican)
-    {
-        $this->assignedTechnican = $assignedTechnican;
-
-        return $this;
-    }
-
-    /**
-     * Get assignedTechnican
-     *
-     * @return string 
-     */
-    public function getAssignedTechnican()
-    {
-        return $this->assignedTechnican;
-    }
-
-    /**
      * Set status
      *
      * @param \ManagerITBundle\Entity\Status $status
@@ -399,5 +332,89 @@ class Ticket
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \ManagerITBundle\Entity\Category $category
+     * @return Ticket
+     */
+    public function setCategory(\ManagerITBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \ManagerITBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set requester
+     *
+     * @param \ManagerITBundle\Entity\User $requester
+     * @return Ticket
+     */
+    public function setRequester(\ManagerITBundle\Entity\User $requester = null)
+    {
+        $this->requester = $requester;
+
+        return $this;
+    }
+
+    /**
+     * Get requester
+     *
+     * @return \ManagerITBundle\Entity\User 
+     */
+    public function getRequester()
+    {
+        return $this->requester;
+    }
+
+    /**
+     * Add assignedTechnicans
+     *
+     * @param \ManagerITBundle\Entity\User $assignedTechnicans
+     * @return Ticket
+     */
+    public function addAssignedTechnican(\ManagerITBundle\Entity\User $assignedTechnican)
+    {
+        $this->assignedTechnicans[] = $assignedTechnican;
+
+        return $this;
+    }
+
+    /**
+     * Remove assignedTechnicans
+     *
+     * @param \ManagerITBundle\Entity\User $assignedTechnicans
+     */
+    public function removeAssignedTechnican(\ManagerITBundle\Entity\User $assignedTechnican)
+    {
+        $this->assignedTechnicans->removeElement($assignedTechnican);
+    }
+
+    /**
+     * Get assignedTechnicans
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAssignedTechnicans()
+    {
+        return $this->assignedTechnicans;
+    }
+
+    public function hasAssignedTechnican(User $assignedTechnican)
+    {
+        return $this->assignedTechnicans->contains($assignedTechnican);
     }
 }

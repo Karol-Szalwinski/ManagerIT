@@ -16,12 +16,18 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('requester')
+            ->add('requester', EntityType::class, [
+                'class' => 'ManagerITBundle:User',
+                'choice_label' => 'username',
+                'multiple' => false,
+//                'disabled' => true,
+//                'attr' => ['readonly' => 'readonly']
+            ])
             ->add('title')
             ->add('description')
-            ->add('application')
-            ->add('device')
-            ->add('status', HiddenType::class)
+//            ->add('application')
+//            ->add('device')
+//            ->add('status', HiddenType::class)
 //            ->add('status', EntityType::class, [
 //                'class' => 'ManagerITBundle:Status',
 //                'choice_label' => 'name',

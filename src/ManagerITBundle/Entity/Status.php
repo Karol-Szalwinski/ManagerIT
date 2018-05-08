@@ -24,9 +24,18 @@ class Status
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=25)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=25)
+     */
+    private $color;
+
+
 
 
     /**
@@ -60,5 +69,28 @@ class Status
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Status
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

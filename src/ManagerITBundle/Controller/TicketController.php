@@ -4,6 +4,8 @@ namespace ManagerITBundle\Controller;
 
 use ManagerITBundle\Entity\Ticket;
 use ManagerITBundle\Entity\Category;
+use ManagerITBundle\Entity\User;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,12 +47,11 @@ class TicketController extends Controller
         $em = $this->getDoctrine()->getManager();
         if ($id == null) {
             $category = null;
-            $categories =  $em->getRepository('ManagerITBundle:Category')->findByParent(null);
-        }
-//
+            $categories = $em->getRepository('ManagerITBundle:Category')->findByParent(null);
+        } //
         else {
             $category = $em->getRepository('ManagerITBundle:Category')->findOneById($id);
-            $categories =  $em->getRepository('ManagerITBundle:Category')->findByParent($category);
+            $categories = $em->getRepository('ManagerITBundle:Category')->findByParent($category);
 
             if (empty($categories)) {
                 return $this->redirectToRoute('ticket_new', array('category' => $id));
@@ -72,12 +73,16 @@ class TicketController extends Controller
      */
     public function newAction(Request $request, Category $category)
     {
+        $session = $request->getSession();
         $ticket = new Ticket();
+        $ticket->setRequester($this->getUser());
         $form = $this->createForm('ManagerITBundle\Form\TicketType', $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            if (!$this->getUser()->hasRole('ROLE_ADMIN')) {
+                $ticket->setRequester($this->getUser());
+            }
             $em = $this->getDoctrine()->getManager();
             $newStatus = $em->getRepository('ManagerITBundle:Status')->findOneById(1);
             $ticket->setStatus($newStatus);
@@ -168,8 +173,46 @@ class TicketController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('ticket_delete', array('id' => $ticket->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
+
+    /**
+     * Action to connect ticket to user
+     *
+     * @Route("/{ticket}/connecttechnican/{user}", name="ticket_connect_technican")
+     * @Method("GET")
+     */
+    public
+    function ticketConnectTechnicanAction( Ticket $ticket, User $user)
+
+    {
+        $em = $this->getDoctrine()->getManager();
+        if (!$ticket->hasAssignedTechnican($user)) {
+
+            $ticket->addAssignedTechnican($user);
+            $user->addTicketsToDo($ticket);
+
+            $em->flush();
+        };
+
+
+        return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+    }
+//
+//    /**
+//     * Ticket disconnect User
+//     * @Route("/{ticket}/removeuser/{user}", name="ticket_remove_user")
+//     * @Method("GET")
+//     */
+//    public
+//    function ticketRemoveUserAction(Ticket $ticket, User $user)
+//    {
+//
+//        $ticket->removeAssignedTechnican($user);
+//        $user->removeTicketToDo($ticket);
+//        $this->getDoctrine()->getManager()->flush();
+//
+//        return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+//    }
 
 }

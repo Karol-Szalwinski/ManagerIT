@@ -45,45 +45,50 @@
                             </header>
                             <div id="div-1" class="body">
                                 <div class="form-group">
-                                    <h5>Zgłoszenie w kategorii: {% if category.parent is not null and category.parent.parent is not null %}
-                                            {{ category.parent.parent.name }}  >> {%  endif %}{% if category.parent is not null %}
-                                            {{ category.parent.name }}  >> {%  endif %}{{ category.name }} </h5>
+                                    <h5 class="text-center">Zgłoszenie w
+                                        kategorii: {% if category.parent is not null and category.parent.parent is not null %}
+                                            {{ category.parent.parent.name }}  >> {% endif %}{% if category.parent is not null %}
+                                            {{ category.parent.name }}  >> {% endif %}{{ category.name }} </h5>
                                 </div>
 
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
                                 <div class="form-group">
-                                    {{ form_label(form.requester, 'Zgłaszający', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.requester, 'Zgłaszający', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.requester, { 'attr': {'class': 'form-control', 'placeholder': 'Zgłaszający'} }) }}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            {{ form_widget(form.requester, { 'attr': {'class': 'form-control', 'placeholder': 'Zgłaszający'} }) }}
+                                        {% else %}
+                                            {{ form_widget(form.requester, { 'attr': {'class': 'form-control', 'placeholder': 'Zgłaszający', 'disabled ': 'disabled'} }) }}
+                                        {% endif %}
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    {{ form_label(form.device, 'Urządzenie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.device, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz urządzenie'} }) }}
-                                    </div>
-                                </div>
+                                {#<div class="form-group">#}
+                                {#{{ form_label(form.device, 'Urządzenie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                {#<div class="col-lg-6">#}
+                                {#{{ form_widget(form.device, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz urządzenie'} }) }}#}
+                                {#</div>#}
+                                {#</div>#}
+
+                                {#<div class="form-group">#}
+                                {#{{ form_label(form.application, 'Aplikacja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
+                                {#<div class="col-lg-6">#}
+                                {#{{ form_widget(form.application, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz aplikację'} }) }}#}
+                                {#</div>#}
+                                {#</div>#}
 
                                 <div class="form-group">
-                                    {{ form_label(form.application, 'Aplikacja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.application, { 'attr': {'class': 'form-control', 'placeholder': 'Wybierz aplikację'} }) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    {{ form_label(form.title, 'Tytuł', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
+                                    {{ form_label(form.title, 'Tytuł', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                                    <div class="col-lg-8">
                                         {{ form_widget(form.title, { 'attr': {'class': 'form-control', 'placeholder': 'Podaj tytuł zgłoszenia'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.description, 'Opis', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                    <div class="col-lg-6">
-                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control', 'placeholder': 'Opisz problem, który zgłaszasz'} }) }}
+                                    {{ form_label(form.description, 'Opis', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                                    <div class="col-lg-8">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control text-area-res', 'rows' : 10, 'max-rows': 30, 'maxlength': 2000, 'placeholder': 'Opisz problem, który zgłaszasz'} }) }}
                                     </div>
                                 </div>
 
@@ -109,12 +114,50 @@
 
 
     <script>
+        $(function () {
+            $('textarea[max-rows]').each(function () {
+                var textarea = $(this);
 
-                $(document).on('input', 'textarea', function () {
-                    $(this).outerHeight(10).outerHeight(this.scrollHeight); // 38 or '1em' -min-height
-                });
+                var minRows = Number(textarea.attr('rows'));
+                var maxRows = Number(textarea.attr('max-rows'));
 
+                // clone the textarea and hide it offscreen
+                // TODO: copy all the styles
+                var textareaClone = $('<textarea/>', {
+                    rows: minRows,
+                    maxRows: maxRows,
+                    class: textarea.attr('class')
+                }).css({
+                    position: 'absolute',
+                    left: -$(document).width() * 2
+                }).insertAfter(textarea);
 
+                var textareaCloneNode = textareaClone.get(0);
+
+                textarea.on('input', function () {
+                    // copy the input from the real textarea
+                    textareaClone.val(textarea.val());
+
+                    // set as small as possible to get the real scroll height
+                    textareaClone.attr('rows', 1);
+
+                    // save the real scroll height
+                    var scrollHeight = textareaCloneNode.scrollHeight;
+
+                    // increase the number of rows until the content fits
+                    for (var rows = minRows; rows < maxRows; rows++) {
+                        textareaClone.attr('rows', rows);
+
+                        if (textareaClone.height() > scrollHeight) {
+                            break;
+                        }
+                    }
+
+                    // copy the rows value back to the real textarea
+                    textarea.attr('rows', textareaClone.attr('rows'));
+                }).trigger('input');
+            });
+        });
 
     </script>
 

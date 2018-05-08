@@ -9,7 +9,7 @@
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista zgłoszeń</span>
             </a>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_USER') %}
             <a href="{{ path('ticket_category') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-plus"></i>
                 <span class="link-title">Dodaj nowe zgłoszenie</span>
@@ -47,19 +47,19 @@
                                         <th>Priorytet</th>
                                         {#<th>Enddate</th>#}
                                         <th>Status</th>
-                                        <th>Kategoria</th>
+                                        {#<th>Kategoria</th>#}
                                         {#<th>Application</th>#}
                                         {#<th>Device</th>#}
                                         {#<th>Activities</th>#}
                                         {#<th>Documents</th>#}
                                         <th>Zgłaszający</th>
-                                        <th>Technik Przyjmujący</th>
+                                        <th>Przyjmujący</th>
                                         <th>Description</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for ticket in tickets %}
-                                        <tr onclick='location.href = "{{ path('ticket_show', { 'id': ticket.id }) }}"'>
+                                        <tr class="{{ ticket.status.color }}" onclick='location.href = "{{ path('ticket_show', { 'id': ticket.id }) }}"'>
                                             <td>
                                                 <a href="{{ path('ticket_show', { 'id': ticket.id }) }}">{{ ticket.id }}</a>
                                             </td>
@@ -68,14 +68,18 @@
                                             <td>Wysoki</td>
                                             {#<td>{% if ticket.endDate %}{{ ticket.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>#}
                                             <td>{{ ticket.status.name }}</td>
-                                            <td>{%  if ticket.category is not null %}{{ ticket.category.name }} {%  endif %}</td>
+                                            {#<td>{%  if ticket.category is not null %}{{ ticket.category.name }} {%  endif %}</td>#}
                                             {#<td>{{ ticket.application }}</td>#}
                                             {#<td>{{ ticket.device }}</td>#}
                                             {#<td>{{ ticket.activities }}</td>#}
                                             {#<td>{{ ticket.documents }}</td>#}
-                                            <td>{{ ticket.requester }}</td>
-                                            <td>{{ ticket.assignedTechnican }}</td>
-                                            <td>{{ ticket.description |nl2br }}</td>
+                                            <td>{{ ticket.requester.username }}</td>
+                                            <td>
+                                                {%  for assignedTechnican in ticket.assignedTechnicans %}
+                                                    {{ assignedTechnican.username }}
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{ ticket.description |slice(0, 200) }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

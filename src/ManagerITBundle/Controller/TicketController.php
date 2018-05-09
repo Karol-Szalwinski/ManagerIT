@@ -5,6 +5,7 @@ namespace ManagerITBundle\Controller;
 use ManagerITBundle\Entity\Ticket;
 use ManagerITBundle\Entity\Category;
 use ManagerITBundle\Entity\User;
+use ManagerITBundle\Entity\Activity;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -73,7 +74,6 @@ class TicketController extends Controller
      */
     public function newAction(Request $request, Category $category)
     {
-        $session = $request->getSession();
         $ticket = new Ticket();
         $ticket->setRequester($this->getUser());
         $form = $this->createForm('ManagerITBundle\Form\TicketType', $ticket);
@@ -104,17 +104,84 @@ class TicketController extends Controller
      * Finds and displays a ticket entity.
      *
      * @Route("/{id}", name="ticket_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(Ticket $ticket)
+    public function showAction(Request $request, Ticket $ticket)
     {
+
         $deleteForm = $this->createDeleteForm($ticket);
+        $activity = new Activity();
+        $activity->setStatus($ticket->getStatus());
+
+        $form = $this->createForm('ManagerITBundle\Form\ActivityType', $activity);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && !empty($ticket->getActivities())) {
+            $em = $this->getDoctrine()->getManager();
+
+            $ticket->addActivity($activity);
+            $ticket->setStatus($activity->getStatus());
+//            $ticket->addAssignedTechnican($user);
+
+            $activity->setTicket($ticket);
+            $activity->setUser($this->getUser());
+
+            $em->persist($activity);
+            $em->flush();
+
+            return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+        }
 
         return $this->render('ticket/show.html.twig', array(
             'ticket' => $ticket,
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
+            'delete_form' => $deleteForm->createView()
         ));
+
     }
+
+    /**
+     * Ticket set first activity.
+     *
+     * @Route("/{id}/first", name="ticket_first_activity")
+     * @Method({"GET"})
+     */
+    public function firstActivityAction(Request $request, Ticket $ticket)
+    {
+
+        if ($ticket->getActivities()->isEmpty()) {
+
+            $activity = new Activity();
+
+            $em = $this->getDoctrine()->getManager();
+            $statusWorking = $em->getRepository('ManagerITBundle:Status')->findOneById(2);
+            $user = $em->getRepository('ManagerITBundle:User')->findOneById($this->getUser()->getId());
+            $ticket->addActivity($activity);
+
+            if (!$ticket->hasAssignedTechnican($user)) {
+
+                $ticket->addAssignedTechnican($user);
+                $user->addTicketsToDo($ticket);
+
+            };
+
+            $ticket->setStatus($statusWorking);
+
+
+            $activity->setTicket($ticket);
+            $activity->setUser($this->getUser());
+            $activity->setStatus($statusWorking);
+            $activity->setMessage('Zgłoszenie zostało przyjęte');
+
+            $em->persist($activity);
+            $em->flush();
+
+
+        }
+
+        return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
+    }
+
 
     /**
      * Displays a form to edit an existing ticket entity.
@@ -183,7 +250,7 @@ class TicketController extends Controller
      * @Method("GET")
      */
     public
-    function ticketConnectTechnicanAction( Ticket $ticket, User $user)
+    function ticketConnectTechnicanAction(Ticket $ticket, User $user)
 
     {
         $em = $this->getDoctrine()->getManager();
@@ -214,5 +281,6 @@ class TicketController extends Controller
 //
 //        return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
 //    }
+
 
 }

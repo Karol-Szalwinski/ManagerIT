@@ -49,7 +49,7 @@ class Ticket
      */
     private $endDate;
 
-  
+
     /**
      * @ORM\ManyToOne(targetEntity="Status")
      *
@@ -79,9 +79,8 @@ class Ticket
     private $device;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="activities", type="string", length=255, nullable=true))
+     * One Ticket has Many Activities.
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="ticket")
      */
     private $activities;
 
@@ -110,17 +109,15 @@ class Ticket
 
         $this->addDate = new \DateTime();
         $this->assignedTechnicans = new \Doctrine\Common\Collections\ArrayCollection();
-      
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
-
-
-
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -143,7 +140,7 @@ class Ticket
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -166,7 +163,7 @@ class Ticket
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -189,7 +186,7 @@ class Ticket
     /**
      * Get addDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getAddDate()
     {
@@ -212,7 +209,7 @@ class Ticket
     /**
      * Get endDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -235,7 +232,7 @@ class Ticket
     /**
      * Get application
      *
-     * @return string 
+     * @return string
      */
     public function getApplication()
     {
@@ -258,7 +255,7 @@ class Ticket
     /**
      * Get device
      *
-     * @return string 
+     * @return string
      */
     public function getDevice()
     {
@@ -281,7 +278,7 @@ class Ticket
     /**
      * Get activities
      *
-     * @return string 
+     * @return string
      */
     public function getActivities()
     {
@@ -304,7 +301,7 @@ class Ticket
     /**
      * Get documents
      *
-     * @return string 
+     * @return string
      */
     public function getDocuments()
     {
@@ -327,7 +324,7 @@ class Ticket
     /**
      * Get status
      *
-     * @return \ManagerITBundle\Entity\Status 
+     * @return \ManagerITBundle\Entity\Status
      */
     public function getStatus()
     {
@@ -350,7 +347,7 @@ class Ticket
     /**
      * Get category
      *
-     * @return \ManagerITBundle\Entity\Category 
+     * @return \ManagerITBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -373,7 +370,7 @@ class Ticket
     /**
      * Get requester
      *
-     * @return \ManagerITBundle\Entity\User 
+     * @return \ManagerITBundle\Entity\User
      */
     public function getRequester()
     {
@@ -406,7 +403,7 @@ class Ticket
     /**
      * Get assignedTechnicans
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAssignedTechnicans()
     {
@@ -416,5 +413,28 @@ class Ticket
     public function hasAssignedTechnican(User $assignedTechnican)
     {
         return $this->assignedTechnicans->contains($assignedTechnican);
+    }
+
+    /**
+     * Add activities
+     *
+     * @param \ManagerITBundle\Entity\Activity $activities
+     * @return Ticket
+     */
+    public function addActivity(\ManagerITBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \ManagerITBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\ManagerITBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
     }
 }

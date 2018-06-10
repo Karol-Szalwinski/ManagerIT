@@ -81,6 +81,8 @@
                                             </td>
                                             <td>{{ ticket.description |slice(0, 200) }}</td>
                                         </tr>
+                                        {% else %}
+                                        Brak zgłoszeń
                                     {% endfor %}
                                     </tbody>
                                 </table>

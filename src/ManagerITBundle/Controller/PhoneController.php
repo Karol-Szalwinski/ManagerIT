@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use ManagerITBundle\Entity\Picture;
-use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\User;
 use ManagerITBundle\Entity\Document;
 use ManagerITBundle\Entity\Pdf;
 use ManagerITBundle\Entity\Sim;
@@ -193,62 +193,62 @@ class PhoneController extends Controller
     }
 
     /**
-     * Finds and displays a phone employees.
+     * Finds and displays a phone users.
      *
-     * @Route("/{id}/employees", name="phone_employees")
+     * @Route("/{id}/users", name="phone_users")
      * @Method("GET")
      */
-    public function employeesAction(Phone $phone)
+    public function usersAction(Phone $phone)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+        $allUsers = $em->getRepository('ManagerITBundle:User')->findAll();
 
-        foreach ($allEmployees as $key => $employee) {
-            if ($phone->hasEmployee($employee)) {
-                unset($allEmployees[$key]);
+        foreach ($allUsers as $key => $user) {
+            if ($phone->hasUser($user)) {
+                unset($allUsers[$key]);
             }
         }
 
-        return $this->render('phone/employees.html.twig', array(
+        return $this->render('phone/users.html.twig', array(
             'phone' => $phone,
-            'employees' => $allEmployees,
+            'users' => $allUsers,
         ));
     }
 
     /**
-     * Action to connect phone to employee
+     * Action to connect phone to user
      *
-     * @Route("/{phone}/connectemployee/{employee}", name="phone_connect_employee")
+     * @Route("/{phone}/connectuser/{user}", name="phone_connect_user")
      * @Method("GET")
      */
     public
-    function phoneConnectEmployeeAction(Request $request, Phone $phone, Employee $employee)
+    function phoneConnectUserAction(Request $request, Phone $phone, User $user)
     {
-        if (!$phone->hasEmployee($employee)) {
-            $phone->addEmployee($employee);
-            $employee->addPhone($phone);
+        if (!$phone->hasUser($user)) {
+            $phone->addUser($user);
+            $user->addPhone($phone);
             $this->getDoctrine()->getManager()->flush();
         };
 
 
-        return $this->redirectToRoute('phone_employees', array('id' => $phone->getId()));
+        return $this->redirectToRoute('phone_users', array('id' => $phone->getId()));
     }
 
     /**
-     * Phone disconnect Employee
-     * @Route("/{phone}/removeemployee/{employee}", name="phone_remove_employee")
+     * Phone disconnect User
+     * @Route("/{phone}/removeuser/{user}", name="phone_remove_user")
      * @Method("GET")
      */
     public
-    function phoneRemoveEmployeeAction(Phone $phone, Employee $employee)
+    function phoneRemoveUserAction(Phone $phone, User $user)
     {
 
-        $phone->removeEmployee($employee);
-        $employee->removePhone($phone);
+        $phone->removeUser($user);
+        $user->removePhone($phone);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('phone_employees', array('id' => $phone->getId()));
+        return $this->redirectToRoute('phone_users', array('id' => $phone->getId()));
     }
 
     /**

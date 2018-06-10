@@ -43,7 +43,6 @@
                                         <th>Imię</th>
                                         <th>Nazwisko</th>
                                         <th>Stanowisko</th>
-                                        <th>Dział</th>
                                         <th>Telefon</th>
                                         <th>Email</th>
                                         <th>Sprzęt</th>
@@ -55,22 +54,10 @@
                                             <td>{{ employee.name }}</td>
                                             <td>{{ employee.surname }}</td>
                                             <td>{{ employee.job }}</td>
-                                            <td>{{ employee.departament.name }}</td>
                                             <td>{{ employee.phone }}</td>
                                             <td>{{ employee.email }}</td>
                                             <td>
-                                                {% for computer in employee.computers %}
-                                                    Komputer | {{ computer.name }} -{{ computer.model }}<br>
-                                                {% endfor %}
-                                                {% for tablet in employee.tablets %}
-                                                    Tablet | {{ tablet.name }} - {{ tablet.model }}<br>
-                                                {% endfor %}
-                                                {% for phone in employee.phones %}
-                                                    Telefon | {{ phone.name }} - {{ phone.model }}<br>
-                                                {% endfor %}
-                                                {% for printer in employee.printers %}
-                                                    Drukarka| {{ printer.name }} - {{ printer.model }}<br>
-                                                {% endfor %}
+
                                             </td>
                                         </tr>
                                     {% endfor %}

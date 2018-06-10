@@ -151,6 +151,13 @@ class Computer
     private $licenses;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="computers")
+     *
+     * @ORM\JoinTable(name="users_computers")
+     */
+    private $users;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="computers")
      *
      * @ORM\JoinTable(name="employees_computers")
@@ -603,26 +610,26 @@ class Computer
     }
 
     /**
-     * Set employees
+     * Set users
      *
-     * @param string $employees
+     * @param string $users
      * @return Computer
      */
-    public function setEmployees($employees)
+    public function setUsers($users)
     {
-        $this->employees = $employees;
+        $this->users = $users;
 
         return $this;
     }
 
     /**
-     * Get employees
+     * Get users
      *
      * @return string
      */
-    public function getEmployees()
+    public function getUsers()
     {
-        return $this->employees;
+        return $this->users;
     }
 
     /**
@@ -703,7 +710,7 @@ class Computer
         $this->storageControllers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
@@ -839,31 +846,31 @@ class Computer
     }
 
     /**
-     * Add employees
+     * Add users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      * @return Computer
      */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function addUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees[] = $employees;
+        $this->users[] = $users;
 
         return $this;
     }
 
-    public function hasEmployee(Employee $employee)
+    public function hasUser(User $user)
     {
-        return $this->employees->contains($employee);
+        return $this->users->contains($user);
     }
 
     /**
-     * Remove employees
+     * Remove users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function removeUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees->removeElement($employees);
+        $this->users->removeElement($users);
     }
 
 
@@ -1018,5 +1025,38 @@ class Computer
     public function getInstalledApplications()
     {
         return $this->installedApplications;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Computer
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
     }
 }

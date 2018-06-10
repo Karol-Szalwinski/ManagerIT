@@ -120,6 +120,13 @@ class Printer
     private $documents;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="printers")
+     *
+     * @ORM\JoinTable(name="users_printers")
+     */
+    private $users;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="printers")
      *
      * @ORM\JoinTable(name="employees_printers")
@@ -131,7 +138,7 @@ class Printer
 //        $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -488,41 +495,41 @@ class Printer
     }
 
     /**
-     * Add employees
+     * Add users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      * @return Printer
      */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function addUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees[] = $employees;
+        $this->users[] = $users;
 
         return $this;
     }
 
     /**
-     * Remove employees
+     * Remove users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function removeUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees->removeElement($employees);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get employees
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getEmployees()
+    public function getUsers()
     {
-        return $this->employees;
+        return $this->users;
     }
 
-    public function hasEmployee(Employee $employee)
+    public function hasUser(User $user)
     {
-        return $this->employees->contains($employee);
+        return $this->users->contains($user);
     }
 
 

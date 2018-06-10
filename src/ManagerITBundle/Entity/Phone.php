@@ -128,6 +128,13 @@ class Phone
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="phones")
+     *
+     * @ORM\JoinTable(name="users_phones")
+     */
+    private $users;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="phones")
      *
      * @ORM\JoinTable(name="employees_phones")
@@ -166,7 +173,7 @@ class Phone
         $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -526,41 +533,41 @@ class Phone
     }
 
     /**
-     * Add employees
+     * Add users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      * @return Phone
      */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function addUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees[] = $employees;
+        $this->users[] = $users;
 
         return $this;
     }
 
     /**
-     * Remove employees
+     * Remove users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function removeUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees->removeElement($employees);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get employees
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getEmployees()
+    public function getUsers()
     {
-        return $this->employees;
+        return $this->users;
     }
 
-    public function hasEmployee(Employee $employee)
+    public function hasUser(User $user)
     {
-        return $this->employees->contains($employee);
+        return $this->users->contains($user);
     }
 
     /**
@@ -688,5 +695,38 @@ class Phone
     public function getImei()
     {
         return $this->imei;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Phone
+     */
+    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees[] = $employees;
+
+        return $this;
+    }
+
+    /**
+     * Remove employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     */
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    {
+        $this->employees->removeElement($employees);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
     }
 }

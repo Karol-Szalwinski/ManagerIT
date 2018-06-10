@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use ManagerITBundle\Entity\Picture;
-use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\User;
 use ManagerITBundle\Entity\Document;
 use ManagerITBundle\Entity\Pdf;
 /**
@@ -191,62 +191,62 @@ class PrinterController extends Controller
     }
 
     /**
-     * Finds and displays a printer employees.
+     * Finds and displays a printer users.
      *
-     * @Route("/{id}/employees", name="printer_employees")
+     * @Route("/{id}/users", name="printer_users")
      * @Method("GET")
      */
-    public function employeesAction(Printer $printer)
+    public function usersAction(Printer $printer)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+        $allUsers = $em->getRepository('ManagerITBundle:User')->findAll();
 
-        foreach ($allEmployees as $key => $employee) {
-            if ($printer->hasEmployee($employee)) {
-                unset($allEmployees[$key]);
+        foreach ($allUsers as $key => $user) {
+            if ($printer->hasUser($user)) {
+                unset($allUsers[$key]);
             }
         }
 
-        return $this->render('printer/employees.html.twig', array(
+        return $this->render('printer/users.html.twig', array(
             'printer' => $printer,
-            'employees' => $allEmployees,
+            'users' => $allUsers,
         ));
     }
 
     /**
-     * Action to connect printer to employee
+     * Action to connect printer to user
      *
-     * @Route("/{printer}/connectemployee/{employee}", name="printer_connect_employee")
+     * @Route("/{printer}/connectuser/{user}", name="printer_connect_user")
      * @Method("GET")
      */
     public
-    function printerConnectEmployeeAction(Request $request, Printer $printer, Employee $employee)
+    function printerConnectUserAction(Request $request, Printer $printer, User $user)
     {
-        if (!$printer->hasEmployee($employee)) {
-            $printer->addEmployee($employee);
-            $employee->addPrinter($printer);
+        if (!$printer->hasUser($user)) {
+            $printer->addUser($user);
+            $user->addPrinter($printer);
             $this->getDoctrine()->getManager()->flush();
         };
 
 
-        return $this->redirectToRoute('printer_employees', array('id' => $printer->getId()));
+        return $this->redirectToRoute('printer_users', array('id' => $printer->getId()));
     }
 
     /**
-     * Printer disconnect Employee
-     * @Route("/{printer}/removeemployee/{employee}", name="printer_remove_employee")
+     * Printer disconnect User
+     * @Route("/{printer}/removeuser/{user}", name="printer_remove_user")
      * @Method("GET")
      */
     public
-    function printerRemoveEmployeeAction(Printer $printer, Employee $employee)
+    function printerRemoveUserAction(Printer $printer, User $user)
     {
 
-        $printer->removeEmployee($employee);
-        $employee->removePrinter($printer);
+        $printer->removeUser($user);
+        $user->removePrinter($printer);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('printer_employees', array('id' => $printer->getId()));
+        return $this->redirectToRoute('printer_users', array('id' => $printer->getId()));
     }
 
     /**

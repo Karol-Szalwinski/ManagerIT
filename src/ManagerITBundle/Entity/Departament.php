@@ -36,7 +36,12 @@ class Departament
     private $addDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="Employee", mappedBy="departament") 
+     * @ORM\OneToMany(targetEntity="User", mappedBy="departament")
+     */
+    private $users;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Employee", mappedBy="departament")
      */
     private $employees;
             
@@ -104,6 +109,46 @@ class Departament
     public function getAddDate()
     {
         return $this->addDate;
+    }
+
+    /**
+     * Add employees
+     *
+     * @param \ManagerITBundle\Entity\Employee $employees
+     * @return Departament
+     */
+
+    /**
+     * Add users
+     *
+     * @param \ManagerITBundle\Entity\User $users
+     * @return Departament
+     */
+    public function addUser(\ManagerITBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \ManagerITBundle\Entity\User $users
+     */
+    public function removeUser(\ManagerITBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 
     /**

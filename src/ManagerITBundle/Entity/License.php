@@ -113,9 +113,9 @@ class License
 
     
     /**
-     * @ORM\ManyToMany(targetEntity="Employee", mappedBy="licenses")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="licenses")
      */
-    private $employees;
+    private $users;
 
 
     /**
@@ -136,7 +136,7 @@ class License
     public function __construct()
     {
         $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
@@ -461,36 +461,36 @@ class License
     }
 
     /**
-     * Add employees
+     * Add users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      * @return License
      */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function addUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees[] = $employees;
+        $this->users[] = $users;
 
         return $this;
     }
 
     /**
-     * Remove employees
+     * Remove users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\User $users
      */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function removeUser(\ManagerITBundle\Entity\User $users)
     {
-        $this->employees->removeElement($employees);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get employees
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getEmployees()
+    public function getUsers()
     {
-        return $this->employees;
+        return $this->users;
     }
 
     /**

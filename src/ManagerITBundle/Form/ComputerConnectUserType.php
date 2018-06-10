@@ -9,15 +9,15 @@ use ManagerITBundle\Entity\Computer;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class ComputerConnectEmployeeType extends AbstractType {
+class ComputerConnectUserType extends AbstractType {
 
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('employees', EntityType::class, [
-                    'class' => 'ManagerITBundle:Employee',
+                ->add('users', EntityType::class, [
+                    'class' => 'ManagerITBundle:User',
                     'choice_label' => 'name',
                      'multiple' => true, 
                 ])

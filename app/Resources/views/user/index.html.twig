@@ -41,7 +41,9 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Nazwa użytkownika</th>
+                                            <th>Login</th>
+                                            <th>Imię</th>
+                                            <th>Nazwisko</th>
                                             <th>Email</th>
                                             <th>Dostępny</th>
                                             <th>Zalogowany ostatnio</th>
@@ -54,6 +56,8 @@
                                             <tr onclick='location.href="{{ path('user_show', { 'id': user.id }) }}"'>
                                                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                                                 <td>{{ user.username }}</td>
+                                                <td>{{ user.name }}</td>
+                                                <td>{{ user.usersurname }}</td>
                                                 <td>{{ user.email }}</td>
                                                 <td>{{ user.enabled }}</td>
                                                 <td>{{ user.lastLogin |date("F jS \\a\\t g:ia") }}</td>

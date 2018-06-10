@@ -8,6 +8,7 @@ use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Phone;
 use ManagerITBundle\Entity\Tablet;
 use ManagerITBundle\Entity\Printer;
+use ManagerITBundle\Entity\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -24,6 +25,73 @@ class EmployeeController extends Controller {
     /**
      * Lists all employee entities.
      *
+     * @Route("/zzz", name="employee_zzz")
+     * @Method("GET")
+     */
+    public function employeeZZZAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $employees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+
+        foreach ($employees as $employee ){
+            $user = new User;
+            $user->setUsername( $employee->getName(). " " . $employee->getSurname());
+            $user->setName( $employee->getName());
+            $user->setUsersurname( $employee->getSurname());
+            $user->setEmail($employee->getEmail() );
+            $user->addRole('ROLE_USER');
+            $user->setEnabled(1);
+            $user->setJob($employee->getJob());
+            $user->setPlainPassword('123');
+            $user->setDepartament($employee->getDepartament());
+
+
+            $em->persist($user);
+            $em->flush($user);
+
+            $employcomp = $employee->getComputers();
+
+            foreach ($employcomp as $computer) {
+
+                $user->addComputer($computer);
+
+                $computer->addUser($user);
+                $em->flush($user);
+
+            };
+
+            $employtablet = $employee->getTablets();
+            foreach ($employtablet as $tablet) {
+                $user->addTablet($tablet);
+                $tablet->addUser($user);
+                $em->flush();
+            };
+
+            $employPhone = $employee->getPhones() ;
+            foreach ($employPhone as $phone) {
+                $user->addPhone($phone);
+                $phone->addUser($user);
+                $em->flush();
+            };
+
+            $employPrint = $employee->getPrinters();
+            foreach ($employPrint as $printer) {
+                $user->addPrinter($printer);
+                $printer->addUser($user);
+                $em->flush();
+            };
+
+        }
+
+        return $this->render('employee/index.html.twig', array(
+            'employees' => $employees,
+        ));
+    }
+
+
+    /**
+     * Lists all employee entities.
+     *
      * @Route("/", name="employee_index")
      * @Method("GET")
      */
@@ -36,6 +104,8 @@ class EmployeeController extends Controller {
                     'employees' => $employees,
         ));
     }
+
+
 
     /**
      * Creates a new employee entity.
@@ -228,5 +298,36 @@ class EmployeeController extends Controller {
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+//    /**
+//     * kopiowanie userow
+//     *
+//     *  @Route("/copys", name="copy_users")
+//     *  @Method({"GET"})
+//     */
+//    public function copyUsersAction() {
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $employees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+//
+//        foreach ($employees as $employee ){
+//            $user = new User;
+//            $user->setUsername( $employee->getName());
+//            $user->setName( $employee->getName());
+//            $user->setUsersurname( $employee->getSurname());
+//            $user->setEmail($employee->getEmail());
+//            $user->addRole('ROLE_USER');
+//            $user->setEnabled(1);
+//            $user->setPlainPassword('123');
+//
+//            $em->persist($user);
+//            $em->flush($user);
+//
+//        }
+//
+//        return null;
+//    }
+
+
 
 }

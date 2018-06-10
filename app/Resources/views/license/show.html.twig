@@ -203,12 +203,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for employee in license.employees %}
+                                    {% for user in license.users %}
                                         <tr>
-                                            <td>{{ employee.name }}</td>
-                                            <td>{{ employee.surname }}</td>
-                                            <td>{{ employee.job }}</td>
-                                            <td>{{ employee.departament.name }}</td>
+                                            <td>{{ user.name }}</td>
+                                            <td>{{ user.usersurname }}</td>
+                                            <td>{{ user.job }}</td>
+                                            <td>{{ user.departament.name }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

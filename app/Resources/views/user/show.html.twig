@@ -64,15 +64,35 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Nick</td>
+                                            <td>Login</td>
                                             <td>{{ user.username }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Imię</td>
+                                            <td>{{ user.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nazwisko</td>
+                                            <td>{{ user.name }}</td>
                                         </tr>
                                         <tr>
                                             <td>Email</td>
                                             <td>{{ user.email }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Dostępny</td>
+                                            <td>Stanowisko</td>
+                                            <td>{{ user.job }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dział</td>
+                                            <td>
+                                                {% if user.departament is not null %}
+                                                {{ user.departament.name }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aktywny</td>
                                             <td>{{ user.enabled }}</td>
                                         </tr>
                                         <tr>

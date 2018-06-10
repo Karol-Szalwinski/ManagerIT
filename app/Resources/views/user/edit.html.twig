@@ -50,10 +50,18 @@
 
                                     {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
 
+
                                     <div class="form-group" >
-                                        {{ form_label(edit_form.username, 'Nazwa usera', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                        {{ form_label(edit_form.name, 'Imię', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                         <div class="col-lg-6">
-                                            {{ form_widget(edit_form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź imię'} }) }}
+                                            {{ form_widget(edit_form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź imię'} }) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        {{ form_label(edit_form.usersurname, 'Nazwisko', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                        <div class="col-lg-6">
+                                            {{ form_widget(edit_form.usersurname, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwisko'} }) }}
                                         </div>
                                     </div>
 
@@ -64,26 +72,29 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group" >
-                                        {{ form_label(edit_form.plainPassword.first, 'Hasło', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                        <div class="col-lg-6 ">   
-                                            {{ form_widget(edit_form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź hasło'} }) }}
-                                        </div>
-                                    </div>           
-                                    <div class="form-group" >
-                                        {{ form_label(edit_form.plainPassword.second, 'Powtórz hasło', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                        <div class="col-lg-6 ">   
-                                            {{ form_widget(edit_form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Powtórz hasło'} }) }}
-                                        </div>
-                                    </div> 
 
                                     <div class="form-group" >
-                                        {{ form_label(edit_form.roles, 'Płeć', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
-                                        <div class="col-lg-6 my-radio uniform">   
-                                            {{ form_widget(edit_form.roles, { 'attr': {'class': 'uniform'} }) }} 
+                                        {{ form_label(edit_form.job, 'Stanowisko', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                        <div class="col-lg-6">
+                                            {{ form_widget(edit_form.job, { 'attr': {'class': 'form-control', 'placeholder': 'Podaj stanowisko'} }) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_label(edit_form.departament, 'Dział w firmie', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+
+                                        <div class="col-lg-6">
+                                            {{ form_widget(edit_form.departament, { 'attr': {'class': 'form-control'} }) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" >
+                                        {{ form_label(edit_form.roles, 'Uprawnienia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                        <div class="col-lg-6 my-radio uniform">
+                                            {{ form_widget(edit_form.roles, { 'attr': {'class': 'uniform'} }) }}
 
                                         </div>
-                                    </div> 
+                                    </div>
 
                                     <input type="submit" value="Zapisz zmiany" class="btn btn-primary btn-grad control-label" />
                                     <br>

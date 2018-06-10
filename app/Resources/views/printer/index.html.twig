@@ -61,8 +61,8 @@
                                             <td>{{ printer.brand }}</td>
                                             <td>{{ printer.series }}</td>
                                             <td>
-                                                {% for employee in printer.employees %}
-                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% for user in printer.users %}
+                                                    {{ user.name }} {{ user.usersurname }}<br>
                                                 {% endfor %}
                                             </td>
                                             <td>{{ printer.ipAddress }}</td>

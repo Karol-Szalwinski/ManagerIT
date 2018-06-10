@@ -71,7 +71,10 @@
                                         </tr>
                                         <tr>
                                             <td>Dział</td>
-                                            <td>{{ employee.departament.name }}</td>
+                                            <td>{%  if employee.departament is not null %}
+                                                {{ employee.departament.name }}
+                                            {% endif %}
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Adres email</td>
@@ -205,19 +208,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for license in employee.licenses %}
-                                            <tr>                                                    
-                                                <td>{{ license.name }}</td>
-                                                <td>{{ license.type}}</td>
-                                                <td>{{ license.expireDate|date("m/d/Y") }}</td>
-                                                <td>
-                                                    <a href="{{ path('employee_remove_license', { 'employee': employee.id, 'license': license.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                        <i class="fa fa-unlink"></i>
-                                                        <span class="link-title">odłącz</span>
-                                                    </a>
-                                                </td>
-                                            </tr>       
-                                        {% endfor %}
+                                        {#{% for license in employee.licenses %}#}
+                                            {#<tr>                                                    #}
+                                                {#<td>{{ license.name }}</td>#}
+                                                {#<td>{{ license.type}}</td>#}
+                                                {#<td>{{ license.expireDate|date("m/d/Y") }}</td>#}
+                                                {#<td>#}
+                                                    {#<a href="{{ path('employee_remove_license', { 'employee': employee.id, 'license': license.id }) }}" class="btn btn-danger btn-grad btn-rect btn-sm">#}
+                                                        {#<i class="fa fa-unlink"></i>#}
+                                                        {#<span class="link-title">odłącz</span>#}
+                                                    {#</a>#}
+                                                {#</td>#}
+                                            {#</tr>       #}
+                                        {#{% endfor %}#}
 
                                     </tbody>                </table>
                             </div>

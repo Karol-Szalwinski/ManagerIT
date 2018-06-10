@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Pracownicy przypisani do tabletu {% endblock %}
+{% block title %} Pracownicy przypisani do laptopa {% endblock %}
 
 {% block mainbar %}
     <div class="main-bar">
         <div>
-            <a href="{{ path('tablet_index') }}"
+            <a href="{{ path('computer_type_index', { 'type' : computer.formFactor }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Lista tabletów</span>
+                <span class="link-title">Lista laptopów</span>
             </a>
-            <a href="{{ path('tablet_show', {'id': tablet.id }) }}"
+            <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-arrow-left"></i>
-                <span class="link-title">Pokaż tablet</span>
+                <span class="link-title">Pokaż laptopa</span>
             </a>
         </div>
     </div>
@@ -25,7 +25,6 @@
     <div id="content">
         <div class="outer">
             <div class="inner bg-light lter">
-
                 <!-- .col-lg-6 -->
                 <div class="col-lg-12">
                     <div class="box">
@@ -44,7 +43,7 @@
                             </div>
                         </header>
 
-                        {% if tablet.employees is not empty %}
+                        {% if computer.users is not empty %}
 
                         <div id="collapse4" class="body">
                             <table id="dataTable"
@@ -55,30 +54,26 @@
                                     <th>Nazwisko</th>
                                     <th>Stanowisko</th>
                                     <th>Dział</th>
-                                    <th>Płeć</th>
-                                    <th>Telefon</th>
                                     <th>Email</th>
                                     <th>Sprzęt</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for employee in tablet.employees %}
+                                {% for user in computer.users %}
                                     <tr>
-                                        <td>{{ employee.name }}</td>
-                                        <td>{{ employee.surname }}</td>
-                                        <td>{{ employee.job }}</td>
-                                        <td>{{ employee.departament.name }}</td>
-                                        <td>{{ employee.sex }}</td>
-                                        <td>{{ employee.phone }}</td>
-                                        <td>{{ employee.email }}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.usersurname }}</td>
+                                        <td>{{ user.job }}</td>
+                                        <td>{{ user.departament.name }}</td>
+                                        <td>{{ user.email }}</td>
                                         <td>
-                                            {% for tablet in employee.tablets %}
-                                                {{ tablet.name }}<br>
+                                            {% for computer in user.computers %}
+                                                {{ computer.name }}<br>
                                             {% endfor %}
                                         </td>
                                         <td>
-                                            <a href="{{ path('tablet_remove_employee', { 'tablet': tablet.id, 'employee': employee.id }) }}"
+                                            <a href="{{ path('computer_remove_user', { 'computer': computer.id, 'user': user.id }) }}"
                                                class="btn btn-danger btn-grad btn-rect btn-sm">
                                                 <i class="fa fa-unlink"></i>
                                                 <span class="link-title">Odłącz</span>
@@ -92,8 +87,9 @@
                             </table>
                         </div>
                     </div>
-                    <!-- /.row -->
 
+
+                    <!-- /.row -->
                     <!--End Datatables-->
                     {% else %}
                         <br><br>
@@ -106,7 +102,7 @@
                         &nbsp
                         <button class="btn btn-primary btn-grad btn-sm control-label"
                                 data-toggle="modal"
-                                data-target="#employees">
+                                data-target="#users">
                             Przypisz nowego pracownika
                         </button>
                     </div>
@@ -117,8 +113,8 @@
                 <!-- /.col-lg-6 -->
 
 
-                <!-- Modal employees-->
-                <div class="modal fade" id="employees" tabindex="-1" role="dialog" aria-labelledby="employeesModalLabel"
+                <!-- Modal users-->
+                <div class="modal fade" id="users" tabindex="-1" role="dialog" aria-labelledby="usersModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -128,7 +124,7 @@
                                             aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span>
                                 </button>
 
-                                <h5 class="modal-title" id="employeesModalLabel">Wybierz pracownika z listy</h5>
+                                <h5 class="modal-title" id="usersModalLabel">Wybierz pracownika z listy</h5>
                             </div>
                             <div class="modal-body">
                                 <div id="div-1" class="body">
@@ -153,17 +149,17 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        {% for employee in employees %}
+                                                        {% for user in users %}
                                                             <tr data-placement="top" data-toggle="tooltip"
                                                                 data-original-title="Kliknij aby przypisać wybranego pracownika do tego sprzętu."
-                                                                onclick='location.href = "{{ path('tablet_connect_employee', { 'tablet': tablet.id,  'employee': employee.id }) }}"'>
-                                                                <td>{{ employee.name }}</td>
-                                                                <td>{{ employee.surname }}</td>
-                                                                <td>{{ employee.job }}</td>
-                                                                <td>{{ employee.departament.name }}</td>
+                                                                onclick='location.href = "{{ path('computer_connect_user', { 'computer': computer.id,  'user': user.id }) }}"'>
+                                                                <td>{{ user.name }}</td>
+                                                                <td>{{ user.usersurname }}</td>
+                                                                <td>{{ user.job }}</td>
+                                                                <td>{{ user.departament.name }}</td>
                                                                 <td>
-                                                                    {% for tablet in employee.tablets %}
-                                                                        {{ tablet.name }}<br>
+                                                                    {% for computer in user.computers %}
+                                                                        {{ computer.name }}<br>
                                                                     {% endfor %}
                                                                 </td>
                                                             </tr>
@@ -178,11 +174,11 @@
                                     <!--End Datatables-->
                                 </div>
                                 <div class="modal-footer">
-                                    {#<a href="{{ path('desktopcpu_new', {'tablet' : tablet.id}) }}"#}
-                                       {#class="btn btn-warning btn-grad control-label">#}
-                                        {#<i class="fa fa-plus"></i>#}
-                                        {#<span>Dodaj nowy</span>#}
-                                    {#</a>#}
+                                    <a href="{{ path('desktopcpu_new', {'computer' : computer.id}) }}"
+                                       class="btn btn-warning btn-grad control-label">
+                                        <i class="fa fa-plus"></i>
+                                        <span>Dodaj nowy</span>
+                                    </a>
                                     <button type="button" class="btn btn-primary btn-grad control-label"
                                             data-dismiss="modal">Zamknij
                                     </button>

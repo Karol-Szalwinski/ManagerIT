@@ -142,6 +142,13 @@ class Tablet
     private $employees;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="tablets")
+     *
+     * @ORM\JoinTable(name="users_tablets")
+     */
+    private $users;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="addDate", type="datetime")
@@ -173,7 +180,7 @@ class Tablet
         $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -533,41 +540,41 @@ class Tablet
     }
 
     /**
-     * Add employees
+     * Add users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\Employee $users
      * @return Tablet
      */
-    public function addEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function addEmployee(\ManagerITBundle\Entity\Employee $users)
     {
-        $this->employees[] = $employees;
+        $this->users[] = $users;
 
         return $this;
     }
 
     /**
-     * Remove employees
+     * Remove users
      *
-     * @param \ManagerITBundle\Entity\Employee $employees
+     * @param \ManagerITBundle\Entity\Employee $users
      */
-    public function removeEmployee(\ManagerITBundle\Entity\Employee $employees)
+    public function removeEmployee(\ManagerITBundle\Entity\Employee $users)
     {
-        $this->employees->removeElement($employees);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get employees
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getEmployees()
     {
-        return $this->employees;
+        return $this->users;
     }
 
-    public function hasEmployee(Employee $employee)
+    public function hasEmployee(Employee $user)
     {
-        return $this->employees->contains($employee);
+        return $this->users->contains($user);
     }
 
     /**
@@ -718,5 +725,43 @@ class Tablet
     public function getVersionOs()
     {
         return $this->versionOs;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \ManagerITBundle\Entity\User $users
+     * @return Tablet
+     */
+    public function addUser(\ManagerITBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \ManagerITBundle\Entity\User $users
+     */
+    public function removeUser(\ManagerITBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function hasUser(User $user)
+    {
+        return $this->users->contains($user);
     }
 }

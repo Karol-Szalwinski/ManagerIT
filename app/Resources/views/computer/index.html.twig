@@ -79,13 +79,13 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                {% for employee in computer.employees %}
-                                                    {{ employee.name }} {{ employee.surname }}<br>
+                                                {% for user in computer.users %}
+                                                    {{ user.name }} {{ user.usersurname }}<br>
                                                 {% endfor %}
                                             </td>
                                             <td>
-                                                {% for employee in computer.employees %}
-                                                    {{ employee.departament.name }}<br>
+                                                {% for user in computer.users %}
+                                                    {{ user.departament.name }}<br>
                                                 {% endfor %}
                                             </td>
 

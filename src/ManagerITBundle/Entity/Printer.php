@@ -120,6 +120,13 @@ class Printer
     private $documents;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="printers")
+     *
+     * @ORM\JoinTable(name="users_printers")
+     */
+    private $users;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="printers")
      *
      * @ORM\JoinTable(name="employees_printers")
@@ -131,7 +138,7 @@ class Printer
 //        $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
         $this->documents = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
     }
 
@@ -488,6 +495,68 @@ class Printer
     }
 
     /**
+     * Add users
+     *
+     * @param \ManagerITBundle\Entity\User $users
+     * @return Printer
+     */
+    public function addUser(\ManagerITBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \ManagerITBundle\Entity\User $users
+     */
+    public function removeUser(\ManagerITBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function hasUser(User $user)
+    {
+        return $this->users->contains($user);
+    }
+
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Printer
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
      * Add employees
      *
      * @param \ManagerITBundle\Entity\Employee $employees
@@ -518,34 +587,5 @@ class Printer
     public function getEmployees()
     {
         return $this->employees;
-    }
-
-    public function hasEmployee(Employee $employee)
-    {
-        return $this->employees->contains($employee);
-    }
-
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     * @return Printer
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string 
-     */
-    public function getColor()
-    {
-        return $this->color;
     }
 }

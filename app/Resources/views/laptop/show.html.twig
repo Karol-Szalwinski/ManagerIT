@@ -32,7 +32,7 @@
                 <i class="fa fa-file-photo-o"></i>
                 <span class="link-title">Zdjęcie</span>
             </a>
-            <a href="{{ path('computer_employees', {'type' : computer.formFactor, 'id': computer.id }) }}"
+            <a href="{{ path('computer_users', {'type' : computer.formFactor, 'id': computer.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-user"></i>
                 <span class="link-title">Pracownicy</span>
@@ -483,7 +483,7 @@
                                 <div class="toolbar">
                                     <div class="btn-group">
                                         {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('computer_employees', {'type' : computer.formFactor, 'id': computer.id }) }}"
+                                        <a href="{{ path('computer_users', {'type' : computer.formFactor, 'id': computer.id }) }}"
                                            class="btn btn-sm btn-info">
                                             <span class="link-title">Zmień</span>
                                             <i class="fa fa-wrench"></i>
@@ -508,12 +508,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for employee in computer.employees %}
+                                    {% for user in computer.users %}
                                         <tr>
-                                            <td>{{ employee.name }}</td>
-                                            <td>{{ employee.surname }}</td>
-                                            <td>{{ employee.job }}</td>
-                                            <td>{{ employee.departament.name }}</td>
+                                            <td>{{ user.name }}</td>
+                                            <td>{{ user.usersurname }}</td>
+                                            <td>{{ user.job }}</td>
+                                            <td>{{ user.departament.name }}</td>
                                         </tr>
                                     {% endfor %}
 

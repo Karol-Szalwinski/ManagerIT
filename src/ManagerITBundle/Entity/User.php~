@@ -32,12 +32,73 @@ class User extends BaseUser {
      */
     private $ticketsToDo;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=255)
+     */
+    private $usersurname;
+
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", length=255)
+     */
+    private $job;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Departament", inversedBy="users")
+     * @ORM\JoinColumn(name="departament_id", referencedColumnName="id")
+     */
+    private $departament;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="License", inversedBy="users")
+     * @ORM\JoinTable(name="users_licenses")
+     */
+    private $licenses;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Computer", mappedBy="users")
+     *
+     */
+    private $computers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tablet", mappedBy="users")
+     *
+     */
+    private $tablets;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Phone", mappedBy="users")
+     *
+     */
+    private $phones;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Printer", mappedBy="users")
+     *
+     */
+    private $printers;
+
     public function __construct() {
 
         parent::__construct();
         $this->tickets = new ArrayCollection();
         $this->ticketsToDo = new ArrayCollection();
         $this->enabled = 1;
+        $this->computers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tablets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->phones = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->printers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -122,5 +183,314 @@ class User extends BaseUser {
     public function getTicketsToDo()
     {
         return $this->ticketsToDo;
+    }
+
+    /**
+     * Set usersurname
+     *
+     * @param string $usersurname
+     * @return User
+     */
+    public function setUsersurname($usersurname)
+    {
+        $this->usersurname = $usersurname;
+
+        return $this;
+    }
+
+    /**
+     * Get usersurname
+     *
+     * @return string 
+     */
+    public function getUsersurname()
+    {
+        return $this->usersurname;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     * @return User
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string 
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set departament
+     *
+     * @param string $departament
+     * @return User
+     */
+    public function setDepartament($departament)
+    {
+        $this->departament = $departament;
+
+        return $this;
+    }
+
+    /**
+     * Get departament
+     *
+     * @return string 
+     */
+    public function getDepartament()
+    {
+        return $this->departament;
+    }
+
+    /**
+     * Set licenses
+     *
+     * @param string $licenses
+     * @return User
+     */
+    public function setLicenses($licenses)
+    {
+        $this->licenses = $licenses;
+
+        return $this;
+    }
+
+    /**
+     * Get licenses
+     *
+     * @return string 
+     */
+    public function getLicenses()
+    {
+        return $this->licenses;
+    }
+
+    /**
+     * Set computers
+     *
+     * @param string $computers
+     * @return User
+     */
+    public function setComputers($computers)
+    {
+        $this->computers = $computers;
+
+        return $this;
+    }
+
+    /**
+     * Get computers
+     *
+     * @return string 
+     */
+    public function getComputers()
+    {
+        return $this->computers;
+    }
+
+    /**
+     * Set phones
+     *
+     * @param string $phones
+     * @return User
+     */
+    public function setPhones($phones)
+    {
+        $this->phones = $phones;
+
+        return $this;
+    }
+
+    /**
+     * Get phones
+     *
+     * @return string 
+     */
+    public function getPhones()
+    {
+        return $this->phones;
+    }
+
+    /**
+     * Set printers
+     *
+     * @param string $printers
+     * @return User
+     */
+    public function setPrinters($printers)
+    {
+        $this->printers = $printers;
+
+        return $this;
+    }
+
+    /**
+     * Get printers
+     *
+     * @return string 
+     */
+    public function getPrinters()
+    {
+        return $this->printers;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add computers
+     *
+     * @param \ManagerITBundle\Entity\Computer $computers
+     * @return User
+     */
+    public function addComputer(\ManagerITBundle\Entity\Computer $computers)
+    {
+        $this->computers[] = $computers;
+
+        return $this;
+    }
+
+    /**
+     * Remove computers
+     *
+     * @param \ManagerITBundle\Entity\Computer $computers
+     */
+    public function removeComputer(\ManagerITBundle\Entity\Computer $computers)
+    {
+        $this->computers->removeElement($computers);
+    }
+
+    /**
+     * Add tablets
+     *
+     * @param \ManagerITBundle\Entity\Tablet $tablets
+     * @return User
+     */
+    public function addTablet(\ManagerITBundle\Entity\Tablet $tablets)
+    {
+        $this->tablets[] = $tablets;
+
+        return $this;
+    }
+
+    /**
+     * Remove tablets
+     *
+     * @param \ManagerITBundle\Entity\Tablet $tablets
+     */
+    public function removeTablet(\ManagerITBundle\Entity\Tablet $tablets)
+    {
+        $this->tablets->removeElement($tablets);
+    }
+
+    /**
+     * Get tablets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTablets()
+    {
+        return $this->tablets;
+    }
+
+    /**
+     * Add phones
+     *
+     * @param \ManagerITBundle\Entity\Phone $phones
+     * @return User
+     */
+    public function addPhone(\ManagerITBundle\Entity\Phone $phones)
+    {
+        $this->phones[] = $phones;
+
+        return $this;
+    }
+
+    /**
+     * Remove phones
+     *
+     * @param \ManagerITBundle\Entity\Phone $phones
+     */
+    public function removePhone(\ManagerITBundle\Entity\Phone $phones)
+    {
+        $this->phones->removeElement($phones);
+    }
+
+    /**
+     * Add printers
+     *
+     * @param \ManagerITBundle\Entity\Printer $printers
+     * @return User
+     */
+    public function addPrinter(\ManagerITBundle\Entity\Printer $printers)
+    {
+        $this->printers[] = $printers;
+
+        return $this;
+    }
+
+    /**
+     * Remove printers
+     *
+     * @param \ManagerITBundle\Entity\Printer $printers
+     */
+    public function removePrinter(\ManagerITBundle\Entity\Printer $printers)
+    {
+        $this->printers->removeElement($printers);
+    }
+
+    /**
+     * Add licenses
+     *
+     * @param \ManagerITBundle\Entity\License $licenses
+     * @return User
+     */
+    public function addLicense(\ManagerITBundle\Entity\License $licenses)
+    {
+        $this->licenses[] = $licenses;
+
+        return $this;
+    }
+
+    /**
+     * Remove licenses
+     *
+     * @param \ManagerITBundle\Entity\License $licenses
+     */
+    public function removeLicense(\ManagerITBundle\Entity\License $licenses)
+    {
+        $this->licenses->removeElement($licenses);
     }
 }

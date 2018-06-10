@@ -70,21 +70,21 @@
                                     </tr>
                                     <tr>
                                         <td>Liczba pracowników</td>
-                                        <td>{{ departament.employees |length }}</td>
+                                        <td>{{ departament.users |length }}</td>
                                     </tr>
                                     <tr>
                                         <td>Liczba komputerów</td>
                                         <td>{% set computersCounter = 0 %}
-                                            {% for employee in departament.employees %}
-                                                {% set computersCounter = computersCounter + employee.computers|length %}
+                                            {% for user in departament.users %}
+                                                {% set computersCounter = computersCounter + user.computers|length %}
                                             {% endfor %}
                                             {{ computersCounter }}</td>
                                     </tr>
                                     <tr>
                                         <td>Liczba licencji</td>
                                         <td>{% set licensesCounter = 0 %}
-                                            {% for employee in departament.employees %}
-                                                {% set licensesCounter = licensesCounter + employee.licenses|length %}
+                                            {% for user in departament.users %}
+                                                {% set licensesCounter = licensesCounter + user.licenses|length %}
                                             {% endfor %}
                                             {{ licensesCounter }}</td>
                                     </tr>

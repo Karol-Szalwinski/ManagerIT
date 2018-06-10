@@ -6,7 +6,7 @@ use Doctrine\DBAL\Types\StringType;
 use ManagerITBundle\Entity\Computer;
 use ManagerITBundle\Entity\DesktopCPU;
 use ManagerITBundle\Entity\DesktopRam;
-use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\User;
 use ManagerITBundle\Entity\InstalledApplication;
 use ManagerITBundle\Entity\License;
 use ManagerITBundle\Entity\Application;
@@ -471,65 +471,65 @@ class ComputerController extends Controller
     }
 
     /**
-     * Finds and displays a computer employees.
+     * Finds and displays a computer users.
      *
-     * @Route("/{type}/{id}/employees", name="computer_employees")
+     * @Route("/{type}/{id}/users", name="computer_users")
      * @Method("GET")
      */
-    public function employeesAction($type, Computer $computer)
+    public function usersAction($type, Computer $computer)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+        $allUsers = $em->getRepository('ManagerITBundle:User')->findAll();
 
-        foreach ($allEmployees as $key => $employee) {
-            if ($computer->hasEmployee($employee)) {
-                unset($allEmployees[$key]);
+        foreach ($allUsers as $key => $user) {
+            if ($computer->hasUser($user)) {
+                unset($allUsers[$key]);
             }
         }
 
-        return $this->render($type . '/employees.html.twig', array(
+        return $this->render($type . '/users.html.twig', array(
             'computer' => $computer,
-            'employees' => $allEmployees,
+            'users' => $allUsers,
         ));
     }
 
     /**
-     * Action to connect computer to employee
+     * Action to connect computer to user
      *
-     * @Route("/{computer}/connectemployee/{employee}", name="computer_connect_employee")
+     * @Route("/{computer}/connectuser/{user}", name="computer_connect_user")
      * @Method("GET")
      */
     public
-    function computerConnectEmployeeAction(Request $request, Computer $computer, Employee $employee)
+    function computerConnectUserAction(Request $request, Computer $computer, User $user)
     {
-        if (!$computer->hasEmployee($employee)) {
-            $computer->addEmployee($employee);
-            $employee->addComputer($computer);
+        if (!$computer->hasUser($user)) {
+            $computer->addUser($user);
+            $user->addComputer($computer);
             $this->getDoctrine()->getManager()->flush();
         };
 
         $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_employees', array('type' => $type, 'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_users', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**
-     * Computer disconnect Employee
-     * @Route("/{computer}/removeemployee/{employee}", name="computer_remove_employee")
+     * Computer disconnect User
+     * @Route("/{computer}/removeuser/{user}", name="computer_remove_user")
      * @Method("GET")
      */
     public
-    function computerRemoveEmployeeAction(Computer $computer, Employee $employee)
+    function computerRemoveUserAction(Computer $computer, User $user)
     {
 
-        $computer->removeEmployee($employee);
-        $employee->removeComputer($computer);
+        $computer->removeUser($user);
+        $user->removeComputer($computer);
         $this->getDoctrine()->getManager()->flush();
 
         $type = $computer->getFormFactor();
 
-        return $this->redirectToRoute('computer_employees', array('type' => $type, 'id' => $computer->getId()));
+        return $this->redirectToRoute('computer_users', array('type' => $type, 'id' => $computer->getId()));
     }
 
     /**

@@ -68,13 +68,14 @@ class Employee
       * @ORM\ManyToOne(targetEntity="Departament", inversedBy="employees")
       * @ORM\JoinColumn(name="departament_id", referencedColumnName="id")
       */
+
     private $departament;
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="License", inversedBy="employees")
-     * @ORM\JoinTable(name="employees_licenses")
-     */
-    private $licenses;
+//
+//    /**
+//     * @ORM\ManyToMany(targetEntity="License", inversedBy="employees")
+//     * @ORM\JoinTable(name="employees_licenses")
+//     */
+//    private $licenses;
     
 //    /**
 //     * @ORM\ManyToMany(targetEntity="Desktop", mappedBy="employees")

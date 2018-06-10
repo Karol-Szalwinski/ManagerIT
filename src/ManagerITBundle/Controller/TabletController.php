@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use ManagerITBundle\Entity\Picture;
-use ManagerITBundle\Entity\Employee;
+use ManagerITBundle\Entity\User;
 use ManagerITBundle\Entity\Document;
 use ManagerITBundle\Entity\Pdf;
 use ManagerITBundle\Entity\Sim;
@@ -193,62 +193,62 @@ class TabletController extends Controller
     }
 
     /**
-     * Finds and displays a tablet employees.
+     * Finds and displays a tablet users.
      *
-     * @Route("/{id}/employees", name="tablet_employees")
+     * @Route("/{id}/users", name="tablet_users")
      * @Method("GET")
      */
-    public function employeesAction(Tablet $tablet)
+    public function usersAction(Tablet $tablet)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $allEmployees = $em->getRepository('ManagerITBundle:Employee')->findAll();
+        $allUsers = $em->getRepository('ManagerITBundle:User')->findAll();
 
-        foreach ($allEmployees as $key => $employee) {
-            if ($tablet->hasEmployee($employee)) {
-                unset($allEmployees[$key]);
+        foreach ($allUsers as $key => $user) {
+            if ($tablet->hasUser($user)) {
+                unset($allUsers[$key]);
             }
         }
 
-        return $this->render('tablet/employees.html.twig', array(
+        return $this->render('tablet/users.html.twig', array(
             'tablet' => $tablet,
-            'employees' => $allEmployees,
+            'users' => $allUsers,
         ));
     }
 
     /**
-     * Action to connect tablet to employee
+     * Action to connect tablet to user
      *
-     * @Route("/{tablet}/connectemployee/{employee}", name="tablet_connect_employee")
+     * @Route("/{tablet}/connectuser/{user}", name="tablet_connect_user")
      * @Method("GET")
      */
     public
-    function tabletConnectEmployeeAction(Request $request, Tablet $tablet, Employee $employee)
+    function tabletConnectUserAction(Request $request, Tablet $tablet, User $user)
     {
-        if (!$tablet->hasEmployee($employee)) {
-            $tablet->addEmployee($employee);
-            $employee->addTablet($tablet);
+        if (!$tablet->hasUser($user)) {
+            $tablet->addUser($user);
+            $user->addTablet($tablet);
             $this->getDoctrine()->getManager()->flush();
         };
 
 
-        return $this->redirectToRoute('tablet_employees', array('id' => $tablet->getId()));
+        return $this->redirectToRoute('tablet_users', array('id' => $tablet->getId()));
     }
 
     /**
-     * Tablet disconnect Employee
-     * @Route("/{tablet}/removeemployee/{employee}", name="tablet_remove_employee")
+     * Tablet disconnect User
+     * @Route("/{tablet}/removeuser/{user}", name="tablet_remove_user")
      * @Method("GET")
      */
     public
-    function tabletRemoveEmployeeAction(Tablet $tablet, Employee $employee)
+    function tabletRemoveUserAction(Tablet $tablet, User $user)
     {
 
-        $tablet->removeEmployee($employee);
-        $employee->removeTablet($tablet);
+        $tablet->removeUser($user);
+        $user->removeTablet($tablet);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('tablet_employees', array('id' => $tablet->getId()));
+        return $this->redirectToRoute('tablet_users', array('id' => $tablet->getId()));
     }
 
     /**

@@ -53,17 +53,17 @@
                                     {% for departament in departaments %}
                                         <tr onclick='location.href = "{{ path('departament_show', { 'id': departament.id }) }}"'>
                                             <td>{{ departament.name }}</td>
-                                            <td>{{ departament.employees |length }}</td>
+                                            <td>{{ departament.users |length }}</td>
                                             <td>
                                                 {% set computersCounter = 0 %}
                                                 {% set tabletsCounter = 0 %}
                                                 {% set phonesCounter = 0 %}
                                                 {% set printersCounter = 0 %}
-                                                {% for employee in departament.employees %}
-                                                    {% set computersCounter = computersCounter + employee.computers|length %}
-                                                    {% set tabletsCounter = tabletsCounter + employee.tablets|length %}
-                                                    {% set phonesCounter = phonesCounter + employee.phones|length %}
-                                                    {% set printersCounter = printersCounter + employee.printers|length %}
+                                                {% for user in departament.users %}
+                                                    {% set computersCounter = computersCounter + user.computers|length %}
+                                                    {% set tabletsCounter = tabletsCounter + user.tablets|length %}
+                                                    {% set phonesCounter = phonesCounter + user.phones|length %}
+                                                    {% set printersCounter = printersCounter + user.printers|length %}
                                                 {% endfor %}
                                                 {{ computersCounter }}
                                             </td>

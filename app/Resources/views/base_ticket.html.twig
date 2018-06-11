@@ -190,9 +190,6 @@
                             <a href="{{ path('printer_index') }}">Drukarki</a>
                         </li>
                         <li>
-                            <a href="{{ path('employee_index') }}">Pracownicy</a>
-                        </li>
-                        <li>
                             <a href="{{ path('departament_index') }}">Działy</a>
                         </li>
                         {#<li class='dropdown'>#}
@@ -286,31 +283,31 @@
 
                 <li class="nav-divider"></li>
                 <li>
-                    <a href="{{ path('ticket_index') }}">
+                    <a href="{{ path('ticket_index_open') }}">
                         <i class="fa fa-list-ol"></i>
                         <span class="link-title">&nbspZgłoszenia&nbspOtwarte</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('ticket_index') }}">
+                    <a href="{{ path('ticket_index_new') }}">
                         <i class="fa fa-list-ol"></i>
                         <span class="link-title">&nbspZgłoszenia&nbspNowe</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('ticket_index') }}">
+                    <a href="{{ path('ticket_index_suspend') }}">
                         <i class="fa fa-list-ol"></i>
                         <span class="link-title">&nbspZgłoszenia&nbspWstrzymane</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('ticket_index') }}">
+                    <a href="{{ path('ticket_index_mine') }}">
                         <i class="fa fa-list-ol"></i>
                         <span class="link-title">&nbspMoje&nbspZgłoszenia</span>
                     </a>
                 </li>
        <li>
-                    <a href="{{ path('ticket_index') }}">
+                    <a href="{{ path('ticket_index_closed') }}">
                         <i class="fa fa-list-ol"></i>
                         <span class="link-title">&nbspZgłoszenia&nbspZamknięte</span>
                     </a>

@@ -29,10 +29,120 @@ class TicketController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tickets = $em->getRepository('ManagerITBundle:Ticket')->findAll();
+        $ticketsHigh = $em->getRepository('ManagerITBundle:Ticket')->findByPriority(0);
+        $ticketsMed = $em->getRepository('ManagerITBundle:Ticket')->findByPriority(1);
+        $ticketsLow = $em->getRepository('ManagerITBundle:Ticket')->findByPriority(2);
 
         return $this->render('ticket/index.html.twig', array(
-            'tickets' => $tickets,
+            'tickets_high' => $ticketsHigh,
+            'tickets_med' => $ticketsMed,
+            'tickets_low' => $ticketsLow,
+        ));
+    }
+
+    /**
+     * Lists all ticket entities.
+     *
+     * @Route("/newest", name="ticket_index_new")
+     * @Method("GET")
+     */
+    public function indexNewAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ticketsHigh = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 1, 'priority' => 0]);
+        $ticketsMed = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 1, 'priority' => 1]);
+        $ticketsLow = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 1, 'priority' => 2]);
+
+        return $this->render('ticket/index.html.twig', array(
+            'tickets_high' => $ticketsHigh,
+            'tickets_med' => $ticketsMed,
+            'tickets_low' => $ticketsLow,
+        ));
+    }
+
+    /**
+     * Lists all ticket entities.
+     *
+     * @Route("/open", name="ticket_index_open")
+     * @Method("GET")
+     */
+    public function indexOpenAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ticketsHigh = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 2, 'priority' => 0]);
+        $ticketsMed = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 2, 'priority' => 1]);
+        $ticketsLow = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 2, 'priority' => 2]);
+
+        return $this->render('ticket/index.html.twig', array(
+            'tickets_high' => $ticketsHigh,
+            'tickets_med' => $ticketsMed,
+            'tickets_low' => $ticketsLow,
+        ));
+    }
+
+    /**
+     * Lists all ticket entities.
+     *
+     * @Route("/suspend", name="ticket_index_suspend")
+     * @Method("GET")
+     */
+    public function indexSuspendAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ticketsHigh = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 3, 'priority' => 0]);
+        $ticketsMed = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 3, 'priority' => 1]);
+        $ticketsLow = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 3, 'priority' => 2]);
+
+        return $this->render('ticket/index.html.twig', array(
+            'tickets_high' => $ticketsHigh,
+            'tickets_med' => $ticketsMed,
+            'tickets_low' => $ticketsLow,
+        ));
+    }
+
+    /**
+     * Lists all ticket entities.
+     *
+     * @Route("/closed", name="ticket_index_closed")
+     * @Method("GET")
+     */
+    public function indexClosedAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ticketsHigh = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 4, 'priority' => 0]);
+        $ticketsMed = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 4, 'priority' => 1]);
+        $ticketsLow = $em->getRepository('ManagerITBundle:Ticket')->findBy(['status' => 4, 'priority' => 2]);
+
+        return $this->render('ticket/index.html.twig', array(
+            'tickets_high' => $ticketsHigh,
+            'tickets_med' => $ticketsMed,
+            'tickets_low' => $ticketsLow,
+        ));
+    }
+
+    /**
+     * Lists all ticket entities.
+     *
+     * @Route("/mine", name="ticket_index_mine")
+     * @Method("GET")
+     */
+    public function indexMyAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $loggedUserId = $this->getUser()->getId();
+//        $tickets = $em->getRepository('ManagerITBundle:Ticket')->findByRequester($loggedUserId);
+        $ticketsHigh = $em->getRepository('ManagerITBundle:Ticket')->findBy(['requester' => $loggedUserId, 'priority'=> 0]);
+        $ticketsMed = $em->getRepository('ManagerITBundle:Ticket')->findBy(['requester' => $loggedUserId, 'priority'=> 1]);
+        $ticketsLow = $em->getRepository('ManagerITBundle:Ticket')->findBy(['requester' => $loggedUserId, 'priority'=> 2]);
+
+        return $this->render('ticket/index.html.twig', array(
+            'tickets_high' => $ticketsHigh,
+            'tickets_med' => $ticketsMed,
+            'tickets_low' => $ticketsLow,
         ));
     }
 
@@ -87,6 +197,7 @@ class TicketController extends Controller
             $newStatus = $em->getRepository('ManagerITBundle:Status')->findOneById(1);
             $ticket->setStatus($newStatus);
             $ticket->setCategory($category);
+            $ticket->setPriority($ticket->getCategory()->getPriority());
             $em->persist($ticket);
             $em->flush($ticket);
 

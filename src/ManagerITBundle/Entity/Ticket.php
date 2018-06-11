@@ -104,12 +104,20 @@ class Ticket
      */
     private $assignedTechnicans;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="priority", type="string", length=10, nullable=true))
+     */
+    private $priority;
+
     public function __construct()
     {
 
         $this->addDate = new \DateTime();
         $this->assignedTechnicans = new \Doctrine\Common\Collections\ArrayCollection();
         $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->priority = 1;
 
     }
 
@@ -436,5 +444,28 @@ class Ticket
     public function removeActivity(\ManagerITBundle\Entity\Activity $activities)
     {
         $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Set priority
+     *
+     * @param string $priority
+     * @return Ticket
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return string 
+     */
+    public function getPriority()
+    {
+        return $this->priority;
     }
 }

@@ -50,10 +50,10 @@
                                     {% for picture in networkDevice.pictures %}
                                         <td>
                                             <a href="{{ asset('pictures/' ~ picture.file) }}">
-                                                <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
+                                                <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Network Device"
                                                      height="200" width="200">
                                             </a>&nbsp
-                                            <a href="{{ path('tablet_delete_picture', {'id': networkDevice.id , 'picture': picture.id }) }}"
+                                            <a href="{{ path('network_device_delete_picture', {'id': networkDevice.id , 'picture': picture.id }) }}"
                                                class="btn btn-danger btn-grad btn-rect btn-sm">
                                                 <i class="fa fa-arrow-left "></i>
                                                 <i class="fa fa-trash-o "></i>

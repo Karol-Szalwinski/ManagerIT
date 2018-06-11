@@ -167,6 +167,9 @@
                             <a href="{{ path('managerit_default_index') }}">Główna</a>
                         </li>
                         <li>
+                            <a href="{{ path('ticket_index') }}">Zgłoszenia</a>
+                        </li>
+                        <li>
                             <a href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">Komputery</a>
                         </li>
                         <li>
@@ -184,9 +187,7 @@
                         <li>
                             <a href="{{ path('printer_index') }}">Drukarki</a>
                         </li>
-                        <li>
-                            <a href="{{ path('employee_index') }}">Pracownicy</a>
-                        </li>
+
                         <li>
                             <a href="{{ path('departament_index') }}">Działy</a>
                         </li>
@@ -398,12 +399,6 @@
                     </ul>
                 </li>
                 <li class="nav-divider"></li>
-                <li>
-                    <a href="{{ path('employee_index') }}">
-                        <i class="fa fa-id-card"></i>
-                        <span class="link-title">&nbspPracownicy</span>
-                    </a>
-                </li>
                 <li>
                     <a href="{{ path('application_index') }}">
                         <i class="fa fa-window-restore"></i>

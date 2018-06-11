@@ -83,7 +83,24 @@
                                     </tr>
                                     <tr>
                                         <th>Priorytet</th>
-                                        <td>{{ ticket.category.priority }}</td>
+                                        <td>
+
+                                            {% if ticket.priority == 0 %}
+
+                                                <span>Wysoki</span>
+
+                                            {% elseif ticket.priority == 1 %}
+
+                                                <span>Zwykły</span>
+
+                                            {% elseif ticket.priority == 2 %}
+
+                                                <span>Niski</span>
+
+                                            {% endif %}
+
+
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>SLA</th>

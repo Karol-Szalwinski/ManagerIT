@@ -1,10 +1,10 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: localhost
-    database_port: null
-    database_name: 26844444_manger
-    database_user: 26844444_manger
-    database_password: CodersLab#2018
+    database_host: sql.serwer1838067.home.pl
+    database_port: 3306
+    database_name: 26844444_man_dev
+    database_user: 26844444_man_dev
+    database_password: 'Coderslab#2018'
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: admin

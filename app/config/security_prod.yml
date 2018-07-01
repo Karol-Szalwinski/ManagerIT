@@ -30,8 +30,8 @@ security:
         - { path: ^/register, role: ROLE_SUPER_ADMIN }
         - { path: ^/resetting, role: ROLE_SUPER_ADMIN }
         - { path: ^/user, role: ROLE_ADMIN, requires_channel: https }
-        - { path: ^/computer/laptop/\d*/, role: ROLE_ADMIN }
-        - { path: ^/computer/laptop/\D, role: ROLE_ADMIN }
+        - { path: ^/computer/laptop/\d*/, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: ^/computer/laptop/\D, role: ROLE_ADMIN, requires_channel: https  }
         - { path: ^/computer/desktop/\d*/, role: ROLE_ADMIN }
         - { path: ^/computer/desktop/\D, role: ROLE_ADMIN }
         - { path: ^/departament/\d*/, role: ROLE_ADMIN }

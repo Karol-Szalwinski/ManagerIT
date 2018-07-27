@@ -113,6 +113,13 @@ class Printer
     private $location;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
+     */
+    private $warrantyEndDate;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Picture")
      * @ORM\JoinTable(name="printers_pictures",
      *      joinColumns={@ORM\JoinColumn(name="printer_id", referencedColumnName="id")},
@@ -617,5 +624,51 @@ class Printer
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set varrantyEndDate
+     *
+     * @param \DateTime $varrantyEndDate
+     * @return Printer
+     */
+    public function setVarrantyEndDate($varrantyEndDate)
+    {
+        $this->varrantyEndDate = $varrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get varrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getVarrantyEndDate()
+    {
+        return $this->varrantyEndDate;
+    }
+
+    /**
+     * Set warrantyEndDate
+     *
+     * @param \DateTime $warrantyEndDate
+     * @return Printer
+     */
+    public function setWarrantyEndDate($warrantyEndDate)
+    {
+        $this->warrantyEndDate = $warrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get warrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantyEndDate()
+    {
+        return $this->warrantyEndDate;
     }
 }

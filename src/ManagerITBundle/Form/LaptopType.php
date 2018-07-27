@@ -47,11 +47,22 @@ class LaptopType extends AbstractType
             ))
             ->add('battery')
             ->add('location')
+            ->add('warrantyEndDate', 'date', array(
+                'widget' => 'single_text',
+                'placeholder' => 'Select a value',
+                // do not render as type="date", to avoid HTML5 date pickers
+                'html5' => false,
+                // add a class that can be selected in JavaScript
+                'attr' => ['class' => 'js-datepicker'],
+            ))
             ->add('os', EntityType::class, [
                 'class' => 'ManagerITBundle:Os',
                 'choice_label' => 'name',
                 'multiple' => false,
-            ]);
+            ])
+            ->setAttributes(array(
+                'novalidate' => 'novalidate',
+            ));
 
     }
 

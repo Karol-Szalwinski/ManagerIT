@@ -120,6 +120,16 @@
                                         <td>Lokalizacja fizyczna</td>
                                         <td>{{ computer.location }}</td>
                                     </tr>
+                                    <tr>
+                                        <td> Data wygąśniecia gwarancji</td>
+                                        <td>
+                                            {% if computer.warrantyEndDate is not null %}
+                                                {{ computer.warrantyEndDate|date('Y-m-d') }}
+                                            {% else %}
+                                                <p>Brak gwarancji</p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -83,6 +83,13 @@ class NetworkDevice
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
+     */
+    private $warrantyEndDate;
     
 
     /**
@@ -401,5 +408,51 @@ class NetworkDevice
     public function removePassword(\ManagerITBundle\Entity\Password $passwords)
     {
         $this->passwords->removeElement($passwords);
+    }
+
+    /**
+     * Set varrantyEndDate
+     *
+     * @param \DateTime $varrantyEndDate
+     * @return NetworkDevice
+     */
+    public function setVarrantyEndDate($varrantyEndDate)
+    {
+        $this->varrantyEndDate = $varrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get varrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getVarrantyEndDate()
+    {
+        return $this->varrantyEndDate;
+    }
+
+    /**
+     * Set warrantyEndDate
+     *
+     * @param \DateTime $warrantyEndDate
+     * @return NetworkDevice
+     */
+    public function setWarrantyEndDate($warrantyEndDate)
+    {
+        $this->warrantyEndDate = $warrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get warrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantyEndDate()
+    {
+        return $this->warrantyEndDate;
     }
 }

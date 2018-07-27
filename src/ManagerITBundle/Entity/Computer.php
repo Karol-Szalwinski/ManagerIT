@@ -209,6 +209,13 @@ class Computer
      */
     private $location;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
+     */
+    private $warrantyEndDate;
+
 
 
 
@@ -1088,5 +1095,51 @@ class Computer
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set varrantyEndDate
+     *
+     * @param \DateTime $varrantyEndDate
+     * @return Computer
+     */
+    public function setVarrantyEndDate($varrantyEndDate)
+    {
+        $this->varrantyEndDate = $varrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get varrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getVarrantyEndDate()
+    {
+        return $this->varrantyEndDate;
+    }
+
+    /**
+     * Set warrantyEndDate
+     *
+     * @param \DateTime $warrantyEndDate
+     * @return Computer
+     */
+    public function setWarrantyEndDate($warrantyEndDate)
+    {
+        $this->warrantyEndDate = $warrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get warrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantyEndDate()
+    {
+        return $this->warrantyEndDate;
     }
 }

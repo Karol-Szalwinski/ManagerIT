@@ -45,6 +45,14 @@ class TabletType extends AbstractType
             ->add('color')
             ->add('pinScreen')
             ->add('description')
+            ->add('warrantyEndDate', 'date', array(
+                'widget' => 'single_text',
+                'placeholder' => 'Select a value',
+                // do not render as type="date", to avoid HTML5 date pickers
+                'html5' => false,
+                // add a class that can be selected in JavaScript
+                'attr' => ['class' => 'js-datepicker'],
+            ))
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
             ));

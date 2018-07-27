@@ -100,6 +100,16 @@
                                         <th>IMEI</th>
                                         <td>{{ tablet.imei }}</td>
                                     </tr>
+                                    <tr>
+                                        <th> Data wygąśniecia gwarancji</th>
+                                        <td>
+                                            {% if tablet.warrantyEndDate is not null %}
+                                                {{ tablet.warrantyEndDate|date('Y-m-d') }}
+                                            {% else %}
+                                                <p>Brak gwarancji</p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

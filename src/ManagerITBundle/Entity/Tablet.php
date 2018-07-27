@@ -175,6 +175,13 @@ class Tablet
      */
     private $sims;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
+     */
+    private $warrantyEndDate;
+
     public function __construct()
     {
         $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
@@ -763,5 +770,51 @@ class Tablet
     public function hasUser(User $user)
     {
         return $this->users->contains($user);
+    }
+
+    /**
+     * Set varrantyEndDate
+     *
+     * @param \DateTime $varrantyEndDate
+     * @return Tablet
+     */
+    public function setVarrantyEndDate($varrantyEndDate)
+    {
+        $this->varrantyEndDate = $varrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get varrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getVarrantyEndDate()
+    {
+        return $this->varrantyEndDate;
+    }
+
+    /**
+     * Set warrantyEndDate
+     *
+     * @param \DateTime $warrantyEndDate
+     * @return Tablet
+     */
+    public function setWarrantyEndDate($warrantyEndDate)
+    {
+        $this->warrantyEndDate = $warrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get warrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantyEndDate()
+    {
+        return $this->warrantyEndDate;
     }
 }

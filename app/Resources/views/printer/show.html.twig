@@ -71,32 +71,42 @@
 
                                     <tbody>
                                     <tr>
-                                        <td>Nazwa</td>
+                                        <th>Nazwa</th>
                                         <td>{{ printer.name }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Rodzaj</td>
+                                        <th>Rodzaj</th>
                                         <td>{{ printer.factor }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Kolor</td>
+                                        <th>Kolor</th>
                                         <td>{{ printer.color }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Model</td>
+                                        <th>Model</th>
                                         <td>{{ printer.model }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Producent</td>
+                                        <th>Producent</th>
                                         <td>{{ printer.brand }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Nr seryjny</td>
+                                        <th>Nr seryjny</th>
                                         <td>{{ printer.series }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Lokalizacja fizyczna</td>
+                                        <th>Lokalizacja fizyczna</th>
                                         <td>{{ printer.location }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th> Data wygąśniecia gwarancji</th>
+                                        <td>
+                                            {% if printer.warrantyEndDate is not null %}
+                                                {{ printer.warrantyEndDate|date('Y-m-d') }}
+                                            {% else %}
+                                                <p>Brak gwarancji</p>
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

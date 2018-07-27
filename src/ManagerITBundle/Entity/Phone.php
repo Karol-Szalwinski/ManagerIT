@@ -168,6 +168,13 @@ class Phone
      */
     private $sims;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
+     */
+    private $warrantyEndDate;
+
     public function __construct()
     {
         $this->sims = new \Doctrine\Common\Collections\ArrayCollection();
@@ -728,5 +735,51 @@ class Phone
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Set varrantyEndDate
+     *
+     * @param \DateTime $varrantyEndDate
+     * @return Phone
+     */
+    public function setVarrantyEndDate($varrantyEndDate)
+    {
+        $this->varrantyEndDate = $varrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get varrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getVarrantyEndDate()
+    {
+        return $this->varrantyEndDate;
+    }
+
+    /**
+     * Set warrantyEndDate
+     *
+     * @param \DateTime $warrantyEndDate
+     * @return Phone
+     */
+    public function setWarrantyEndDate($warrantyEndDate)
+    {
+        $this->warrantyEndDate = $warrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get warrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantyEndDate()
+    {
+        return $this->warrantyEndDate;
     }
 }

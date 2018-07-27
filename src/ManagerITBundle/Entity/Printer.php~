@@ -106,6 +106,13 @@ class Printer
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255, nullable=true)
+     */
+    private $location;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Picture")
      * @ORM\JoinTable(name="printers_pictures",
      *      joinColumns={@ORM\JoinColumn(name="printer_id", referencedColumnName="id")},

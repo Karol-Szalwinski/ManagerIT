@@ -42,10 +42,8 @@
                                         <th>Nazwa</th>
                                         <th>Typ</th>
                                         <th>Rodzaj</th>
-                                        <th>Kolor</th>
+                                        <th>Lokalizacja</th>
                                         <th>Model</th>
-                                        <th>Producent</th>
-                                        <th>S/N</th>
                                         <th>Użytkownik</th>
                                         <th>Adres IP</th>
                                     </tr>
@@ -56,10 +54,8 @@
                                             <td>{{ printer.name }}</td>
                                             <td>{{ printer.type }}</td>
                                             <td>{{ printer.factor }}</td>
-                                            <td>{{ printer.color }}</td>
+                                            <td>{{ printer.location }}</td>
                                             <td>{{ printer.model }}</td>
-                                            <td>{{ printer.brand }}</td>
-                                            <td>{{ printer.series }}</td>
                                             <td>
                                                 {% for user in printer.users %}
                                                     {{ user.name }} {{ user.usersurname }}<br>

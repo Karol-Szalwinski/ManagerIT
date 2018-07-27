@@ -70,6 +70,7 @@ class PrinterType extends AbstractType
             ->add('macAddress')
             ->add('ipAddress')
             ->add('description')
+            ->add('location')
         ;
     }
     

@@ -445,4 +445,27 @@ class Ticket
     {
         $this->activities->removeElement($activities);
     }
+
+    /**
+     * Set priority
+     *
+     * @param string $priority
+     * @return Ticket
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return string 
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
 }

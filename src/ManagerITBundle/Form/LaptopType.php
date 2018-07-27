@@ -46,6 +46,7 @@ class LaptopType extends AbstractType
                 'multiple' => false,
             ))
             ->add('battery')
+            ->add('location')
             ->add('os', EntityType::class, [
                 'class' => 'ManagerITBundle:Os',
                 'choice_label' => 'name',

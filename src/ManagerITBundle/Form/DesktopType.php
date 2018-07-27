@@ -32,6 +32,7 @@ class DesktopType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
             ])
+            ->add('location')
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
             ));

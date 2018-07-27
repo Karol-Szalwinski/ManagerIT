@@ -106,6 +106,13 @@ class Printer
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255, nullable=true)
+     */
+    private $location;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Picture")
      * @ORM\JoinTable(name="printers_pictures",
      *      joinColumns={@ORM\JoinColumn(name="printer_id", referencedColumnName="id")},
@@ -587,5 +594,28 @@ class Printer
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     * @return Printer
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

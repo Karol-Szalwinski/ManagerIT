@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", schemes={"https"})
+     * @Route("/")
      */
     public function indexAction()
     {

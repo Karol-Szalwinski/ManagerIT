@@ -202,6 +202,13 @@ class Computer
      */
     private $installedApplications;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255, nullable=true)
+     */
+    private $location;
+
 
 
 
@@ -1058,5 +1065,28 @@ class Computer
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     * @return Computer
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

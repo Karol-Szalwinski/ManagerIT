@@ -118,6 +118,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    {{ form_label(form.location, 'Lokalizacja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.location, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź lokalizację'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     {{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.description, { 'attr': {'class': 'form-control autosize'} }) }}

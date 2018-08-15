@@ -101,6 +101,16 @@
                                         <th>IMEI</th>
                                         <td>{{ phone.imei }}</td>
                                     </tr>
+                                    <tr>
+                                        <th> Data wygąśniecia gwarancji</th>
+                                        <td>
+                                            {% if phone.warrantyEndDate is not null %}
+                                                {{ phone.warrantyEndDate|date('Y-m-d') }}
+                                            {% else %}
+                                                <p>Brak gwarancji</p>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

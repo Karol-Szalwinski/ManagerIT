@@ -144,9 +144,9 @@
                                         </td>
                                         <td>
                                             {% if sim.phone is not null %}
-                                                {% for employee in sim.phone.employees %}
-                                                    {% if employee is not null %}
-                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                {% for user in sim.phone.users %}
+                                                    {% if user is not null %}
+                                                        {{ user.name }} {{ user.usersurname }}<br>
                                                     {% else %}
                                                         brak użytkownika<br>
                                                     {% endif %}
@@ -155,9 +155,9 @@
                                             {% endif %}
 
                                             {% if sim.tablet is not null %}
-                                                {% for employee in sim.tablet.employees %}
-                                                    {% if employee is not null %}
-                                                        {{ employee.name }} {{ employee.surname }}<br>
+                                                {% for user in sim.tablet.users %}
+                                                    {% if user is not null %}
+                                                        {{ user.name }} {{ user.usersurname }}<br>
                                                     {% else %}
                                                         brak użytkownika<br>
                                                     {% endif %}

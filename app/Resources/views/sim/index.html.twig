@@ -51,8 +51,24 @@
                                       {% for sim in sims %}
                                           <tr onclick='location.href = "{{ path('sim_show', { 'id': sim.id }) }}"'>
                                               <td>{{ sim.number }}</td>
-                                              <td>{{ sim.pin }}</td>
-                                              <td>{{ sim.puk }}</td>
+                                              <td>
+                                                  {% if sim.pin|length > 2 %}
+                                                      {{ sim.pin|first }}
+                                                      {% for i in 1..sim.pin|length -2 %}
+                                                           {{ '*' }}
+                                                      {% endfor %}
+                                                      {{ sim.pin|last }}
+                                                  {% endif %}
+                                              </td>
+                                              <td>
+                                                  {% if sim.puk|length > 2 %}
+                                                      {{ sim.puk|first }}
+                                                      {% for i in 1..sim.puk|length -2 %}
+                                                           {{ '*' }}
+                                                      {% endfor %}
+                                                      {{ sim.puk|last }}
+                                                  {% endif %}
+                                              </td>
                                               <td>{{ sim.operator }}</td>
                                               <td>
                                                   {% if sim.phone is not null %}

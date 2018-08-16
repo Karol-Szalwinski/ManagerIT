@@ -91,6 +91,13 @@ class Ups
      */
     private $documents;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
+     */
+    private $warrantyEndDate;
+
 
     /**
      * Get id

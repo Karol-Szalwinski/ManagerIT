@@ -28,7 +28,7 @@
                         <div class="box dark">
                             <header>
                                 <div class="icons"><i class="fa fa-edit"></i></div>
-                                <h5>Dodaj nowe hasło t</h5>
+                                <h5>Dodaj nowe poświadczenie dostępowe</h5>
                                 <!-- .toolbar -->
                                 <div class="toolbar">
                                     <nav style="padding: 8px;">
@@ -49,22 +49,22 @@
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
                                 <div class="form-group" >
-                                    {{ form_label(form.name, 'Nazwa', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.name, 'Nazwa poświadczenia lub dostępu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+                                        {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Np. Dostęp przez stronę WWW dla Admina'} }) }}
                                     </div>
                                 </div>
                                 <div class="form-group" >
-                                    {{ form_label(form.type, 'Rodzaj dostępu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.type, 'Rodzaj / sposób dostępu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control'} }) }}
+                                        {{ form_widget(form.type, { 'attr': {'class': 'form-control', 'placeholder': 'Np. HTTPS'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group" >
                                     {{ form_label(form.address, 'Adres dostępu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
                                     <div class="col-lg-6">
-                                        {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres dostępu'} }) }}
+                                        {{ form_widget(form.address, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres dostępu np. https://web.pl'} }) }}
                                     </div>
                                 </div>
 
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
 
-                                <input type="submit" value="Dodaj nowe hasło" class="btn btn-primary btn-grad control-label" />
+                                <input type="submit" value="Dodaj nowe poświadczenie" class="btn btn-primary btn-grad control-label" />
                                 <br>
                                 {{ form_end(form) }}
                             </div>

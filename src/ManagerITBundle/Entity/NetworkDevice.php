@@ -101,6 +101,16 @@ class NetworkDevice
      */
     private $pictures;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="ConfigFile")
+     * @ORM\JoinTable(name="networkDevices_configFiles",
+     *      joinColumns={@ORM\JoinColumn(name="network_device_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="config_file_id", referencedColumnName="id")}
+     *      )
+     */
+    private $configFiles;
+
     /**
      * @ORM\OneToMany(targetEntity="Password", mappedBy="networkDevice", cascade={"remove"})
      */
@@ -454,5 +464,38 @@ class NetworkDevice
     public function getWarrantyEndDate()
     {
         return $this->warrantyEndDate;
+    }
+
+    /**
+     * Add configFiles
+     *
+     * @param \ManagerITBundle\Entity\ConfigFile $configFiles
+     * @return NetworkDevice
+     */
+    public function addConfigFile(\ManagerITBundle\Entity\ConfigFile $configFiles)
+    {
+        $this->configFiles[] = $configFiles;
+
+        return $this;
+    }
+
+    /**
+     * Remove configFiles
+     *
+     * @param \ManagerITBundle\Entity\ConfigFile $configFiles
+     */
+    public function removeConfigFile(\ManagerITBundle\Entity\ConfigFile $configFiles)
+    {
+        $this->configFiles->removeElement($configFiles);
+    }
+
+    /**
+     * Get configFiles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConfigFiles()
+    {
+        return $this->configFiles;
     }
 }

@@ -4,7 +4,7 @@ namespace ManagerITBundle;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileUploader
+class TextFileUploader
 {
     private $targetDir;
 
@@ -15,15 +15,15 @@ class FileUploader
 
     public function upload(UploadedFile $file)
     {
-        $fileFirstName = md5(uniqid());
+        $fileFirstName = $file->getClientOriginalName() . '_' . date("Y-m-d H:i:s");
         $fileExtension = '.' . $file->guessExtension();
         $fileName = $fileFirstName . $fileExtension;
 
         $file->move($this->targetDir, $fileName);
 
         if ($this->isImage($this->targetDir . "/" . $fileName)) {
-            $this->makeThumb($this->targetDir . "/" . $fileName, $this->targetDir . "/thumb40/" . $fileFirstName . "thumb40" . $fileExtension, 40);
-            $this->makeThumb($this->targetDir . "/" . $fileName, $this->targetDir . "/thumb200/" . $fileFirstName . "thumb200" . $fileExtension, 200);
+//            $this->makeThumb($this->targetDir . "/" . $fileName, $this->targetDir . "/thumb40/" . $fileFirstName . "thumb40" . $fileExtension, 40);
+//            $this->makeThumb($this->targetDir . "/" . $fileName, $this->targetDir . "/thumb200/" . $fileFirstName . "thumb200" . $fileExtension, 200);
         }
         return $fileName;
     }

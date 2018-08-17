@@ -2,6 +2,7 @@
 
 namespace ManagerITBundle\Controller;
 
+use ManagerITBundle\Entity\ConfigFile;
 use ManagerITBundle\Entity\NetworkDevice;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -65,14 +66,35 @@ class NetworkDeviceController extends Controller
      * Finds and displays a networkDevice entity.
      *
      * @Route("/{id}", name="networkdevice_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function showAction(NetworkDevice $networkDevice)
+    public function showAction(Request $request, NetworkDevice $networkDevice)
     {
         $deleteForm = $this->createDeleteForm($networkDevice);
 
-        return $this->render('networkdevice/show.html.twig', array(
+        $configFile = new ConfigFile();
+        $configForm = $this->createForm('ManagerITBundle\Form\ConfigFileType', $configFile);
+        $configForm->handleRequest($request);
+
+        if ($configForm->isSubmitted() && $configForm->isValid()) {
+
+            $file = $configFile->getFile();
+
+            $fileName = $this->get('app.file_uploader')->upload($file);
+
+            $configFile->setFile($fileName);
+
+            $networkDevice->addConfigFile($configFile);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($configFile);
+            $em->flush();
+
+            return $this->redirectToRoute('networkdevice_show', array('id' => $networkDevice->getId()));
+        }
+
+        return $this->render( 'networkdevice/show.html.twig', array(
             'networkDevice' => $networkDevice,
+            'config_form' => $configForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -188,6 +210,40 @@ class NetworkDeviceController extends Controller
         $em->flush($picture);
 
         return $this->redirectToRoute('networkdevice_show', array('id' => $networkDevice->getId()));
+    }
+
+
+    /**
+     * Displays a form to add config file in existing network device entity.
+     *
+     * @Route("/{id}/config", name="networkdevice_config")
+     * @Method({"GET", "POST"})
+     */
+    public function configAction( Request $request, NetworkDevice $networkDevice)
+    {
+        $configFile = new ConfigFile();
+        $configForm = $this->createForm('ManagerITBundle\Form\ConfigFileType', $configFile);
+        $configForm->handleRequest($request);
+
+        if ($configForm->isSubmitted() && $configForm->isValid()) {
+
+            $file = $configFile->getFile();
+            $fileName = $this->get('app.picture_uploader')->upload($file);
+
+            $configFile->setFile($fileName);
+            $networkDevice->addConfigFile($configFile);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($configFile);
+            $em->flush();
+
+            return $this->redirectToRoute('networkdevice_show', array('id' => $networkDevice->getId()));
+        }
+
+        return $this->render( 'networkdevice/show.html.twig', array(
+            'networkDevice' => $networkDevice,
+            'config_form' => $configForm->createView(),
+        ));
+
     }
 
     /**

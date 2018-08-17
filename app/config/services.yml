@@ -11,6 +11,7 @@ services:
 parameters:
     pictures_directory: '%kernel.root_dir%/../web/pictures'
     pdf_directory: '%kernel.root_dir%/../web/pdf'
+    file_directory: '%kernel.root_dir%/../web/files'
 
 services:
     # ...
@@ -21,6 +22,10 @@ services:
     app.pdf_uploader:
         class: ManagerITBundle\FileUploader
         arguments: ['%pdf_directory%']
+
+    app.file_uploader:
+        class: ManagerITBundle\TextFileUploader
+        arguments: ['%file_directory%']
 
     app.twig_extension:
         class: ManagerITBundle\Twig\AppExtension

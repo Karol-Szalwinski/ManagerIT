@@ -202,7 +202,7 @@
                     </div>
                     <!-- /.col-lg-6 -->
 
-                    <!-- .col-lg-6 -->
+                    <!-- .col-lg-12 -->
                     <div class="col-lg-12">
                         <div class="box">
                             <header>
@@ -244,9 +244,11 @@
                                             <td>{{ password.type }}</td>
                                             <td>{{ password.address }}</td>
                                             <td>
-                                                <a tabindex="0" class="btn btn-sm btn-danger" role="button" data-target="#"
-                                                   data-toggle="popover" data-placement="right" data-animation="true"  data-trigger="focus"
-                                                   data-delay = '{ "show": 500, "hide": 100 }'
+                                                <a tabindex="0" class="btn btn-sm btn-danger" role="button"
+                                                   data-target="#"
+                                                   data-toggle="popover" data-placement="right" data-animation="true"
+                                                   data-trigger="focus"
+                                                   data-delay='{ "show": 500, "hide": 100 }'
                                                    data-content="Login: {{ password.login }} Hasło:{{ password.password | base64_decode }}">Pokaż</a>
                                             </td>
                                             <td>{{ password.description }}</td>
@@ -260,73 +262,194 @@
                     </div>
                     <!-- /.col-lg-6 -->
 
-                    {#<!-- .col-lg-6 -->#}
-                    {#<div class="col-lg-6">#}
-                    {#<div class="box">#}
-                    {#<header>#}
-                    {#<div class="icons"><i class="fa fa-list"></i></div>#}
-                    {#<h5>Dane finansowe</h5>#}
-
-                    {#<div class="toolbar">#}
-                    {#<div class="btn-group">#}
-                    {#{% if is_granted('ROLE_ADMIN') %}#}
-                    {#<a href="{{ path('networkdevice_finances', { 'id': networkDevice.id }) }}"#}
-                    {#class="btn btn-sm btn-info">#}
-                    {#<span class="link-title">Zmień</span>#}
-                    {#<i class="fa fa-wrench"></i>#}
-                    {#</a>#}
-                    {#{% endif %}#}
-                    {#<a href="#condensedTable4" data-toggle="collapse"#}
-                    {#class="btn btn-default btn-sm minimize-box">#}
-                    {#<i class="fa fa-angle-up"></i>#}
-                    {#</a>#}
-                    {#<a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#</header>#}
-                    {#<div id="condensedTable6" class="body collapse in">#}
-                    {#<table class="table table-condensed responsive-table">#}
-                    {#<thead>#}
-                    {#<tr>#}
-                    {#<th>Typ dokumentu</th>#}
-                    {#<th>Podmiot</th>#}
-                    {#<th>Numer</th>#}
-                    {#<th>Sprzedawca</th>#}
-                    {#<th>Cena</th>#}
-                    {#<th>Data</th>#}
-                    {#</tr>#}
-                    {#</thead>#}
-                    {#<tbody>#}
-
-                    {#{% for document in networkDevice.documents %}#}
-                    {#<tr>#}
-                    {#<td>{{ document.type }}</td>#}
-                    {#<td>{{ document.subject }}</td>#}
-                    {#<td>{{ document.number }}</td>#}
-                    {#<td>{{ document.sellerName }}</td>#}
-                    {#<td>{{ document.price }}</td>#}
-                    {#<td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>#}
-                    {#</tr>#}
-                    {#{% endfor %}#}
-
-                    {#</tbody>#}
-                    {#</table>#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#</div>#}
-                    {#<!-- /.col-lg-6 -->#}
-
                 </div>
+
                 <!-- /.row -->
+                <div class="row">
+
+                    <!-- .col-lg-10 -->
+                    <div class="col-lg-12">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-photo"></i></div>
+                                <h5>Pliki konfiguracyjne</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable6" class="body collapse in">
+                                <table class="table table-condensed responsive-table table-bordered">
+
+                                    <tbody>
+                                    <tr>
+                                        <th>Nazwa pliku</th>
+                                        <th>Podgląd</th>
+                                        <th>Akcje</th>
+                                    </tr>
+
+                                    {% for configFile in networkDevice.configFiles %}
+                                        <tr>
+                                            <th class="center">
+                                                <p>{{ configFile.file }}</p>
+                                            </th>
+                                            <td>
+                                                {#<a href="{{ asset('files/' ~ configFile.file) }}"#}
+                                                   {#style="display: block; z-index: 1;" about=""#}
+
+                                                {#>#}
+                                                    <object data="{{ asset('files/' ~ configFile.file) }}"
+                                                            height="310" width="410"
+                                                            style="z-index: -1; pointer-events: none;"
+                                                    >
+                                                    </object>
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                {#<a href="{{ path('document_delete_pdf', {'type': computer.formFactor,'computer': computer.id, 'document': document.id, 'pdf': pdf.id }) }}"#}
+                                                {#class="btn btn-danger btn-grad btn-rect btn-sm">#}
+                                                {#<i class="fa fa-arrow-up "></i>#}
+                                                {#<i class="fa fa-trash-o "></i>#}
+                                                {#<span class="link-title">Usuń</span>#}
+                                                {#</a>#}
+                                            </td>
+                                        </tr>
+                                        {#</div>#}
+                                    {% else %}
+                                        {% set picture = "defaultpdf.png" %}
+                                        <div>
+                                            <a href="{{ asset('pdf/' ~ picture) }}">
+                                                <img src="{{ asset('pdf/' ~ picture) }}" alt="PDF dokument"
+                                                     height="150" width="250">
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- Przycisk uruchamiający modal -->
+                        <div class="col-lg-10">
+                            <button class="btn btn-primary btn-grad control-label" data-toggle="modal"
+                                    data-target="#myModal">
+                                Wgraj nowy plik konfiguracyjny
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-6 -->
+
+                {#<!-- .col-lg-6 -->#}
+                {#<div class="col-lg-6">#}
+                {#<div class="box">#}
+                {#<header>#}
+                {#<div class="icons"><i class="fa fa-list"></i></div>#}
+                {#<h5>Dane finansowe</h5>#}
+
+                {#<div class="toolbar">#}
+                {#<div class="btn-group">#}
+                {#{% if is_granted('ROLE_ADMIN') %}#}
+                {#<a href="{{ path('networkdevice_finances', { 'id': networkDevice.id }) }}"#}
+                {#class="btn btn-sm btn-info">#}
+                {#<span class="link-title">Zmień</span>#}
+                {#<i class="fa fa-wrench"></i>#}
+                {#</a>#}
+                {#{% endif %}#}
+                {#<a href="#condensedTable4" data-toggle="collapse"#}
+                {#class="btn btn-default btn-sm minimize-box">#}
+                {#<i class="fa fa-angle-up"></i>#}
+                {#</a>#}
+                {#<a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>#}
+                {#</div>#}
+                {#</div>#}
+                {#</header>#}
+                {#<div id="condensedTable6" class="body collapse in">#}
+                {#<table class="table table-condensed responsive-table">#}
+                {#<thead>#}
+                {#<tr>#}
+                {#<th>Typ dokumentu</th>#}
+                {#<th>Podmiot</th>#}
+                {#<th>Numer</th>#}
+                {#<th>Sprzedawca</th>#}
+                {#<th>Cena</th>#}
+                {#<th>Data</th>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+
+                {#{% for document in networkDevice.documents %}#}
+                {#<tr>#}
+                {#<td>{{ document.type }}</td>#}
+                {#<td>{{ document.subject }}</td>#}
+                {#<td>{{ document.number }}</td>#}
+                {#<td>{{ document.sellerName }}</td>#}
+                {#<td>{{ document.price }}</td>#}
+                {#<td>{% if document.purchaseDate %}{{ document.purchaseDate|date('Y-m-d') }}{% endif %}</td>#}
+                {#</tr>#}
+                {#{% endfor %}#}
+
+                {#</tbody>#}
+                {#</table>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#<!-- /.col-lg-6 -->#}
+
             </div>
-            <!-- /.inner -->
+            <!-- /.row -->
         </div>
-        <!-- /.outer -->
+        <!-- /.inner -->
+    </div>
+    <!-- /.outer -->
     </div>
     <!-- /#content -->
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Wgraj plik konfiguracyjny z dysku (format pliku dowolny)</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="div-1" class="body">
+                        {{ form_start(config_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                        <div class="form-group">
+                            {{ form_label(config_form.file, 'Plik', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
+                            <div class="col-lg-8">
+                                {{ form_row(config_form.file, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Wgraj plik konfiguracyjny"
+                                   class="btn btn-primary btn-grad control-label"/>
+                            <button type="button" class="btn btn-primary btn-grad control-label" data-dismiss="modal">
+                                Zamknij
+                            </button>
+                        </div>
+
+                        {{ form_end(config_form) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('[data-toggle="popover"]').popover(
             );
         });

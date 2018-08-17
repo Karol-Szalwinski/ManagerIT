@@ -365,4 +365,27 @@ class Ups
     {
         return $this->documents;
     }
+
+    /**
+     * Set warrantyEndDate
+     *
+     * @param \DateTime $warrantyEndDate
+     * @return Ups
+     */
+    public function setWarrantyEndDate($warrantyEndDate)
+    {
+        $this->warrantyEndDate = $warrantyEndDate;
+
+        return $this;
+    }
+
+    /**
+     * Get warrantyEndDate
+     *
+     * @return \DateTime 
+     */
+    public function getWarrantyEndDate()
+    {
+        return $this->warrantyEndDate;
+    }
 }

@@ -139,6 +139,13 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    {{ form_label(form.status, 'Status', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.status, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+
                                 <input type="submit" value="Dodaj nową drukarke"
                                        class="btn btn-primary btn-grad control-label" formnovalidate/>
                                 <br>

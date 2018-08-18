@@ -41,6 +41,7 @@
                                     <thead>
                                     <tr>
                                         <th>Nazwa</th>
+                                        <th>Status</th>
                                         <th>Marka</th>
                                         <th>Model</th>
                                         <th>S/N</th>
@@ -51,6 +52,7 @@
                                     {% for up in ups %}
                                         <tr onclick='location.href = "{{ path('ups_show', { 'id': up.id }) }}"'>
                                             <td>{{ up.name }}</td>
+                                            <td>{{ up.status }}</td>
                                             <td>{{ up.brand }}</td>
                                             <td>{{ up.model }}</td>
                                             <td>{{ up.serial }}</td>

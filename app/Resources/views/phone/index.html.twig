@@ -43,10 +43,9 @@
                                         <th>Nazwa</th>
                                         <th>Marka</th>
                                         <th>Model</th>
-                                        <th>Modem</th>
                                         <th>Przekątna ekranu</th>
-                                        <th>Kolor</th>
                                         <th>Numer Telefonu</th>
+                                        <th>Status</th>
                                         <th>Użytkownik</th>
                                         <th>Zdjęcie</th>
                                     </tr>
@@ -57,14 +56,13 @@
                                             <td>{{ phone.name }}</td>
                                             <td>{{ phone.brand }}</td>
                                             <td>{{ phone.model }}</td>
-                                            <td>{{ phone.modem }}</td>
                                             <td>{{ phone.screenSize }}</td>
-                                            <td>{{ phone.color }}</td>
                                             <td>
                                                 {% for sim in phone.sims %}
                                                     {{ sim.number }}<br>
                                                 {% endfor %}
                                             </td>
+                                            <td>{{ phone.status }}</td>
                                             <td>
                                                 {% for user in phone.users %}
                                                     {{ user.name }} {{ user.usersurname }}<br>

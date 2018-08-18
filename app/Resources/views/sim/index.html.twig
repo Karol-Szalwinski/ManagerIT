@@ -40,6 +40,7 @@
                                       <thead>
                                       <tr>
                                           <th>Numer telefonu</th>
+                                          <th>Status</th>
                                           <th>Pin</th>
                                           <th>Puk</th>
                                           <th>Operator</th>
@@ -51,6 +52,7 @@
                                       {% for sim in sims %}
                                           <tr onclick='location.href = "{{ path('sim_show', { 'id': sim.id }) }}"'>
                                               <td>{{ sim.number }}</td>
+                                              <td> {{ sim.status }}</td>
                                               <td>
                                                   {% if sim.pin|length > 2 %}
                                                       {{ sim.pin|first }}

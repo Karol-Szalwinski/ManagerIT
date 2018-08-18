@@ -20,7 +20,7 @@
                     <i class="fa fa-file-photo-o"></i>
                     <span class="link-title">Zdjęcie</span>
                 </a>
-                {#<a href="{{ path('tablet_employees', {'id': tablet.id }) }}"#}
+                {#<a href="{{ path('ups_employees', {'id': ups.id }) }}"#}
                    {#class="btn btn-metis-5 btn-grad btn-rect btn-md">#}
                     {#<i class="fa fa-user"></i>#}
                     {#<span class="link-title">Pracownicy</span>#}
@@ -76,6 +76,10 @@
                                         <td>{{ up.name }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Status urządzenia</th>
+                                        <td><span  class="btn btn-sm btn-warning">{{ up.status }}</span></td>
+                                    </tr>
+                                    <tr>
                                         <th>Producent</th>
                                         <td>{{ up.brand }}</td>
                                     </tr>
@@ -109,7 +113,7 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-photo"></i></div>
-                                <h5>Zdjęcia</h5>
+                                <h5>Zdjęcia Poglądowe</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">
@@ -134,21 +138,27 @@
                                     <tbody>
                                     <tr>
                                         <td>
+                                            {% set existPreviewPicture = false %}
                                             {% for picture in up.pictures %}
-                                                <a href="{{ asset('pictures/' ~ picture.file) }}" target="_blank">
-                                                    {%  set thumb200 = picture.file|replace({'.': "thumb200."}) %}
-                                                    <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}" alt="Ups"
-                                                         height="200" width="200">
-                                                </a>
-                                            {% else %}
-                                                {% set picture = "default.png" %}
-                                                <a href="{{ asset('pictures/' ~ picture) }}" target="_blank">
-                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Ups"
-                                                         height="200" width="200">
-                                                </a>
+                                                {% if picture.type == 'Pogladowe' %}
+                                                    <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                        {% set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                        <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}"
+                                                             alt="UPS"
+                                                             height="200" width="200">
+                                                    </a>
+                                                    {% set existPreviewPicture = true %}
+                                                {% endif %}
                                             {% endfor %}
+                                            {% if existPreviewPicture == false %}
+                                                {% set picture = "default.png" %}
+                                                <a>
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="UPS"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% endif %}
                                         </td>
-                                        Kliknij aby powiększyć
+                                        <span>Kliknij aby powiększyć</span>
                                     </tbody>
                                 </table>
                             </div>
@@ -202,7 +212,63 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
+                    
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-photo"></i></div>
+                                <h5>Zdjęcia Rzeczywiste</h5>
 
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('ups_photo', {'id': up.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
+                                        {% endif %}
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {% set existPicture = false %}
+                                            {% for picture in up.pictures %}
+                                                {% if picture.type != 'Pogladowe' %}
+                                                    <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                        {% set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                        <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}"
+                                                             alt="UPS"
+                                                             height="200" width="200">
+                                                    </a>
+                                                    {% set existPicture = true %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if existPicture == false %}
+                                                {% set picture = "default.png" %}
+                                                <a>
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="UPS"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <span>Kliknij aby powiększyć</span>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
 
 
                 {#<!-- /.row -->#}
@@ -217,7 +283,7 @@
                                 {#<div class="toolbar">#}
                                     {#<div class="btn-group">#}
                                         {#{% if is_granted('ROLE_ADMIN') %}#}
-                                            {#<a href="{{ path('tablet_employees', {'id': tablet.id }) }}"#}
+                                            {#<a href="{{ path('ups_employees', {'id': ups.id }) }}"#}
                                                {#class="btn btn-sm btn-info">#}
                                                 {#<span class="link-title">Zmień</span>#}
                                                 {#<i class="fa fa-wrench"></i>#}
@@ -242,7 +308,7 @@
                                     {#</tr>#}
                                     {#</thead>#}
                                     {#<tbody>#}
-                                    {#{% for employee in tablet.employees %}#}
+                                    {#{% for employee in ups.employees %}#}
                                         {#<tr>#}
                                             {#<td>{{ employee.name }}</td>#}
                                             {#<td>{{ employee.surname }}</td>#}
@@ -268,7 +334,7 @@
                                 {#<div class="toolbar">#}
                                     {#<div class="btn-group">#}
                                         {#{% if is_granted('ROLE_ADMIN') %}#}
-                                            {#<a href="{{ path('tablet_finances', { 'id': tablet.id }) }}"#}
+                                            {#<a href="{{ path('ups_finances', { 'id': ups.id }) }}"#}
                                                {#class="btn btn-sm btn-info">#}
                                                 {#<span class="link-title">Zmień</span>#}
                                                 {#<i class="fa fa-wrench"></i>#}
@@ -296,7 +362,7 @@
                                     {#</thead>#}
                                     {#<tbody>#}
 
-                                    {#{% for document in tablet.documents %}#}
+                                    {#{% for document in ups.documents %}#}
                                         {#<tr>#}
                                             {#<td>{{ document.type }}</td>#}
                                             {#<td>{{ document.subject }}</td>#}

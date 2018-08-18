@@ -37,6 +37,18 @@ class UpsType extends AbstractType
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
             ))
+            ->add('status', 'choice', array(
+                'choices' => array(
+                    'Nowy' => 'Nowy',
+                    'W użyciu' => 'W użyciu',
+                    'W naprawie' => 'W naprawie',
+                    'Zezłomowany' => 'Zezłomowany',
+                    'W magazynie' => 'W magazynie'
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz status urządzenia'
+            ))
             ->setAttributes(array(
                 'novalidate'=>'novalidate',
             ))

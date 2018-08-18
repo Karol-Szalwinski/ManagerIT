@@ -30,7 +30,7 @@
                     <div class="box">
                         <header>
                             <div class="icons"><i class="fa fa-photo"></i></div>
-                            <h5>Zdjęcia</h5>
+                            <h5>Zdjęcia poglądowe - przedstawiają konkretny model</h5>
 
                             <div class="toolbar">
                                 <div class="btn-group">
@@ -47,30 +47,35 @@
 
                                 <tbody>
                                 <tr>
+                                    {% set existPreviewPicture = false %}
                                     {% for picture in up.pictures %}
-                                        <td>
-                                            <a href="{{ asset('pictures/' ~ picture.file) }}">
-                                                <img src="{{ asset('pictures/' ~ picture.file) }}" alt="UPS"
-                                                     height="200" width="200">
-                                            </a>&nbsp
-                                            <a href="{{ path('ups_delete_picture', {'id': up.id , 'picture': picture.id }) }}"
-                                               class="btn btn-danger btn-grad btn-rect btn-sm">
-                                                <i class="fa fa-arrow-left "></i>
-                                                <i class="fa fa-trash-o "></i>
-                                                <span class="link-title">Usuń</span>
-                                            </a>
-                                        </td>
-                                    {% else %}
+                                        {% if picture.type == 'Pogladowe' %}
+                                            <td>
+                                                <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
+                                                         height="200" width="200">
+                                                </a>&nbsp
+                                                <a href="{{ path('ups_delete_picture', {'id': up.id , 'picture': picture.id }) }}"
+                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <i class="fa fa-arrow-left "></i>
+                                                    <i class="fa fa-trash-o "></i>
+                                                    <span class="link-title">Usuń</span>
+                                                </a>
+                                            </td>
+                                            {% set existPreviewPicture = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if existPreviewPicture == false %}
                                         {% set picture = "default.png" %}
                                         <td>
                                             <a href="{{ asset('pictures/' ~ picture) }}">
-                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Default"
+                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
                                                      height="200" width="200">
                                             </a>
                                         </td>
-                                    {% endfor %}
+                                    {% endif %}
 
-                                    Kliknij aby powiększyć
+                                    <span>Kliknij aby powiększyć</span>
                                 </tr>
                                 </tbody>
                             </table>
@@ -82,7 +87,71 @@
                         </button>
                     </div>
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.col-lg-10 -->
+
+                <!-- .col-lg-10 -->
+                <div>
+                    <div class="box">
+                        <header>
+                            <div class="icons"><i class="fa fa-photo"></i></div>
+                            <h5>Zdjęcia rzeczywiste - przedstawiają konkretny egzemplarz</h5>
+
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a href="#condensedTable1" data-toggle="collapse"
+                                       class="btn btn-default btn-sm minimize-box">
+                                        <i class="fa fa-angle-up"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </header>
+                        <div id="condensedTable1" class="body collapse in">
+                            <table class="table table-condensed responsive-table">
+
+                                <tbody>
+                                <tr>
+                                    {% set existPicture = false %}
+                                    {% for picture in up.pictures %}
+                                        {% if picture.type != 'Pogladowe' %}
+                                            <td>
+                                                <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                    <img src="{{ asset('pictures/' ~ picture.file) }}" alt="Desktop"
+                                                         height="200" width="200">
+                                                </a>&nbsp
+                                                <a href="{{ path('ups_delete_picture', {'id': up.id , 'picture': picture.id }) }}"
+                                                   class="btn btn-danger btn-grad btn-rect btn-sm">
+                                                    <i class="fa fa-arrow-left "></i>
+                                                    <i class="fa fa-trash-o "></i>
+                                                    <span class="link-title">Usuń</span>
+                                                </a>
+                                            </td>
+                                            {% set existPicture = true %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if existPicture == false %}
+                                        {% set picture = "default.png" %}
+                                        <td>
+                                            <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                     height="200" width="200">
+                                            </a>
+                                        </td>
+                                    {% endif %}
+
+                                    <span>Kliknij aby powiększyć</span>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Przycisk uruchamiający modal -->
+                        <button class="btn btn-primary btn-grad control-label" data-toggle="modal"
+                                data-target="#myModal">
+                            Dodaj nowe zdjęcie
+                        </button>
+                    </div>
+                </div>
+                <!-- /.col-lg-10 -->
 
             </div>
             <!-- /.inner -->
@@ -109,6 +178,12 @@
                             {{ form_label(picture_form.file, 'Zdjęcie', { 'label_attr': {'class': 'control-label col-lg-2'} }) }}
                             <div class="col-lg-8">
                                 {{ form_row(picture_form.file, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(picture_form.type, 'Typ zdjęcia', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                            <div class="col-lg-6">
+                                {{ form_widget(picture_form.type, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                         </div>
                         <div class="modal-footer">

@@ -111,6 +111,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    {{ form_label(edit_form.status, 'Status', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.status, { 'attr': {'class': 'form-control'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-lg-5 col-sm-3 control-label required">Posiada ochronę ups</label>
                                     <span class=" control-label col-lg-1">&nbsp</span>
                                     {{ form_widget(edit_form.upsProtected, { 'attr': {'class': '',

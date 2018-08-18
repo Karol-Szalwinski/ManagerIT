@@ -33,6 +33,13 @@ class Picture
      */
     private $file;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=100, nullable=true)
+     */
+    private $type;
+
 
 
     /**
@@ -66,5 +73,28 @@ class Picture
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Picture
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

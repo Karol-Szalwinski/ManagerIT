@@ -31,6 +31,16 @@ class SimType extends AbstractType
                 'multiple' => false,
                 'placeholder' => 'Wybierz sieć',
             ))
+            ->add('status', 'choice', array(
+                'choices' => array(
+                    'W użyciu' => 'W użyciu',
+                    'W magazynie' => 'W magazynie',
+                    'Zlikwidowana' => 'Zlikwidowana'
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz status urządzenia'
+            ))
 
         ;
     }

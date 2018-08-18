@@ -10,32 +10,33 @@
                 <span class="link-title">Lista drukarek</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('printer_edit', { 'id': printer.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-wrench"></i>
-                <span class="link-title">Edytuj</span>
-            </a>
-            <a href="{{ path('printer_photo', {'id': printer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-file-photo-o"></i>
-                <span class="link-title">Zdjęcie</span>
-            </a>
-            <a href="{{ path('printer_users', {'id': printer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-user"></i>
-                <span class="link-title">Pracownicy</span>
-            </a>
-            <a href="{{ path('printer_finances', {'id': printer.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-money"></i>
-                <span class="link-title">Finanse</span>
-            </a>
-            <div style="display: inline-block;">
-                {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
-                            class="fa fa-trash"></i> Usuń
-                </button>
-                {{ form_end(delete_form) }}
-            </div>
+                <a href="{{ path('printer_edit', { 'id': printer.id }) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-wrench"></i>
+                    <span class="link-title">Edytuj</span>
+                </a>
+                <a href="{{ path('printer_photo', {'id': printer.id }) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-file-photo-o"></i>
+                    <span class="link-title">Zdjęcie</span>
+                </a>
+                <a href="{{ path('printer_users', {'id': printer.id }) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-user"></i>
+                    <span class="link-title">Pracownicy</span>
+                </a>
+                <a href="{{ path('printer_finances', {'id': printer.id }) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-money"></i>
+                    <span class="link-title">Finanse</span>
+                </a>
+                <div style="display: inline-block;">
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
+                                class="fa fa-trash"></i> Usuń
+                    </button>
+                    {{ form_end(delete_form) }}
+                </div>
             {% endif %}
         </div>
     </div>
@@ -73,6 +74,10 @@
                                     <tr>
                                         <th>Nazwa</th>
                                         <td>{{ printer.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status urządzenia</th>
+                                        <td><span class="btn btn-sm btn-warning">{{ printer.status }}</span></td>
                                     </tr>
                                     <tr>
                                         <th>Rodzaj</th>
@@ -120,16 +125,16 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-photo"></i></div>
-                                <h5>Zdjęcia</h5>
+                                <h5>Zdjęcia Poglądowe</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">
                                         {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('printer_photo', {'id': printer.id }) }}"
-                                           class="btn btn-sm btn-info">
-                                            <span class="link-title">Zmień</span>
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
+                                            <a href="{{ path('printer_photo', {'id': printer.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
                                         {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
@@ -145,21 +150,27 @@
                                     <tbody>
                                     <tr>
                                         <td>
+                                            {% set existPreviewPicture = false %}
                                             {% for picture in printer.pictures %}
-                                                <a href="{{ asset('pictures/' ~ picture.file) }}">
-                                                    {%  set thumb200 = picture.file|replace({'.': "thumb200."}) %}
-                                                    <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}" alt="Drukarka"
-                                                         height="200" width="200">
-                                                </a>
-                                            {% else %}
+                                                {% if picture.type == 'Pogladowe' %}
+                                                    <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                        {% set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                        <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}"
+                                                             alt="Drukarka"
+                                                             height="200" width="200">
+                                                    </a>
+                                                    {% set existPreviewPicture = true %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if existPreviewPicture == false %}
                                                 {% set picture = "default.png" %}
-                                                <a href="{{ asset('pictures/' ~ picture) }}">
+                                                <a>
                                                     <img src="{{ asset('pictures/' ~ picture) }}" alt="Drukarka"
                                                          height="200" width="200">
                                                 </a>
-                                            {% endfor %}
+                                            {% endif %}
                                         </td>
-                                        Kliknij aby powiększyć
+                                        <span>Kliknij aby powiększyć</span>
                                     </tbody>
                                 </table>
                             </div>
@@ -218,6 +229,69 @@
                     <div class="col-lg-6">
                         <div class="box">
                             <header>
+                                <div class="icons"><i class="fa fa-photo"></i></div>
+                                <h5>Zdjęcia Rzeczywiste</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('printer_photo', {'id': printer.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
+                                        {% endif %}
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {% set existPicture = false %}
+                                            {% for picture in printer.pictures %}
+                                                {% if picture.type != 'Pogladowe' %}
+                                                    <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                        {% set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                        <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}"
+                                                             alt="Drukarka"
+                                                             height="200" width="200">
+                                                    </a>
+                                                    {% set existPicture = true %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if existPicture == false %}
+                                                {% set picture = "default.png" %}
+                                                <a>
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Drukarka"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <span>Kliknij aby powiększyć</span>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
                                 <h5>Dane sieciowe</h5>
 
@@ -253,11 +327,8 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
-                </div>
-                <!-- /.row -->
-                
-                <!-- /.row -->
-                <div class="row">
+
+
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="box">
@@ -268,11 +339,11 @@
                                 <div class="toolbar">
                                     <div class="btn-group">
                                         {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('printer_users', {'id': printer.id }) }}"
-                                           class="btn btn-sm btn-info">
-                                            <span class="link-title">Zmień</span>
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
+                                            <a href="{{ path('printer_users', {'id': printer.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
                                         {% endif %}
                                         <a href="#condensedTable6" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
@@ -308,6 +379,11 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
 
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
@@ -319,11 +395,11 @@
                                 <div class="toolbar">
                                     <div class="btn-group">
                                         {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('printer_finances', { 'id': printer.id }) }}"
-                                           class="btn btn-sm btn-info">
-                                            <span class="link-title">Zmień</span>
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
+                                            <a href="{{ path('printer_finances', { 'id': printer.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
                                         {% endif %}
                                         <a href="#condensedTable4" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">

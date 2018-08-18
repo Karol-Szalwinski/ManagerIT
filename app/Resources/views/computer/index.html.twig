@@ -47,8 +47,7 @@
                                         <th>Model</th>
                                         <th>Typ</th>
                                         <th>Producent</th>
-                                        <th>Procesor</th>
-                                        <th>RAM</th>
+                                        <th>Status</th>
                                         <th>Użytkownicy</th>
                                         <th>Dział</th>
                                         <th>Adres IP</th>
@@ -62,22 +61,7 @@
                                             <td>{{ computer.model }}</td>
                                             <td>{{ computer.formFactor }}</td>
                                             <td>{{ computer.brand }}</td>
-                                            <td>
-                                                {% if computer.cpu is not null %}
-                                                    {{ computer.cpu.name }}
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                {% if computer.ramslots is empty %}
-                                                    Brak
-                                                {% else %}
-                                                    {% set sum = 0 %}
-                                                    {% for ramslot in computer.ramslots %}
-                                                        {% set sum = sum + ramslot.ram.capacity %}
-                                                    {% endfor %}
-                                                    {{ sum }} GB
-                                                {% endif %}
-                                            </td>
+                                            <td> {{ computer.status }}</td>
                                             <td>
                                                 {% for user in computer.users %}
                                                     {{ user.name }} {{ user.usersurname }}<br>

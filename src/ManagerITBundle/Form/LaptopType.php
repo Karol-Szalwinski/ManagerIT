@@ -60,6 +60,18 @@ class LaptopType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
             ])
+            ->add('status', 'choice', array(
+                'choices' => array(
+                    'Nowy' => 'Nowy',
+                    'W użyciu' => 'W użyciu',
+                    'W naprawie' => 'W naprawie',
+                    'Zezłomowany' => 'Zezłomowany',
+                    'W magazynie' => 'W magazynie'
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz status urządzenia'
+            ))
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
             ));

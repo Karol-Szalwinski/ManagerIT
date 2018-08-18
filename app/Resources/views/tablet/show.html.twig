@@ -81,6 +81,10 @@
                                         <td>{{ tablet.name }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Status urządzenia</th>
+                                        <td><span  class="btn btn-sm btn-warning">{{ tablet.status }}</span></td>
+                                    </tr>
+                                    <tr>
                                         <th>Producent</th>
                                         <td>{{ tablet.brand }}</td>
                                     </tr>
@@ -122,16 +126,16 @@
                         <div class="box">
                             <header>
                                 <div class="icons"><i class="fa fa-photo"></i></div>
-                                <h5>Zdjęcia</h5>
+                                <h5>Zdjęcia Poglądowe</h5>
 
                                 <div class="toolbar">
                                     <div class="btn-group">
                                         {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="{{ path('tablet_photo', {'id': tablet.id }) }}"
-                                           class="btn btn-sm btn-info">
-                                            <span class="link-title">Zmień</span>
-                                            <i class="fa fa-wrench"></i>
-                                        </a>
+                                            <a href="{{ path('tablet_photo', {'id': tablet.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
                                         {% endif %}
                                         <a href="#condensedTable1" data-toggle="collapse"
                                            class="btn btn-default btn-sm minimize-box">
@@ -147,22 +151,27 @@
                                     <tbody>
                                     <tr>
                                         <td>
+                                            {% set existPreviewPicture = false %}
                                             {% for picture in tablet.pictures %}
-                                                <a href="{{ asset('pictures/' ~ picture.file) }}" target="_blank">
-                                                    {%  set thumb200 = picture.file|replace({'.': "thumb200."}) %}
-                                                    <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}" alt="Tablet"
-                                                         height="200" width="200">
-                                                </a>
-
-                                            {% else %}
+                                                {% if picture.type == 'Pogladowe' %}
+                                                    <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                        {% set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                        <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}"
+                                                             alt="Tablet"
+                                                             height="200" width="200">
+                                                    </a>
+                                                    {% set existPreviewPicture = true %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if existPreviewPicture == false %}
                                                 {% set picture = "default.png" %}
-                                                <a href="{{ asset('pictures/' ~ picture) }}" target="_blank">
+                                                <a>
                                                     <img src="{{ asset('pictures/' ~ picture) }}" alt="Tablet"
                                                          height="200" width="200">
                                                 </a>
-                                            {% endfor %}
+                                            {% endif %}
                                         </td>
-                                        Kliknij aby powiększyć
+                                        <span>Kliknij aby powiększyć</span>
                                     </tbody>
                                 </table>
                             </div>
@@ -229,6 +238,69 @@
                     <div class="col-lg-6">
                         <div class="box">
                             <header>
+                                <div class="icons"><i class="fa fa-photo"></i></div>
+                                <h5>Zdjęcia Rzeczywiste</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('tablet_photo', {'id': tablet.id }) }}"
+                                               class="btn btn-sm btn-info">
+                                                <span class="link-title">Zmień</span>
+                                                <i class="fa fa-wrench"></i>
+                                            </a>
+                                        {% endif %}
+                                        <a href="#condensedTable1" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable1" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {% set existPicture = false %}
+                                            {% for picture in tablet.pictures %}
+                                                {% if picture.type != 'Pogladowe' %}
+                                                    <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                        {% set thumb200 = picture.file|replace({'.': "thumb200."}) %}
+                                                        <img src="{{ asset('pictures/thumb200/' ~ thumb200) }}"
+                                                             alt="Tablet"
+                                                             height="200" width="200">
+                                                    </a>
+                                                    {% set existPicture = true %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if existPicture == false %}
+                                                {% set picture = "default.png" %}
+                                                <a>
+                                                    <img src="{{ asset('pictures/' ~ picture) }}" alt="Tablet"
+                                                         height="200" width="200">
+                                                </a>
+                                            {% endif %}
+                                        </td>
+                                        <span>Kliknij aby powiększyć</span>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
+
+                    <!-- .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="box">
+                            <header>
                                 <div class="icons"><i class="fa fa-list"></i></div>
                                 <h5>Opis</h5>
 
@@ -282,11 +354,7 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
-                </div>
-                <!-- /.row -->
 
-                <!-- /.row -->
-                <div class="row">
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="box">
@@ -337,6 +405,12 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
+
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+                <div class="row">
 
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">

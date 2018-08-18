@@ -42,6 +42,18 @@ class DesktopType extends AbstractType
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
             ))
+            ->add('status', 'choice', array(
+                'choices' => array(
+                    'Nowy' => 'Nowy',
+                    'W użyciu' => 'W użyciu',
+                    'W naprawie' => 'W naprawie',
+                    'Zezłomowany' => 'Zezłomowany',
+                    'W magazynie' => 'W magazynie'
+                ),
+                'expanded' => false,
+                'multiple' => false,
+                'placeholder' => 'Wybierz status urządzenia'
+            ))
             ->add('upsProtected', CheckboxType::class, array(
                 'label'    => false,
                 'label_attr' => ['class'=> 'col-lg-4'],

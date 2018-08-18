@@ -223,7 +223,12 @@ class Computer
      */
     private $upsProtected;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=100, nullable=true)
+     */
+    private $status;
 
 
     /**
@@ -735,6 +740,7 @@ class Computer
         $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
         $this->upsProtected = false;
+        $this->status = 'Nowy';
     }
 
     /**

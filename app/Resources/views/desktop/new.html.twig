@@ -48,60 +48,74 @@
                                 {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
 
                                 <div class="form-group">
-                                    {{ form_label(form.name, 'Nazwa komputera', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.name, 'Nazwa komputera', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.name, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź nazwę'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.model, 'Model', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.model, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź model'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.series, 'Nr seryjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.series, 'Nr seryjny', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.series, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź serię'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.brand, 'Producent', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.brand, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź producenta'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.caseType, 'Rodzaj obudowy', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.caseType, 'Rodzaj obudowy', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.caseType, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź typ obudowy'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.os, 'System operacyjny', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.os, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź zainstalowany system'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.location, 'Lokalizacja', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.location, 'Lokalizacja', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
                                     <div class="col-lg-6">
                                         {{ form_widget(form.location, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź lokalizację'} }) }}
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.warrantyEndDate, 'Data wygaśnięcia gwarancji', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    {{ form_label(form.warrantyEndDate, 'Data wygaśnięcia gwarancji', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
 
                                     <div class="col-lg-3">
                                         {{ form_widget(form.warrantyEndDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-5 col-sm-3 control-label required">Posiada ochronę ups</label>
+                                    <span class=" control-label col-lg-1">&nbsp</span>
+                                        {{ form_widget(form.upsProtected, { 'attr': {'class': '',
+                                            'data-toggle': 'toggle',
+                                            'data-size': 'medium',
+                                            'data-on':'Tak',
+                                            'data-off':'Nie',
+                                            'data-onstyle': 'success',
+                                            'data-offstyle': 'danger',
+                                        } }) }}
+
                                 </div>
 
                                 <div class="form-group">

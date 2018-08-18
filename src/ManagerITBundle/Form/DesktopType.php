@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 class DesktopType extends AbstractType
@@ -40,6 +41,11 @@ class DesktopType extends AbstractType
                 'html5' => false,
                 // add a class that can be selected in JavaScript
                 'attr' => ['class' => 'js-datepicker'],
+            ))
+            ->add('upsProtected', CheckboxType::class, array(
+                'label'    => false,
+                'label_attr' => ['class'=> 'col-lg-4'],
+                'required' => false,
             ))
             ->setAttributes(array(
                 'novalidate' => 'novalidate',

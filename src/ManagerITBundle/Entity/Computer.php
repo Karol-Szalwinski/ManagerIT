@@ -216,6 +216,13 @@ class Computer
      */
     private $warrantyEndDate;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ups_protected", type="boolean", nullable=true)
+     */
+    private $upsProtected;
+
 
 
 
@@ -727,6 +734,7 @@ class Computer
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->installedApplications = new \Doctrine\Common\Collections\ArrayCollection();
         $this->addDate = new \DateTime();
+        $this->upsProtected = false;
     }
 
     /**
@@ -1141,5 +1149,51 @@ class Computer
     public function getWarrantyEndDate()
     {
         return $this->warrantyEndDate;
+    }
+
+    /**
+     * Set protectedUps
+     *
+     * @param boolean $protectedUps
+     * @return Computer
+     */
+    public function setProtectedUps($protectedUps)
+    {
+        $this->protectedUps = $protectedUps;
+
+        return $this;
+    }
+
+    /**
+     * Get protectedUps
+     *
+     * @return boolean 
+     */
+    public function getProtectedUps()
+    {
+        return $this->protectedUps;
+    }
+
+    /**
+     * Set upsProtected
+     *
+     * @param boolean $upsProtected
+     * @return Computer
+     */
+    public function setUpsProtected($upsProtected)
+    {
+        $this->upsProtected = $upsProtected;
+
+        return $this;
+    }
+
+    /**
+     * Get upsProtected
+     *
+     * @return boolean 
+     */
+    public function getUpsProtected()
+    {
+        return $this->upsProtected;
     }
 }

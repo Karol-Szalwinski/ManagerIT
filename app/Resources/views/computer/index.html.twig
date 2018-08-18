@@ -10,14 +10,16 @@
                 <span class="link-title">Lista komputerów</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('computer_new', {'type': 'desktop'}) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj desktopa</span>
-            </a>
-            <a href="{{ path('computer_new', {'type': 'laptop'}) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj laptopa</span>
-            </a>
+                <a href="{{ path('computer_new', {'type': 'desktop'}) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-plus"></i>
+                    <span class="link-title">Dodaj desktopa</span>
+                </a>
+                <a href="{{ path('computer_new', {'type': 'laptop'}) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-plus"></i>
+                    <span class="link-title">Dodaj laptopa</span>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -82,19 +84,38 @@
                                             </td>
 
                                             <td>
-                                                {% if computer.pictures is empty %}
-                                                    {% set picture = "default.png" %}
-                                                    <a href="{{ asset('pictures/' ~ picture) }}">
-                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
-                                                             height="40" width="40">
-                                                    </a>
-                                                {% else %}
-                                                    {%  set thumb40 = computer.pictures|first.file|replace({'.': "thumb40."}) %}
-                                                    <a href="{{ asset('pictures/' ~ computer.pictures|first.file) }}">
-                                                        <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
-                                                             alt="Desktop"
-                                                             height="40" width="40">
-                                                    </a>
+                                                {% set endLoop = false %}
+                                                {% for picture in computer.pictures %}
+                                                    {% if picture.type == "Pogladowe" and endLoop == false %}
+                                                        {% set thumb40 = picture.file|replace({'.': "thumb40."}) %}
+                                                        <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                            <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
+                                                                 alt="Desktop"
+                                                                 height="40" width="40">
+                                                        </a>
+                                                        {% set endLoop = true %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if endLoop == false %}
+                                                    {% for picture in computer.pictures %}
+                                                        {% if endLoop == false %}
+                                                            {% set thumb40 = picture.file|replace({'.': "thumb40."}) %}
+                                                            <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                                <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
+                                                                     alt="Desktop"
+                                                                     height="40" width="40">
+                                                            </a>
+                                                            {% set endLoop = true %}
+                                                        {% endif %}
+                                                    {% endfor %}
+
+                                                    {% if endLoop == false %}
+                                                        {% set picture = "default.png" %}
+                                                        <a href="{{ asset('pictures/' ~ picture) }}">
+                                                            <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                                 height="40" width="40">
+                                                        </a>
+                                                    {% endif %}
                                                 {% endif %}
                                             </td>
                                         </tr>

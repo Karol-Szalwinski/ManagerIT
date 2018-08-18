@@ -102,7 +102,7 @@
                                     </tr>
                                     <tr>
                                         <td>Status urządzenia</td>
-                                        <td><span  class="btn btn-sm btn-warning">{{ computer.status }}</span></td>
+                                        <td><span class="btn btn-sm btn-warning">{{ computer.status }}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Model</td>
@@ -136,7 +136,7 @@
                                     </tr>
                                     <tr>
                                         <td>Posiada ochronę UPS</td>
-                                        <td>{{ computer.upsProtected ? 'Tak':'Nie'   }}</td>
+                                        <td>{{ computer.upsProtected ? 'Tak':'Nie' }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -444,7 +444,6 @@
                     <!-- /.col-lg-6 -->
 
 
-
                     <!-- .col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="box">
@@ -544,7 +543,24 @@
                                         <tr>
                                             <td>{{ installedApplication.application.name }}</td>
                                             <td>{{ installedApplication.application.developer }}</td>
-                                            <td>{{ installedApplication.application.type }}</td>
+                                            <td>
+                                                {% if installedApplication.application.type == 'os' %}
+                                                    System operacyjny
+                                                {% elseif installedApplication.application.type == 'antivirus' %}
+                                                    Antywirus
+                                                {% elseif installedApplication.application.type == 'special' %}
+                                                    Specjalna
+                                                {% elseif installedApplication.application.type == 'office' %}
+                                                    Biurowa
+                                                {% elseif installedApplication.application.type == 'database' %}
+                                                    Baza danych
+                                                {% elseif installedApplication.application.type == 'graphic' %}
+                                                    Graficzna
+                                                {% else %}
+                                                    Inny
+                                                {% endif %}
+
+                                            </td>
                                         </tr>
                                     {% endfor %}
 
@@ -554,7 +570,6 @@
                         </div>
                     </div>
                     <!-- /.col-lg-6 -->
-
 
 
                     <!-- .col-lg-6 -->

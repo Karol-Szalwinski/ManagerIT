@@ -69,19 +69,38 @@
                                                 {% endfor %}
                                             </td>
                                             <td>
-                                                {% if phone.pictures is empty %}
-                                                    {% set picture = "default.png" %}
-                                                    <a href="{{ asset('pictures/' ~ picture) }}">
-                                                        <img src="{{ asset('pictures/' ~ picture) }}" alt="Telefon"
-                                                             height="40" width="40">
-                                                    </a>
-                                                {% else %}
-                                                    {% set thumb40 = phone.pictures|first.file|replace({'.': "thumb40."}) %}
-                                                    <a href="{{ asset('pictures/' ~ phone.pictures|first.file) }}">
-                                                        <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
-                                                             alt="Telefon"
-                                                             height="40" width="40">
-                                                    </a>
+                                                {% set endLoop = false %}
+                                                {% for picture in phone.pictures %}
+                                                    {% if picture.type == "Pogladowe" and endLoop == false %}
+                                                        {% set thumb40 = picture.file|replace({'.': "thumb40."}) %}
+                                                        <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                            <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
+                                                                 alt="Desktop"
+                                                                 height="40" width="40">
+                                                        </a>
+                                                        {% set endLoop = true %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if endLoop == false %}
+                                                    {% for picture in phone.pictures %}
+                                                        {% if endLoop == false %}
+                                                            {% set thumb40 = picture.file|replace({'.': "thumb40."}) %}
+                                                            <a href="{{ asset('pictures/' ~ picture.file) }}">
+                                                                <img src="{{ asset('pictures/thumb40/' ~ thumb40) }}"
+                                                                     alt="Desktop"
+                                                                     height="40" width="40">
+                                                            </a>
+                                                            {% set endLoop = true %}
+                                                        {% endif %}
+                                                    {% endfor %}
+
+                                                    {% if endLoop == false %}
+                                                        {% set picture = "default.png" %}
+                                                        <a href="{{ asset('pictures/' ~ picture) }}">
+                                                            <img src="{{ asset('pictures/' ~ picture) }}" alt="Desktop"
+                                                                 height="40" width="40">
+                                                        </a>
+                                                    {% endif %}
                                                 {% endif %}
                                             </td>
                                         </tr>

@@ -544,7 +544,22 @@
                                         <tr>
                                             <td>{{ installedApplication.application.name }}</td>
                                             <td>{{ installedApplication.application.developer }}</td>
-                                            <td>{{ installedApplication.application.type }}</td>
+                                            <td>
+                                                {% if installedApplication.application.type == 'os' %}
+                                                    System operacyjny
+                                                {% elseif installedApplication.application.type == 'antivirus' %}
+                                                    Antywirus
+                                                {% elseif installedApplication.application.type == 'special' %}
+                                                    Specjalna
+                                                {% elseif installedApplication.application.type == 'office' %}
+                                                    Biurowa
+                                                {% elseif installedApplication.application.type == 'database' %}
+                                                    Baza danych
+                                                {% elseif installedApplication.application.type == 'graphic' %}
+                                                    Graficzna
+                                                {% else %}
+                                                    Inny
+                                                {% endif %}
                                         </tr>
                                     {% endfor %}
 

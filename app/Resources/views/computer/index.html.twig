@@ -50,6 +50,7 @@
                                         <th>Typ</th>
                                         <th>Producent</th>
                                         <th>Status</th>
+                                        <th>Lokalizacja</th>
                                         <th>Użytkownicy</th>
                                         <th>Dział</th>
                                         <th>Adres IP</th>
@@ -64,6 +65,7 @@
                                             <td>{{ computer.formFactor }}</td>
                                             <td>{{ computer.brand }}</td>
                                             <td> {{ computer.status }}</td>
+                                            <td> {{ computer.location }}</td>
                                             <td>
                                                 {% for user in computer.users %}
                                                     {{ user.name }} {{ user.usersurname }}<br>

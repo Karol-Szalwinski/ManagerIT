@@ -54,22 +54,32 @@
                                               <td>{{ sim.number }}</td>
                                               <td> {{ sim.status }}</td>
                                               <td>
-                                                  {% if sim.pin|length > 2 %}
-                                                      {{ sim.pin|first }}
-                                                      {% for i in 1..sim.pin|length -2 %}
-                                                           {{ '*' }}
-                                                      {% endfor %}
-                                                      {{ sim.pin|last }}
-                                                  {% endif %}
+                                                  {{ sim.pin }}
+                                                  {#{% if sim.pin is not null %}#}
+                                                      {#{% if sim.pin|length > 2 %}#}
+                                                          {#{{ sim.pin|first }}#}
+                                                          {#{% for i in 1..sim.pin|length -2 %}#}
+                                                              {#{{ '*' }}#}
+                                                          {#{% endfor %}#}
+                                                          {#{{ sim.pin|last }}#}
+                                                      {#{% endif %}#}
+                                                  {#{% else %}#}
+                                                      {#{{ sim.pin }}#}
+                                                  {#{% endif %}#}
                                               </td>
                                               <td>
-                                                  {% if sim.puk|length > 2 %}
-                                                      {{ sim.puk|first }}
-                                                      {% for i in 1..sim.puk|length -2 %}
-                                                           {{ '*' }}
-                                                      {% endfor %}
-                                                      {{ sim.puk|last }}
-                                                  {% endif %}
+                                                  {{ sim.puk }}
+                                                  {#{% if sim.puk is not null %}#}
+                                                      {#{% if sim.puk|length > 2 %}#}
+                                                          {#{{ sim.puk|first }}#}
+                                                          {#{% for i in 1..sim.puk|length -2 %}#}
+                                                              {#{{ '*' }}#}
+                                                          {#{% endfor %}#}
+                                                          {#{{ sim.puk|last }}#}
+                                                      {#{% endif %}#}
+                                                  {#{% else %}#}
+                                                      {#{{ sim.puk }}#}
+                                                  {#{% endif %}#}
                                               </td>
                                               <td>{{ sim.operator }}</td>
                                               <td>

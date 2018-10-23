@@ -13,14 +13,17 @@
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
             </a>
-            <a href="{{ path('fos_user_change_password', { 'user': user }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+            <a href="{{ path('change_user_password', { 'id': user.id }) }}"
+               class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Zmień hasło</span>
             </a>
-                
+
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i class="fa fa-trash"></i> Usuń</button>
+                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
+                            class="fa fa-trash"></i> Usuń
+                </button>
                 {{ form_end(delete_form) }}
             </div>
         </div>
@@ -46,7 +49,8 @@
 
                                 <div class="toolbar">
                                     <div class="btn-group">
-                                        <a href="#condensedTable" data-toggle="collapse" class="btn btn-default btn-sm minimize-box">
+                                        <a href="#condensedTable" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
                                             <i class="fa fa-angle-up"></i>
                                         </a>
                                         <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
@@ -56,58 +60,73 @@
                             <div id="condensedTable" class="body collapse in">
                                 <table class="table table-condensed responsive-table">
                                     <thead>
-                                        <tr>
+                                    <tr>
 
-                                            <th><img class="media-object img-thumbnail user-img" alt="User Picture" src="{{ asset('img/user.gif') }}"></th>
-                                            <th></th>
-                                        </tr>
+                                        <th><img class="media-object img-thumbnail user-img" alt="User Picture"
+                                                 src="{{ asset('img/user.gif') }}"></th>
+                                        <th></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Login</td>
-                                            <td>{{ user.username }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Imię</td>
-                                            <td>{{ user.name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nazwisko</td>
-                                            <td>{{ user.name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td>{{ user.email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Stanowisko</td>
-                                            <td>{{ user.job }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dział</td>
-                                            <td>
-                                                {% if user.departament is not null %}
+                                    <tr>
+                                        <td>Login</td>
+                                        <td>{{ user.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Imię</td>
+                                        <td>{{ user.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nazwisko</td>
+                                        <td>{{ user.usersurname }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>{{ user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stanowisko</td>
+                                        <td>{{ user.job }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dział</td>
+                                        <td>
+                                            {% if user.departament is not null %}
                                                 {{ user.departament.name }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zablokowany</td>
+                                        <td> {% if user.enabled == true %}
+                                                nie
+                                            {% else %}
+                                                tak
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ostatnie logowanie</td>
+                                        <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Przypisane role</td>
+                                        <td>
+                                            {% for roles in user.roles %}
+                                                {% if roles == "ROLE_ADMIN" %}
+                                                    admin&nbsp
+                                                {% elseif roles == "ROLE_USER" %}
+                                                    user&nbsp
+                                                {% elseif roles == "ROLE_SUPER_ADMIN" %}
+                                                    superadmin&nbsp
+                                                {% else %}
+                                                    {{ roles }}&nbsp
                                                 {% endif %}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Aktywny</td>
-                                            <td>{{ user.enabled }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ostatnie logowanie</td>
-                                            <td>{{ user.lastLogin |date("F jS \\a\\t g:ia") }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Przypisane role</td>
-                                            <td>
-                                                {% for roles in user.roles %}
-                                                    {{ roles }} 
-                                                {% endfor %}
-                                            </td>
-                                        </tr>
-                                    </tbody>                </table>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

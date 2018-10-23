@@ -6,6 +6,8 @@ use ManagerITBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * User controller.
@@ -94,6 +96,33 @@ class UserController extends Controller
         return $this->render('user/edit.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to change password of an existing user entity.
+     *
+     * @Route("/{id}/changepass", name="change_user_password")
+     * @Method({"GET", "POST"})
+     */
+    public function changeUserPasswordAction(Request $request, User $user)
+    {
+        $deleteForm = $this->createDeleteForm($user);
+        $changePasswordForm = $this->createForm('ManagerITBundle\Form\UserChangePasswordType', $user);
+        $changePasswordForm->handleRequest($request);
+
+        if ($changePasswordForm->isSubmitted() && $changePasswordForm->isValid()) {
+            $userManager = $this->container->get('fos_user.user_manager');
+            $userManager->updatePassword($user);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
+        }
+
+        return $this->render('user/changePass.html.twig', array(
+            'user' => $user,
+            'change_password_form' => $changePasswordForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

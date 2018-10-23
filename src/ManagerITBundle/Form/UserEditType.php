@@ -22,13 +22,14 @@ class UserEditType extends AbstractType
             'ROLE_ADMIN' => 'Administrator'
         );
 
-        $gender = array(
-            'Female' => 'Kobieta ',
-            'Male' => 'Mężczyzna '
+        $yesNo = array(
+            1 => 'Tak ',
+            0 => 'Nie '
         );
         $builder
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('name')
+            ->add('username')
             ->add('roles', 'choice', array(
                     'label' => 'Roles',
                     'choices' => $permissions,
@@ -38,6 +39,13 @@ class UserEditType extends AbstractType
             )
             ->add('usersurname')
             ->add('job')
+            ->add('enabled', 'choice', array(
+
+                    'choices' => $yesNo,
+                    'multiple' => false,
+                    'expanded' => false
+                )
+            )
             ->add('departament', 'entity', [
                 'class' => 'ManagerITBundle:Departament',
                 'choice_label' => 'name']);;

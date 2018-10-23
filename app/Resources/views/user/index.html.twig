@@ -30,46 +30,61 @@
                             <header>
                                 <div class="icons"><i class="fa fa-users"></i></div>
                                 <h5>Lista szczęśliwych użytkowników tego wspaniałego systemu</h5>
-                                
+
                             </header>
 
 
                             <div id="collapse4" class="body">
 
 
-                                <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                <table id="dataTable"
+                                       class="table table-bordered table-condensed table-hover table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Login</th>
-                                            <th>Imię</th>
-                                            <th>Nazwisko</th>
-                                            <th>Email</th>
-                                            <th>Dostępny</th>
-                                            <th>Zalogowany ostatnio</th>
-                                            <th>Rola</th>
-                                            <th></th>
-                                        </tr>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Login</th>
+                                        <th>Imię</th>
+                                        <th>Nazwisko</th>
+                                        <th>Email</th>
+                                        <th>Zablokowany</th>
+                                        <th>Ostatnie logowanie</th>
+                                        <th>Rola</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        {% for user in users %}
-                                            <tr onclick='location.href="{{ path('user_show', { 'id': user.id }) }}"'>
-                                                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                                                <td>{{ user.username }}</td>
-                                                <td>{{ user.name }}</td>
-                                                <td>{{ user.usersurname }}</td>
-                                                <td>{{ user.email }}</td>
-                                                <td>{{ user.enabled }}</td>
-                                                <td>{{ user.lastLogin |date("F jS \\a\\t g:ia") }}</td>
-                                                <td>
-                                                    {% for roles in user.roles %}
-                                                        {{ roles }},
-                                                    {% endfor %}
-                                                </td>
-                                                <td><a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a></td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>                </table>
+                                    {% for user in users %}
+                                        <tr onclick='location.href="{{ path('user_show', { 'id': user.id }) }}"'>
+                                            <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a>
+                                            </td>
+                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.name }}</td>
+                                            <td>{{ user.usersurname }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>
+                                                {% if user.enabled == true %}
+                                                    nie
+                                                {% else %}
+                                                    tak
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
+                                            <td>
+                                                {% for roles in user.roles %}
+                                                    {% if roles == "ROLE_ADMIN" %}
+                                                        admin&nbsp
+                                                    {% elseif roles == "ROLE_USER" %}
+                                                        user&nbsp
+                                                    {% elseif roles == "ROLE_SUPER_ADMIN" %}
+                                                        superadmin&nbsp
+                                                    {% else %}
+                                                        {{ roles }}&nbsp
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>

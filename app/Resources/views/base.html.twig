@@ -169,28 +169,31 @@
                         <li>
                             <a href="{{ path('managerit_default_index') }}">Główna</a>
                         </li>
-                        <li>
-                            <a href="{{ path('ticket_index') }}">Zgłoszenia</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">Komputery</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">Laptopy</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('phone_index') }}">Telefony</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tablet_index') }}">Tablety</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('sim_index') }}">SIM</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('printer_index') }}">Drukarki</a>
-                        </li>
-
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('ticket_index') }}">Zgłoszenia</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">Komputery</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">Laptopy</a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('phone_index') }}">Telefony</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('tablet_index') }}">Tablety</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('sim_index') }}">SIM</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('printer_index') }}">Drukarki</a>
+                            </li>
+                        {% endif %}
                         <li>
                             <a href="{{ path('departament_index') }}">Działy</a>
                         </li>
@@ -268,6 +271,7 @@
             </div>
             <!-- #menu -->
             <ul id="menu" class="bg-blue dker">
+
                 <li class="nav-header"><i class="fa fa-bars"></i> Menu</li>
                 <li class="nav-divider"></li>
                 <li>
@@ -276,165 +280,172 @@
                         <span class="link-title">&nbspGłówna</span>
                     </a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a href="{{ path('ticket_index') }}">
+                            <i class="fa fa-list-ol"></i>
+                            <span class="link-title">&nbspZgłoszenia</span>
+                        </a>
+                    </li>
 
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="{{ path('ticket_index') }}">
-                        <i class="fa fa-list-ol"></i>
-                        <span class="link-title">&nbspZgłoszenia</span>
-                    </a>
-                </li>
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">
+                            <i class="fa fa-desktop"></i>
+                            <span class="link-title">&nbspKomputery stacjonarne</span>
+                        </a>
+                    </li>
 
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">
-                        <i class="fa fa-desktop"></i>
-                        <span class="link-title">&nbspKomputery stacjonarne</span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">
+                            <i class="fa fa-laptop"></i>
+                            <span class="link-title">&nbspLaptopy</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_EDITOR') %}
+                    <li>
+                        <a href="{{ path('phone_index') }}">
+                            <i class="fa fa-mobile-phone"></i>
+                            <span class="link-title">&nbspTelefony</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('tablet_index') }}">
+                            <i class="fa fa-tablet"></i>
+                            <span class="link-title">&nbspTablety</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('sim_index') }}">
+                            <i class="fa fa-save"></i>
+                            <span class="link-title">&nbspKarty&nbspSIM</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('printer_index') }}">
+                            <i class="fa fa-print"></i>
+                            <span class="link-title">&nbspDrukarki</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a href="{{ path('ups_index') }}">
+                            <i class="fa fa-plug"></i>
+                            <span class="link-title">&nbspZasilacze&nbspUPS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('networkdevice_index') }}">
+                            <i class="fa fa-podcast"></i>
+                            <span class="link-title">&nbspUrządzenia&nbspSieciowe</span>
+                        </a>
+                    </li>
 
-                <li>
-                    <a href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">
-                        <i class="fa fa-laptop"></i>
-                        <span class="link-title">&nbspLaptopy</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('phone_index') }}">
-                        <i class="fa fa-mobile-phone"></i>
-                        <span class="link-title">&nbspTelefony</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('tablet_index') }}">
-                        <i class="fa fa-tablet"></i>
-                        <span class="link-title">&nbspTablety</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('sim_index') }}">
-                        <i class="fa fa-save"></i>
-                        <span class="link-title">&nbspKarty&nbspSIM</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('printer_index') }}">
-                        <i class="fa fa-print"></i>
-                        <span class="link-title">&nbspDrukarki</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('ups_index') }}">
-                        <i class="fa fa-plug"></i>
-                        <span class="link-title">&nbspZasilacze&nbspUPS</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('networkdevice_index') }}">
-                        <i class="fa fa-podcast"></i>
-                        <span class="link-title">&nbspUrządzenia&nbspSieciowe</span>
-                    </a>
-                </li>
-                <li class="nav-divider"></li>
-                <li class="">
-                    <a href="javascript:;">
-                        <i class="fa fa-cubes"></i>
-                        <span class="link-title">
+                    <li class="nav-divider"></li>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-cubes"></i>
+                            <span class="link-title">
                                     &nbspSłownik podzespołów
                         	  </span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="collapse">
-                        <li>
-                            <a href="{{ path('desktopcpu_index') }}">
-                                <i class="fa fa-microchip"></i>
-                                <span class="link-title">&nbspProcesory</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('desktopram_index') }}">
-                                <i class="fa fa-list-alt"></i>
-                                <span class="link-title">&nbspPamięć RAM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('gpu_index') }}">
-                                <i class="fa fa-picture-o"></i>
-                                <span class="link-title">&nbspKarty graficzne</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('hdd_index') }}">
-                                <i class="fa fa-hdd-o"></i>
-                                <span class="link-title">&nbspDyski HDD</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ssd_index') }}">
-                                <i class="fa fa-hdd-o"></i>
-                                <span class="link-title">&nbspDyski SSD</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('opticaldrive_index') }}">
-                                <i class="fa fa-dot-circle-o"></i>
-                                <span class="link-title">&nbspNapędy optyczne</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('computerformfactor_index') }}">
-                                <i class="fa fa-suitcase"></i>
-                                <span class="link-title">&nbspObudowy komputerowe</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('powersupply_index') }}">
-                                <i class="fa fa-plug"></i>
-                                <span class="link-title">&nbspZasilacze</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('os_index') }}">
-                                <i class="fa fa-windows"></i>
-                                <span class="link-title">&nbspSystemy operacyjne</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="{{ path('application_index') }}">
-                        <i class="fa fa-window-restore"></i>
-                        <span class="link-title">&nbspAplikacje</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('license_index') }}">
-                        <i class="fa fa-file-text"></i>
-                        <span class="link-title">&nbspLicencje</span>
-                    </a>
-                </li>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="collapse">
+                            <li>
+                                <a href="{{ path('desktopcpu_index') }}">
+                                    <i class="fa fa-microchip"></i>
+                                    <span class="link-title">&nbspProcesory</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('desktopram_index') }}">
+                                    <i class="fa fa-list-alt"></i>
+                                    <span class="link-title">&nbspPamięć RAM</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('gpu_index') }}">
+                                    <i class="fa fa-picture-o"></i>
+                                    <span class="link-title">&nbspKarty graficzne</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('hdd_index') }}">
+                                    <i class="fa fa-hdd-o"></i>
+                                    <span class="link-title">&nbspDyski HDD</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('ssd_index') }}">
+                                    <i class="fa fa-hdd-o"></i>
+                                    <span class="link-title">&nbspDyski SSD</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('opticaldrive_index') }}">
+                                    <i class="fa fa-dot-circle-o"></i>
+                                    <span class="link-title">&nbspNapędy optyczne</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('computerformfactor_index') }}">
+                                    <i class="fa fa-suitcase"></i>
+                                    <span class="link-title">&nbspObudowy komputerowe</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('powersupply_index') }}">
+                                    <i class="fa fa-plug"></i>
+                                    <span class="link-title">&nbspZasilacze</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('os_index') }}">
+                                    <i class="fa fa-windows"></i>
+                                    <span class="link-title">&nbspSystemy operacyjne</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a href="{{ path('application_index') }}">
+                            <i class="fa fa-window-restore"></i>
+                            <span class="link-title">&nbspAplikacje</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('license_index') }}">
+                            <i class="fa fa-file-text"></i>
+                            <span class="link-title">&nbspLicencje</span>
+                        </a>
+                    </li>
+                {% endif %}
                 <li>
                     <a href="{{ path('departament_index') }}">
                         <i class="fa fa-building"></i>
                         <span class="link-title">&nbspDziały</span>
                     </a>
                 </li>
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="{{ path('user_index') }}">
-                        <i class="fa fa-users"></i>
-                        <span class="link-title">&nbspUżytkownicy</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('user_index') }}">
-                        <i class="fa fa-bar-chart"></i>
-                        <span class="link-title">&nbspRaporty</span>
-                    </a>
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a href="{{ path('user_index') }}">
+                            <i class="fa fa-users"></i>
+                            <span class="link-title">&nbspUżytkownicy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('user_index') }}">
+                            <i class="fa fa-bar-chart"></i>
+                            <span class="link-title">&nbspRaporty</span>
+                        </a>
+                    </li>
 
-
+                {% endif %}
             </ul>
             <!-- /#menu -->
         </div>

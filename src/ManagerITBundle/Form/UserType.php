@@ -18,7 +18,7 @@ class UserType extends AbstractType
 
         $permissions = array(
             'ROLE_USER' => 'Użytkownik',
-            'ROLE_BOSS' => 'Szef',
+            'ROLE_EDITOR' => 'Edytor',
             'ROLE_ADMIN' => 'Administrator'
         );
 

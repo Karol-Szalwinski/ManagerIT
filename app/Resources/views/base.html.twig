@@ -305,11 +305,54 @@
                     </li>
                 {% endif %}
                 {% if is_granted('ROLE_EDITOR') %}
-                    <li>
-                        <a href="{{ path('phone_index') }}">
+                    <li class="">
+                        <a href="javascript:;">
                             <i class="fa fa-mobile-phone"></i>
-                            <span class="link-title">&nbspTelefony</span>
+                            <span class="link-title">
+                                    &nbspTelefony
+                        	  </span>
+                            <span class="fa arrow"></span>
                         </a>
+                        <ul class="collapse">
+
+                            <li>
+                                <a href="{{ path('phone_index') }}">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span class="link-title">&nbspWszystkie</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('phone_index_type', {'type': 'inuse'}) }}">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span class="link-title">&nbspW Użyciu</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('phone_index_type', {'type': 'storaged'}) }}">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span class="link-title">&nbspW Magazynie</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('phone_index_type', {'type': 'inrepair'}) }}">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span class="link-title">&nbspW Naprawie</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('phone_index_type', {'type': 'scrapped'}) }}">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span class="link-title">&nbspZezłomowane</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('phone_index_type', {'type': 'techdetails'}) }}">
+                                    <i class="fa fa-mobile-phone"></i>
+                                    <span class="link-title">&nbspSzczegóły techniczne</span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
                     <li>
                         <a href="{{ path('tablet_index') }}">

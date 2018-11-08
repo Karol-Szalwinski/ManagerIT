@@ -46,6 +46,7 @@
                                         <th>Przekątna ekranu</th>
                                         <th>Numer Telefonu</th>
                                         <th>Status</th>
+                                        {#<th>Lokalizacja</th>#}
                                         <th>Użytkownik</th>
                                         <th>Zdjęcie</th>
                                     </tr>
@@ -63,6 +64,7 @@
                                                 {% endfor %}
                                             </td>
                                             <td>{{ phone.status }}</td>
+                                            {#<td>{{ phone.location }}</td>#}
                                             <td>
                                                 {% for user in phone.users %}
                                                     {{ user.name }} {{ user.usersurname }}<br>

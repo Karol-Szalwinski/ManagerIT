@@ -38,6 +38,46 @@ class PhoneController extends Controller
     }
 
     /**
+     * Lists all phone entities.
+     *
+     * @Route("/index/{type}", name="phone_index_type")
+     * @Method("GET")
+     */
+    public function indexTypeAction($type)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+
+        $view = 'phone/index.html.twig';
+        switch($type) {
+            case "inuse":
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("W użyciu");
+                break;
+            case "inrepair":
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("W naprawie");
+                break;
+            case "scrapped":
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("Zezłomowane");
+                break;
+            case "storaged":
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("W magazynie");
+                break;
+            case "techdetails":
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findAll();
+                $view = 'phone/index_tech.html.twig';
+                break;
+            default:
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findAll();
+
+
+        }
+
+        return $this->render($view, array(
+            'phones' => $phones,
+        ));
+    }
+
+    /**
      * Creates a new phone entity.
      *
      * @Route("/new", name="phone_new")

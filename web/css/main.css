@@ -1921,12 +1921,12 @@ fieldset[disabled] .btn-line.btn-metis-6.active {
   box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
   color: #444444;
   display: inline-block;
-  height: 80px;
+  height: 120px;
   margin: 10px;
   padding-top: 16px;
   text-align: center;
   text-decoration: none;
-  width: 90px;
+  width: 140px;
   position: relative;
 }
 .quick-btn span {

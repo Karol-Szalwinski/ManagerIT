@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statistics list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Computercount</th>
+                <th>Laptopcount</th>
+                <th>Phonecount</th>
+                <th>Tabletcount</th>
+                <th>Printercount</th>
+                <th>Simcount</th>
+                <th>Networkdevicecount</th>
+                <th>Usercount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statistic in statistics %}
+            <tr>
+                <td><a href="{{ path('statistic_show', { 'id': statistic.id }) }}">{{ statistic.id }}</a></td>
+                <td>{{ statistic.computerCount }}</td>
+                <td>{{ statistic.laptopCount }}</td>
+                <td>{{ statistic.phoneCount }}</td>
+                <td>{{ statistic.tabletCount }}</td>
+                <td>{{ statistic.printerCount }}</td>
+                <td>{{ statistic.simCount }}</td>
+                <td>{{ statistic.networkDeviceCount }}</td>
+                <td>{{ statistic.userCount }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('statistic_show', { 'id': statistic.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('statistic_edit', { 'id': statistic.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statistic_new') }}">Create a new statistic</a>
+        </li>
+    </ul>
+{% endblock %}

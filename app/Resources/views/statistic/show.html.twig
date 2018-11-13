@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Statistic</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statistic.id }}</td>
+            </tr>
+            <tr>
+                <th>Computercount</th>
+                <td>{{ statistic.computerCount }}</td>
+            </tr>
+            <tr>
+                <th>Laptopcount</th>
+                <td>{{ statistic.laptopCount }}</td>
+            </tr>
+            <tr>
+                <th>Phonecount</th>
+                <td>{{ statistic.phoneCount }}</td>
+            </tr>
+            <tr>
+                <th>Tabletcount</th>
+                <td>{{ statistic.tabletCount }}</td>
+            </tr>
+            <tr>
+                <th>Printercount</th>
+                <td>{{ statistic.printerCount }}</td>
+            </tr>
+            <tr>
+                <th>Simcount</th>
+                <td>{{ statistic.simCount }}</td>
+            </tr>
+            <tr>
+                <th>Networkdevicecount</th>
+                <td>{{ statistic.networkDeviceCount }}</td>
+            </tr>
+            <tr>
+                <th>Usercount</th>
+                <td>{{ statistic.userCount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('statistic_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('statistic_edit', { 'id': statistic.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

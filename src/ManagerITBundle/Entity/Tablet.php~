@@ -126,13 +126,6 @@ class Tablet
      */
     private $color;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
-
 
     /**
      * @ORM\ManyToMany(targetEntity="Employee", inversedBy="tablets")
@@ -186,9 +179,24 @@ class Tablet
     /**
      * @var string
      *
+     * @ORM\Column(name="location", type="string", length=100, nullable=true)
+     */
+    private $location;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="status", type="string", length=100, nullable=true)
      */
     private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true, nullable=true)
+     */
+    private $description;
 
     public function __construct()
     {
@@ -202,7 +210,7 @@ class Tablet
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -225,7 +233,7 @@ class Tablet
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -248,7 +256,7 @@ class Tablet
     /**
      * Get brand
      *
-     * @return string 
+     * @return string
      */
     public function getBrand()
     {
@@ -271,7 +279,7 @@ class Tablet
     /**
      * Get model
      *
-     * @return string 
+     * @return string
      */
     public function getModel()
     {
@@ -294,7 +302,7 @@ class Tablet
     /**
      * Get serial
      *
-     * @return string 
+     * @return string
      */
     public function getSerial()
     {
@@ -317,7 +325,7 @@ class Tablet
     /**
      * Get cpu
      *
-     * @return string 
+     * @return string
      */
     public function getCpu()
     {
@@ -340,7 +348,7 @@ class Tablet
     /**
      * Get ram
      *
-     * @return integer 
+     * @return integer
      */
     public function getRam()
     {
@@ -363,7 +371,7 @@ class Tablet
     /**
      * Get rom
      *
-     * @return integer 
+     * @return integer
      */
     public function getRom()
     {
@@ -386,7 +394,7 @@ class Tablet
     /**
      * Get modem
      *
-     * @return string 
+     * @return string
      */
     public function getModem()
     {
@@ -409,7 +417,7 @@ class Tablet
     /**
      * Get screenSize
      *
-     * @return integer 
+     * @return integer
      */
     public function getScreenSize()
     {
@@ -432,7 +440,7 @@ class Tablet
     /**
      * Get os
      *
-     * @return string 
+     * @return string
      */
     public function getOs()
     {
@@ -455,7 +463,7 @@ class Tablet
     /**
      * Get pin
      *
-     * @return string 
+     * @return string
      */
     public function getPin()
     {
@@ -478,7 +486,7 @@ class Tablet
     /**
      * Get pinScreen
      *
-     * @return string 
+     * @return string
      */
     public function getPinScreen()
     {
@@ -501,7 +509,7 @@ class Tablet
     /**
      * Get color
      *
-     * @return string 
+     * @return string
      */
     public function getColor()
     {
@@ -524,7 +532,7 @@ class Tablet
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -547,7 +555,7 @@ class Tablet
     /**
      * Get addDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getAddDate()
     {
@@ -580,7 +588,7 @@ class Tablet
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployees()
     {
@@ -618,7 +626,7 @@ class Tablet
     /**
      * Get pictures
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPictures()
     {
@@ -651,7 +659,7 @@ class Tablet
     /**
      * Get documents
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDocuments()
     {
@@ -684,7 +692,7 @@ class Tablet
     /**
      * Get sims
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSims()
     {
@@ -712,7 +720,7 @@ class Tablet
     /**
      * Get imei
      *
-     * @return string 
+     * @return string
      */
     public function getImei()
     {
@@ -735,7 +743,7 @@ class Tablet
     /**
      * Get versionOs
      *
-     * @return string 
+     * @return string
      */
     public function getVersionOs()
     {
@@ -768,7 +776,7 @@ class Tablet
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUsers()
     {
@@ -796,7 +804,7 @@ class Tablet
     /**
      * Get varrantyEndDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getVarrantyEndDate()
     {
@@ -819,7 +827,7 @@ class Tablet
     /**
      * Get warrantyEndDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getWarrantyEndDate()
     {
@@ -842,7 +850,7 @@ class Tablet
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {

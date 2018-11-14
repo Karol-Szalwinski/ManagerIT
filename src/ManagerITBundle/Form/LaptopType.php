@@ -47,6 +47,7 @@ class LaptopType extends AbstractType
             ))
             ->add('battery')
             ->add('location')
+            ->add('description')
             ->add('warrantyEndDate', 'date', array(
                 'widget' => 'single_text',
                 'placeholder' => 'Select a value',

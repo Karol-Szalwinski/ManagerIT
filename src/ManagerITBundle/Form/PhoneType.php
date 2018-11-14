@@ -62,6 +62,7 @@ class PhoneType extends AbstractType
                 'multiple' => false,
                 'placeholder' => 'Wybierz status urządzenia'
             ))
+            ->add('location')
             ->setAttributes(array(
                 'novalidate' => 'novalidate',
             ));

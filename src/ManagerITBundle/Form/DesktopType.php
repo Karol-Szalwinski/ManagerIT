@@ -34,6 +34,7 @@ class DesktopType extends AbstractType
                 'multiple' => false,
             ])
             ->add('location')
+            ->add('description')
             ->add('warrantyEndDate', 'date', array(
                 'widget' => 'single_text',
                 'placeholder' => 'Select a value',

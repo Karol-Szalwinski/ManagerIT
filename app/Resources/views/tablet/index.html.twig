@@ -47,6 +47,8 @@
                                         <th>Przekątna ekranu</th>
                                         <th>Kolor</th>
                                         <th>Numer SIM</th>
+                                        <th>Status</th>
+                                        <th>Lokalizacja</th>
                                         <th>Użytkownik</th>
                                         <th>Zdjęcie</th>
                                     </tr>
@@ -65,6 +67,8 @@
                                                     {{ sim.number }}<br>
                                                 {% endfor %}
                                             </td>
+                                            <td>{{ tablet.status }}</td>
+                                            <td>{{ tablet.location }}</td>
                                             <td>
                                                 {% for user in tablet.users %}
                                                     {{ user.name }} {{ user.usersurname }}<br>

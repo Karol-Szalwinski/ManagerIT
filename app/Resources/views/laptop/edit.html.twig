@@ -129,34 +129,13 @@
                                         {{ form_widget(edit_form.status, { 'attr': {'class': 'form-control'} }) }}
                                     </div>
                                 </div>
-                                {#<div class="form-group" >#}
-                                    {#{{ form_label(edit_form.ipAddress, 'Przydzielony adres ip', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-                                    {#<div class="col-lg-6">#}
-                                        {#{{ form_widget(edit_form.ipAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}#}
-                                    {#</div>#}
-                                {#</div>#}
 
-                                {#<div class="form-group" >#}
-                                    {#{{ form_label(edit_form.macAddress, 'MAC adres karty sieciowej', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-                                    {#<div class="col-lg-6">#}
-                                        {#{{ form_widget(edit_form.macAddress, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź MAC adres'} }) }}#}
-                                    {#</div>#}
-                                {#</div>#}
-
-                                {#<div class="form-group" >#}
-                                    {#{{ form_label(edit_form.price, 'Cena zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-                                    {#<div class="col-lg-6">#}
-                                        {#{{ form_widget(edit_form.price, { 'attr': {'class': 'form-control', 'placeholder': 'Wprowadź adres ip przydzielony'} }) }}#}
-                                    {#</div>#}
-                                {#</div>#}
-
-                                {#<div class="form-group">#}
-                                    {#{{ form_label(edit_form.purchaseDate, 'Data zakupu', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}#}
-
-                                    {#<div class="col-lg-3">#}
-                                        {#{{ form_widget(edit_form.purchaseDate, { 'attr': {'class': 'form-control js-datepicker'} }) }}#}
-                                    {#</div>#}
-                                {#</div>#}
+                                <div class="form-group">
+                                    {{ form_label(edit_form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-4'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(edit_form.description, { 'attr': {'class': 'form-control autosize'} }) }}
+                                    </div>
+                                </div>
 
                                 <input type="submit" value="Zapisz zmiany" class="btn btn-primary btn-grad control-label" formnovalidate/>
                                 <br>

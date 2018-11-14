@@ -113,6 +113,13 @@
                                 </div>
 
                                 <div class="form-group">
+                                    {{ form_label(form.description, 'Uwagi', { 'label_attr': {'class': 'control-label col-lg-5'} }) }}
+                                    <div class="col-lg-6">
+                                        {{ form_widget(form.description, { 'attr': {'class': 'form-control autosize'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="control-label col-lg-5 col-sm-3 control-label required">Posiada ochronę ups</label>
                                     <span class=" control-label col-lg-1">&nbsp</span>
                                         {{ form_widget(form.upsProtected, { 'attr': {'class': '',

@@ -203,13 +203,6 @@ class Computer
     private $installedApplications;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="location", type="string", length=255, nullable=true)
-     */
-    private $location;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="warrantyEndDate", type="datetime", nullable=true)
@@ -226,10 +219,24 @@ class Computer
     /**
      * @var string
      *
+     * @ORM\Column(name="location", type="string", length=100, nullable=true)
+     */
+    private $location;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="status", type="string", length=100, nullable=true)
      */
     private $status;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true, nullable=true)
+     */
+    private $description;
 
     /**
      * Get id
@@ -1223,5 +1230,28 @@ class Computer
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Computer
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

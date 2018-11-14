@@ -105,6 +105,10 @@
                                         <td>{{ tablet.imei }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Lokalizacja fizyczna</th>
+                                        <td>{{ tablet.location }}</td>
+                                    </tr>
+                                    <tr>
                                         <th> Data wygaśnięcia gwarancji</th>
                                         <td>
                                             {% if tablet.warrantyEndDate is not null %}

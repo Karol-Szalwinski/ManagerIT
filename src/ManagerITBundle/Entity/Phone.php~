@@ -120,14 +120,6 @@ class Phone
     private $color;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
-
-
-    /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="phones")
      *
      * @ORM\JoinTable(name="users_phones")
@@ -175,6 +167,13 @@ class Phone
      */
     private $warrantyEndDate;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=100, nullable=true)
+     */
+    private $location;
+
 
     /**
      * @var string
@@ -182,6 +181,13 @@ class Phone
      * @ORM\Column(name="status", type="string", length=100, nullable=true)
      */
     private $status;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true, nullable=true)
+     */
+    private $description;
 
     public function __construct()
     {

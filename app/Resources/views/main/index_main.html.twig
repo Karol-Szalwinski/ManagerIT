@@ -55,18 +55,20 @@
                     </div>
                     <hr>
                     <div class="text-center">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="quick-btn" href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">
+                                <i class="fa fa-desktop fa-4x"></i>
+                                <span>Komputery</span>
+                                <span class="label label-default">{{ statistic.computerCount }}</span>
+                            </a>
 
-                        <a class="quick-btn" href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">
-                            <i class="fa fa-desktop fa-4x"></i>
-                            <span>Komputery</span>
-                            <span class="label label-default">{{ statistic.computerCount }}</span>
-                        </a>
                         <a class="quick-btn" href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">
                             <i class="fa fa-laptop fa-4x"></i>
                             <span>Laptopy</span>
                             <span class="label label-danger">{{ statistic.laptopCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="#" data-toggle="popover" title="Uwaga" data-trigger="focus"
+                           data-content="Nie masz uprawnień do wybranego modułu!">
                             <i class="fa fa-server fa-4x"></i>
                             <span>Serwery</span>
                             <span class="label label-danger">10</span>
@@ -76,6 +78,36 @@
                             <span>Sieciowe</span>
                             <span class="label label-success">{{ statistic.networkDeviceCount }}</span>
                         </a>
+                        {% else %}
+                            <a class="quick-btn" href="#"
+                               data-toggle="popover" title="Uwaga" data-trigger="focus"
+                               data-content="Nie masz uprawnień do wybranego modułu!">
+                                <i class="fa fa-desktop fa-4x"></i>
+                                <span>Komputery</span>
+                                <span class="label label-default">{{ statistic.computerCount }}</span>
+                            </a>
+                            <a class="quick-btn" href="#"
+                               data-toggle="popover" title="Uwaga" data-trigger="focus"
+                               data-content="Nie masz uprawnień do wybranego modułu!">
+                                <i class="fa fa-laptop fa-4x"></i>
+                                <span>Laptopy</span>
+                                <span class="label label-danger">{{ statistic.laptopCount }}</span>
+                            </a>
+                            <a class="quick-btn" href="#"
+                               data-toggle="popover" title="Uwaga" data-trigger="focus"
+                               data-content="Nie masz uprawnień do wybranego modułu!">
+                                <i class="fa fa-server fa-4x"></i>
+                                <span>Serwery</span>
+                                <span class="label label-danger">10</span>
+                            </a>
+                            <a class="quick-btn" href="#"
+                               data-toggle="popover" title="Uwaga" data-trigger="focus"
+                               data-content="Nie masz uprawnień do wybranego modułu!">
+                                <i class="fa fa-wifi fa-4x"></i>
+                                <span>Sieciowe</span>
+                                <span class="label label-success">{{ statistic.networkDeviceCount }}</span>
+                            </a>
+                        {% endif %}
                         <a class="quick-btn" href="{{ path('phone_index') }}">
                             <i class="fa fa-mobile-phone fa-4x"></i>
                             <span>Telefony</span>
@@ -201,7 +233,38 @@
         $(function () {
             Metis.dashboard();
         });
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
     </script>
+
+    <script src="assets/js/style-switcher.js"></script>
+    <style>
+        /* Popover */
+        .popover {
+            border: 3px #d9534f;
+        }
+
+        /* Popover Header */
+        .popover-title {
+            background-color: #d9534f;
+            color: #f9f9f9;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Popover Body */
+        .popover-content {
+            background-color: #f9f9f9;
+            color: #d9534f;
+            padding: 16px;
+        }
+
+        /* Popover Arrow */
+        .arrow {
+            /*border-right-color: red !important;*/
+        }
+    </style>
 
     <script src="assets/js/style-switcher.js"></script>
     </body>

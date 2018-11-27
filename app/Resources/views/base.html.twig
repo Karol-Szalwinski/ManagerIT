@@ -219,7 +219,7 @@
             <div class="search-bar">
                 <form class="main-search" action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Live Search ...">
+                        <input type="text" class="form-control" placeholder="Szukaj ...">
                         <span class="input-group-btn">
                                     <button class="btn btn-primary btn-sm text-muted" type="button">
                                         <i class="fa fa-search"></i>
@@ -259,7 +259,13 @@
                     <div class="media-body">
                         <h5 class="media-heading">{{ app.user }}</h5>
                         <ul class="list-unstyled user-info">
+                            {% if is_granted('ROLE_ADMIN') %}
                             <li><a href="">Administrator</a></li>
+                            {% elseif is_granted('ROLE_EDITOR') %}
+                                <li><a href="">Moderator</a></li>
+                            {% else %}
+                                <li><a href="">Użytkownik</a></li>
+                            {%  endif %}
                             <li>Ostatnie zalogowanie : <br>
                                 <small><i class="fa fa-calendar"></i>&nbsp;{{ app.user.lastLogin |date("m-d-Y H:i:s") }}
                                 </small>
@@ -473,7 +479,7 @@
                         <span class="link-title">&nbspDziały</span>
                     </a>
                 </li>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_EDITOR') %}
                     <li class="nav-divider"></li>
                     <li>
                         <a href="{{ path('user_index') }}">
@@ -481,6 +487,8 @@
                             <span class="link-title">&nbspUżytkownicy</span>
                         </a>
                     </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
                     <li>
                         <a href="{{ path('user_index') }}">
                             <i class="fa fa-bar-chart"></i>

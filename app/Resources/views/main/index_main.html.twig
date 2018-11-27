@@ -56,12 +56,12 @@
                     <hr>
                     <div class="text-center">
 
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('computer_type_index', {'type' : 'desktop'}) }}">
                             <i class="fa fa-desktop fa-4x"></i>
                             <span>Komputery</span>
                             <span class="label label-default">{{ statistic.computerCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">
                             <i class="fa fa-laptop fa-4x"></i>
                             <span>Laptopy</span>
                             <span class="label label-danger">{{ statistic.laptopCount }}</span>
@@ -71,32 +71,32 @@
                             <span>Serwery</span>
                             <span class="label label-danger">10</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('networkdevice_index') }}">
                             <i class="fa fa-wifi fa-4x"></i>
                             <span>Sieciowe</span>
                             <span class="label label-success">{{ statistic.networkDeviceCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('phone_index') }}">
                             <i class="fa fa-mobile-phone fa-4x"></i>
                             <span>Telefony</span>
                             <span class="label label-warning">{{ statistic.phoneCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('tablet_index') }}">
                             <i class="fa fa-tablet fa-4x"></i>
                             <span>Tablety</span>
                             <span class="label btn-metis-2">{{ statistic.tabletCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('printer_index') }}">
                             <i class="fa fa-print fa-4x"></i>
                             <span>Drukarki</span>
                             <span class="label btn-metis-4">{{ statistic.printerCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('sim_index') }}">
                             <i class="fa fa-save fa-4x"></i>
                             <span>Karty SIM</span>
                             <span class="label btn-metis-4">{{ statistic.simCount }}</span>
                         </a>
-                        <a class="quick-btn" href="#">
+                        <a class="quick-btn" href="{{ path('user_index') }}">
                             <i class="fa fa-user fa-4x"></i>
                             <span>Użytkownicy</span>
                             <span class="label btn-metis-3">{{ statistic.userCount }}</span>

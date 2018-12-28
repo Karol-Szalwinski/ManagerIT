@@ -23,7 +23,9 @@
         <!-- Font Awesome -->
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <!-- Font Awesome 5 -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
         <!-- Metis core stylesheet -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
 
@@ -313,7 +315,7 @@
                 {% if is_granted('ROLE_EDITOR') %}
                     <li class="">
                         <a href="javascript:;">
-                            <i class="fa fa-mobile-phone"></i>
+                            <i class="fas fa-mobile-alt"></i>
                             <span class="link-title">
                                     &nbspTelefony
                         	  </span>
@@ -323,37 +325,37 @@
 
                             <li>
                                 <a href="{{ path('phone_index') }}">
-                                    <i class="fa fa-mobile-phone"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span class="link-title">&nbspWszystkie</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'inuse'}) }}">
-                                    <i class="fa fa-mobile-phone"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span class="link-title">&nbspW Użyciu</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'storaged'}) }}">
-                                    <i class="fa fa-mobile-phone"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span class="link-title">&nbspW Magazynie</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'inrepair'}) }}">
-                                    <i class="fa fa-mobile-phone"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span class="link-title">&nbspW Naprawie</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'scrapped'}) }}">
-                                    <i class="fa fa-mobile-phone"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span class="link-title">&nbspZezłomowane</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'techdetails'}) }}">
-                                    <i class="fa fa-mobile-phone"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                     <span class="link-title">&nbspSzczegóły techniczne</span>
                                 </a>
                             </li>
@@ -362,13 +364,13 @@
                     </li>
                     <li>
                         <a href="{{ path('tablet_index') }}">
-                            <i class="fa fa-tablet"></i>
+                            <i class="fas fa-tablet-alt"></i>
                             <span class="link-title">&nbspTablety</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('sim_index') }}">
-                            <i class="fa fa-save"></i>
+                            <i class="fas fa-sim-card"></i>
                             <span class="link-title">&nbspKarty&nbspSIM</span>
                         </a>
                     </li>
@@ -388,7 +390,7 @@
                     </li>
                     <li>
                         <a href="{{ path('networkdevice_index') }}">
-                            <i class="fa fa-podcast"></i>
+                            <i class="fas fa-network-wired"></i>
                             <span class="link-title">&nbspUrządzenia&nbspSieciowe</span>
                         </a>
                     </li>
@@ -569,7 +571,7 @@
 </div>
 <!-- /#wrap -->
 <footer class="Footer bg-dark dker">
-    <p>2018 &copy; Manager IT by Karol Szałwiński powered by Coders Lab</p>
+    <p>2016-2019 &copy; Manager IT by Karol Szałwiński</p>
 </footer>
 <!-- /#footer -->
 <!-- #helpModal -->

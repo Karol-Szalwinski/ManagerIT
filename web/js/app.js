@@ -1025,13 +1025,17 @@
                 "infoEmpty": "Nie ma wpisów do pokazania",
                 "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
                 "search": "Szukaj:",
+
                 "paginate": {
                     "first": "Pierwsza",
                     "last": "Ostatnia",
                     "next": "Następna",
-                    "previous": "Poprzednia"
+                    "previous": "Poprzednia",
                 },
-            }
+
+            },
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Maks"] ],
+            "pageLength": 25
         });
         $('#dataTable').dataTable({
             //         "sDom": "<'pull-right'l>t<'row'<'col-lg-6'f><'col-lg-6'p>>",
@@ -1046,13 +1050,16 @@
                 "infoEmpty": "Nie ma wpisów do pokazania",
                 "infoFiltered": "(znalazłem z wszystkich _MAX_ pozycji)",
                 "search": "Szukaj:",
+
                 "paginate": {
                     "first": "Pierwsza",
                     "last": "Ostatnia",
                     "next": "Następna",
-                    "previous": "Poprzednia"
+                    "previous": "Poprzednia",
                 },
-            }
+            },
+            "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "Maks"] ],
+            "pageLength": 25
         });
         /*----------- END datatable CODE -------------------------*/
 

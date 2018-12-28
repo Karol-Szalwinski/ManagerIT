@@ -25,9 +25,25 @@
                         <ul class="stats_box">
                             <li>
                                 <div class="sparkline bar_week"></div>
+
                                 <div class="stat_text">
-                                    <strong>2.345</strong>Weekly Visit
-                                    <span class="percent down"> <i class="fa fa-caret-down"></i> -16%</span>
+                                    <strong>Przeglądarka</strong>
+                                    {% set user_agent = app.request.server.get('HTTP_USER_AGENT') %}
+
+                                    {% if 'MSIE 10' in user_agent or 'MSIE 9' in user_agent or 'MSIE 8' in user_agent %}
+                                        Internet Explorer
+                                    {% elseif 'Chrome'in user_agent %}
+                                        Google Chrome
+                                    {% elseif 'Mozilla'in user_agent %}
+                                        Mozilla
+                                    {% elseif 'Opera'in user_agent %}
+                                        Opera
+                                    {% elseif 'Safari'in user_agent %}
+                                        Safari
+                                    {% else %}
+                                        Nierozpoznana
+                                    {% endif %}
+
                                 </div>
                             </li>
                             <li>
@@ -136,7 +152,21 @@
 
                     </div>
                     <hr>
+                    <div class="text-center">
+                        <ul class="stats_box">
+                            <li>
+                                {% block widget %}
+                                    {{ include('widgets/weather.html.twig') }}
 
+
+                                {% endblock %}
+
+                            </li>
+                            <li>
+                                {{ include('widgets/info.html.twig') }}
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
                 <!-- /.inner -->

@@ -44,8 +44,10 @@ security:
         - { path: ^/printer/\D, role: ROLE_ADMIN }
         - { path: ^/sim/\d*/, role: ROLE_USER }
         - { path: ^/sim/\D, role: ROLE_USER }
-        - { path: ^/tablet/\d*/, role: ROLE_ADMIN }
+        - { path: ^/tablet/\d*/, role: ROLE_EDITOR }
         - { path: ^/tablet/\D, role: ROLE_ADMIN }
+        - { path: ^/phone/\d*/, role: ROLE_EDITOR }
+        - { path: ^/phone/\D, role: ROLE_ADMIN }
         - { path: ^/application, role: ROLE_ADMIN }
         - { path: ^/computerformfactor, role: ROLE_ADMIN }
         - { path: ^/desktopcpu, role: ROLE_ADMIN }

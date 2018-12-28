@@ -84,9 +84,6 @@
         <link rel="stylesheet/less" type="text/css" href="{{ asset('less/theme.less') }}"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
 
-        <-- geolocalizacja-->
-        <script type="text/javascript" src="https://j.maxmind.com/app/geoip.js"></script>
-
 
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -119,7 +116,7 @@
 
                 <div class="topnav">
                     <div class="btn-group">
-                        <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip"
+                        <a data-placement="bottom" data-original-title="Pełny ekran" data-toggle="tooltip"
                            class="btn btn-default btn-sm" id="toggleFullScreen">
                             <i class="glyphicon glyphicon-fullscreen"></i>
                         </a>
@@ -140,26 +137,26 @@
 
                     </div>
                     <div class="btn-group">
-                        <a data-toggle="modal" data-original-title="Help" data-placement="bottom"
+                        <a data-toggle="modal" data-original-title="Pomoc" data-placement="bottom"
                            class="btn btn-default btn-sm"
                            href="#helpModal">
                             <i class="fa fa-question"></i>
                         </a>
                         <a href="{{ path('fos_user_security_logout') }}" data-toggle="tooltip"
-                           data-original-title="Logout" data-placement="bottom"
+                           data-original-title="Wyloguj się" data-placement="bottom"
                            class="btn btn-metis-1 btn-sm">
                             <i class="fa fa-power-off"></i>
                         </a>
                     </div>
                     <div class="btn-group">
-                        <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip"
+                        <a data-placement="bottom" data-original-title="Schowaj menu" data-toggle="tooltip"
                            class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
                             <i class="fa fa-bars"></i>
                         </a>
-                        <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip"
-                           class="btn btn-default btn-sm toggle-right">
-                            <span class="glyphicon glyphicon-comment"></span>
-                        </a>
+                        {#<a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip"#}
+                           {#class="btn btn-default btn-sm toggle-right">#}
+                            {#<span class="glyphicon glyphicon-comment"></span>#}
+                        {#</a>#}
                     </div>
 
                 </div>
@@ -262,17 +259,20 @@
                         <h5 class="media-heading">{{ app.user }}</h5>
                         <ul class="list-unstyled user-info">
                             {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="">Administrator</a></li>
+                            <li><span> Administrator</span></li>
                             {% elseif is_granted('ROLE_EDITOR') %}
-                                <li><a href="">Moderator</a></li>
+                                <li><span>Moderator</span></li>
                             {% else %}
-                                <li><a href="">Użytkownik</a></li>
+                                <li><span>Użytkownik</span></li>
                             {%  endif %}
                             <li>Ostatnie zalogowanie : <br>
                                 <small><i class="fa fa-calendar"></i>&nbsp;{{ app.user.lastLogin |date("m-d-Y H:i:s") }}
                                 </small>
                             </li>
-                            <li>Twoje IP: {{ app.request.server.get("REMOTE_ADDR") }}</li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Twoje IP: {{ app.request.server.get("REMOTE_ADDR") }}</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -584,12 +584,16 @@
             </div>
             <div class="modal-body">
                 <p>Autor programu: Karol Szałwiński</p>
-                <p>Rok: 2018</p>
+                <p>Lata produkcji: 2016-2019</p>
                 <p>Social Media:
                     <a href="https://pl.linkedin.com/in/karol-szalwinski">
-                        <i class="fa fa-linkedin"></i>
+                        <i class="fab fa-linkedin"></i>
                         <span class=" link-title">Linkedin</span>
                     </a>
+                </p>
+                <p>
+                    <i class="far fa-copyright"></i>
+                    <span>Ninejsze dzieło podlega ochronie prawnej na mocy ustawy o prawie autorskim.</span>
                 </p>
             </div>
             <div class="modal-footer">

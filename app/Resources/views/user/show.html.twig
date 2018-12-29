@@ -9,6 +9,7 @@
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista użytkowników</span>
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-wrench"></i>
                 <span class="link-title">Edytuj</span>
@@ -26,6 +27,7 @@
                 </button>
                 {{ form_end(delete_form) }}
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- /.main-bar -->
@@ -107,7 +109,7 @@
                                     </tr>
                                     <tr>
                                         <td>Ostatnie logowanie</td>
-                                        <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
+                                        <td>brak danych</td>
                                     </tr>
                                     <tr>
                                         <td>Przypisane role</td>

@@ -23,48 +23,49 @@
                 <div class="inner bg-light lter">
                     <div class="text-center">
                         <ul class="stats_box">
+                            <!-- stats fake mechanism -->
+                            {% set percent = random(99) %}
+                            {% set class = 'up' %}
+                            {% set  sign = random(['+', '-']) %}
+                            {% if (sign == '-') %}
+                                {% set class = 'down' %}
+                            {% endif %}
+                            <!-- --------------- -->
                             <li>
-                                <div class="sparkline bar_week"></div>
-
+                                <div class="sparkline line_day"><i class="fas fa-database fa-2x"></i></div>
                                 <div class="stat_text">
-                                    <strong>Przeglądarka</strong>
-                                    {% set user_agent = app.request.server.get('HTTP_USER_AGENT') %}
-
-                                    {% if 'MSIE 10' in user_agent or 'MSIE 9' in user_agent or 'MSIE 8' in user_agent %}
-                                        Internet Explorer
-                                    {% elseif 'Chrome'in user_agent %}
-                                        Google Chrome
-                                    {% elseif 'Mozilla'in user_agent %}
-                                        Mozilla
-                                    {% elseif 'Opera'in user_agent %}
-                                        Opera
-                                    {% elseif 'Safari'in user_agent %}
-                                        Safari
-                                    {% else %}
-                                        Nierozpoznana
-                                    {% endif %}
-
+                                    <strong>Kontroler </strong>domeny
+                                    <span class="percent {{ class }}"> <i class="fa fa-caret-{{ class }}"></i> {{ sign }}{{ percent }}%</span>
                                 </div>
                             </li>
+                            <!-- stats fake mechanism -->
+                            {% set percent = random(99) %}
+                            {% set class = 'up' %}
+                            {% set  sign = random(['+', '-']) %}
+                            {% if (sign == '-') %}
+                                {% set class = 'down' %}
+                            {% endif %}
+                            <!-- --------------- -->
                             <li>
-                                <div class="sparkline line_day"></div>
+                                <div class="sparkline pie_week"><i class="fab fa-redhat fa-2x"></i></div>
                                 <div class="stat_text">
-                                    <strong>165</strong>Daily Visit
-                                    <span class="percent up"> <i class="fa fa-caret-up"></i> +23%</span>
+                                    <strong>System ARP</strong>Obciązenie
+                                    <span class="percent {{ class }}"> <i class="fa fa-caret-{{ class }}"></i> {{ sign }}{{ percent }}%</span>
                                 </div>
                             </li>
+                            <!-- stats fake mechanism -->
+                            {% set percent = random(99) %}
+                            {% set class = 'up' %}
+                            {% set  sign = random(['+', '-']) %}
+                            {% if (sign == '-') %}
+                                {% set class = 'down' %}
+                            {% endif %}
+                            <!-- --------------- -->
                             <li>
-                                <div class="sparkline pie_week"></div>
+                                <div class="sparkline stacked_month"><i class="fas fa-chart-line fa-2x"></i></div>
                                 <div class="stat_text">
-                                    <strong>$2 345.00</strong>Weekly Sale
-                                    <span class="percent"> 0%</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="sparkline stacked_month"></div>
-                                <div class="stat_text">
-                                    <strong>$678.00</strong>Monthly Sale
-                                    <span class="percent down"> <i class="fa fa-caret-down"></i> -10%</span>
+                                    <strong>Trend</strong>WAMP-TRANS
+                                    <span class="percent {{ class }}"> <i class="fa fa-caret-{{ class }}"></i> {{ sign }}{{ percent }}%</span>
                                 </div>
                             </li>
                         </ul>
@@ -162,9 +163,9 @@
                                 {% endblock %}
 
                             </li>
-                            <li>
-                                {{ include('widgets/info.html.twig') }}
-                            </li>
+                            {#<li>#}
+                            {#{{ include('widgets/info.html.twig') }}#}
+                            {#</li>#}
                         </ul>
                     </div>
 

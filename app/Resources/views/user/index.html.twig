@@ -9,10 +9,12 @@
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista użytkowników</span>
             </a>
+            {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('user_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-plus"></i>
                 <span class="link-title">Dodaj</span>
             </a>
+            {%  endif  %}
         </div>
     </div>
     <!-- /.main-bar -->
@@ -47,7 +49,6 @@
                                         <th>Nazwisko</th>
                                         <th>Email</th>
                                         <th>Zablokowany</th>
-                                        <th>Ostatnie logowanie</th>
                                         <th>Rola</th>
                                     </tr>
                                     </thead>
@@ -67,7 +68,6 @@
                                                     tak
                                                 {% endif %}
                                             </td>
-                                            <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
                                             <td>
                                                 {% for roles in user.roles %}
                                                     {% if roles == "ROLE_ADMIN" %}

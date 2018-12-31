@@ -10,10 +10,10 @@
                 <span class="link-title">Lista działów</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('departament_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-plus"></i>
-                <span class="link-title">Dodaj</span>
-            </a>
+                <a href="{{ path('departament_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-plus"></i>
+                    <span class="link-title">Dodaj</span>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -30,9 +30,13 @@
                     <div class="col-lg-12">
                         <div class="box">
                             <header>
-                                <div class="icons"><i class="fa fa-building"></i></div>
-                                <h5>Lista działów</h5>
-
+                                <div data-toggle="tooltip" data-placement="bottom"
+                                     title="Dane na liście są poglądowe, ponieważ jedna drukarka moze być używana przez
+                                      kilka osóbz różnych działów. Tabela ta odzwierciedla ile osób w danym dziale
+                                       korzysta z jakiego rodzaju urządzeń.">
+                                    <div class="icons"><i class="fa fa-building"></i></div>
+                                    <h5>Lista działów</h5>
+                                </div>
                             </header>
 
                             <div id="collapse4" class="body">
@@ -88,7 +92,5 @@
         <!-- /.outer -->
     </div>
     <!-- /#content -->
+
 {% endblock %}
-
-
-

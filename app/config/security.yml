@@ -30,6 +30,7 @@ security:
         - { path: ^/register, role: ROLE_SUPER_ADMIN }
         - { path: ^/resetting, role: ROLE_SUPER_ADMIN }
         - { path: ^/user/\d*/, role: ROLE_EDITOR }
+        - { path: ^/user/device, role: ROLE_EDITOR }
         - { path: ^/user/\D, role: ROLE_ADMIN }
         - { path: ^/computer/laptop/\d*/, role: ROLE_ADMIN }
         - { path: ^/computer/laptop/\D, role: ROLE_ADMIN }
@@ -48,7 +49,7 @@ security:
         - { path: ^/tablet/\d*/, role: ROLE_EDITOR }
         - { path: ^/tablet/\D, role: ROLE_ADMIN }
         - { path: ^/phone/\d*/, role: ROLE_EDITOR }
-        - { path: ^/phone/\D, role: ROLE_ADMIN }
+        - { path: ^/phone/\D, role: ROLE_EDITOR }
         - { path: ^/application, role: ROLE_ADMIN }
         - { path: ^/computerformfactor, role: ROLE_ADMIN }
         - { path: ^/desktopcpu, role: ROLE_ADMIN }

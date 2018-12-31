@@ -10,23 +10,26 @@
                 <span class="link-title">Lista użytkowników</span>
             </a>
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-wrench"></i>
-                <span class="link-title">Edytuj</span>
-            </a>
-            <a href="{{ path('change_user_password', { 'id': user.id }) }}"
-               class="btn btn-metis-5 btn-grad btn-rect btn-md">
-                <i class="fa fa-wrench"></i>
-                <span class="link-title">Zmień hasło</span>
-            </a>
+                <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-wrench"></i>
+                    <span class="link-title">Edytuj</span>
+                </a>
+                <a href="{{ path('change_user_password', { 'id': user.id }) }}"
+                   class="btn btn-metis-5 btn-grad btn-rect btn-md">
+                    <i class="fa fa-wrench"></i>
+                    <span class="link-title">Zmień hasło</span>
+                </a>
 
-            <div style="display: inline-block;">
-                {{ form_start(delete_form) }}
-                <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i
-                            class="fa fa-trash"></i> Usuń
-                </button>
-                {{ form_end(delete_form) }}
-            </div>
+                <div style="display: inline-block;">
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn btn-metis-5 btn-grad btn-rect btn-md inline"
+                            data-toggle="modal" data-target="#deleteModal">
+                        <i class="fa fa-trash"></i>
+                        Usuń
+                    </button>
+
+                </div>
             {% endif %}
         </div>
     </div>
@@ -99,17 +102,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Zablokowany</td>
+                                        <td>Logowanie</td>
                                         <td> {% if user.enabled == true %}
-                                                nie
+                                                włączone
                                             {% else %}
-                                                tak
+                                                wyłączone
                                             {% endif %}
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ostatnie logowanie</td>
-                                        <td>brak danych</td>
                                     </tr>
                                     <tr>
                                         <td>Przypisane role</td>
@@ -139,10 +138,202 @@
                 </div>
                 <!-- /.row -->
 
+                <!-- /.row -->
+
+                <div class="row">
+
+                    <!-- .col-lg-8 -->
+                    <div class="col-lg-8">
+                        <div class="box">
+                            <header>
+                                <div class="icons"><i class="fa fa-list"></i></div>
+                                <h5>Przypisany sprzęt</h5>
+
+                                <div class="toolbar">
+                                    <div class="btn-group">
+                                        <a href="#condensedTable" data-toggle="collapse"
+                                           class="btn btn-default btn-sm minimize-box">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                        <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </header>
+                            <div id="condensedTable" class="body collapse in">
+                                <table class="table table-condensed responsive-table">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Typ sprzętu</th>
+                                        <th>Sprzęt przypisany</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% if user.computers is empty %}
+                                        <tr>
+                                            <td>Komputer</td>
+                                            <td>Brak</td>
+                                            <td>
+                                                <a href=""
+                                                   class="btn btn-warning btn-grad btn-sm">
+                                                    <i class="fas fa-eye-slash "></i>
+                                                    <span class="link-title">Brak</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        {% for computer in user.computers %}
+                                            <tr>
+                                                <td>Komputer</td>
+                                                <td>{{ computer.name }}</td>
+                                                <td>
+                                                    <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id  }) }}"
+                                                       class="btn btn-success btn-grad btn-sm">
+                                                        <i class="fas fa-eye "></i>
+                                                        <span class="link-title">Pokaż</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    {% if user.phones is empty %}
+                                        <tr>
+                                            <td>Telefon</td>
+                                            <td>Brak</td>
+                                            <td>
+                                                <a href=""
+                                                   class="btn btn-warning btn-grad btn-sm">
+                                                    <i class="fas fa-eye-slash "></i>
+                                                    <span class="link-title">Brak</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        {% for phone in user.phones %}
+                                            <tr>
+                                                <td>Telefon</td>
+                                                <td>{{ phone.name }}</td>
+                                                <td>
+                                                    <a href="{{ path('phone_show', {'id': phone.id  }) }}"
+                                                       class="btn btn-success btn-grad btn-sm">
+                                                        <i class="fas fa-eye "></i>
+                                                        <span class="link-title">Pokaż</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    {% if user.tablets is empty %}
+                                        <tr>
+                                            <td>Tablet</td>
+                                            <td>Brak</td>
+                                            <td>
+                                                <a href=""
+                                                   class="btn btn-warning btn-grad btn-sm">
+                                                    <i class="fas fa-eye-slash "></i>
+                                                    <span class="link-title">Brak</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        {% for tablet in user.tablets %}
+                                            <tr>
+                                                <td>Komputer</td>
+                                                <td>{{ tablet.name }}</td>
+                                                <td>
+                                                    <a href="{{ path('phone_show', {'id': tablet.id  }) }}"
+                                                       class="btn btn-success btn-grad btn-sm">
+                                                        <i class="fas fa-eye "></i>
+                                                        <span class="link-title">Pokaż</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    {% if user.printers is empty %}
+                                        <tr>
+                                            <td>Drukarka</td>
+                                            <td>&nbspBrak</td>
+                                            <td>
+                                                <a href=""
+                                                   class="btn btn-warning btn-grad btn-sm">
+                                                    <i class="fas fa-eye-slash "></i>
+                                                    <span class="link-title">Brak</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        {% for printer in user.printers %}
+                                            <tr>
+                                                <td>Drukarka</td>
+                                                <td>{{ printer.name }}</td>
+                                                <td>
+                                                    <a href="{{ path('phone_show', {'id': printer.id  }) }}"
+                                                       class="btn btn-success btn-grad btn-sm">
+                                                        <i class="fas fa-eye "></i>
+                                                        <span class="link-title">Pokaż</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-8 -->
+
+                </div>
+                <!-- /.row -->
+
             </div>
             <!-- /.inner -->
         </div>
         <!-- /.outer -->
     </div>
     <!-- /#content -->
+
+
+    <!-- Modal delete-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                {#<div class="modal-header">#}
+                    {#<h4  id="deleteModalLabel">Uwaga!</h4>#}
+                    {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                        {#<span aria-hidden="true">&times;</span>#}
+                    {#</button>#}
+                {#</div>#}
+
+                <div class="modal-header text-center text-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title impor"><i class="fas fa-exclamation-triangle"></i>&nbsp Uwaga</h4>
+                </div>
+                <div class="modal-body text-center warning">
+                    <p>Chcesz usunąć nieodwracalnie tego użytkownika z bazy?</p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Anuluj</button>
+                    <div class="btn ">
+                        {{ form_start(delete_form) }}
+                        <button type="submit" class="btn btn-danger inline"> Usuń
+                        </button>
+                        {{ form_end(delete_form) }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 {% endblock %}

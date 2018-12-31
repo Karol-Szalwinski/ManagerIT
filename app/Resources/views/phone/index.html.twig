@@ -30,8 +30,14 @@
                     <div class="col-lg-12">
                         <div class="box">
                             <header>
-                                <div class="icons"><i class="fas fa-mobile-alt"></i></div>
-                                <h5>Lista telefonów</h5>
+                                {% if icon is not defined %}
+                                    {% set icon="fas fa-mobile-alt" %}
+                                {% endif %}
+                                {% if status is not defined %}
+                                    {% set status="dowolnym" %}
+                                {% endif %}
+                                <div class="icons"><i class="{{ icon }}"></i></div>
+                                <h5>Lista telefonów ze statusem {{ status|lower }}</h5>
                             </header>
 
                             <div id="collapse4" class="body">

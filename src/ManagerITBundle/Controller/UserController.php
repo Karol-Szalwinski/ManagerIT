@@ -34,6 +34,24 @@ class UserController extends Controller
     }
 
     /**
+     * Lists all user entities.
+     *
+     * @Route("/device", name="user_index_device")
+     * @Method("GET")
+     */
+    public function indexDeviceAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('ManagerITBundle:User')->findAll();
+
+        return $this->render('user/index_device.html.twig', array(
+            'users' => $users,
+        ));
+    }
+
+
+    /**
      * Creates a new user entity.
      *
      * @Route("/new", name="user_new")

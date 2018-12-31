@@ -51,29 +51,43 @@ class PhoneController extends Controller
         $view = 'phone/index.html.twig';
         switch($type) {
             case "inuse":
-                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("W użyciu");
+                $status = "W użyciu";
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus($status);
+                $icon = "fas fa-user-tag";
                 break;
             case "inrepair":
-                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("W naprawie");
+                $status = "W naprawie";
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus($status);
+                $icon = "fas fa-tools";
                 break;
             case "scrapped":
-                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("Zezłomowane");
+                $status = "Zezłomowany";
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus($status);
+                $icon = "fas fa-toilet";
                 break;
             case "storaged":
-                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus("W magazynie");
+                $status = "W magazynie";
+                $phones = $em->getRepository('ManagerITBundle:Phone')->findByStatus($status);
+                $icon = "fas fa-warehouse";
                 break;
             case "techdetails":
+                $status = "Wszystkie ze szcegółami technicznymi";
                 $phones = $em->getRepository('ManagerITBundle:Phone')->findAll();
                 $view = 'phone/index_tech.html.twig';
+                $icon = "fas fa-info";
                 break;
             default:
+                $status = "Wszystkie";
                 $phones = $em->getRepository('ManagerITBundle:Phone')->findAll();
+                $icon = "fas fa-list-ol";
 
 
         }
 
         return $this->render($view, array(
             'phones' => $phones,
+            'status' => $status,
+            'icon' => $icon,
         ));
     }
 

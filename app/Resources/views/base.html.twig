@@ -25,7 +25,8 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Font Awesome 5 -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+              crossorigin="anonymous">
         <!-- Metis core stylesheet -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
 
@@ -97,7 +98,6 @@
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container-fluid">
 
-
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <header class="navbar-header">
 
@@ -154,8 +154,8 @@
                             <i class="fa fa-bars"></i>
                         </a>
                         {#<a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip"#}
-                           {#class="btn btn-default btn-sm toggle-right">#}
-                            {#<span class="glyphicon glyphicon-comment"></span>#}
+                        {#class="btn btn-default btn-sm toggle-right">#}
+                        {#<span class="glyphicon glyphicon-comment"></span>#}
                         {#</a>#}
                     </div>
 
@@ -179,7 +179,7 @@
                                 <a href="{{ path('computer_type_index', {'type' : 'laptop'}) }}">Laptopy</a>
                             </li>
                         {% endif %}
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_EDITOR') %}
                             <li>
                                 <a href="{{ path('phone_index') }}">Telefony</a>
                             </li>
@@ -192,21 +192,13 @@
                             <li>
                                 <a href="{{ path('printer_index') }}">Drukarki</a>
                             </li>
+                            <li>
+                                <a href="{{ path('departament_index') }}">Działy</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('user_index_device') }}">Użytkownicy</a>
+                            </li>
                         {% endif %}
-                        <li>
-                            <a href="{{ path('departament_index') }}">Działy</a>
-                        </li>
-                        {#<li class='dropdown'>#}
-                        {#<a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
-                        {#Form Elements <b class="caret"></b>#}
-                        {#</a>#}
-                        {#<ul class="dropdown-menu">#}
-                        {#<li><a href="form-general.html">General</a></li>#}
-                        {#<li><a href="form-validation.html">Validation</a></li>#}
-                        {#<li><a href="form-wysiwyg.html">WYSIWYG</a></li>#}
-                        {#<li><a href="form-wizard.html">Wizard &amp; File Upload</a></li>#}
-                        {#</ul>#}
-                        {#</li>#}
                     </ul>
                     <!-- /.nav -->
                 </div>
@@ -251,7 +243,8 @@
                 <div class="user-wrapper bg-dark">
                     <a class="user-link" href="">
                         <img class="media-object img-thumbnail user-img" alt="User Picture"
-                             src="{{ asset('img/user.gif') }} ">
+                             {#src="{{ asset('img/user.gif') }} ">#}
+                        src="https://ui-avatars.com/api/?name={{ app.user.username }}+{{ app.user.usersurname }}">
                         <span class="label label-danger user-label">16</span>
                     </a>
 
@@ -259,12 +252,12 @@
                         <h5 class="media-heading">{{ app.user }}</h5>
                         <ul class="list-unstyled user-info">
                             {% if is_granted('ROLE_ADMIN') %}
-                            <li><span> Administrator</span></li>
+                                <li><span> Administrator</span></li>
                             {% elseif is_granted('ROLE_EDITOR') %}
                                 <li><span>Moderator</span></li>
                             {% else %}
                                 <li><span>Użytkownik</span></li>
-                            {%  endif %}
+                            {% endif %}
                             <li>Ostatnie zalogowanie : <br>
                                 <small><i class="fa fa-calendar"></i>&nbsp;{{ app.user.lastLogin |date("m-d-Y H:i:s") }}
                                 </small>
@@ -325,37 +318,37 @@
 
                             <li>
                                 <a href="{{ path('phone_index') }}">
-                                    <i class="fas fa-mobile-alt"></i>
+                                    <i class="fas fa-list-ol"></i>
                                     <span class="link-title">&nbspWszystkie</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'inuse'}) }}">
-                                    <i class="fas fa-mobile-alt"></i>
+                                    <i class="fas fa-user-tag"></i>
                                     <span class="link-title">&nbspW Użyciu</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'storaged'}) }}">
-                                    <i class="fas fa-mobile-alt"></i>
+                                    <i class="fas fa-warehouse"></i>
                                     <span class="link-title">&nbspW Magazynie</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'inrepair'}) }}">
-                                    <i class="fas fa-mobile-alt"></i>
+                                    <i class="fas fa-tools"></i>
                                     <span class="link-title">&nbspW Naprawie</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'scrapped'}) }}">
-                                    <i class="fas fa-mobile-alt"></i>
+                                    <i class="fas fa-toilet"></i>
                                     <span class="link-title">&nbspZezłomowane</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('phone_index_type', {'type': 'techdetails'}) }}">
-                                    <i class="fas fa-mobile-alt"></i>
+                                    <i class="fas fa-info"></i>
                                     <span class="link-title">&nbspSzczegóły techniczne</span>
                                 </a>
                             </li>
@@ -483,12 +476,30 @@
                 </li>
                 {% if is_granted('ROLE_EDITOR') %}
                     <li class="nav-divider"></li>
-                    <li>
-                        <a href="{{ path('user_index') }}">
-                            <i class="fa fa-users"></i>
-                            <span class="link-title">&nbspUżytkownicy</span>
+                    <li class="">
+                        <a href="javascript:;">
+                            <i class="fa fa-cubes"></i>
+                            <span class="link-title">
+                                    &nbspUżytkownicy
+                        	  </span>
+                            <span class="fa arrow"></span>
                         </a>
+                        <ul class="collapse">
+                            <li>
+                                <a href="{{ path('user_index') }}">
+                                    <i class="fas fa-list-ol"></i>
+                                    <span class="link-title">&nbspWszyscy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('user_index_device') }}">
+                                    <i class="fas fa-user-lock"></i>
+                                    <span class="link-title">&nbspPrzypisany sprzęt</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li>

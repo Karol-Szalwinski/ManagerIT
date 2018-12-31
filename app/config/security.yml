@@ -32,6 +32,7 @@ security:
         - { path: ^/user/\d*/, role: ROLE_EDITOR }
         - { path: ^/user/device, role: ROLE_EDITOR }
         - { path: ^/user/\D, role: ROLE_ADMIN }
+        - { path: ^/computer/\d*, role: ROLE_ADMIN }
         - { path: ^/computer/laptop/\d*/, role: ROLE_ADMIN }
         - { path: ^/computer/laptop/\D, role: ROLE_ADMIN }
         - { path: ^/computer/desktop/\d*/, role: ROLE_ADMIN }

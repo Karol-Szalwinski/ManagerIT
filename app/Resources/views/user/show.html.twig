@@ -68,8 +68,9 @@
                                     <tr>
 
                                         <th><img class="media-object img-thumbnail user-img" alt="User Picture"
-                                                 src="{{ asset('img/user.gif') }}"></th>
+                                                 src="https://ui-avatars.com/api/?name={{ user.username }}+{{ user.usersurname }}"></th>
                                         <th></th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -188,6 +189,7 @@
                                             <tr>
                                                 <td>Komputer</td>
                                                 <td>{{ computer.name }}</td>
+                                                {% if is_granted('ROLE_ADMIN') %}
                                                 <td>
                                                     <a href="{{ path('computer_show', {'type' : computer.formFactor, 'id': computer.id  }) }}"
                                                        class="btn btn-success btn-grad btn-sm">
@@ -195,6 +197,16 @@
                                                         <span class="link-title">Pokaż</span>
                                                     </a>
                                                 </td>
+                                                {% elseif is_granted('ROLE_EDITOR') %}
+                                                    <td>
+                                                        <a href=""
+                                                           class="btn btn-success btn-grad btn-sm disabled">
+                                                            <i class="fas fa-eye "></i>
+                                                            <span class="link-title">Pokaż</span>
+                                                            <span class="label label-danger user-label">Wkrótce</span>
+                                                        </a>
+                                                    </td>
+                                                {% endif %}
                                             </tr>
                                         {% endfor %}
                                     {% endif %}

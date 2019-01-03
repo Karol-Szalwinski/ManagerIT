@@ -43,6 +43,7 @@
                                           <th>Status</th>
                                           <th>Pin</th>
                                           <th>Puk</th>
+                                          <th>Abonament</th>
                                           <th>Operator</th>
                                           <th>Urządzenie</th>
                                           <th>Model</th>
@@ -82,6 +83,7 @@
                                                       {#{{ sim.puk }}#}
                                                   {#{% endif %}#}
                                               </td>
+                                              <td class="text-right">{{ sim.monthlyfee|number_format(2, ',', ' ') }}&nbspzł</td>
                                               <td>{{ sim.operator }}</td>
                                               <td>
                                                   {% if sim.phone is not null %}

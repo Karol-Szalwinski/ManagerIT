@@ -9,7 +9,7 @@
                 <i class="fa fa-arrow-down"></i>
                 <span class="link-title">Lista telefonów</span>
             </a>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_EDITOR') %}
                 <a href="{{ path('phone_new') }}" class="btn btn-metis-5 btn-grad btn-rect btn-md">
                     <i class="fa fa-plus"></i>
                     <span class="link-title">Dodaj</span>

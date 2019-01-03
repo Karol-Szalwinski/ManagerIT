@@ -5,6 +5,7 @@ namespace ManagerITBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class SimType extends AbstractType
 {
@@ -30,6 +31,16 @@ class SimType extends AbstractType
                 'expanded' => false,
                 'multiple' => false,
                 'placeholder' => 'Wybierz sieć',
+            ))
+            ->add('monthlyfee', NumberType::class, array(
+                'required' => true,
+                'scale' => 2,
+                'attr' => array(
+                    'min' => 0,
+                    'max' => 50000,
+                    'step' => 0.01,
+                    'placeholder' => '0.00'
+                ),
             ))
             ->add('status', 'choice', array(
                 'choices' => array(

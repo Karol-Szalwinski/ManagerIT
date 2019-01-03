@@ -81,6 +81,10 @@
                                         <td>{{ sim.puk2 }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Kwota abonamentu</th>
+                                        <td>{{ sim.monthlyfee|number_format(2, ',', ' ') }}&nbspzł</td>
+                                    </tr>
+                                    <tr>
                                         <th>Operator komórkowy</th>
                                         <td>
                                             <img src="{{ asset('img/mobile/' ~ sim.operator ~'.png') }}" alt="Tablet"

@@ -84,6 +84,13 @@ class Sim
      */
     private $status;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="monthlyfee", type="string", length=55, nullable=true)
+     */
+    private $monthlyfee;
+
 
     /**
      * Get id
@@ -300,5 +307,29 @@ class Sim
     public function getStatus()
     {
         return $this->status;
+    }
+
+
+    /**
+     * Set monthlyfee
+     *
+     * @param string $monthlyfee
+     * @return Sim
+     */
+    public function setMonthlyfee($monthlyfee)
+    {
+        $this->monthlyfee = $monthlyfee;
+
+        return $this;
+    }
+
+    /**
+     * Get monthlyfee
+     *
+     * @return string 
+     */
+    public function getMonthlyfee()
+    {
+        return $this->monthlyfee;
     }
 }

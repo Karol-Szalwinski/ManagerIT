@@ -9,7 +9,7 @@
                 <i class="fa fa-arrow-left"></i>
                 <span class="link-title">Lista telefonów</span>
             </a>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_EDITOR') %}
             <a href="{{ path('phone_edit', { 'id': phone.id }) }}"
                class="btn btn-metis-5 btn-grad btn-rect btn-md">
                 <i class="fa fa-wrench"></i>
@@ -35,6 +35,8 @@
                 <i class="fa fa-save"></i>
                 <span class="link-title">Karty SIM</span>
             </a>
+                {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
             <div style="display: inline-block;">
                 {{ form_start(delete_form) }}
                 <button type="submit" class="btn btn-metis-5 btn-grad btn-rect btn-md inline"><i

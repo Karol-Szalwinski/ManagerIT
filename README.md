@@ -1,5 +1,5 @@
 ManagerIT
 =========
 
-A Symfony project created on February 19, 2017, 1:51 pm.
+Manager IT -  Aplikacja do zrządzania zasobami it
 # ManagerIT
